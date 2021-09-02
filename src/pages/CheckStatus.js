@@ -137,7 +137,7 @@ export default () => {
 
           <Col xs={8} md={2} lg={1} xl={6}>
             <InputGroup>
-              <Form.Select aria-label="Default select example" onChange={event => setSelectOptionsProvider(event.target.value)}>
+              <Form.Select aria-label="Default select example" defaultValue="Intouch" onChange={event => setSelectOptionsProvider(event.target.value)}>
                   <option value="Intouch">Intouch CI</option>
                   <option value="Orange">Orange CI</option>
                   <option value="Mtn">Mtn CI</option>
@@ -166,7 +166,7 @@ export default () => {
         <Col xs={12} xl={6} >
           {console.log("isLoaded in balise : " + isLoadedProvider)}
           {/* {isLoadedProvider ? <TransferFormInformSourceProvider intouch={providerTransfer} /> : <Spinner animation="grow" xl />} */}
-          <ProviderTransactionStatus/>
+          <ProviderTransactionStatus provider={providerTransfer} />
         </Col>
       </Row>
 

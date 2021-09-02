@@ -1,7 +1,13 @@
 import React from 'react';
 import { Col, Row, Card, Image, Button, ListGroup, ProgressBar,Form,InputGroup } from '@themesberg/react-bootstrap';
 
-export default function ProviderTransactionStatus() {
+export default function ProviderTransactionStatus(props) {
+
+  const {provider:{transactionId,amount,currency,logo,recipient,serviceId,status,transactionDate}} = props;
+
+  const transactionDateUtc = new Date(transactionDate);
+  const transactionDateFormated = transactionDateUtc.toLocaleString('pt-BR');
+
     return (
         <Card border="light" className="shadow-sm border-warning">
         <Card.Body>
@@ -12,7 +18,7 @@ export default function ProviderTransactionStatus() {
 
             <Col xs={12} xl={9} className="px-xl-0">
             <Form.Group id="firstName">
-                <Form.Label>Transaction Id : </Form.Label><br/>
+                <Form.Label>Transaction Id : {transactionId} </Form.Label><br/>
                 <Form.Label></Form.Label>
               </Form.Group>
              <Form.Group id="firstName">
@@ -22,12 +28,12 @@ export default function ProviderTransactionStatus() {
     
 
               <Form.Group id="firstName">
-                <Form.Label>Status : </Form.Label><br/>
+                <Form.Label>Status : {status} </Form.Label><br/>
                 <Form.Label></Form.Label>
               </Form.Group>
               
               <Form.Group id="firstName">
-                <Form.Label>Montant : </Form.Label><br/>
+                <Form.Label>Montant : {amount} {currency} </Form.Label><br/>
                 <Form.Label></Form.Label>
               </Form.Group>
               <Form.Group id="firstName">
@@ -35,7 +41,7 @@ export default function ProviderTransactionStatus() {
                 <Form.Label></Form.Label>
               </Form.Group>
               <Form.Group id="firstName">
-                <Form.Text>Date de transaction</Form.Text><br/>
+                <Form.Text>Date de transaction : {transactionDateFormated}</Form.Text><br/>
                 <Form.Label></Form.Label>
               </Form.Group>
               

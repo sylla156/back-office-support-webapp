@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCashRegister, faChartLine, faCloudUploadAlt, faPlus, faRocket, faTasks, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Button, Dropdown, ButtonGroup } from '@themesberg/react-bootstrap';
 
-import { CounterWidget, CircleChartWidget, BarChartWidget, TeamMembersWidget, ProgressTrackWidget, RankingWidget, SalesValueWidget, SalesValueWidgetPhone, AcquisitionWidget } from "../../components/Widgets";
-import { PageVisitsTable } from '../../components/Tables';
+import { CircleChartWidget, BarChartWidget, TeamMembersWidget, ProgressTrackWidget, RankingWidget, SalesValueWidget, SalesValueWidgetPhone, AcquisitionWidget } from "../../components/Widgets";
+import { CounterDasboardWidget } from "../../components/Widgets";
+import { PageVisitsTable } from "../../components/Tables";
 import { trafficShares, totalOrders } from "../../data/charts";
 
 export default () => {
@@ -29,15 +30,15 @@ export default () => {
 
             <Dropdown.Divider />
 
-            {/*<Dropdown.Item className="fw-bold">
+            <Dropdown.Item className="fw-bold">
               <FontAwesomeIcon icon={faRocket} className="text-danger me-2" /> Upgrade to Pro
-  </Dropdown.Item>*/}
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
         <ButtonGroup>
           <Button variant="outline-primary" size="sm">Share</Button>
-          <Button variant="outline-primary" size="sm">Export</Button> {/* create drop and drap system file ici */}
+          <Button variant="outline-primary" size="sm">Export</Button>
         </ButtonGroup>
       </div>
 
@@ -57,7 +58,7 @@ export default () => {
           />
         </Col>
         <Col xs={12} sm={6} xl={4} className="mb-4">
-          <CounterWidget
+          <CounterDasboardWidget
             category="Customers"
             title="345k"
             period="Feb 1 - Apr 1"
@@ -68,7 +69,7 @@ export default () => {
         </Col>
 
         <Col xs={12} sm={6} xl={4} className="mb-4">
-          <CounterWidget
+          <CounterDasboardWidget
             category="Revenue"
             title="$43,594"
             period="Feb 1 - Apr 1"

@@ -1,10 +1,9 @@
 import React, { useState, useEffect,Component } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
+
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
 import base64 from 'base-64';
 import axios from 'axios';
-import { TransactionsTable,StatusTable } from "../components/Tables";
+
 import {TransferFormInformForceStatusSourceHub,TransferFormInformForceStatusSourceProvider} from '../components/Forms';
 import {FormDialog} from '../components/Dialog';
 export default () => {

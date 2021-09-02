@@ -8,15 +8,13 @@ import { Link } from 'react-router-dom';
 import base64 from 'base-64';
 import axios from 'axios';
 import { Routes } from "../../routes";
+import { instanceOf } from "prop-types";
+import { withCookies,useCookies } from 'react-cookie';
+import { APPKEY, URLLOGIN } from "../constante/Const";
 
 
-
-
-export default () => {
-
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(true);
-  const [isLoadedProvider, setIsLoadedProvider] = useState(true);
+//Signin({ setToken })
+export default function Signin(){
 
   const [loginUsername, setLoginUsername] = useState('');
 
@@ -24,47 +22,63 @@ export default () => {
 
   const [login, setLogin] = useState({});
 
-  const url = "/authentications";
 
-  console.log("username : " +loginUsername);
-  console.log("password : "+loginPassword);
+ 
 
-  const loginHub2Support = function (){
+  const [cookiesToken, setCookieToken] = useCookies(['token']);
+  const [cookiesId, setCookieId] = useCookies(['id']);
+  const [cookiesUser, setCookieUser] = useCookies(['user']);
+
+  
+
+  const handleOnUsernameChange = (event) =>{
+    console.log("username : " +event.target.value);
+    setLoginUsername(event.target.value);
+  }
+
+  const handleOnPasswordChange = (event) =>{
+    
+    console.log("password : "+event.target.value);
+    setLoginPassword(event.target.value);
+  }
+
+
+  const loginHub2Support = (event) => {
+    
+    console.log("will login");
     axios.post(
-      url,
+      URLLOGIN,
       {
         "username": loginUsername,
         "password": loginPassword,
       },
       {
         headers: {
-          AppKey: "b1413ec5-e76c-4c38-8a1f-38a7a67e0f7c"
+          AppKey: APPKEY
         }
       }
     )
       .then((result) => {
         setLogin(result);
+        setCookieToken("token",result.data.token);
         console.log(result);
         console.log(result.data);
-       
-      },
-        (error) => {
-          console.log(error.message);
+        console.log(cookiesToken);
+      })
+      .catch((error)=>{
+        if (error.response) {
+          //console.log(error.response.data);
+          console.log(error.response.status);
+          //console.log(error.response.headers);
         }
-
-      )
+      })
   }
-//import { Col, Row, Card, Image, Button, ListGroup, ProgressBar,Form,InputGroup } from '@themesberg/react-bootstrap';
 
   return (
     <main>
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
         <Container className="">
-          {/* <p className="text-center">
-            <Card.Link as={Link} to={Routes.DashboardOverview.path} className="text-gray-700">
-              <FontAwesomeIcon icon={faAngleLeft} className="me-2" /> Back to homepage
-            </Card.Link>
-          </p> */}
+         
           <Row className="justify-content-center form-bg-image " >
             <Col xs={12} className="d-flex align-items-center justify-content-center ">
               <div className="bg-white shadow-soft border rounded border-warning p-4 p-lg-5 w-100 fmxw-500">
@@ -81,7 +95,7 @@ export default () => {
                       <InputGroup.Text>
                         <FontAwesomeIcon icon={faHouseUser} />
                       </InputGroup.Text>
-                      <Form.Control  required type="text" placeholder="Utilisateur" onChange={event =>setLoginUsername(event.target.value)} />
+                      <Form.Control  required type="text" placeholder="Utilisateur" onChange={handleOnUsernameChange} />
                     </InputGroup>
                   </Form.Group>
                   <Form.Group>
@@ -91,44 +105,21 @@ export default () => {
                         <InputGroup.Text >
                           <FontAwesomeIcon icon={faUnlockAlt} />
                         </InputGroup.Text>
-                        <Form.Control required type="password" placeholder="Mot de passe" onChange={event => setLoginPassword(event.target.value)} />
+                        <Form.Control required type="password" placeholder="Mot de passe" onChange={handleOnPasswordChange} />
                       </InputGroup>
                     </Form.Group>
-                    {/* <div className="d-flex justify-content-between align-items-center mb-4">
-                      <Form.Check type="checkbox">
-                        <FormCheck.Input id="defaultCheck5" className="me-2" />
-                        <FormCheck.Label htmlFor="defaultCheck5" className="mb-0">Remember me</FormCheck.Label>
-                      </Form.Check>
-                      <Card.Link className="small text-end">Lost password?</Card.Link>
-                    </div> */}
+                    
                   </Form.Group>
-                  {console.log("isLoaded in balise : " + isLoaded)}
-                  <Button variant="" type="submit"  className="w-100 btn-primary" onClick={loginHub2Support}>
+                 
+                  <Button type="button" className="w-100 btn-primary" onClick={loginHub2Support}>
                     Connexion
                   </Button>
                 </Form>
-
-                {/* <div className="mt-3 mb-4 text-center">
-                  <span className="fw-normal">or login with</span>
-                </div> */}
                 <div className="d-flex justify-content-center my-4">
-                  {/* <Button variant="outline-light" className="btn-icon-only btn-pill text-facebook me-2">
-                    <FontAwesomeIcon icon={faFacebookF} />
-                  </Button>
-                  <Button variant="outline-light" className="btn-icon-only btn-pill text-twitter me-2">
-                    <FontAwesomeIcon icon={faTwitter} />
-                  </Button>
-                  <Button variant="outline-light" className="btn-icon-only btn-pil text-dark">
-                    <FontAwesomeIcon icon={faGithub} />
-                  </Button> */}
+                  
                 </div>
                 <div className="d-flex justify-content-center align-items-center mt-4">
-                  {/* <span className="fw-normal">
-                    Not registered?
-                    <Card.Link as={Link} to={Routes.Signup.path} className="fw-bold">
-                      {` Create account `}
-                    </Card.Link>
-                  </span> */}
+                  
                 </div>
               </div>
             </Col>
@@ -138,3 +129,4 @@ export default () => {
     </main>
   );
 };
+

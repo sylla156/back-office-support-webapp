@@ -1,19 +1,14 @@
 import React, { useState, useEffect, Component } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faCog, faHome, faSearch,faChartLine } from '@fortawesome/free-solid-svg-icons';
+
 import { Col, Row, Form, Button, Spinner, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
 import base64 from 'base-64';
 import axios from 'axios';
-import cors from 'cors';
 
-import { TransactionsTable, StatusTable } from "../components/Tables";
-import { TransferFormInformSourceHub, TransferFormInformSourceProvider } from '../components/Forms';
+
 
 import Hub2TransactionStatus from "../components/Hub2TransactionStatus";
 import ProviderTransactionStatus from "../components/ProviderTransactionStatus";
 
-import { CounterWidget } from "../components/Widgets";
-import DropDownMenu from "../components/DropDownMenu";
 export default () => {
 
   const [error, setError] = useState(null);

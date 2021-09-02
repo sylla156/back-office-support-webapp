@@ -9,7 +9,7 @@ export const Routes = {
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },
-    Signin: { path: "/" }, // examples/sign-in
+    Signin: { path: "/signin" }, // examples/sign-in
     Signup: { path: "/examples/sign-up" },
     ForgotPassword: { path: "/examples/forgot-password" },
     ResetPassword: { path: "/examples/reset-password" },
@@ -24,25 +24,18 @@ export const Routes = {
     Solde:{path:"/solde"},
     Transfer:{path:"/transfer"},
 
-    // docs
-    DocsOverview: { path: "/documentation/overview" },
-    DocsDownload: { path: "/documentation/download" },
-    DocsQuickStart: { path: "/documentation/quick-start" },
-    DocsLicense: { path: "/documentation/license" },
-    DocsFolderStructure: { path: "/documentation/folder-structure" },
-    DocsBuild: { path: "/documentation/build-tools" },
-    DocsChangelog: { path: "/documentation/changelog" },
+
 
     // components
-    Accordions: { path: "/components/accordions" },
-    Alerts: { path: "/components/alerts" },
-    Badges: { path: "/components/badges" },
-    Widgets: { path: "/widgets" },
-    Breadcrumbs: { path: "/components/breadcrumbs" },
-    Buttons: { path: "/components/buttons" },
-    Forms: { path: "/components/forms" },
-    Modals: { path: "/components/modals" },
-    Navs: { path: "/components/navs" },
+    Accordions: { path: "/components/accordions" }, // D  D des fonctions
+    Alerts: { path: "/components/alerts" }, // D  D des fonctions
+    Badges: { path: "/components/badges" }, // D  D des fonctions
+    Widgets: { path: "/widgets" },  // D des fonctions
+    Breadcrumbs: { path: "/components/breadcrumbs" }, // D des fonctions
+    Buttons: { path: "/components/buttons" }, // D des fonctions
+    Forms: { path: "/components/forms" }, // D des fonctions
+    Modals: { path: "/components/modals" }, // D des fonctions
+    Navs: { path: "/components/navs" }, // D des fonctions
     Navbars: { path: "/components/navbars" },
     Pagination: { path: "/components/pagination" },
     Popovers: { path: "/components/popovers" },

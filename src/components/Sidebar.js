@@ -100,7 +100,7 @@ export default (props = {}) => {
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
               <NavItem title="HUB2 SUPPORT" image={ReactHero} />
-              <NavItem title="Tableau de bord" link={Routes.DashboardOverview.path} icon={faChartPie} />
+              {/* <NavItem title="Tableau de bord" link={Routes.DashboardOverview.path} icon={faChartPie} /> */}
               {/* <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path}/> */}
               {/* <NavItem title="Transfert" icon={faWallet} link={Routes.Transfer.path}/> */}
               {/* <NavItem title="Force Status" icon={faFistRaised} link={Routes.ForceStatus.path}/> */}

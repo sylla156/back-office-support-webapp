@@ -7,30 +7,39 @@ import { Col, Row, Button, Dropdown, ButtonGroup } from '@themesberg/react-boots
 import { CounterWidget, CircleChartWidget, BarChartWidget, TeamMembersWidget, ProgressTrackWidget, RankingWidget, SalesValueWidget, SalesValueWidgetPhone, AcquisitionWidget } from "../components/Widgets";
 import { PageVisitsTable } from '../components/Tables';
 import { trafficShares, totalOrders } from "../data/charts";
+import { APPKEY } from "./constante/Const";
 
 export default () => {
 
+
+  function refreshPage() {
+    checkSolde();
+  }
+
+  window.setTimeout(()=>{
+    refreshPage()
+  },900000)
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [balanceList, setBalanceList] = useState([]);
 
   
-  const requestHeaderSolde = {
-    headers:{
-      "ApiKey":"b1413ec5-e76c-4c38-8a1f-38a7a67e0f7c",
-      "AuthenticationToken":"00cc25fc-bce5-48f2-a92f-4b14e1df386f"
-    }
-  }; 
+  // const requestHeaderSolde = {
+  //   headers:{
+  //     "AppKey":APPKEY,
+  //   }
+  // }; 
 
   const baseUrlSolde = "/balances";
 
   const checkSolde = ()=>{
     
-    fetch(baseUrlSolde, requestHeaderSolde)
+    fetch(baseUrlSolde)
       .then(res => res.json())
       .then((result) => {
         setBalanceList(result);
+        console.log("In then")
         console.log(result);
       },
         (error) => {
@@ -45,11 +54,11 @@ export default () => {
   useEffect(()=>{
     checkSolde();
   }, [])
-
+  
   return (
     <>
 
-      <Row className="">
+        <Row className="">
         {console.log("solde value")}
         {console.log(balanceList)}
         {balanceList.map((balance)=>(
@@ -58,7 +67,7 @@ export default () => {
             </Col>
         ))}
       </Row>
-
+      
       
     </>
   );

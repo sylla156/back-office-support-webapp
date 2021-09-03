@@ -159,6 +159,7 @@ export default () => {
         <Col xs={12} xl={6} >
         {console.log("isLoaded in balise : " + isLoaded)}
           {/* {isLoaded ? < TransferFormInformSourceHub transfer={hub2Transfer} /> : <Spinner animation="grow" sm/>} */}
+           
           {console.log("hub 2 value id ")}
           {console.log(hub2Transfer)}
           <Hub2TransactionStatus hub2IdResult={hub2Transfer}/>

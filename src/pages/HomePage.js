@@ -119,7 +119,7 @@ export default () => (
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
     <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
     
-    
+    <RouteWithSidebar exact path={Routes.Solde.path} component={Solde}/>
 
     {/* pages */}
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
@@ -130,7 +130,7 @@ export default () => (
     {/* <RouteWithSidebar exact path={Routes.ForceStatus.path} component={ForceStatus} /> */}
 
     <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} />
-    <RouteWithSidebar exact path={Routes.Solde.path} component={Solde}/>
+    
 
     {/* components */}
     <RouteWithSidebar exact path={Routes.Accordions.path} component={Accordion} />

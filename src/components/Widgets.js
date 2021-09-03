@@ -79,7 +79,7 @@ export const CounterWidget = (props) => {
           <Col xs={12} xl={7} className="px-xl-0">
             <div className="d-block">
               <h5>{name}</h5>
-              <h4 className="mb-1 text-warning">{amount} {currency}</h4>
+              <h4 className="mb-1 text-warning">{new Intl.NumberFormat().format(amount)} {currency}</h4>
               <h6 className="mb-1 ">{createdAtFormated}</h6>
             </div>
           </Col>

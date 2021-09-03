@@ -13,10 +13,8 @@ import "react-datetime/css/react-datetime.css";
 import App from './App';
 
 ReactDOM.render(
-  <CookiesProvider>
-    <Router>
+  <HashRouter>
       <App/>
-    </Router>
-  </CookiesProvider>,
+    </HashRouter>,
   document.getElementById("root")
 );

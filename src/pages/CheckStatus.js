@@ -1,14 +1,12 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState } from "react";
 
-import { Col, Row, Form, Button, Spinner, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
-import base64 from 'base-64';
+import { Col, Row, Form, Button, InputGroup } from '@themesberg/react-bootstrap';
 import AxiosWebHelper from "../utils/axios-helper";
 
 
 
 import Hub2TransactionStatus from "../components/Hub2TransactionStatus";
 import ProviderTransactionStatus from "../components/ProviderTransactionStatus";
-import axios from "axios";
 
 export default () => {
 
@@ -33,7 +31,7 @@ export default () => {
 
  
 
- 
+  const axios = AxiosWebHelper.getAxios();
 
   const resquestHeaderSupportHub2 = {
     headers: {
@@ -80,11 +78,6 @@ export default () => {
   };
 
   console.log("Fournisseur api provider url by the takeProviderByTheSelectOptionValue : "+takeProviderByTheSelectOptionValue(selectOptionsProvider));
-
-  // const Username = "39b181301fc4a7b50c24177d6c7e12b0";
-  // const Password = "3f74503792857dbd023663d111681842";
-  const Username = "MTN";
-  const Password = "passer";
 
   //setProviderTransfer
   const checkProviderStatus = function () {

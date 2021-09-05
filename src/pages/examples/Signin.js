@@ -1,15 +1,10 @@
 
-import React, { useState, useEffect,Component } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faEnvelope, faUnlockAlt,faHouseUser } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
-import { Link } from 'react-router-dom';
-import base64 from 'base-64';
+import { faUnlockAlt,faHouseUser } from "@fortawesome/free-solid-svg-icons";
+import { Col, Row, Form, Button, Container, InputGroup } from '@themesberg/react-bootstrap';
 import axios from 'axios';
-import { Routes } from "../../routes";
-import { instanceOf } from "prop-types";
-import { withCookies,useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 import { APPKEY, URLLOGIN } from "../constante/Const";
 
 

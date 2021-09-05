@@ -4,16 +4,14 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen,faSyncI,faCheck,faWallet,faPoll,faExchangeAlt,faSync,faChartPie, faCog, faFistRaised,faFileAlt,faRetweet, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket } from "@fortawesome/free-solid-svg-icons";
+import { faCheck,faWallet,faExchangeAlt,faSync,faSignOutAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { Routes } from "../routes";
-import ThemesbergLogo from "../assets/img/themesberg.svg";
 import ReactHero from "../assets/img/technologies/Screenshot 2021-08-10 at 10.26.19.png";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 
-import DropDownMenu from "./DropDownMenu";
 
 export default (props = {}) => {
   const location = useLocation();

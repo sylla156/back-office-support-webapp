@@ -1,8 +1,6 @@
 
-import { Col, Row, Card, Image,Dropdown, DropdownButton,Button, ListGroup, ProgressBar,Form,InputGroup } from '@themesberg/react-bootstrap';
-import DropdownItem from '@themesberg/react-bootstrap/lib/esm/DropdownItem';
+import { Dropdown } from '@themesberg/react-bootstrap';
 import React from 'react'
-import DropdownMenu from 'react-overlays/esm/DropdownMenu';
 
 export default function DropDownMenu() {
     return (

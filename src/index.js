@@ -1,8 +1,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, BrowserRouter as Router } from "react-router-dom";
-import { CookiesProvider } from 'react-cookie';
+import { BrowserRouter as Router } from "react-router-dom";
+// import { CookiesProvider } from 'react-cookie';
 
 // core styles
 import "./scss/volt.scss";

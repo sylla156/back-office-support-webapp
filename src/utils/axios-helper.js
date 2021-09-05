@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 import { APPKEY } from '../pages/constante/Const';
 
 export default class AxiosWebHelper {

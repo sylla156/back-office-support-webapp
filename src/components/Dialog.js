@@ -7,7 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Col, Row, Form, ButtonGroup,Modal, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
-import axios from 'axios';
+import AxiosWebHelper from "../utils/axios-helper";
+
 
 export const FormDialog = (props)=> {
 
@@ -30,7 +31,8 @@ export const FormDialog = (props)=> {
   console.log("input email : "+ inputDialogEmail);
   console.log("input api key : "+ inputDialogApiKey);
 
-
+  const axios = AxiosWebHelper.getAxios();
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -134,6 +136,8 @@ export const FormDialogRefreshStatus = (props)=> {
   
   
   const formTransfer = props["formTransfer"];
+
+  const axios = AxiosWebHelper.getAxios();
   
   const handleSendOrderRefreshStatus = (props) => {
 

@@ -13,8 +13,8 @@ import "react-datetime/css/react-datetime.css";
 import App from './App';
 
 ReactDOM.render(
-  <HashRouter>
+  <Router>
       <App/>
-    </HashRouter>,
+  </Router>,
   document.getElementById("root")
 );

@@ -2,12 +2,13 @@ import React, { useState, useEffect, Component } from "react";
 
 import { Col, Row, Form, Button, Spinner, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
 import base64 from 'base-64';
-import axios from 'axios';
+import AxiosWebHelper from "../utils/axios-helper";
 
 
 
 import Hub2TransactionStatus from "../components/Hub2TransactionStatus";
 import ProviderTransactionStatus from "../components/ProviderTransactionStatus";
+import axios from "axios";
 
 export default () => {
 
@@ -45,27 +46,18 @@ export default () => {
 
   const checkHub2Status = function () {
     setIsLoaded(false);
-    fetch(baseUrlSupportApiHub2+idSupportHub, resquestHeaderSupportHub2)
-      .then(res => res.json())
+    axios.get(baseUrlSupportApiHub2 + idSupportHub, resquestHeaderSupportHub2)
       .then((result) => {
         setIsLoaded(true);
         console.log("isLoaded in checkHub2Status: " + isLoaded);
-        setHub2Transfer(result);
+        setHub2Transfer(result.data);
         console.log(result);
-      },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    console.log("checkHub2Status");
+      })
+      .catch( error => {
+        setIsLoaded(true);
+        setError(error);
+      });
   }
-
-  console.log("isLoaded after in checkHub2Status : " + isLoaded);
-
-  console.log("select option provider value [] : "+ selectOptionsProvider);
-
-
 
   const takeProviderByTheSelectOptionValue = (value)=>{
 
@@ -108,8 +100,7 @@ export default () => {
     },
     (error) => {
       setError(error);
-    }
-    )
+    })
   }
 
   

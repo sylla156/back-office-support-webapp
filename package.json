@@ -15,7 +15,7 @@
   ],
   "proxy": "http://192.168.1.3:4600",
   "license": "MIT",
-  "homepage": "https://demo.themesberg.com/volt-react-dashboard",
+  "homepage": ".",
   "bugs": {
     "url": "https://github.com/themesberg/volt-react-dashboard/issues"
   },
@@ -69,7 +69,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "serveNode": "node server.js",
+    "serve": "pm2 start ./server.js --name back_office_support_web_app"
   },
   "eslintConfig": {
     "extends": "react-app"

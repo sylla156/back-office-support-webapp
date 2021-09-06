@@ -13,7 +13,6 @@ import Signin from "./examples/Signin";
 import NotFoundPage from "./examples/NotFound";
 import ServerError from "./examples/ServerError";
 import RefreshStatus from "./RefreshStatus";
-import ForceStatus from "./ForceStatus";
 
 import CheckStatus from "./CheckStatus";
 
@@ -21,39 +20,9 @@ import CheckStatus from "./CheckStatus";
 // components
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Preloader from "../components/Preloader";
 
-import Accordion from "./components/Accordion";
-import Alerts from "./components/Alerts";
-import Badges from "./components/Badges";
-import Breadcrumbs from "./components/Breadcrumbs";
-import Buttons from "./components/Buttons";
-import Forms from "./components/Forms";
-import Modals from "./components/Modals";
-import Navs from "./components/Navs";
-import Navbars from "./components/Navbars";
-import Pagination from "./components/Pagination";
-import Popovers from "./components/Popovers";
-import Progress from "./components/Progress";
-import Tables from "./components/Tables";
-import Tabs from "./components/Tabs";
-import Tooltips from "./components/Tooltips";
-import Toasts from "./components/Toasts";
 import Solde from './Solde';
-
-const PrivateRouteWithLoader = ({ component: Component, ...rest }) => {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <Route {...rest} render={props => ( <> <Preloader show={loaded ? false : true} /> <Component {...props} /> </> ) } />
-  );
-};
 
 
 const RouteWithLoader = ({ component: Component, ...rest }) => {
@@ -68,11 +37,6 @@ const RouteWithLoader = ({ component: Component, ...rest }) => {
     <Route {...rest} render={props => ( <> <Preloader show={loaded ? false : true} /> <Component {...props} /> </> ) } />
   );
 };
-
-
-
-
-
 
 
 const RouteWithSidebar = ({ component: Component, ...rest }) => {
@@ -113,7 +77,6 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
 
 export default () => (
   <Switch>
-    <RouteWithLoader exact path={Routes.Presentation.path} component={Presentation} />
     <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
 
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
@@ -133,7 +96,7 @@ export default () => (
     
 
     {/* components */}
-    <RouteWithSidebar exact path={Routes.Accordions.path} component={Accordion} />
+    {/* <RouteWithSidebar exact path={Routes.Accordions.path} component={Accordion} />
     <RouteWithSidebar exact path={Routes.Alerts.path} component={Alerts} />
     <RouteWithSidebar exact path={Routes.Badges.path} component={Badges} />
     <RouteWithSidebar exact path={Routes.Breadcrumbs.path} component={Breadcrumbs} />
@@ -148,7 +111,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Tables.path} component={Tables} />
     <RouteWithSidebar exact path={Routes.Tabs.path} component={Tabs} />
     <RouteWithSidebar exact path={Routes.Tooltips.path} component={Tooltips} />
-    <RouteWithSidebar exact path={Routes.Toasts.path} component={Toasts} />
+    <RouteWithSidebar exact path={Routes.Toasts.path} component={Toasts} /> */}
 
    
 

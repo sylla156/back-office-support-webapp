@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Routes } from "../routes";
-
+import { withCookies,useCookies,Cookies } from 'react-cookie';
 // pages
 
 import DashboardOverview from "./dashboard/DashboardOverview";
@@ -25,6 +25,23 @@ import Preloader from "../components/Preloader";
 import Solde from './Solde';
 
 
+const PrivateRouteWithLoader = ({ component: Component, ...rest }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  const [cookies, ] = useCookies(['token']);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    cookies.token ?
+    <Route {...rest} render={props => ( <> <Preloader show={loaded ? false : true} /> <Component {...props} /> </> ) } />
+    : <Redirect to={Routes.Signin.path} />
+  );
+};
+
 const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -38,9 +55,10 @@ const RouteWithLoader = ({ component: Component, ...rest }) => {
   );
 };
 
-
 const RouteWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
+
+  const [cookies, ] = useCookies(['token']);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 1000);
@@ -57,8 +75,11 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
     setShowSettings(!showSettings);
     localStorage.setItem('settingsVisible', !showSettings);
   }
-
+  if(!cookies.token){
+    return <Redirect to={Routes.Signin.path} />;
+  }
   return (
+    
     <Route {...rest} render={props => (
       <>
         <Preloader show={loaded ? false : true} />
@@ -72,11 +93,14 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
       </>
     )}
     />
+   
   );
 };
 
 export default () => (
   <Switch>
+    {/* !cookies.token ? <Redirect to={Routes.Signin.path} /> : <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} /> */}
+    <PrivateRouteWithLoader exact path={Routes.Presentation.path} component={Presentation} />
     <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
 
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />

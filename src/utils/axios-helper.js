@@ -3,7 +3,8 @@ import { APPKEY } from '../pages/constante/Const';
 
 export default class AxiosWebHelper {
     static getAxios() {
-        let baseURLToUse = 'http://' + window.location.hostname + ':4600/';
+        //let baseURLToUse = 'http://' + window.location.hostname + ':4600/';
+        let baseURLToUse = "http://192.168.1.6"+":4600/"; 
         const apiURL = process.env.REACT_APP_API_URL; // Defined at build time so don't forget to define the env var
         console.log(apiURL);
         if (apiURL) {

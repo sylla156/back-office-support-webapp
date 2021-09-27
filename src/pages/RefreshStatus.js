@@ -4,7 +4,9 @@ import { faCheck, faCog } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Form, Button, ButtonGroup, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
 
 import { TransactionsTable } from "../components/Tables";
-import {FormDialogRefreshStatus} from '../components/Dialog';
+import { FormDialogRefreshStatus } from '../components/Dialog';
+import { BASEURLREFRESHSTATUSWITHPARAMS1, BASEURLREFRESHSTATUSWITHPARAMS2 } from "./constante/Const";
+import AxiosWebHelper from "../utils/axios-helper";
 
 const momentTz = require('moment-timezone');
 export default () => {
@@ -15,55 +17,58 @@ export default () => {
 
   const [inputSearchFrom, setInputSearchFrom] = useState('');
   const [inputSearchTo, setInputSearchTo] = useState('');
-  
+
   const resquestHeaderSupportHub2 = {
-    headers:{
-      "ApiKey":"bD8Yryye98rKpzfBq5jqtfDrRfd5JwP4YGPEbwZTsGMaV3bwD7",
-      "Environment":"live"
+    headers: {
+      "ApiKey": "bD8Yryye98rKpzfBq5jqtfDrRfd5JwP4YGPEbwZTsGMaV3bwD7",
+      "Environment": "live"
     }
   };
 
-  
 
-  console.log("input Search From "+inputSearchFrom +" "+typeof(inputSearchFrom));
-  console.log("input Search To "+inputSearchTo +" "+typeof(inputSearchTo));
+
+  console.log("input Search From " + inputSearchFrom + " " + typeof (inputSearchFrom));
+  console.log("input Search To " + inputSearchTo + " " + typeof (inputSearchTo));
 
   //const inputSearchFromDate = new Date(inputSearchFrom);
-  
+
 
   // formattage de la date dans la partie refresh status
-  const inputSearchFromDate = momentTz.tz(inputSearchFrom, "DD/MM/YYYY HH:mm:ss",'en-US' ).toISOString();
+  const inputSearchFromDate = momentTz.tz(inputSearchFrom, "DD/MM/YYYY HH:mm:ss", 'en-US').toISOString();
 
-  console.log("input Search From Date [tdkf]: "+ inputSearchFromDate +" "+ typeof(inputSearchFromDate));
+  console.log("input Search From Date [tdkf]: " + inputSearchFromDate + " " + typeof (inputSearchFromDate));
 
 
   const inputSeachToDate = momentTz.tz(inputSearchTo, "DD/MM/YYYY HH:mm:ss", 'en-US').toISOString();
-  console.log("input Search To Date [tdkf]: "+ inputSeachToDate +" "+ typeof(inputSeachToDate));
+  console.log("input Search To Date [tdkf]: " + inputSeachToDate + " " + typeof (inputSeachToDate));
 
-  
 
+  const axios = AxiosWebHelper.getAxios();
 
   const baseUrlRefreshStatus = "https://support-api.hub2.io/transfers";
 
 
 
-  const baseUrlRefreshStatusWithParams = baseUrlRefreshStatus+"?from="+inputSearchFrom+"&isForceStatus="+false+"&merchantId="+"&status=pending"+"&to="+inputSearchTo; // change status = failed to status=pending
+  const baseUrlRefreshStatusWithParams = BASEURLREFRESHSTATUSWITHPARAMS1 + inputSearchFrom + BASEURLREFRESHSTATUSWITHPARAMS2 + inputSearchTo; // change status = failed to status=pending
 
-  console.log("Base url with params : "+baseUrlRefreshStatusWithParams);
-  const checkRefreshStatus = function() {
-    fetch(baseUrlRefreshStatusWithParams,resquestHeaderSupportHub2)
-       .then(res => res.json())
-       .then((result)=>{
+  console.log("Base url with params : " + baseUrlRefreshStatusWithParams);
+  const checkRefreshStatus = function () {
+    axios(
+      baseUrlRefreshStatusWithParams,
+      resquestHeaderSupportHub2
+    )
+      .then(res => res.json())
+      .then((result) => {
         setIsLoaded(true);
         setHub2refreshStatus(result);
         console.log("result")
         console.log(result);
-       },
-       (error)=>{
-        setIsLoaded(true);
-        setError(error);
-        console.log("error: " + error);
-       }
+      },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+          console.log("error: " + error);
+        }
       )
   }
 
@@ -73,14 +78,14 @@ export default () => {
         <div className="d-block mb-4 mb-md-0">
         </div>
         <div className="btn-toolbar mb-2 mb-md-0">
-          
+
         </div>
       </div>
 
       <div className="table-settings mb-4">
         <Row className="justify-content-between align-items-center">
           <Col xs={8} md={6} lg={3} xl={4}>
-          <InputGroup>
+            <InputGroup>
               <InputGroup.Text>
               </InputGroup.Text>
               <Form.Control type="text" placeholder="Search" onChange={event => setInputSearchFrom(event.target.value)} />
@@ -88,21 +93,21 @@ export default () => {
           </Col>
           <Col xs={8} md={6} lg={3} xl={4}>
             <InputGroup>
-                <InputGroup.Text>
-                </InputGroup.Text>
-                <Form.Control type="text" placeholder="Search" onChange={event=>setInputSearchTo(event.target.value)} />
-              </InputGroup>
+              <InputGroup.Text>
+              </InputGroup.Text>
+              <Form.Control type="text" placeholder="Search" onChange={event => setInputSearchTo(event.target.value)} />
+            </InputGroup>
           </Col>
 
           <Col xs={8} md={6} lg={3} xl={4}>
             <InputGroup>
-                <ButtonGroup>
-              <Button variant="outline-primary" size="sm" onClick={checkRefreshStatus}>Check</Button>
-              
+              <ButtonGroup>
+                <Button variant="outline-primary" size="sm" onClick={checkRefreshStatus}>Check</Button>
+
               </ButtonGroup>
             </InputGroup>
           </Col>
-          <Col xs={4} md={2} xl={1} className="ps-md-0 text-end">
+          {/* <Col xs={4} md={2} xl={1} className="ps-md-0 text-end">
             <Dropdown as={ButtonGroup}>
               <Dropdown.Toggle split as={Button} variant="link" className="text-dark m-0 p-0">
                 <span className="icon icon-sm icon-gray">
@@ -118,13 +123,13 @@ export default () => {
                 <Dropdown.Item className="fw-bold">30</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-          </Col>
+          </Col> */}
         </Row>
       </div>
 
-      <TransactionsTable tableTransfer={hub2RefreshStatus}/>
+      <TransactionsTable tableTransfer={hub2RefreshStatus} />
 
-      <FormDialogRefreshStatus formTransfer={hub2RefreshStatus}/>
+      <FormDialogRefreshStatus formTransfer={hub2RefreshStatus} />
     </>
   );
 };

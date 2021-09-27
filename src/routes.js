@@ -2,7 +2,7 @@
 export const Routes = {
     // pages
     Presentation: { path: "/presentation" }, 
-    DashboardOverview: { path: "/dashboard/overview", },//change dashboard/overview by 
+    DashboardOverview: { path: "/", },//change dashboard/overview by 
     Transactions: { path: "/transactions" },
     Settings: { path: "/settings" },
     Upgrade: { path: "/upgrade" },
@@ -21,7 +21,7 @@ export const Routes = {
     // ForceStatus : {path:"/force"},
     Statistique : {path:"/statistique"},
     CheckStatus:{path:"/check"},
-    Solde:{path:"/"},
+    Solde:{path:"/solde"},
     Transfer:{path:"/transfer"},
 
 

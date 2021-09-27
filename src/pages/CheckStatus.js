@@ -4,7 +4,8 @@ import { Col, Row, Form, Button, InputGroup } from '@themesberg/react-bootstrap'
 import AxiosWebHelper from "../utils/axios-helper";
 
 
-
+import { Redirect } from 'react-router';
+import { Routes } from "../routes";
 import Hub2TransactionStatus from "../components/Hub2TransactionStatus";
 import ProviderTransactionStatus from "../components/ProviderTransactionStatus";
 
@@ -19,7 +20,7 @@ export default () => {
 
   const [partnerIdTransactions, setPartnerIdTransactions] = useState('');
   const [providerTransfer, setProviderTransfer] = useState({});
-
+  const [shouldLogin, setShouldLogin] = useState(false);
   const [selectOptionsProvider, setSelectOptionsProvider] = useState('');
 
 
@@ -54,6 +55,12 @@ export default () => {
       .catch( error => {
         setIsLoaded(true);
         setError(error);
+        if (error.response.status === 401) {
+          setShouldLogin(true);
+        }
+        else {
+          console.log(error.response.data.message);
+        }
       });
   }
 
@@ -97,7 +104,9 @@ export default () => {
   }
 
   
-
+  if(shouldLogin){
+    return <Redirect to={Routes.Signin.path} />;
+  }
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">

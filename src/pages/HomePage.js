@@ -113,32 +113,11 @@ export default () => (
   
     {/* <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} /> */}
 
-    <RouteWithSidebar exact path={Routes.RefreshStatus.path} component={RefreshStatus} />
+    {/* <RouteWithSidebar exact path={Routes.RefreshStatus.path} component={RefreshStatus} /> */}
     {/* <RouteWithSidebar exact path={Routes.ForceStatus.path} component={ForceStatus} /> */}
 
-    <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} />
+    {/* <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} /> */}
     
-
-    {/* components */}
-    {/* <RouteWithSidebar exact path={Routes.Accordions.path} component={Accordion} />
-    <RouteWithSidebar exact path={Routes.Alerts.path} component={Alerts} />
-    <RouteWithSidebar exact path={Routes.Badges.path} component={Badges} />
-    <RouteWithSidebar exact path={Routes.Breadcrumbs.path} component={Breadcrumbs} />
-    <RouteWithSidebar exact path={Routes.Buttons.path} component={Buttons} />
-    <RouteWithSidebar exact path={Routes.Forms.path} component={Forms} />
-    <RouteWithSidebar exact path={Routes.Modals.path} component={Modals} />
-    <RouteWithSidebar exact path={Routes.Navs.path} component={Navs} />
-    <RouteWithSidebar exact path={Routes.Navbars.path} component={Navbars} />
-    <RouteWithSidebar exact path={Routes.Pagination.path} component={Pagination} />
-    <RouteWithSidebar exact path={Routes.Popovers.path} component={Popovers} />
-    <RouteWithSidebar exact path={Routes.Progress.path} component={Progress} />
-    <RouteWithSidebar exact path={Routes.Tables.path} component={Tables} />
-    <RouteWithSidebar exact path={Routes.Tabs.path} component={Tabs} />
-    <RouteWithSidebar exact path={Routes.Tooltips.path} component={Tooltips} />
-    <RouteWithSidebar exact path={Routes.Toasts.path} component={Toasts} /> */}
-
-   
-
     <Redirect to={Routes.NotFound.path} />
   </Switch>
 );

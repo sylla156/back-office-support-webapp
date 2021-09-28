@@ -7,13 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck,faWallet,faExchangeAlt,faSync,faSignOutAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import { useCookies } from 'react-cookie';
 import { Routes } from "../routes";
 import ReactHero from "../assets/img/technologies/Screenshot 2021-08-10 at 10.26.19.png";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
-
+import { Route, Switch, Redirect } from "react-router-dom";
 
 export default (props = {}) => {
+
+  const [cookies, setCookie, removeCookie] = useCookies(['token', 'id', 'user']);
+
   const location = useLocation();
   const { pathname } = location;
   const [show, setShow] = useState(false);
@@ -43,6 +46,10 @@ export default (props = {}) => {
       </Accordion>
     );
   };
+
+  if(!cookies.token){
+    return <Redirect to={Routes.Signin.path} />; 
+  }
 
   const NavItem = (props) => {
     const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
@@ -97,7 +104,7 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="HUB2 SUPPORT" image={ReactHero} />
+              <NavItem title="HUB2 SUPPORT" link={Routes.DashboardOverview.path} image={ReactHero} />
               {/* <NavItem title="Tableau de bord" link={Routes.DashboardOverview.path} icon={faChartPie} /> */}
               {/* <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path}/> */}
               {/* <NavItem title="Transfert" icon={faWallet} link={Routes.Transfer.path}/> */}
@@ -105,11 +112,12 @@ export default (props = {}) => {
               {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/>
               <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/>
                */}
-              <CollapsableNavItem  title="Transfert" icon={faExchangeAlt}>
+               <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/>
+              {/* <CollapsableNavItem  title="Transfert" icon={faExchangeAlt}>
                 <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path}/>
                 <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/>
                 <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/>
-              </CollapsableNavItem>
+              </CollapsableNavItem> */}
               {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} /> */}
               {/* <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} /> */}
               {/* <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} /> */}

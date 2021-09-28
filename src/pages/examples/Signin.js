@@ -9,6 +9,7 @@ import { APPKEY, URLLOGIN } from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
+import AlertDismissable from "../../components/AlertDismissable";
 
 //Signin({ setToken })
 export default function Signin() {
@@ -18,9 +19,9 @@ export default function Signin() {
   const [loginPassword, setLoginPassword] = useState('');
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
   const [login, setLogin] = useState({});
-
+  const [error, setError] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(['token', 'id', 'user']);
-
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleOnUsernameChange = (event) => {
     console.log("username : " + event.target.value);
@@ -38,7 +39,8 @@ export default function Signin() {
 
   const loginHub2Support = (event) => {
 
-    setIsLoginSuccess(false);
+    setError(null)
+    setIsLoading(true)
     console.log("will login");
     axios.post(
       URLLOGIN,
@@ -69,12 +71,21 @@ export default function Signin() {
       })
       .catch((error) => {
         if (error.response) {
-          //console.log(error.response.data);
-          console.log(error.response.status);
+          console.log('In catch error login')
           console.log(error.response.data);
-          //console.log(error.response.headers);
-          setIsLoginSuccess(false);
+          console.log(`Status code error : ${error.response.status}`)
+          // console.log(error.response.headers);
+          setIsLoginSuccess(false)
+          setError(error.response.data.message)
+        } else if (error) {
+          console.log(error.message)
+          setError(error.message)
+        } else {
+          setError('Une erreur est survenue.')
         }
+      })
+      .finally(() => {
+        setIsLoading(false)
       })
   }
 
@@ -120,6 +131,10 @@ export default function Signin() {
                   </div> : <Button type="button" className="w-100 btn-primary" onClick={loginHub2Support}>
                     Connexion
                   </Button> }
+
+                  <div className="mt-3">
+                    <AlertDismissable message={error} variant="danger" show={!!error} onClose={() => setError(null)} isLoading={isLoading}/>
+                  </div>
 
                   {isLoginSuccess ? <Redirect to={Routes.Solde.path} /> : ""}
                 </Form>

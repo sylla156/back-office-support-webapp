@@ -64,7 +64,7 @@ export const ChoosePhotoWidget = (props) => {
 
 export const CounterWidget = (props) => {
   console.log(props);
-  const {amount, currency, date, logo, name} = props.balance;
+  const { amount, currency, date, logo, name } = props.balance;
 
   const createdAtUtc = new Date(date);
   const createdAtFormated = createdAtUtc.toLocaleString('pt-BR');
@@ -73,7 +73,10 @@ export const CounterWidget = (props) => {
       <Card.Body>
         <Row className="d-block d-xl-flex align-items-center">
           <Col xl={5} className="text-center d-flex align-items-center justify-content-center mb-3 mb-xl-0">
-            <img className="mb-4 rounded mx-auto d-block" src={require("../assets/img/technologies/"+logo)} width="70"/> 
+            {logo ?
+              <img className="mb-4 rounded mx-auto d-block" src={require("../assets/img/technologies/" + logo)} width="70" /> :
+              <img className="p-2 d-xl-flex rounded" src={require("../assets/img/technologies/question.jpg")} width="100" style={{ position: 'absolute', top: 12, left: 14 }} />
+            }
           </Col>
 
           <Col xs={12} xl={7} className="px-xl-0">
@@ -83,7 +86,7 @@ export const CounterWidget = (props) => {
               <h6 className="mb-1 ">{createdAtFormated}</h6>
             </div>
           </Col>
-          
+
         </Row>
       </Card.Body>
     </Card>
@@ -151,8 +154,8 @@ export const CounterWidgetSolde = (props) => {
               <h5>{category}</h5>
               <h3 className="mb-1 text-warning">{title}</h3>
             </div>
-           
-            <small>{period} <FontAwesomeIcon  size="xs" /> </small>
+
+            <small>{period} <FontAwesomeIcon size="xs" /> </small>
             {/* <div className="small mt-2">
               <FontAwesomeIcon icon={percentageIcon} className={`${percentageColor} me-1`} />
               <span className={`${percentageColor} fw-bold`}>
@@ -160,7 +163,7 @@ export const CounterWidgetSolde = (props) => {
               </span> Since last month
             </div> */}
           </Col>
-          
+
         </Row>
       </Card.Body>
     </Card>

@@ -1,4 +1,4 @@
-export const APPKEY = "app_tk_Qmj6zCKCMzNFDJ";
+export const APPKEY = process.env.REACT_APP_APP_KEY;
 
 export const URLLOGIN = "/authentications";
 

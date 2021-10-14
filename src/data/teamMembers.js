@@ -1,5 +1,5 @@
 
-import { faCalendarCheck, faComment } from '@fortawesome/free-solid-svg-icons';
+import {faCalendarCheck, faComment} from '@fortawesome/free-solid-svg-icons';
 
 import Profile1 from "../assets/img/team/profile-picture-1.jpg"
 import Profile2 from "../assets/img/team/profile-picture-2.jpg"

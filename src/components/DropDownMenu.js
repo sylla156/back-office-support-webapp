@@ -1,8 +1,9 @@
 
-import { Dropdown } from '@themesberg/react-bootstrap';
+import {Dropdown} from '@themesberg/react-bootstrap';
 import React from 'react'
 
 export default function DropDownMenu() {
+
     return (
         <Dropdown>
             <Dropdown.Toggle id="dropdown-basic">
@@ -16,4 +17,5 @@ export default function DropDownMenu() {
             </Dropdown.Menu>
         </Dropdown>
     );
+
 }

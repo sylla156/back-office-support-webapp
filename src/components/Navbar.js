@@ -1,10 +1,10 @@
 
 import React, { useState } from "react";
-import { Row,Form,InputGroup,Dropdown, Col, Nav, Image, Navbar, Container, ListGroup } from '@themesberg/react-bootstrap';
+import { Row, Form, InputGroup, Dropdown, Col, Nav, Image, Navbar, Container, ListGroup } from '@themesberg/react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCog, faEnvelopeOpen, faSearch, faSignOutAlt, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import NOTIFICATIONS_DATA from "../data/notifications";
-import { withCookies,useCookies,Cookies } from 'react-cookie';
+import { withCookies, useCookies, Cookies } from 'react-cookie';
 import SplitString from "../utils/splitString";
 import Logout from "../UserProfile/Logout";
 
@@ -18,7 +18,7 @@ export default (props) => {
     }, 300);
   };
 
-  const [cookies, ,] = useCookies(['token','id', 'user']);
+  const [cookies, ,] = useCookies(['token', 'id', 'user']);
   console.log(cookies.user);
 
   const Notification = (props) => {
@@ -51,40 +51,40 @@ export default (props) => {
     <Navbar variant="dark" expanded className="ps-0 pe-2 pb-0">
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100">
-            <div className="media d-flex align-items-center">
-                  <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                    <span className="mb-0 font-small fw-bold">{cookies.user.merchant? cookies.user.merchant.name : ""}</span>
-                  </div>
+          <div className="media d-flex align-items-center">
+            <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+              <span className="mb-0 font-small fw-bold">{cookies.user.merchant ? cookies.user.merchant.name : ""}</span>
             </div>
+          </div>
           <Nav className="align-items-center">
             <Dropdown as={Nav.Item}>
               <Dropdown.Toggle as={Nav.Link} className="pt-1 px-0">
                 <div className="media d-flex align-items-center">
-                  <div className=" text-ligth p-2 rounded-circle text-center border bg-dark border-primary" style={{width:40,height:40}}>{SplitString.takeFirstLetterOfEachString(cookies.user.name)}</div>
+                  <div className=" text-ligth p-2 rounded-circle text-center border bg-dark border-primary" style={{ width: 40, height: 40 }}>{SplitString.takeFirstLetterOfEachString(cookies.user.name)}</div>
                   <div className="media-body p-1 text-dark align-items-center d-none d-lg-block">
                     <span className="mb-0 font-small fw-bold">{cookies.user.username}</span>
-                    <div className="bg-dark m-auto" style={{height:1, width:"100%"}}></div>
+                    <div className="bg-dark m-auto" style={{ height: 1, width: "100%" }}></div>
                     <small className="text-primary d-block ">{cookies.user.email}</small>
                   </div>
-                  
+
                 </div>
-              
+
               </Dropdown.Toggle>
               <Dropdown.Menu className="user-dropdown dropdown-menu-right mt-2">
                 <Dropdown.Item className="fw-bold">
-                {/* <UserProfileDialog/> */}
+                  {/* <UserProfileDialog/> */}
                 </Dropdown.Item>
-               
+        
                 <Dropdown.Divider />
 
                 <Dropdown.Item className="fw-bold" >
-                 
-                  <Logout/>
+
+                  <Logout />
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
-          
+
         </div>
       </Container>
     </Navbar>

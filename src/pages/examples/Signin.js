@@ -98,7 +98,7 @@ export default function Signin() {
             <Col xs={12} className="d-flex align-items-center justify-content-center ">
               <div className="bg-white shadow-soft border rounded border-warning p-4 p-lg-5 w-100 fmxw-500">
                 <div className="text-center">
-                  <img className="mb-2 " src={require("../../assets/img/technologies/hub2.png")} width="100" height="" />
+                  <img className="mb-2 " src={require("../../assets/img/technologies/logo_o.png")} width="100" height="" />
                 </div>
                 <div className="text-center  text-md-center mb-4 mt-md-0">
                   <h3 className="mb-0">Support HUB2</h3>

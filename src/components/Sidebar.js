@@ -4,14 +4,14 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck,faWallet,faExchangeAlt,faSync,faSignOutAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck,faWallet,faExchangeAlt,faSync,faSignOutAlt,faMoneyCheck, faTimes,faMoneyCheckAlt } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import { Routes } from "../routes";
-import ReactHero from "../assets/img/technologies/Screenshot 2021-08-10 at 10.26.19.png";
+import ReactHero from "../assets/img/technologies/logo_o.png";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { withCookies,useCookies,Cookies } from 'react-cookie';
 
 export default (props = {}) => {
 
@@ -21,6 +21,8 @@ export default (props = {}) => {
   const { pathname } = location;
   const [show, setShow] = useState(false);
   const showClass = show ? "show" : "";
+
+  console.log(cookies.user);
 
   const onCollapse = () => setShow(!show);
 
@@ -89,15 +91,16 @@ export default (props = {}) => {
           <div className="sidebar-inner px-4 pt-3">
             <div className="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
               <div className="d-flex align-items-center">
-                <div className="user-avatar lg-avatar me-4">
+                
+                {/*<div className="user-avatar lg-avatar me-4">
                   <Image src={ProfilePicture} className="card-img-top rounded-circle border-white" />
                 </div>
-                <div className="d-block">
+                 <div className="d-block">
                   <h6>Hi, Jane</h6>
                   <Button as={Link} variant="secondary" size="xs" to={Routes.Signin.path} className="text-dark">
                     <FontAwesomeIcon icon={faSignOutAlt} className="me-2" /> Sign Out
                   </Button>
-                </div>
+                </div> */}
               </div>
               <Nav.Link className="collapse-close d-md-none" onClick={onCollapse}>
                 <FontAwesomeIcon icon={faTimes} />
@@ -113,11 +116,14 @@ export default (props = {}) => {
               <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/>
                */}
                <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/>
-              {/* <CollapsableNavItem  title="Transfert" icon={faExchangeAlt}>
+              <CollapsableNavItem  title="Transfert" icon={faExchangeAlt}>
                 <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path}/>
-                <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/>
-                <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/>
-              </CollapsableNavItem> */}
+                {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
+                {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
+              </CollapsableNavItem>
+              <CollapsableNavItem  title="Paiement" icon={faMoneyCheck}>
+                
+              </CollapsableNavItem>
               {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} /> */}
               {/* <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} /> */}
               {/* <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} /> */}

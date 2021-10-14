@@ -2,7 +2,7 @@
 import React from 'react';
 import { Image } from '@themesberg/react-bootstrap';
 
-import ReactLogo from "../assets/img/technologies/Screenshot_2021-08-10_at_10.26.19-removebg-preview1 copy.png";
+import ReactLogo from "../assets/img/technologies/logo_o.png";
 
 export default (props) => {
 
@@ -10,7 +10,7 @@ export default (props) => {
 
   return (
     <div className={`preloader bg-soft flex-column justify-content-center align-items-center ${show ? "" : "show"}`}>
-      <Image className="loader-element animate__animated animate__jackInTheBox" src={ReactLogo} height={400} width={400} />
+      <Image className="loader-element animate__animated animate__jackInTheBox rounded-circle" src={ReactLogo} height={400} width={400} />
     </div>
   );
 };

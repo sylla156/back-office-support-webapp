@@ -1,4 +1,4 @@
-import { Col, Row, Card, Form, Badge } from '@themesberg/react-bootstrap';
+import {Col, Row, Card, Form, Badge} from '@themesberg/react-bootstrap';
 import React from 'react'
 
 export default function ProviderTransferFedapay(props) {
@@ -34,11 +34,13 @@ export default function ProviderTransferFedapay(props) {
 
 
     if (providerTransferFedapayData) {
+
         console.log("providerTransferFedapayData define ")
         response = providerTransferFedapayData.checkStatus.response;
         console.log("providerTransferFedapayData.checkStatus : " + response);
 
         if (response) {
+
             console.log("response in checkStatus  define ");
             klass = response.klass;
             id = response.id;
@@ -65,6 +67,7 @@ export default function ProviderTransferFedapay(props) {
 
 
         }
+    
     }
 
     const createdDate_at = created_at.toLocaleString('pt-BR');
@@ -72,11 +75,11 @@ export default function ProviderTransferFedapay(props) {
     const deletedDate_at = deleted_at.toLocaleString('pt-BR');
     const failedDate_at = failed_at.toLocaleString('pt-BR');
 
-    const statusVariant = status === 'successful' || status === 'success' || status === "SUCCESSFUL"  || status === 'SUCCESS'
-    ? 'success'
-    : status === 'pending' || status === 'Pending' || status === "PENDING"
-      ? 'warning'
-      : status === 'FAILLED' || status === 'failed' || status==="FAILED" ? 'danger' : 'primary'
+    const statusVariant = status === 'successful' || status === 'success' || status === "SUCCESSFUL" || status === 'SUCCESS'
+        ? 'success'
+        : status === 'pending' || status === 'Pending' || status === "PENDING"
+            ? 'warning'
+            : status === 'FAILLED' || status === 'failed' || status === "FAILED" ? 'danger' : 'primary'
 
     return (
         <>
@@ -84,7 +87,7 @@ export default function ProviderTransferFedapay(props) {
             <Card.Body>
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             processorReference
                         </h4>
                     </Col>
@@ -97,7 +100,7 @@ export default function ProviderTransferFedapay(props) {
                 </Row>
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             klass
                         </h4>
                     </Col>
@@ -110,7 +113,7 @@ export default function ProviderTransferFedapay(props) {
                 </Row>
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             id
                         </h4>
                     </Col>
@@ -123,7 +126,7 @@ export default function ProviderTransferFedapay(props) {
                 </Row>
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             reference
                         </h4>
                     </Col>
@@ -136,7 +139,7 @@ export default function ProviderTransferFedapay(props) {
                 </Row>
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             amount
                         </h4>
                     </Col>
@@ -149,7 +152,7 @@ export default function ProviderTransferFedapay(props) {
                 </Row>
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             status
                         </h4>
                     </Col>
@@ -165,7 +168,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             customer_id
                         </h4>
                     </Col>
@@ -179,7 +182,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             currency_id
                         </h4>
                     </Col>
@@ -193,7 +196,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             mode
                         </h4>
                     </Col>
@@ -207,7 +210,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             last_error_code
                         </h4>
                     </Col>
@@ -221,7 +224,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             commission
                         </h4>
                     </Col>
@@ -235,7 +238,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             fees
                         </h4>
                     </Col>
@@ -249,7 +252,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             fixed_commission
                         </h4>
                     </Col>
@@ -263,7 +266,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             amount_transferred
                         </h4>
                     </Col>
@@ -277,7 +280,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             amount_debited
                         </h4>
                     </Col>
@@ -291,7 +294,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             created_at
                         </h4>
                     </Col>
@@ -305,7 +308,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             updated_at
                         </h4>
                     </Col>
@@ -319,7 +322,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             scheduled_at
                         </h4>
                     </Col>
@@ -333,7 +336,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             sent_at
                         </h4>
                     </Col>
@@ -347,7 +350,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             failed_at
                         </h4>
                     </Col>
@@ -361,7 +364,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             deleted_at
                         </h4>
                     </Col>
@@ -375,7 +378,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             custom_metadata
                         </h4>
                     </Col>
@@ -389,7 +392,7 @@ export default function ProviderTransferFedapay(props) {
 
                 <Row className="d-block d-xl-flex align-items-center">
                     <Col className="ms--2 ">
-                        <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }} >
+                        <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}} >
                             payment_method_id
                         </h4>
                     </Col>
@@ -406,4 +409,5 @@ export default function ProviderTransferFedapay(props) {
 
         </>
     );
+
 }

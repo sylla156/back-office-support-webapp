@@ -1,8 +1,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { CookiesProvider } from 'react-cookie';
-import { BrowserRouter as Router } from "react-router-dom";
+import {CookiesProvider} from 'react-cookie';
+import {BrowserRouter as Router} from "react-router-dom";
 // import { CookiesProvider } from 'react-cookie';
 
 // core styles
@@ -15,10 +15,10 @@ import "react-datetime/css/react-datetime.css";
 import App from './App';
 
 ReactDOM.render(
-  <CookiesProvider>
-    <Router>
-      <App />
-    </Router>
-  </CookiesProvider>,
-  document.getElementById("root")
+    <CookiesProvider>
+        <Router>
+            <App />
+        </Router>
+    </CookiesProvider>,
+    document.getElementById("root")
 );

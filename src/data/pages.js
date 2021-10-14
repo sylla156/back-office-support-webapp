@@ -10,7 +10,7 @@ import ResetPasswordImg from "../assets/img/pages/reset-password.jpg";
 import NotFoundImg from "../assets/img/pages/404.jpg";
 import ServerErrorImg from "../assets/img/pages/500.jpg";
 
-import { Routes } from "../routes";
+import {Routes} from "../routes";
 
 
 export default [

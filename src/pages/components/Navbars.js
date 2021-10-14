@@ -1,6 +1,6 @@
 
-import React, { useEffect, useState } from 'react';
-import { Nav, Row, Col, Card, Image, Navbar, Container } from '@themesberg/react-bootstrap';
+import React, {useEffect, useState} from 'react';
+import {Nav, Row, Col, Card, Image, Navbar, Container} from '@themesberg/react-bootstrap';
 
 import Documentation from "../../components/Documentation";
 import ReactLogoPrimary from "../../assets/img/technologies/react-logo-primary.svg";
@@ -8,26 +8,27 @@ import ReactLogoTransparent from "../../assets/img/technologies/react-logo-trans
 
 
 export default () => {
-  return (
-    <article>
-      <Container className="px-0">
-        <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
-          <Col className="d-block mb-4 mb-md-0">
-            <h1 className="h2">Navbars</h1>
-            <p className="mb-0">
-              Use the responsive navigation bar from Volt to add nav items and multi-level nested dropdowns for a seamless navigation.
-          </p>
-          </Col>
-        </Row>
 
-        <Documentation
-          title="Navbar"
-          description=""
-          scope={{ Nav, Card, Navbar, Container, ReactLogo: ReactLogoTransparent, Image }}
-          imports={`import { Nav, Card, Navbar, Container } from '@themesberg/react-bootstrap';
+    return (
+        <article>
+            <Container className="px-0">
+                <Row className="d-flex flex-wrap flex-md-nowrap align-items-center py-4">
+                    <Col className="d-block mb-4 mb-md-0">
+                        <h1 className="h2">Navbars</h1>
+                        <p className="mb-0">
+              Use the responsive navigation bar from Volt to add nav items and multi-level nested dropdowns for a seamless navigation.
+                        </p>
+                    </Col>
+                </Row>
+
+                <Documentation
+                    title="Navbar"
+                    description=""
+                    scope={{Nav, Card, Navbar, Container, ReactLogo: ReactLogoTransparent, Image}}
+                    imports={`import { Nav, Card, Navbar, Container } from '@themesberg/react-bootstrap';
 
 import ReactLogo from "src/assets/img/technologies/react-logo-transparent.svg";`}
-          example={`<Navbar variant="dark" expand="lg" bg="dark" className="navbar-transparent navbar-theme-primary my-2">
+                    example={`<Navbar variant="dark" expand="lg" bg="dark" className="navbar-transparent navbar-theme-primary my-2">
   <Container className="position-relative">
     <Navbar.Brand href="#home" className="me-lg-3">
       <Image src={ReactLogo} />
@@ -44,17 +45,17 @@ import ReactLogo from "src/assets/img/technologies/react-logo-transparent.svg";`
     <Navbar.Toggle aria-controls="navbar-default-primary" />
   </Container>
 </Navbar>`}
-        />
+                />
 
-        <Documentation
-          title="Navbar colors"
-          description=""
-          scope={{ useEffect, useState, Nav, Card, Navbar, Image, Container, ReactLogoPrimary, ReactLogo: ReactLogoTransparent }}
-          imports={`import React, { useEffect, useState } from "react";
+                <Documentation
+                    title="Navbar colors"
+                    description=""
+                    scope={{useEffect, useState, Nav, Card, Navbar, Image, Container, ReactLogoPrimary, ReactLogo: ReactLogoTransparent}}
+                    imports={`import React, { useEffect, useState } from "react";
 import { Nav, Card, Navbar, Container } from '@themesberg/react-bootstrap';
 import ReactLogo from "src/assets/img/technologies/react-logo-transparent.svg";
 import ReactLogoPrimary from "src/assets/img/technologies/react-logo-primary.svg";`}
-          example={`const NavbarThemes = [
+                    example={`const NavbarThemes = [
   { themeVariant: 'primary', navbarColor: 'dark', brandIcon: ReactLogo },
   { themeVariant: 'secondary', navbarColor: 'light', brandIcon: ReactLogoPrimary },
   { themeVariant: 'soft', navbarColor: 'light', brandIcon: ReactLogo }
@@ -95,8 +96,9 @@ function NavbarChangingColors() {
 }
 
 render( <NavbarChangingColors /> );`}
-        />
-      </Container>
-    </article>
-  );
+                />
+            </Container>
+        </article>
+    );
+
 };

@@ -116,7 +116,7 @@ export default () => (
     {/* <RouteWithSidebar exact path={Routes.RefreshStatus.path} component={RefreshStatus} /> */}
     {/* <RouteWithSidebar exact path={Routes.ForceStatus.path} component={ForceStatus} /> */}
 
-    {/* <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} /> */}
+    <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} />
     
     <Redirect to={Routes.NotFound.path} />
   </Switch>

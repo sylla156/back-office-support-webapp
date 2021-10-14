@@ -9,8 +9,9 @@ export default function App() {
 
     return (
         <>
-         <ScrollToTop/>
-         <HomePage />
+            <ScrollToTop/>
+            <HomePage />
         </>
     )
+
 }

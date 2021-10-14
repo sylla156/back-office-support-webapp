@@ -25,12 +25,14 @@
   },
   "version": "1.0.0",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-brands-svg-icons": "^5.14.0",
-    "@fortawesome/free-regular-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/styles": "^4.11.4",
@@ -41,14 +43,17 @@
     "axios": "^0.21.1",
     "base-64": "^1.0.0",
     "bootstrap": "5.0.0-beta1",
-    "chartist": "^0.11.4",
+    "chartist": "^0.10.1",
     "chartist-plugin-tooltips-updated": "^0.1.4",
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
     "http-proxy-middleware": "^2.0.1",
-    "moment": "^2.29.1",
+    "js-base64": "^3.7.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
     "moment-timezone": "^0.5.31",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
+    "prism-react-renderer": "^1.2.1",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-chartist": "^0.14.3",
     "react-cookie": "^4.1.1",
@@ -59,7 +64,7 @@
     "react-live": "^2.2.3",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.3.1",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^4.0.3",
     "react-transition-group": "^4.4.1",
     "simplebar-react": "^2.3.0"
   },
@@ -72,7 +77,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "serveNode": "node server.js",
-    "serve": "pm2 start ./server.js --name back_office_support_web_app"
+    "serve": "pm2 start ./server.js --name back_office_support_web_app",
+    "lint:check": "eslint \"{src,apps,libs,test}/**/*.{js,jsx}\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.{js,jsx}\" --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -88,5 +95,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.25.1"
   }
 }

@@ -1,6 +1,6 @@
 
-import { faCalendarAlt, faFileAlt, faImages, faMapMarkedAlt, faMobileAlt, faPenFancy } from "@fortawesome/free-solid-svg-icons";
-import { faAccessibleIcon, faBootstrap, faGulp, faHtml5, faReact, faSass } from "@fortawesome/free-brands-svg-icons";
+import {faCalendarAlt, faFileAlt, faImages, faMapMarkedAlt, faMobileAlt, faPenFancy} from "@fortawesome/free-solid-svg-icons";
+import {faAccessibleIcon, faBootstrap, faGulp, faHtml5, faReact, faSass} from "@fortawesome/free-brands-svg-icons";
 
 
 export default [

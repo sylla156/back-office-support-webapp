@@ -1,30 +1,31 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function useToken() {
 
-  const JWT = 'jwt';
-  const getToken = () => {
+    const JWT = 'jwt';
+    const getToken = () => {
 
-    const tokenString = sessionStorage.getItem(JWT);
+        const tokenString = sessionStorage.getItem(JWT);
 
-    const dataToken = JSON.parse(tokenString); 
+        const dataToken = JSON.parse(tokenString); 
     
-    return dataToken.token; // dataToken?.token;
+        return dataToken.token; // dataToken?.token;
 
-  };
+    };
 
-  const [token, setToken] = useState(getToken() || null); // initialisation
+    const [token, setToken] = useState(getToken() || null); // initialisation
 
-  const saveToken = dataToken => {
+    const saveToken = dataToken => {
 
-    localStorage.setItem(JWT, JSON.stringify(dataToken));
+        localStorage.setItem(JWT, JSON.stringify(dataToken));
 
-    setToken(dataToken.token);
+        setToken(dataToken.token);
 
-  };
+    };
 
-  return {
-    setToken: saveToken,
-    token
-  }
+    return {
+        setToken: saveToken,
+        token
+    }
+
 }

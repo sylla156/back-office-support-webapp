@@ -1,14 +1,18 @@
 import axios from 'axios';
-import { APPKEY } from '../pages/constante/Const';
+import {APPKEY} from '../pages/constante/Const';
 
 export default class AxiosWebHelper {
+
     static getAxios() {
-        //let baseURLToUse = 'http://' + window.location.hostname + ':4600/';
-        let baseURLToUse = "http://localhost"+":4600/"; 
+
+        // let baseURLToUse = 'http://' + window.location.hostname + ':4600/';
+        let baseURLToUse = "http://localhost" + ":4600/"; 
         const apiURL = process.env.REACT_APP_API_URL; // Defined at build time so don't forget to define the env var
         console.log(apiURL);
         if (apiURL) {
+
             baseURLToUse = apiURL;
+        
         }
 
         const instance = axios.create({
@@ -20,5 +24,7 @@ export default class AxiosWebHelper {
             responseType: 'json',
         });
         return instance;
+    
     }
+
 }

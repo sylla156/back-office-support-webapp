@@ -1,7 +1,7 @@
-import { Col,Table, Row, Button, Card, ButtonGroup } from '@themesberg/react-bootstrap';
-import { Redirect } from 'react-router-dom'
+import {Col, Table, Row, Button, Card, ButtonGroup} from '@themesberg/react-bootstrap';
+import {Redirect} from 'react-router-dom'
 
-import React, { useState } from "react";
+import React, {useState} from "react";
 import TransferListSearch from '../components/transferList/TransferListSearch';
 import transactions from '../data/transactions';
 import TransferListAll from '../components/transferList/TransferListAll';
@@ -20,7 +20,7 @@ export default () => {
             </div>
         </>
     );
-}
 
+}
 
 

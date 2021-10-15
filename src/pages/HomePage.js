@@ -92,10 +92,10 @@ export default () => (
         {/* pages */}
         <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
 
-    <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} />
+        <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} />
 
-    <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} />
+        <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} />
     
-    <Redirect to={Routes.NotFound.path} />
-  </Switch>
+        <Redirect to={Routes.NotFound.path} />
+    </Switch>
 );

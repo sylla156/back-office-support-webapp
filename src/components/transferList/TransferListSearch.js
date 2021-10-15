@@ -1,19 +1,22 @@
-import { Col, Form, Row, InputGroup, Button, Card, ButtonGroup } from '@themesberg/react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import {Col, Form, Row, InputGroup, Button, Card, ButtonGroup} from '@themesberg/react-bootstrap';
+import {Redirect} from 'react-router-dom';
 import moment from 'moment-timezone'
 import Datetime from 'react-datetime';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarAlt, faDollarSign, faLessThan, faLessThanEqual } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCalendarAlt, faDollarSign, faLessThan, faLessThanEqual} from '@fortawesome/free-solid-svg-icons'
 
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 export default function TransferListSearch() {
+
     const [dateStart, setDateStart] = useState(undefined);
     const [dateEnd, setDateEnd] = useState(undefined);
 
     const handleDateChange = (event, setMethod) => {
+
         const value = event.target.value
         setMethod(value)
+    
     }
     return (
         <div className="align-items-center d-flex flex-wrap">
@@ -55,7 +58,11 @@ export default function TransferListSearch() {
                                     placeholder="dd/mm/yyyy"
                                     onFocus={openCalendar}
 
-                                    onChange={event => { handleDateChange(event, setDateStart) }}
+                                    onChange={event => {
+
+                                        handleDateChange(event, setDateStart) 
+
+                                    }}
                                 />
                             </InputGroup>
                         )}
@@ -84,4 +91,5 @@ export default function TransferListSearch() {
             </Col>
         </div>
     )
+
 }

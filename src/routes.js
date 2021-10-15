@@ -22,6 +22,7 @@ export const Routes = {
     CheckStatus:{path:"/check"},
     Solde:{path:"/solde"},
     Transfer:{path:"/transfer"},
+    TransferList:{path:"/transfer-list"},
 
 
     // components

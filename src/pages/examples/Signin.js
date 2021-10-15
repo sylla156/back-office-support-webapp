@@ -154,7 +154,7 @@ export default function Signin() {
                                         <AlertDismissable message={error} variant="danger" show={!!error} onClose={() => setError(null)} isLoading={isLoading}/>
                                     </div>
 
-                                    {isLoginSuccess ? <Redirect to={Routes.Solde.path} /> : ""}
+                                    {isLoginSuccess ? <Redirect to={Routes.DashboardOverview.path} /> : ""}
                                 </Form>
                                 <div className="d-flex justify-content-center my-4">
 

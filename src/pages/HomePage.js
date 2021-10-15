@@ -22,6 +22,7 @@ import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader";
 
 import Solde from './Solde';
+import TransferList from './TransferList';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -91,13 +92,10 @@ export default () => (
         {/* pages */}
         <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
 
-        {/* <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} /> */}
-
-        {/* <RouteWithSidebar exact path={Routes.RefreshStatus.path} component={RefreshStatus} /> */}
-        {/* <RouteWithSidebar exact path={Routes.ForceStatus.path} component={ForceStatus} /> */}
-
         <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} />
 
+        <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} />
+    
         <Redirect to={Routes.NotFound.path} />
     </Switch>
 );

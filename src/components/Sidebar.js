@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import {useLocation} from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck, faWallet, faExchangeAlt, faSync, faSignOutAlt, faMoneyCheck, faTimes, faMoneyCheckAlt} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faWallet, faExchangeAlt, faSync, faChartPie, faMoneyCheck, faTimes, faMoneyCheckAlt} from "@fortawesome/free-solid-svg-icons";
 import {Nav, Badge, Image, Button, Dropdown, Accordion, Navbar} from '@themesberg/react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Routes} from "../routes";
@@ -114,21 +114,24 @@ export default (props = {}) => {
                         </div>
                         <Nav className="flex-column pt-3 pt-md-0">
                             <NavItem title="HUB2 SUPPORT" link={Routes.DashboardOverview.path} image={ReactHero} />
-                            {/* <NavItem title="Tableau de bord" link={Routes.DashboardOverview.path} icon={faChartPie} /> */}
+                            <NavItem title="Tableau de bord" link={Routes.DashboardOverview.path} icon={faChartPie} />
                             {/* <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path}/> */}
                             {/* <NavItem title="Transfert" icon={faWallet} link={Routes.Transfer.path}/> */}
                             {/* <NavItem title="Force Status" icon={faFistRaised} link={Routes.ForceStatus.path}/> */}
                             {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/>
               <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/>
                */}
-                            <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/>
+              
                             <CollapsableNavItem title="Transfert" icon={faExchangeAlt}>
-                                <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path}/>
+              
+                                <NavItem title="Liste de transfert" icon={faExchangeAlt} link={Routes.TransferList.path} />
+                                <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path} />
+                                <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path} />
                                 {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
                                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
                             </CollapsableNavItem>
                             <CollapsableNavItem title="Paiement" icon={faMoneyCheck}>
-                
+
                             </CollapsableNavItem>
                             {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} /> */}
                             {/* <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} /> */}
@@ -153,8 +156,8 @@ export default (props = {}) => {
                             {/* <NavItem external title="Plugins" link="https://demo.themesberg.com/volt-pro-react/#/plugins/datatable" target="_blank" badgeText="Pro" icon={faChartPie} /> */}
 
                             <Dropdown.Divider className="my-3 border-indigo" />
-             
-             
+
+
                             {/* <CollapsableNavItem eventKey="components/" title="Components" icon={faBoxOpen}>
                 <NavItem title="Accordion" link={Routes.Accordions.path} />
                 <NavItem title="Alerts" link={Routes.Alerts.path} />

@@ -72,6 +72,7 @@ export default () => {
             .catch(error => {
 
                 setIsLoaded(true);
+                onFilters();
                 if (error.response) {
 
                     console.log("In catch error checkSupportTransferStatus", error.response.data);

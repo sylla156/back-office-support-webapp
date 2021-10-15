@@ -115,7 +115,7 @@ export default function ProviderTransactionStatus(props) {
 
                 {gatewayId === providerTransferGatewayId.GTBANKCI ? <ProviderTransferGtBank providerTransferGtBank={processorData} /> : ''}
 
-                {gatewayId === providerTransferGatewayId.INTOUCH ? <ProviderTransferIntouch providerTransferIntouch={processorData} /> : ''}
+                {gatewayId === providerTransferGatewayId.INTOUCHSNORANGELIVE || providerTransferGatewayId.INTOUCHCIORANGELIVE || providerTransferGatewayId.INTOUCHCIMOOVLIVE || providerTransferGatewayId.INTOUCHGNORANGELIVE ? <ProviderTransferIntouch providerTransferIntouch={processorData} /> : ''}
 
 
                 {/* ------------------------------- */}

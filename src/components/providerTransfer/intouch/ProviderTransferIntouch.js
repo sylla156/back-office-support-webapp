@@ -7,6 +7,10 @@ export default function ProviderTransferIntouch(props) {
 
     const providerTransferIntouchData = props.providerTransferIntouch;
 
+    console.log("ProviderTransferIntouch information ")
+    console.log(providerTransferIntouchData);
+    
+    let checkStatus;
     let response;
     let service_id;
     let gu_transaction_id;
@@ -17,24 +21,28 @@ export default function ProviderTransferIntouch(props) {
     let recipient_invoice_id;
     
     if (providerTransferIntouchData) {
+        console.log(" providerTransferIntouchData define");
 
-        console.log("providerTransferIntouchData define");
+        checkStatus = providerTransferIntouchData.checkStatus;
+    }
 
-        response = providerTransferIntouchData.checkStatus.response;
+    if(checkStatus){
+        console.log("checkStatus in providerTransferIntouchData define");
+        response = checkStatus.response;
+    }
 
-        if (response) {
+    if (response) {
+        console.log("response in providerTransferIntouchData define");
+        console.log("service_id : "+service_id);
+        console.log("gu_transaction_id : "+gu_transaction_id);
+        service_id = response.service_id;
+        gu_transaction_id = response.gu_transaction_id;
+        status = response.status;
+        transaction_date = response.transaction_date;
+        recipient_id = response.recipient_id;
+        amount = response.amount;
+        recipient_invoice_id = response.recipient_invoice_id;
 
-            console.log("response in providerTransferIntouchData define");
-            service_id = response.service_id;
-            gu_transaction_id = response.gu_transaction_id;
-            status = response.status;
-            transaction_date = response.transaction_date;
-            recipient_id = response.recipient_id;
-            amount = response.amount;
-            recipient_invoice_id = response.recipient_invoice_id;
-
-        }
-    
     }
 
     // const statusVariant = status === "SUCCESSFUL" || "successufl" ? "success" : status==="PENDING" || status==="pending" ? "warning": status==="FAILED" || status==="failed" ? "danger" : "primary";

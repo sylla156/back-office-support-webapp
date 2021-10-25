@@ -31,7 +31,7 @@ export default () => {
 
     const resquestHeaderSupportHub2 = {
         headers: {
-            AppKey: APPKEY,
+            AppKey: process.env.REACT_APP_APP_KEY,
             authenticationtoken: cookies.token
         }
     };

@@ -19,7 +19,7 @@ export default class AxiosWebHelper {
             baseURL: baseURLToUse,
             headers: {
                 'Content-Type': 'application/json',
-                'AppKey': process.env.REACT_APP_APP_KEY
+                'AppKey': APPKEY
             },
             responseType: 'json',
         });

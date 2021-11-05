@@ -10,7 +10,7 @@ export default (props) => {
 
     return (
         <div className={`preloader bg-soft flex-column justify-content-center align-items-center ${show ? "" : "show"}`}>
-            <Image className="loader-element animate__animated animate__jackInTheBox rounded-circle" src={ReactLogo} height={400} width={400} />
+            <Image className="loader-element animate__animated animate__jackInTheBox rounded-circle" src={ReactLogo} height={150} width={150} />
         </div>
     );
 

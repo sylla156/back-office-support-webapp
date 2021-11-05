@@ -1,65 +1,45 @@
-import React, {useState, useEffect} from "react";
-import AxiosWebHelper from "../../utils/axios-helper";
-import {useCookies} from 'react-cookie';
-import { Redirect } from "react-router-dom";
-import {Routes} from "../../routes";
-import { POWERSLIDEFIRSTTRYNGAPIID, POWERSLIDEFIRSTTRYNGTOKEN, POWERSLIDEFIRSTTRYNGURL, POWERSLIDETRYINGACCESSSLIDEURL } from "../../pages/constante/Const";
+import { Button, Col,InputGroup, Row } from "@themesberg/react-bootstrap";
+import React, {useState} from 'react';
+import { powerList } from "./powerSlideConst/powerConst";
 
 export default function PowerSildeInsertion() {
 
-    const [cookies] = useCookies(['token']);
+  const [visibleTab, setVisibleTab] = useState(powerList[0].id);
 
-    const axios = AxiosWebHelper.getAxios();
-
-    const [isLoading, setIsLoading] = useState(true);
-
-    const [errorData, setErrorData] = useState('');
-
-    const [powerSlideData, setPowerSlideData] = useState([]);
-
-    const powerSlideAPi = ()=>{
-        console.log("in powerSlideAPi");
-        setIsLoading(true);
-        axios.post(
-            POWERSLIDEFIRSTTRYNGURL,
-            {
-                "username":"tiahadoua@gmail.com"
-            },
-            {
-                headers:{
-                    appId: POWERSLIDEFIRSTTRYNGAPIID,
-                    Authorization: `Bearer ${POWERSLIDEFIRSTTRYNGTOKEN}`
-                }
-            }
-        )
-        .then((result) =>{
-            console.log("in powerSlideAPi result ");
-            setIsLoading(false);
-            console.log(result);
-        })
-        .catch(error =>{
-            console.log("in powerSlideAPi catch error ");
-            console.log(error);
-        })
-
-    };
-
-
-
-
-    useEffect(() => {
-
-        powerSlideAPi();
-    
-    }, []);
-
-    if(!cookies.token){
-        <Redirect  to={Routes.Signin.path}/>
-    }
-
-    return (
-        <div>
-            <iframe src="https://app.powerslide.io/slide/headless/fb0a604d-e6e8-44c4-86b8-b1d638239c30" width="100%" height="500" ></iframe>        
-        </div>
-    )
+  return (
+    <>
+      <div className="table-settings mb-4">
+        <Row className="justify-content-between align-items-center">
+          <Col xs={12} md={6} lg={6} className="mb-2 px-2">
+            <InputGroup>
+              
+              {powerList.map((item)=>(
+                <Button variant="outline-primary" key={item.id} onClick={ ()=>{setVisibleTab(item.id)} } className="mx-2" active={visibleTab === item.id}  type="button">
+                {item.name}
+              </Button>
+              ))}
+            </InputGroup>
+          </Col>
+        </Row>
+      </div>
+      {
+       powerList.map((item)=>(
+         <>
+         {
+           visibleTab ===item.id && <Col>
+            <iframe
+              src={item.url}
+              title={item.title}
+              style={{ margin: "30px 0", display: "block" }}
+              width="100%"
+              height="800"
+            ></iframe>
+          </Col>
+         }
+         </>
+        ))
+      }
+      
+    </>
+  );
 }

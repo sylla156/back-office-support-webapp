@@ -32,8 +32,8 @@ export default (props = {}) => {
         const defaultKey = pathname.indexOf(eventKey) !== -1 ? eventKey : "";
 
         return (
-            <Accordion as={Nav.Item} defaultActiveKey={defaultKey}>
-                <Accordion.Item eventKey={eventKey}>
+            <Accordion as={Nav.Item} defaultActiveKey={'0'}>
+                <Accordion.Item eventKey={'0'}>
                     <Accordion.Button as={Nav.Link} className="d-flex justify-content-between align-items-center">
                         <span>
                             <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span>
@@ -59,9 +59,10 @@ export default (props = {}) => {
 
     const NavItem = (props) => {
 
-        const {title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary"} = props;
+        const {home, title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary"} = props;
         const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
-        const navItemClassName = link === pathname ? "active" : "";
+        let navItemClassName = link === pathname ? "active" : "";
+        if(home) navItemClassName = "";
         const linkProps = external ? {href: link} : {as: Link, to: link};
 
         return (
@@ -113,7 +114,7 @@ export default (props = {}) => {
                             </Nav.Link>
                         </div>
                         <Nav className="flex-column pt-3 pt-md-0">
-                            <NavItem title="HUB2 SUPPORT" link={Routes.DashboardOverview.path} image={ReactHero} />
+                            <NavItem home title="HUB2 SUPPORT" link={Routes.DashboardOverview.path} image={ReactHero} />
                             <NavItem title="Tableau de bord" link={Routes.DashboardOverview.path} icon={faChartPie} />
                             {/* <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path}/> */}
                             {/* <NavItem title="Transfert" icon={faWallet} link={Routes.Transfer.path}/> */}

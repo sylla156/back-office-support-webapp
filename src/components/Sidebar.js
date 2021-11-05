@@ -32,8 +32,8 @@ export default (props = {}) => {
         const defaultKey = pathname.indexOf(eventKey) !== -1 ? eventKey : "";
 
         return (
-            <Accordion as={Nav.Item} defaultActiveKey={defaultKey}>
-                <Accordion.Item eventKey={eventKey}>
+            <Accordion as={Nav.Item} defaultActiveKey={'0'}>
+                <Accordion.Item eventKey={'0'}>
                     <Accordion.Button as={Nav.Link} className="d-flex justify-content-between align-items-center">
                         <span>
                             <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span>
@@ -113,7 +113,7 @@ export default (props = {}) => {
                             </Nav.Link>
                         </div>
                         <Nav className="flex-column pt-3 pt-md-0">
-                            <NavItem title="HUB2 SUPPORT" link={Routes.DashboardOverview.path} image={ReactHero} />
+                            <NavItem title="HUB2 SUPPORT" image={ReactHero} />
                             <NavItem title="Tableau de bord" link={Routes.DashboardOverview.path} icon={faChartPie} />
                             {/* <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path}/> */}
                             {/* <NavItem title="Transfert" icon={faWallet} link={Routes.Transfer.path}/> */}

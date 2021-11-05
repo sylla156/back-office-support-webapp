@@ -44,6 +44,7 @@ module.exports = {
         'no-empty': 'warn',
         'camelcase': 'off',
         'react/jsx-key': 'off',
+        'no-extra-semi': 'off',
     },
     settings: {
         react: {

@@ -22,6 +22,7 @@ import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader";
 
 import Solde from './Solde';
+import TransferList from './TransferList';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -41,7 +42,7 @@ const RouteWithLoader = ({component: Component, ...rest}) => {
 
 };
 
-const RouteWithSidebar = ({component: Component, ...rest}) => {
+const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 
     const [loaded, setLoaded] = useState(false);
 
@@ -67,7 +68,7 @@ const RouteWithSidebar = ({component: Component, ...rest}) => {
                 <Sidebar />
 
                 <main className="content">
-                    <Navbar />
+                    <Navbar pageTitle={title} />
                     <Component {...props} />
                     {/* <Footer toggleSettings={toggleSettings} showSettings={showSettings} /> */}
                 </main>
@@ -81,23 +82,20 @@ const RouteWithSidebar = ({component: Component, ...rest}) => {
 
 export default () => (
     <Switch>
-        <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
+        <RouteWithLoader exact path={Routes.Signin.path}  component={Signin} />
 
-        <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
-        <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
+        <RouteWithLoader exact path={Routes.NotFound.path}  component={NotFoundPage} />
+        <RouteWithLoader exact path={Routes.ServerError.path}  component={ServerError} />
 
-        <RouteWithSidebar exact path={Routes.Solde.path} component={Solde} />
+        <RouteWithSidebar exact path={Routes.Solde.path} title={'Solde fournisseur'} component={Solde} />
 
         {/* pages */}
-        <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
+        <RouteWithSidebar exact path={Routes.DashboardOverview.path} title={'Tableau de bord'} component={DashboardOverview} />
 
-        {/* <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} /> */}
+        <RouteWithSidebar exact path={Routes.CheckStatus.path} title={'Vérification du statut'} component={CheckStatus} />
 
-        {/* <RouteWithSidebar exact path={Routes.RefreshStatus.path} component={RefreshStatus} /> */}
-        {/* <RouteWithSidebar exact path={Routes.ForceStatus.path} component={ForceStatus} /> */}
-
-        <RouteWithSidebar exact path={Routes.CheckStatus.path} component={CheckStatus} />
-
+        {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
+    
         <Redirect to={Routes.NotFound.path} />
     </Switch>
 );

@@ -23,6 +23,7 @@ export const Routes = {
     Solde:{path:"/solde"},
     Transfer:{path:"/transfer"},
     TransferList:{path:"/transfer-list"},
+    MechantBalance : {path:"/merchant-balance"},
 
 
     // components

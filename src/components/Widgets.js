@@ -99,6 +99,39 @@ export const CounterWidget = (props) => {
 
 };
 
+export const CounterWidgetMerchantBalance = (props) => {
+
+    // console.log(props);
+    // const {amount, currency, date, logo, name} = props.balance;
+    const logo = "logo_o.png";
+    // const createdAtUtc = new Date(date);
+    // const createdAtFormated = createdAtUtc.toLocaleString('pt-BR');
+    return (
+        <Card border="light" className="shadow-sm border-warning">
+            <Card.Body>
+                <Row className="d-block d-xl-flex align-items-center">
+                    <Col xl={5} className="text-center d-flex align-items-center justify-content-center mb-3 mb-xl-0">
+                        {logo ?
+                            <img className="mb-4 rounded mx-auto d-block" src={require("../assets/img/technologies/" + logo).default} width="70" /> :
+                            <img className="p-2 d-xl-flex rounded" src={require("../assets/img/technologies/question.jpg").default} width="100" style={{position: 'absolute', top: 12, left: 14}} />
+                        }
+                    </Col>
+
+                    <Col xs={12} xl={7} className="px-xl-0">
+                        <div className="d-block">
+                            <h5>HUB 2</h5>
+                            <h4 className="mb-1 text-warning">{new Intl.NumberFormat().format(1234500)} XOF</h4>
+                            <h6 className="mb-1 ">27/11/12 12:23:12</h6>
+                        </div>
+                    </Col>
+
+                </Row>
+            </Card.Body>
+        </Card>
+    );
+
+};
+
 export const CounterDasboardWidget = (props) => {
 
     const {icon, iconColor, category, title, period, percentage} = props;

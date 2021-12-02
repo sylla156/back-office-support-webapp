@@ -4,13 +4,14 @@ import { Routes } from "../routes";
 import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../utils/axios-helper";
 import { CounterWidgetMerchantBalance } from "../components/Widgets";
-import { APPKEY } from "./constante/Const";
+import { APPKEY, BASEURLMERCHANTBALANCE } from "./constante/Const";
 import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
 
 export default () => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [merchantBalanceList, setMerchantBalanceList] = useState([]);
   const [shouldLogin, setShouldLogin] = useState(false);
+  const [errorData, setErrorData] = useState(null);
 
   const [cookies] = useCookies(["token"]);
 
@@ -27,7 +28,9 @@ export default () => {
     console.log(" In check solde ");
 
     axios
-      .get("", {
+      .get(
+        BASEURLMERCHANTBALANCE
+        , {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -52,6 +55,7 @@ export default () => {
             setShouldLogin(true);
           } else {
             console.log(error.response.data.message);
+            setErrorData(error.response.data.message);
           }
         }
       });

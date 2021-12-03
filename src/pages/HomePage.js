@@ -22,6 +22,7 @@ import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader";
 
 import Solde from './Solde';
+import MerchantBalance from './MerchantBalance';
 import TransferList from './TransferList';
 
 
@@ -87,12 +88,13 @@ export default () => (
         <RouteWithLoader exact path={Routes.NotFound.path}  component={NotFoundPage} />
         <RouteWithLoader exact path={Routes.ServerError.path}  component={ServerError} />
 
-        <RouteWithSidebar exact path={Routes.Solde.path} title={'Solde fournisseur'} component={Solde} />
+        <RouteWithSidebar exact path={Routes.Solde.path} title={'Solde fournisseur HUB2'} component={Solde} />
 
         {/* pages */}
         <RouteWithSidebar exact path={Routes.DashboardOverview.path} title={'Tableau de bord'} component={DashboardOverview} />
 
         <RouteWithSidebar exact path={Routes.CheckStatus.path} title={'Vérification du statut'} component={CheckStatus} />
+        <RouteWithSidebar exact path={Routes.MechantBalance.path} title={'Solde marchand HUB2'} component={MerchantBalance} />
 
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     

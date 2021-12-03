@@ -49,7 +49,7 @@ export default function ProviderTransferGtBank(props) {
 
     if(data){
 
-        console.kog("data in response of providerTransferGtBankData define");
+        console.log("data in response of providerTransferGtBankData define");
         remarks = data.remarks;
         sender_name = data.sended_name;
         gtb_reference = data.gtb_reference;

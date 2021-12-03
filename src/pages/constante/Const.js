@@ -11,7 +11,7 @@ export const BASEURLREFRESHSTATUSWITHPARAMS1 = BASEURLREFRESTATUS + "?from=";
 
 export const BASEURLREFRESHSTATUSWITHPARAMS2 = "&isForceStatus=" + false + "&merchantId=" + "&status=pending" + "&to="
 
-export const BASEURLMERCHANTBALANCE = "";
+export const BASEURLMERCHANTBALANCE = "/balances/merchant-transfer";
 
 export const POWERSLIDEFIRSTTRYNGURL = "https://app.powerslide.io/api/job/getToken/9e6db3e2-ddad-4c22-b02a-fd90187813b6";
 

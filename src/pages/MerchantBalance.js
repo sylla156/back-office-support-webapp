@@ -6,6 +6,7 @@ import AxiosWebHelper from "../utils/axios-helper";
 import { CounterWidgetMerchantBalance } from "../components/Widgets";
 import { APPKEY, BASEURLMERCHANTBALANCE } from "./constante/Const";
 import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
+import AlertDismissable from "../components/AlertDismissable";
 
 export default () => {
   const [isLoaded, setIsLoaded] = useState(true);
@@ -28,9 +29,7 @@ export default () => {
     console.log(" In check solde ");
 
     axios
-      .get(
-        BASEURLMERCHANTBALANCE
-        , {
+      .get(BASEURLMERCHANTBALANCE, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -62,7 +61,7 @@ export default () => {
   };
 
   useEffect(() => {
-    //checkMerchantBalance();
+    checkMerchantBalance();
   }, []);
 
   if (shouldLogin) {
@@ -71,35 +70,34 @@ export default () => {
 
   return (
     <>
-      <Row>
-      <Col
-        xs={12}
-        sm={6}
-        md={5}
-        lg={4}
-        className="mb-4 border-warning "
-      >
-        <CounterWidgetMerchantBalance />
-      </Col>
-      <Col
-        xs={12}
-        sm={6}
-        md={5}
-        lg={4}
-        className="mb-4 border-warning "
-      >
-        <CounterWidgetMerchantBalance />
-      </Col>
-      <Col
-        xs={12}
-        sm={6}
-        md={5}
-        lg={4}
-        className="mb-4 border-warning "
-      >
-        <CounterWidgetMerchantBalance />
-      </Col>
-      </Row>
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4"></div>
+      <div>
+        <AlertDismissable
+          message={errorData}
+          variant="danger"
+          show={!!errorData}
+          onClose={() => setErrorData(null)}
+        />
+        <div></div>
+      </div>
+      {isLoaded ? (
+        <Row>
+          {merchantBalanceList.map((merchantBalance) => (
+            <Col xs={12} sm={6} md={5} lg={4} className="mb-4 border-warning ">
+              <CounterWidgetMerchantBalance
+                key={merchantBalance.id}
+                merchantBalance={merchantBalance}
+              />
+            </Col>
+          ))}
+        </Row>
+      ) : (
+        <div className="d-flex justify-content-center">
+          <Spinner animation="border " size="sm" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
     </>
   );
 };

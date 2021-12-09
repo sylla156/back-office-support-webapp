@@ -129,6 +129,7 @@ export default (props = {}) => {
                                 <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path} />
                                 <NavItem title="Solde marchand" icon={faWallet} link={Routes.MechantBalance.path} />
                                 <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path} />
+                                <NavItem title="Solde moov" icon={faWallet} link={Routes.MoovBalance.path} />
                                 {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
                                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
                             </CollapsableNavItem>

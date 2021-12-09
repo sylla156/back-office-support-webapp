@@ -23,6 +23,7 @@ import Preloader from "../components/Preloader";
 
 import Solde from './Solde';
 import MerchantBalance from './MerchantBalance';
+import MoovBalance from './MoovBalance';
 import TransferList from './TransferList';
 
 
@@ -95,6 +96,7 @@ export default () => (
 
         <RouteWithSidebar exact path={Routes.CheckStatus.path} title={'Vérification du statut'} component={CheckStatus} />
         <RouteWithSidebar exact path={Routes.MechantBalance.path} title={'Solde marchand HUB2'} component={MerchantBalance} />
+        <RouteWithSidebar exact path={Routes.MoovBalance.path} title={'Solde moov'} component={MoovBalance} />
 
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     

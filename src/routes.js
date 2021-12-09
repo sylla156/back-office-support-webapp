@@ -24,6 +24,7 @@ export const Routes = {
     Transfer:{path:"/transfer"},
     TransferList:{path:"/transfer-list"},
     MechantBalance : {path:"/merchant-balance"},
+    MoovBalance:{path:"/moov-balance"},
 
 
     // components

@@ -9,6 +9,7 @@ export const BASEURLREFRESTATUS = "https://support-api.hub2.io/transfers";
 export const BASEURLREFRESHSTATUSWITHPARAMS1 = BASEURLREFRESTATUS + "?from=";
 
 export const BASEURLMOOVBALANCE = "/balances/";
+export const BASEURLSTATS = "/stats";
 
 export const BASEURLREFRESHSTATUSWITHPARAMS2 = "&isForceStatus=" + false + "&merchantId=" + "&status=pending" + "&to="
 

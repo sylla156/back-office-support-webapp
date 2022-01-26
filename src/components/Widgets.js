@@ -147,7 +147,6 @@ export const CounterWidget = (props) => {
   );
 };
 
-
 export const CounterWidgetMerchantBalance = (props) => {
   // console.log(props);
   // const {amount, currency, date, logo, name} = props.balance;

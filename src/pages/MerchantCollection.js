@@ -1,6 +1,6 @@
 import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
 import React, { useState, useEffect } from "react";
-import { CounterMerchantWidget } from "../components/Widgets";
+import {CounterWidget } from "../components/Widgets";
 import { APPKEY, BASE_URL_MERCHANT_COLLECTION_BALANCE } from "./constante/Const";
 import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../utils/axios-helper";
@@ -73,7 +73,7 @@ export default () => {
     {isLoaded ? <Row className="">
         {merchantCollectionBalanceList.map((balanceCollection) => (
             <Col key={balanceCollection.id} xs={12} sm={6} md={5} lg={4} className="mb-4 border-warning ">
-                <CounterMerchantWidget key={balanceCollection.id} balance={balanceCollection} />
+                <CounterWidget key={balanceCollection.id} balance={balanceCollection} />
             </Col>
         ))}
     </Row> : <div className="d-flex justify-content-center">

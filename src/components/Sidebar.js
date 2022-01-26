@@ -135,7 +135,7 @@ export default (props = {}) => {
                                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
                             </CollapsableNavItem>
                             <CollapsableNavItem title="Paiement" icon={faMoneyCheck}>
-
+                                <NavItem title="Solde marchand" icon={faWallet} link={Routes.MerchantCollection.path} />
                             </CollapsableNavItem>
                             {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} /> */}
                             {/* <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} /> */}

@@ -24,8 +24,6 @@ export default () => {
 
     console.log("isLoaded value : " + isLoaded);
 
-    console.log("authenticationtokend value : " + cookies.token);
-
     console.log(" In check solde ");
 
     axios

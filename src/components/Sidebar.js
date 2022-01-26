@@ -72,7 +72,7 @@ export default (props = {}) => {
                         {icon ? <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span> : null}
                         {image ? <Image src={image} width={20} height={20} className="sidebar-icon svg-icon" /> : null}
 
-                        <span className="sidebar-text">{title}</span>
+                        <span className="sidebar-text"> <small>{title}</small> </span>
                     </span>
                     {badgeText ? (
                         <Badge pill bg={badgeBg} text={badgeColor} className="badge-md notification-count ms-2">{badgeText}</Badge>

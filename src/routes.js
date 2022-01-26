@@ -26,6 +26,7 @@ export const Routes = {
     MechantBalance : {path:"/merchant-balance"},
     MoovBalance:{path:"/moov-balance"},
     DailyReport:{path:"/daily-report"},
+    MerchantCollection:{path:"/merchant-collection"},
 
 
     // components

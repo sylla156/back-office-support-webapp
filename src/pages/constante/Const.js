@@ -15,6 +15,8 @@ export const BASEURLREFRESHSTATUSWITHPARAMS2 = "&isForceStatus=" + false + "&mer
 
 export const BASEURLMERCHANTBALANCE = "/balances/merchant-transfer";
 
+export const BASE_URL_MERCHANT_COLLECTION_BALANCE = "/balances/merchant-collection";
+
 export const POWERSLIDEFIRSTTRYNGURL = "https://app.powerslide.io/api/job/getToken/9e6db3e2-ddad-4c22-b02a-fd90187813b6";
 
 export const POWERSLIDEFIRSTTRYNGAPIID = "40eaaa41-8852-4bda-9871-db74e8102acf";

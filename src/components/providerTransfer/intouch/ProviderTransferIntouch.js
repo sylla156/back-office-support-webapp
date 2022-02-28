@@ -1,5 +1,5 @@
 import React from 'react'
-import {Col, Row, Card, Form, Badge} from '@themesberg/react-bootstrap';
+import {Col, Row, Card, Badge} from '@themesberg/react-bootstrap';
 
 export default function ProviderTransferIntouch(props) {
 
@@ -21,20 +21,25 @@ export default function ProviderTransferIntouch(props) {
     let recipient_invoice_id;
     
     if (providerTransferIntouchData) {
+
         console.log(" providerTransferIntouchData define");
 
         checkStatus = providerTransferIntouchData.checkStatus;
+    
     }
 
     if(checkStatus){
+
         console.log("checkStatus in providerTransferIntouchData define");
         response = checkStatus.response;
+    
     }
 
     if (response) {
+
         console.log("response in providerTransferIntouchData define");
-        console.log("service_id : "+service_id);
-        console.log("gu_transaction_id : "+gu_transaction_id);
+        console.log("service_id : " + service_id);
+        console.log("gu_transaction_id : " + gu_transaction_id);
         service_id = response.service_id;
         gu_transaction_id = response.gu_transaction_id;
         status = response.status;

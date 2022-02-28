@@ -24,7 +24,6 @@ import Preloader from "../components/Preloader";
 import Solde from './Solde';
 import MerchantBalance from './MerchantBalance';
 import MoovBalance from './MoovBalance';
-import TransferList from './TransferList';
 import DailyReport from './DailyReport';
 import MerchantCollection from './MerchantCollection';
 
@@ -86,10 +85,10 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 
 export default () => (
     <Switch>
-        <RouteWithLoader exact path={Routes.Signin.path}  component={Signin} />
+        <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
 
-        <RouteWithLoader exact path={Routes.NotFound.path}  component={NotFoundPage} />
-        <RouteWithLoader exact path={Routes.ServerError.path}  component={ServerError} />
+        <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
+        <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
 
         <RouteWithSidebar exact path={Routes.Solde.path} title={'Solde fournisseur HUB2'} component={Solde} />
 

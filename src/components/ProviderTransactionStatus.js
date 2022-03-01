@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row, Card, Form, Badge} from '@themesberg/react-bootstrap';
+import {Col, Row, Card, Badge} from '@themesberg/react-bootstrap';
 import ProviderTransferFedapay from './providerTransfer/fedapay/ProviderTransferFedapay';
 import ProviderTransferGtBank from './providerTransfer/gtBank/ProviderTransferGtBank';
 import ProviderTransferIntouch from './providerTransfer/intouch/ProviderTransferIntouch';

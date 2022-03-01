@@ -1,5 +1,5 @@
 import React from 'react'
-import {Col, Row, Card, Form, Badge} from '@themesberg/react-bootstrap';
+import {Col, Row, Card} from '@themesberg/react-bootstrap';
 
 export default function ProviderTransferGtBank(props) {
 

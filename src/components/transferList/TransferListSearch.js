@@ -1,16 +1,15 @@
-import {Col, Form, Row, InputGroup, Button, Card, ButtonGroup} from '@themesberg/react-bootstrap';
-import {Redirect} from 'react-router-dom';
+import {Col, Form, InputGroup, Button} from '@themesberg/react-bootstrap';
 import moment from 'moment-timezone'
 import Datetime from 'react-datetime';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCalendarAlt, faDollarSign, faLessThan, faLessThanEqual} from '@fortawesome/free-solid-svg-icons'
+import {faCalendarAlt, faDollarSign, faLessThanEqual} from '@fortawesome/free-solid-svg-icons'
 
 import React, {useState} from "react";
 
 export default function TransferListSearch() {
 
     const [dateStart, setDateStart] = useState(undefined);
-    const [dateEnd, setDateEnd] = useState(undefined);
+    // const [dateEnd, setDateEnd] = useState(undefined);
 
     const handleDateChange = (event, setMethod) => {
 

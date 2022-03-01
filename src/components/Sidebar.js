@@ -4,18 +4,17 @@ import SimpleBar from 'simplebar-react';
 import {useLocation} from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck, faWallet, faExchangeAlt, faSync, faChartPie, faMoneyCheck, faTimes, faMoneyCheckAlt, faCalendar} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faWallet, faExchangeAlt, faChartPie, faMoneyCheck, faTimes, faCalendar} from "@fortawesome/free-solid-svg-icons";
 import {Nav, Badge, Image, Button, Dropdown, Accordion, Navbar} from '@themesberg/react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Routes} from "../routes";
 import ReactHero from "../assets/img/technologies/logo_o.png";
-import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
-import {Route, Switch, Redirect} from "react-router-dom";
-import {withCookies, useCookies, Cookies} from 'react-cookie';
+import {Redirect} from "react-router-dom";
+import {useCookies} from 'react-cookie';
 
 export default (props = {}) => {
 
-    const [cookies, setCookie, removeCookie] = useCookies(['token', 'id', 'user']);
+    const [cookies, , ] = useCookies(['token', 'id', 'user']);
 
     const location = useLocation();
     const {pathname} = location;
@@ -29,7 +28,7 @@ export default (props = {}) => {
     const CollapsableNavItem = (props) => {
 
         const {eventKey, title, icon, children = null} = props;
-        const defaultKey = pathname.indexOf(eventKey) !== -1 ? eventKey : "";
+        // const defaultKey = pathname.indexOf(eventKey) !== -1 ? eventKey : "";
 
         return (
             <Accordion as={Nav.Item} defaultActiveKey={'0'}>

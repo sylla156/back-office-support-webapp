@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 
 import {Col, Row, Form, Button, ButtonGroup, InputGroup} from '@themesberg/react-bootstrap';
-import base64 from 'base-64';
 import axios from 'axios';
 
 import {TransferFormInformForceStatusSourceHub, TransferFormInformForceStatusSourceProvider} from '../components/Forms';

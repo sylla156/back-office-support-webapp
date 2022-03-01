@@ -1,4 +1,4 @@
-import {Col, Row, Card, Form, Badge} from '@themesberg/react-bootstrap';
+import {Col, Row, Card, Badge} from '@themesberg/react-bootstrap';
 import React from 'react'
 
 export default function ProviderTransferFedapay(props) {

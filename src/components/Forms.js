@@ -176,7 +176,7 @@ export const GeneralInfoForm = () => {
 };
 
 
-export const TransferFormInformSourceHub = (props) => {
+export const TransferFormInformSourceHub = () => {
 
     // const { transfer: { id, status, merchantId,amount,description, createdAt, updatedAt,reference} } = props;
 
@@ -266,7 +266,7 @@ export const TransferFormInformSourceHub = (props) => {
 };
 
 
-export const TransferFormInformSourceProvider = (props) => {
+export const TransferFormInformSourceProvider = () => {
 
     // const {intouch:{amount,gu_transaction_id,recipient_id,recipient_invoice_id,service_id,status,transaction_date}} = props;
 
@@ -416,7 +416,7 @@ export const TransferFormInformForceStatusSourceHub = (props) => {
 
 export const TransferFormInformForceStatusSourceProvider = (props) => {
 
-    const {intouch:{amount, gu_transaction_id, recipient_id, recipient_invoice_id, service_id, status, transaction_date}} = props
+    const {intouch:{amount, gu_transaction_id, recipient_id, service_id, status, transaction_date}} = props
     return (
         <Card border="light" className="bg-white shadow-sm mb-4">
             <Card.Body>

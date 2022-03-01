@@ -131,12 +131,12 @@ export const FormDialog = (props) => {
 export const FormDialogRefreshStatus = (props) => {
 
 
-    const [open, setOpen] = useState(false);
+    // const [open, setOpen] = useState(false);
 
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
+    // const [error, setError] = useState(null);
+    const [, setIsLoaded] = useState(false);
 
-    const [intouchRefresh, setIntouchRefresh] = useState({});
+    const [, setIntouchRefresh] = useState({});
 
     const [show, setShow] = useState(false);
 
@@ -150,7 +150,7 @@ export const FormDialogRefreshStatus = (props) => {
 
     const handleSendOrderRefreshStatus = (props) => {
 
-        const receipeIdRefreshStatusPending = formTransfer.map((item, key) => item.id);
+        const receipeIdRefreshStatusPending = formTransfer.map((item) => item.id);
         console.log("type of newTest : " + typeof (receipeIdRefreshStatusPending))
         console.log("newTest : \n" + receipeIdRefreshStatusPending);
 
@@ -178,7 +178,7 @@ export const FormDialogRefreshStatus = (props) => {
                     setIntouchRefresh(result.data);
                     setIsLoaded(true);
                     console.log(result);
-                    if (result) { }
+                    // if (result) { }
 
                 },
                 (error) => {

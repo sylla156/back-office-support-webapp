@@ -208,7 +208,7 @@ export const TransactionsTable = (props) => {
 
     const TableRow = (props) => {
 
-        const {id, status, merchantId, amount, description, destination, mode, currency, balanceAfter, balanceBefore, providerData, failureCause, createdAt, updatedAt, reference} = props;
+        const {id, status, merchantId, amount, description, mode, currency, reference} = props;
         const statusVariant = status === "pending" ? "warning" : status === "failed" ? "danger" : "primary";
 
         console.log("id table refresh : " + id);
@@ -288,8 +288,6 @@ export const TransactionsTable = (props) => {
 
 
 export const StatusTable = () => {
-
-    const totalTransactionsStatus = status.length;
 
     const TableRow = (props) => {
 

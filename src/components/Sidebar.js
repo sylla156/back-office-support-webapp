@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import {useLocation} from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck, faWallet, faExchangeAlt, faChartPie, faMoneyCheck, faTimes, faCalendar} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faWallet, faExchangeAlt, faChartPie, faMoneyCheck, faTimes,faHistory} from "@fortawesome/free-solid-svg-icons";
 import {Nav, Badge, Image, Button, Dropdown, Accordion, Navbar} from '@themesberg/react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Routes} from "../routes";
@@ -129,12 +129,14 @@ export default (props = {}) => {
                                 <NavItem title="Solde marchand" icon={faWallet} link={Routes.MechantBalance.path} />
                                 <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path} />
                                 <NavItem title="Solde moov" icon={faWallet} link={Routes.MoovBalance.path} />
-                                <NavItem title="Rapport journalier" icon={faCalendar} link={Routes.DailyReport.path} />
+                                <NavItem title="Historique marchand" icon={faHistory} link={Routes.HistoryMerchantBalanceTransfer.path} />
+                                <NavItem title="Historique fournisseur" icon={faHistory} link={Routes.HistoryProviderBalanceTransfer.path} />
                                 {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
                                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
                             </CollapsableNavItem>
                             <CollapsableNavItem title="Paiement" icon={faMoneyCheck}>
                                 <NavItem title="Solde marchand" icon={faWallet} link={Routes.MerchantCollection.path} />
+                                <NavItem title="Historique marchand" icon={faHistory} link={Routes.HistoryMerchantBalanceCollection.path} />
                             </CollapsableNavItem>
                             {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} /> */}
                             {/* <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} /> */}

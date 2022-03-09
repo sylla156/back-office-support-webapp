@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 import {Routes} from "../routes";
 import {useCookies} from "react-cookie";
 import AxiosWebHelper from "../utils/axios-helper";
-import {CounterWidgetMerchantBalance} from "../components/Widgets";
+import {CounterWidget} from "../components/Widgets";
 import {APPKEY, BASE_URL_MERCHANT_BALANCE} from "./constante/Const";
 import {Col, Row, Spinner} from "@themesberg/react-bootstrap";
 import AlertDismissable from "../components/AlertDismissable";
@@ -101,9 +101,9 @@ export default () => {
                 <Row>
                     {merchantBalanceList.map((merchantBalance) => (
                         <Col xs={12} sm={6} md={5} lg={4} className="mb-4 border-warning ">
-                            <CounterWidgetMerchantBalance
+                            <CounterWidget
                                 key={merchantBalance.id}
-                                merchantBalance={merchantBalance}
+                                balance={merchantBalance}
                             />
                         </Col>
                     ))}

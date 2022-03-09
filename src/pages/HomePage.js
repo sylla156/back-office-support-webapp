@@ -26,7 +26,9 @@ import MerchantBalance from './MerchantBalance';
 import MoovBalance from './MoovBalance';
 import DailyReport from './DailyReport';
 import MerchantCollection from './MerchantCollection';
-
+import HistoryMerchantBalanceCollection from './HistoryMerchantBalanceCollection';
+import HistoryMerchantBalanceTransfer from './HistoryMerchantBalanceTransfer';
+import HistoryProviderBalanceTransfer from './HistoryProviderBalanceTransfer';
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -100,6 +102,10 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MoovBalance.path} title={'Solde moov'} component={MoovBalance} />
         <RouteWithSidebar exact path={Routes.DailyReport.path} title={'Rapport journalier'} component={DailyReport} />
         <RouteWithSidebar exact path={Routes.MerchantCollection.path} title={'Paiement - solde marchand HUB2'} component={MerchantCollection} />
+
+        <RouteWithSidebar exact path={Routes.HistoryMerchantBalanceTransfer.path} title={'Transfert - Historique solde marchand'} component={HistoryMerchantBalanceTransfer} />
+        <RouteWithSidebar exact path={Routes.HistoryProviderBalanceTransfer.path} title={'Transfert - Historique solde fournisseur'} component={HistoryProviderBalanceTransfer} />
+        <RouteWithSidebar exact path={Routes.HistoryMerchantBalanceCollection.path} title={'Paiement - solde marchand HUB2'} component={HistoryMerchantBalanceCollection} />
 
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     

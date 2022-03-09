@@ -5,7 +5,7 @@ import {faUnlockAlt, faHouseUser} from "@fortawesome/free-solid-svg-icons";
 import {Col, Row, Form, Button, Spinner, Container, InputGroup} from '@themesberg/react-bootstrap';
 
 import {useCookies} from 'react-cookie';
-import {APPKEY, URLLOGIN} from "../constante/Const";
+import {APPKEY, URL_LOGIN} from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
 import {Redirect} from "react-router-dom";
 import {Routes} from "../../routes";
@@ -46,7 +46,7 @@ export default function Signin() {
         setIsLoading(true)
         console.log("will login");
         axios.post(
-            URLLOGIN,
+            URL_LOGIN,
             {
                 "username": loginUsername,
                 "password": loginPassword,

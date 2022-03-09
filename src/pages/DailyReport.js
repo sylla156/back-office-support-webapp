@@ -13,7 +13,7 @@ import {Redirect} from "react-router-dom";
 import {Routes} from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
-import {APPKEY, BASEURLSTATS} from "./constante/Const";
+import {APPKEY, BASE_URL_STATS} from "./constante/Const";
 import numeral from "numeral";
 import {format} from "date-fns";
 // load a locale
@@ -83,7 +83,7 @@ export default () => {
         setIsLoaded(false);
         setErrorData(null);
         axios
-            .get(BASEURLSTATS, {
+            .get(BASE_URL_STATS, {
                 params: {
                     merchantId,
                     start: startDate,

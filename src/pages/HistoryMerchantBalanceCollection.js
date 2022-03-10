@@ -8,7 +8,7 @@ import AxiosWebHelper from "../utils/axios-helper";
 import moment from 'moment-timezone'
 import Datetime from 'react-datetime';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCalendarAlt, faDollarSign, faLessThanEqual} from '@fortawesome/free-solid-svg-icons'
+import {faCalendarAlt} from '@fortawesome/free-solid-svg-icons'
 import { APPKEY, HISTORY_MERHCANT_BALANCE_COLLECTION,HISTORY_MERHCANT_BALANCE_COLLECTION_PARAMS } from "./constante/Const";
 import AlertDismissable from "../components/AlertDismissable";
 
@@ -80,26 +80,27 @@ export default () => {
     });
   }
 
-   useEffect(() => {
-
-     getHistoryMerchantBalanceCollection();
-
-  }, []);  
-
-  const onFilters = ()=>{
-    setDateDay(dateFormated);
-    setBalanceList({});
+const getMerchantMessage = () => {
+    if (!balanceList) return "Nom du marchand";
+    if(!balanceList.balance) return "Solde marchand "
 };
 
+const getFormattedDate = () => {
+    if (!dateFormated) return "Date du rapport";
+    return `Du ${dateFormated}`;
+
+ };
+
+   useEffect(() => {
+     getHistoryMerchantBalanceCollection();
+  }, []); 
+
   if(shouldLogin){
-
     return <Redirect to={Routes.Signin.path} />;
-
    }
 
   return (
     <>
-      <Card border="light" className="mb-2 shadow-sm" >
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-3">
             <Col xs={12} md={2} lg={4} className="">
                   <Form.Group id="dateStart">
@@ -124,18 +125,18 @@ export default () => {
                       />
                   </Form.Group>
               </Col>  
-              <Col xs={12} md={6} lg={6} className="mt-4 ">
+              <Col xs={12} md={6} lg={7} className="mt-4 ">
                         <Button
                             className="ml-3"
                             variant="primary"
                             type="button"
                             onClick={getHistoryMerchantBalanceCollection}
                         >
-                          Solde
+                          Filtrer
                         </Button>
                 </Col>        
             </div>
-      </Card>
+
 
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4"></div>
             <div >
@@ -145,13 +146,14 @@ export default () => {
                 </div>
       </div>
 
-      {isLoaded ? <Row className="">
+      {isLoaded ? (<Row className="">
+                 <h2 className="h3">{getMerchantMessage()} {getFormattedDate()}</h2>
                 {balanceList.map((balance) => (
                     <Col key={balance.id} xs={12} sm={6} md={5} lg={4} className="mb-4 border-warning ">
                         <CounterWidgetHistory key={balance.id} balance={balance} />
                     </Col>
                 ))}
-            </Row> : <div className="d-flex justify-content-center">
+            </Row> ): <div className="d-flex justify-content-center">
                 <Spinner animation="border " size="sm" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </Spinner>

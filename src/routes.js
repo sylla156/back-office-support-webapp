@@ -27,6 +27,10 @@ export const Routes = {
     MoovBalance:{path:"/moov-balance"},
     DailyReport:{path:"/daily-report"},
     MerchantCollection:{path:"/merchant-collection"},
+    HistoryMerchantBalanceTransfer:{path:"/history-merchant-balance-transfer"},
+    HistoryProviderBalanceTransfer:{path:"/history-provider-balance-transfer"},
+    HistoryMerchantBalanceCollection:{path:"/history-merchant-balance-collection"},
+    
 
 
     // components

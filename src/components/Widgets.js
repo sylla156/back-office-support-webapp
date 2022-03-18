@@ -124,13 +124,13 @@ export const CounterWidget = (props) => {
                         {logo ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
-                                src={require("../assets/img/technologies/" + logo).default}
+                                src={require("../assets/img/technologies/" + logo)}
                                 width="70"
                             />
                         ) : (
                             <img
                                 className="p-2 d-xl-flex rounded"
-                                src={require("../assets/img/technologies/question.jpg").default}
+                                src={require("../assets/img/technologies/question.jpg")}
                                 width="100"
                                 style={{position: "absolute", top: 12, left: 14}}
                             />
@@ -153,29 +153,13 @@ export const CounterWidget = (props) => {
 
 };
 
-export const CounterWidgetMerchantBalance = (props) => {
+export const CounterWidgetHistory = (props) => {
 
-    // console.log(props);
-    // const {amount, currency, date, logo, name} = props.balance;
+    console.log(props);
+    const {amount, currency, balanceDate, day, logo, name} = props.balance;
 
-    const merchantBalance = props.merchantBalance;
-    let amount;
-    let currency;
-    let date;
-    let logo;
-    let name;
-    if (merchantBalance) {
-
-        amount = merchantBalance.amount;
-        currency = merchantBalance.currency;
-        logo = merchantBalance.logo;
-        date = merchantBalance.date;
-        name = merchantBalance.name;
-    
-    }
-    // const logo = "logo_o.png";
-    const createdAtUtc = new Date(date);
-    const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
+    const dateAtUtc = new Date(balanceDate);
+    const dateAtFormated = dateAtUtc.toLocaleString("pt-BR");
     return (
         <Card border="light" className="shadow-sm border-warning">
             <Card.Body>
@@ -187,13 +171,62 @@ export const CounterWidgetMerchantBalance = (props) => {
                         {logo ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
-                                src={require("../assets/img/technologies/" + logo).default}
+                                src={require("../assets/img/technologies/" + logo)}
                                 width="70"
                             />
                         ) : (
                             <img
                                 className="p-2 d-xl-flex rounded"
-                                src={require("../assets/img/technologies/question.jpg").default}
+                                src={require("../assets/img/technologies/question.jpg")}
+                                width="100"
+                                style={{position: "absolute", top: 12, left: 14}}
+                            />
+                        )}
+                    </Col>
+
+                    <Col xs={12} xl={7} className="px-xl-0">
+                        <div className="d-block">
+                            <h5>{name}</h5>
+                            <h4 className="mb-1 text-warning">
+                                {new Intl.NumberFormat().format(amount)} {currency}
+                            </h4>
+                            <h6 className="mb-1 ">{dateAtFormated}</h6>
+                        </div>
+                    </Col>
+                </Row>
+            </Card.Body>
+        </Card>
+    );
+
+};
+
+export const CounterWidgetMerchantBalance = (props) => {
+
+    console.log(props);
+    const {amount, currency, date, logo, name} = props.balance;
+
+    const createdAtUtc = new Date(date);
+    const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
+    //const logo = "logo_o.png";
+
+    return (
+        <Card border="light" className="shadow-sm border-warning">
+            <Card.Body>
+                <Row className="d-block d-xl-flex align-items-center">
+                    <Col
+                        xl={5}
+                        className="text-center d-flex align-items-center justify-content-center mb-3 mb-xl-0"
+                    >
+                        {logo ? (
+                            <img
+                                className="mb-4 rounded mx-auto d-block"
+                                src={require("../assets/img/technologies/" + logo)}
+                                width="70"
+                            />
+                        ) : (
+                            <img
+                                className="p-2 d-xl-flex rounded"
+                                src={require("../assets/img/technologies/question.jpg")}
                                 width="100"
                                 style={{position: "absolute", top: 12, left: 14}}
                             />
@@ -204,7 +237,7 @@ export const CounterWidgetMerchantBalance = (props) => {
                         <div className="d-block">
                             <h5> {name} </h5>
                             <h4 className="mb-1 text-warning">
-                                {new Intl.NumberFormat().format(amount)} {currency}{" "}
+                            {new Intl.NumberFormat().format(amount)} {currency}
                             </h4>
                             <h6 className="mb-1 "> {createdAtFormated} </h6>
                         </div>
@@ -256,13 +289,13 @@ export const CounterWidgetProviderBalance = (props) => {
                         {logo ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
-                                src={require("../assets/img/technologies/" + logo).default}
+                                src={require("../assets/img/technologies/" + logo)}
                                 width="70"
                             />
                         ) : (
                             <img
                                 className="p-2 d-xl-flex rounded"
-                                src={require("../assets/img/technologies/question.jpg").default}
+                                src={require("../assets/img/technologies/question.jpg")}
                                 width="100"
                                 style={{position: "absolute", top: 12, left: 14}}
                             />

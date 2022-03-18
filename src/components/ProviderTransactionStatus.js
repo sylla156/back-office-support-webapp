@@ -44,8 +44,8 @@ export default function ProviderTransactionStatus(props) {
             {checkProvider && <Card border="light" className="shadow-sm">
 
                 <Card.Body>
-                    {logo ? <img className="p-2 d-xl-flex rounded" src={require("../assets/img/technologies/" + logo).default} width="100" style={{position: 'absolute', top: 12, left: 14}} /> :
-                        <img className="p-2 d-xl-flex rounded" src={require("../assets/img/technologies/question.jpg").default} width="100" style={{position: 'absolute', top: 12, left: 14}} />
+                    {logo ? <img className="p-2 d-xl-flex rounded" src={require("../assets/img/technologies/" + logo)} width="100" style={{position: 'absolute', top: 12, left: 14}} /> :
+                        <img className="p-2 d-xl-flex rounded" src={require("../assets/img/technologies/question.jpg")} width="100" style={{position: 'absolute', top: 12, left: 14}} />
                     }
                     <Row className="d-block d-xl-flex align-items-center">
                         <Col className="ms--2 ">
@@ -165,7 +165,7 @@ export default function ProviderTransactionStatus(props) {
 <Card.Body>
     <Row className="d-block d-xl-flex align-items-center">
     <Col xl={3} className="text-center d-flex align-items-center justify-content-center mb-3 mb-xl-0">
-        <img className="mb-4 rounded mx-auto d-block" src={require("../assets/img/technologies/intouch.jpg").default} width="80"/> 
+        <img className="mb-4 rounded mx-auto d-block" src={require("../assets/img/technologies/intouch.jpg")} width="80"/> 
     </Col>
 
     <Col xs={12} xl={9} className="px-xl-0">

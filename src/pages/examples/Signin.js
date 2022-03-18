@@ -105,7 +105,7 @@ export default function Signin() {
     
     }
 
-    const logo = require('../../assets/img/technologies/logo_o.png').default
+    const logo = require('../../assets/img/technologies/logo_o.png')
 
     return (
         <main>

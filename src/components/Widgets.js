@@ -124,13 +124,13 @@ export const CounterWidget = (props) => {
                         {logo ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
-                                src={require("../assets/img/technologies/" + logo).default}
+                                src={require("../assets/img/technologies/" + logo)}
                                 width="70"
                             />
                         ) : (
                             <img
                                 className="p-2 d-xl-flex rounded"
-                                src={require("../assets/img/technologies/question.jpg").default}
+                                src={require("../assets/img/technologies/question.jpg")}
                                 width="100"
                                 style={{position: "absolute", top: 12, left: 14}}
                             />
@@ -171,13 +171,13 @@ export const CounterWidgetHistory = (props) => {
                         {logo ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
-                                src={require("../assets/img/technologies/" + logo).default}
+                                src={require("../assets/img/technologies/" + logo)}
                                 width="70"
                             />
                         ) : (
                             <img
                                 className="p-2 d-xl-flex rounded"
-                                src={require("../assets/img/technologies/question.jpg").default}
+                                src={require("../assets/img/technologies/question.jpg")}
                                 width="100"
                                 style={{position: "absolute", top: 12, left: 14}}
                             />
@@ -220,13 +220,13 @@ export const CounterWidgetMerchantBalance = (props) => {
                         {logo ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
-                                src={require("../assets/img/technologies/" + logo).default}
+                                src={require("../assets/img/technologies/" + logo)}
                                 width="70"
                             />
                         ) : (
                             <img
                                 className="p-2 d-xl-flex rounded"
-                                src={require("../assets/img/technologies/question.jpg").default}
+                                src={require("../assets/img/technologies/question.jpg")}
                                 width="100"
                                 style={{position: "absolute", top: 12, left: 14}}
                             />
@@ -289,13 +289,13 @@ export const CounterWidgetProviderBalance = (props) => {
                         {logo ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
-                                src={require("../assets/img/technologies/" + logo).default}
+                                src={require("../assets/img/technologies/" + logo)}
                                 width="70"
                             />
                         ) : (
                             <img
                                 className="p-2 d-xl-flex rounded"
-                                src={require("../assets/img/technologies/question.jpg").default}
+                                src={require("../assets/img/technologies/question.jpg")}
                                 width="100"
                                 style={{position: "absolute", top: 12, left: 14}}
                             />

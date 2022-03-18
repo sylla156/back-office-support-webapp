@@ -12,7 +12,7 @@ import {Redirect} from "react-router-dom";
 import {Routes} from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
-import {APPKEY, BASEURLMOOVBALANCE} from "./constante/Const";
+import {APPKEY, BASE_URL_MOOV_BALANCE} from "./constante/Const";
 import {GatewayID} from "../utils/gateway-id";
 import {CounterWidgetProviderBalance} from "../components/Widgets";
 
@@ -47,7 +47,7 @@ export default () => {
         setErrorData(null);
         axios
             .get(
-                BASEURLMOOVBALANCE + GatewayID.HUB2_ci_moov,
+                BASE_URL_MOOV_BALANCE + GatewayID.HUB2_ci_moov,
                 {
                     params: {
                         balance: balance,

@@ -4,7 +4,7 @@ import {Col, Row, Spinner} from '@themesberg/react-bootstrap';
 
 import {CounterWidget} from "../components/Widgets";
 import AxiosWebHelper from "../utils/axios-helper";
-import {APPKEY, BASEURLSOLDE} from "./constante/Const";
+import {APPKEY, BASE_URL_SOLDE} from "./constante/Const";
 import {Redirect} from 'react-router-dom';
 import {Routes} from "../routes";
 
@@ -34,7 +34,7 @@ export default () => {
         console.log(" In check solde ");
 
         axios.get(
-            BASEURLSOLDE,
+            BASE_URL_SOLDE,
             {
                 headers: {
                     AppKey: APPKEY,

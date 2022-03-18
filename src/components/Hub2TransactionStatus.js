@@ -84,7 +84,7 @@ export default function Hub2TransactionStatus(props) {
             <Card border="light" className="shadow-sm ">
        
                 <Card.Body> 
-                    <img className="p-2 d-xl-flex rounded mx-auto" src={require("../assets/img/technologies/logo_o.png").default} width="100" style={{position:'absolute', top:12, left:14}} />
+                    <img className="p-2 d-xl-flex rounded mx-auto" src={require("../assets/img/technologies/logo_o.png")} width="100" style={{position:'absolute', top:12, left:14}} />
                     <Row className="d-block d-xl-flex align-items-center">
                         <Col className="ms--2 ">
                             <h4 className="h6 mb-0 text-end" style={{color:"#8a8a86"}} >
@@ -520,7 +520,7 @@ export default function Hub2TransactionStatus(props) {
       </Col>
 
       <Col xs={12} xl={9} className="px-xl-0">
-        <img className="px-1 rounded d-block" src={require("../assets/img/technologies/hub2.jpg").default} width="40" />
+        <img className="px-1 rounded d-block" src={require("../assets/img/technologies/hub2.jpg")} width="40" />
         <h1>Transaction</h1>
         <Form.Group id="firstName">
           <Form.Label >Transaction Id : {transactionId}</Form.Label><br />

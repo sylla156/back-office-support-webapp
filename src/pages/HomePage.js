@@ -30,6 +30,7 @@ import HistoryMerchantBalanceCollection from './HistoryMerchantBalanceCollection
 import HistoryMerchantBalanceTransfer from './HistoryMerchantBalanceTransfer';
 import HistoryProviderBalanceTransfer from './HistoryProviderBalanceTransfer';
 import BalanceSetting from './BalanceSetting';
+import GlobalReport from './GlobalReport';
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -108,6 +109,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.HistoryProviderBalanceTransfer.path} title={'Transfert - Historique solde fournisseur'} component={HistoryProviderBalanceTransfer} />
         <RouteWithSidebar exact path={Routes.HistoryMerchantBalanceCollection.path} title={'Paiement - Historique solde marchand HUB2'} component={HistoryMerchantBalanceCollection} />
         <RouteWithSidebar exact path={Routes.BalanceSetting.path} title={'Réglage de la balance'} component={BalanceSetting} />
+        <RouteWithSidebar exact path={Routes.GlobalReport.path} title={'Rapport global'} component={GlobalReport} />
 
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     

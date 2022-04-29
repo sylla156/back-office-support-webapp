@@ -31,6 +31,7 @@ export const Routes = {
     HistoryProviderBalanceTransfer:{path:"/history-provider-balance-transfer"},
     HistoryMerchantBalanceCollection:{path:"/history-merchant-balance-collection"},
     BalanceSetting: {path: "/balance-setting"},
+    GlobalReport: {path:"/global-report"},
 
 
     // components

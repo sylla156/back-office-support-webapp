@@ -6,7 +6,6 @@ import {
   Button,
   InputGroup,
 } from "@themesberg/react-bootstrap";
-import { useCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
@@ -18,6 +17,7 @@ import { ProviderBalance } from "../components/globalReport/ProviderBalance";
 import { DateWidgetList } from "../components/globalReport/DateWidgetList";
 import { APPKEY, MERCHANTS_URL } from "./constante/Const";
 import { MultiSelect } from "react-multi-select-component";
+import { useCookies } from "react-cookie";
 
 export default () => {
   const currentDate = new Date();

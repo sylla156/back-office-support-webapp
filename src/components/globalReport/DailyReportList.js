@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Col, Spinner, Row, Card } from "@themesberg/react-bootstrap";
+import {
+  Col,
+  Spinner,
+  Row,
+  Card,
+} from "@themesberg/react-bootstrap";
 import { useCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
@@ -15,7 +20,7 @@ export const DailyReportList = (props) => {
   const date = props.date;
   const [errorData, setErrorData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
-
+  
   const [merchantStats, setMerchantStats] = useState(undefined);
   const [shouldLogin, setShouldLogin] = useState(false);
 
@@ -131,7 +136,7 @@ export const DailyReportList = (props) => {
 
   return (
     <>
-      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2"></div>
+    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2"></div>
       <div>
         <AlertDismissable
           message={errorData}
@@ -143,6 +148,8 @@ export const DailyReportList = (props) => {
       </div>
 
       {/* merchandList */}
+      
+    {/* merchandList */}
       {isLoaded ? (
         <Row>
           <Col xs={12} className="">

@@ -12,7 +12,7 @@ import {
   faTimes,
   faCalendar,
   faHistory,
-  faTools
+  faTools,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
@@ -188,72 +188,71 @@ export default (props = {}) => {
                 link={Routes.DashboardOverview.path}
                 icon={faChartPie}
               />
-               <NavItem title="Rapport global" link={Routes.GlobalReport.path} icon={faCalendar}/>
-              
-                            <CollapsableNavItem title="Transfert" icon={faExchangeAlt}>
-              
-                                {/* <NavItem title="Liste de transfert" icon={faExchangeAlt} link={Routes.TransferList.path} /> */}
-                                <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path} />
-                                <NavItem title="Historique fournisseur" icon={faHistory} link={Routes.HistoryProviderBalanceTransfer.path} />
-                                <NavItem title="Solde moov" icon={faWallet} link={Routes.MoovBalance.path} />
-                                <NavItem title="Solde marchand" icon={faWallet} link={Routes.MechantBalance.path} />
-                                <NavItem title="Historique marchand" icon={faHistory} link={Routes.HistoryMerchantBalanceTransfer.path} />
-                                <NavItem title="Vérification du statut" icon={faCheck} link={Routes.CheckStatus.path} />
-                                <NavItem title="Rapport journalier" icon={faCalendar} link={Routes.DailyReport.path} />
-                                {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
-                                {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
-                            </CollapsableNavItem>
-                            <CollapsableNavItem title="Paiement" icon={faMoneyCheck}>
-                                <NavItem title="Solde marchand" icon={faWallet} link={Routes.MerchantCollection.path} />
-                                <NavItem title="Historique marchand" icon={faHistory} link={Routes.HistoryMerchantBalanceCollection.path} />
-                            </CollapsableNavItem>
+              <NavItem
+                title="Rapport global"
+                link={Routes.GlobalReport.path}
+                icon={faCalendar}
+              />
 
-              <NavItem title="Réglage" link={Routes.BalanceSetting.path} icon={faTools} />
-              {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} /> */}
-              {/* <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} /> */}
-              {/* <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} /> */}
-              {/* <NavItem external title="Calendar" link="https://demo.themesberg.com/volt-pro-react/#/calendar" target="_blank" badgeText="Pro" icon={faCalendarAlt} /> */}
-              {/* <NavItem external title="Map" link="https://demo.themesberg.com/volt-pro-react/#/map" target="_blank" badgeText="Pro" icon={faMapPin} /> */}
-
-              {/* <CollapsableNavItem eventKey="tables/" title="Tables" icon={faTable}>
-                <NavItem title="Bootstrap Table" link={Routes.BootstrapTables.path} />
-              </CollapsableNavItem> */}
-
-              {/* <CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
-                <NavItem title="Sign In" link={Routes.Signin.path} />
-                <NavItem title="Sign Up" link={Routes.Signup.path} />
-                <NavItem title="Forgot password" link={Routes.ForgotPassword.path} />
-                <NavItem title="Reset password" link={Routes.ResetPassword.path} />
-                <NavItem title="Lock" link={Routes.Lock.path} />
-                <NavItem title="404 Not Found" link={Routes.NotFound.path} />
-                <NavItem title="500 Server Error" link={Routes.ServerError.path} />
-              </CollapsableNavItem> */}
-
-              {/* <NavItem external title="Plugins" link="https://demo.themesberg.com/volt-pro-react/#/plugins/datatable" target="_blank" badgeText="Pro" icon={faChartPie} /> */}
+              <CollapsableNavItem title="Transfert" icon={faExchangeAlt}>
+                {/* <NavItem title="Liste de transfert" icon={faExchangeAlt} link={Routes.TransferList.path} /> */}
+                <NavItem
+                  title="Solde fournisseur"
+                  icon={faWallet}
+                  link={Routes.Solde.path}
+                />
+                <NavItem
+                  title="Historique fournisseur"
+                  icon={faHistory}
+                  link={Routes.HistoryProviderBalanceTransfer.path}
+                />
+                <NavItem
+                  title="Solde moov"
+                  icon={faWallet}
+                  link={Routes.MoovBalance.path}
+                />
+                <NavItem
+                  title="Solde marchand"
+                  icon={faWallet}
+                  link={Routes.MechantBalance.path}
+                />
+                <NavItem
+                  title="Historique marchand"
+                  icon={faHistory}
+                  link={Routes.HistoryMerchantBalanceTransfer.path}
+                />
+                <NavItem
+                  title="Vérification du statut"
+                  icon={faCheck}
+                  link={Routes.CheckStatus.path}
+                />
+                <NavItem
+                  title="Rapport journalier"
+                  icon={faCalendar}
+                  link={Routes.DailyReport.path}
+                />
+                {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
+                {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
+              </CollapsableNavItem>
+              <CollapsableNavItem title="Paiement" icon={faMoneyCheck}>
+                <NavItem
+                  title="Solde marchand"
+                  icon={faWallet}
+                  link={Routes.MerchantCollection.path}
+                />
+                <NavItem
+                  title="Historique marchand"
+                  icon={faHistory}
+                  link={Routes.HistoryMerchantBalanceCollection.path}
+                />
+              </CollapsableNavItem>
+              <NavItem
+                title="Réglage"
+                link={Routes.BalanceSetting.path}
+                icon={faTools}
+              />
 
               <Dropdown.Divider className="my-3 border-indigo" />
-
-              {/* <CollapsableNavItem eventKey="components/" title="Components" icon={faBoxOpen}>
-                <NavItem title="Accordion" link={Routes.Accordions.path} />
-                <NavItem title="Alerts" link={Routes.Alerts.path} />
-                <NavItem title="Badges" link={Routes.Badges.path} />
-                <NavItem external title="Widgets" link="https://demo.themesberg.com/volt-pro-react/#/components/widgets" target="_blank" badgeText="Pro" />
-                <NavItem title="Breadcrumbs" link={Routes.Breadcrumbs.path} />
-                <NavItem title="Buttons" link={Routes.Buttons.path} />
-                <NavItem title="Forms" link={Routes.Forms.path} />
-                <NavItem title="Modals" link={Routes.Modals.path} />
-                <NavItem title="Navbars" link={Routes.Navbars.path} />
-                <NavItem title="Navs" link={Routes.Navs.path} />
-                <NavItem title="Pagination" link={Routes.Pagination.path} />
-                <NavItem title="Popovers" link={Routes.Popovers.path} />
-                <NavItem title="Progress" link={Routes.Progress.path} />
-                <NavItem title="Tables" link={Routes.Tables.path} />
-                <NavItem title="Tabs" link={Routes.Tabs.path} />
-                <NavItem title="Toasts" link={Routes.Toasts.path} />
-                <NavItem title="Tooltips" link={Routes.Tooltips.path} />
-</CollapsableNavItem>*/}
-              {/* <NavItem external title="Themesberg" link="https://themesberg.com" target="_blank" image={ReactHero} /> */}
-              {/* <Button as={Link} to={Routes.Upgrade.path} variant="secondary" className="upgrade-to-pro"><FontAwesomeIcon icon={faRocket} className="me-1" /> Upgrade to Pro</Button> */}
             </Nav>
           </div>
         </SimpleBar>

@@ -30,7 +30,7 @@ export const Routes = {
     HistoryMerchantBalanceTransfer:{path:"/history-merchant-balance-transfer"},
     HistoryProviderBalanceTransfer:{path:"/history-provider-balance-transfer"},
     HistoryMerchantBalanceCollection:{path:"/history-merchant-balance-collection"},
-    
+    BalanceSetting: {path: "/balance-setting"},
 
 
     // components

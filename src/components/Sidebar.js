@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import {useLocation} from "react-router-dom";
 import {CSSTransition} from 'react-transition-group';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck, faWallet, faExchangeAlt, faChartPie, faMoneyCheck, faTimes,faCalendar,faHistory} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faWallet, faExchangeAlt,faTools, faChartPie, faMoneyCheck, faTimes,faCalendar,faHistory} from "@fortawesome/free-solid-svg-icons";
 import {Nav, Badge, Image, Button, Dropdown, Accordion, Navbar} from '@themesberg/react-bootstrap';
 import {Link} from 'react-router-dom';
 import {Routes} from "../routes";
@@ -139,6 +139,7 @@ export default (props = {}) => {
                                 <NavItem title="Solde marchand" icon={faWallet} link={Routes.MerchantCollection.path} />
                                 <NavItem title="Historique marchand" icon={faHistory} link={Routes.HistoryMerchantBalanceCollection.path} />
                             </CollapsableNavItem>
+                            <NavItem title="Réglage" link={Routes.BalanceSetting.path} icon={faTools} />
                             {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} /> */}
                             {/* <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} /> */}
                             {/* <NavItem title="Settings" icon={faCog} link={Routes.Settings.path} /> */}

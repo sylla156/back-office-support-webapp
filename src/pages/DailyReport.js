@@ -1,395 +1,354 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
-    Col,
-    Spinner,
-    Row,
-    Form,
-    Button,
-    InputGroup,
-    Card,
+  Col,
+  Spinner,
+  Row,
+  Form,
+  Button,
+  InputGroup,
+  Card,
 } from "@themesberg/react-bootstrap";
-import {useCookies} from "react-cookie";
-import {Redirect} from "react-router-dom";
-import {Routes} from "../routes";
+import { useCookies } from "react-cookie";
+import { Redirect } from "react-router-dom";
+import { Routes } from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
-import {APPKEY, BASE_URL_STATS} from "./constante/Const";
+import { APPKEY, BASE_URL_STATS } from "./constante/Const";
 import numeral from "numeral";
-import {format} from "date-fns";
+import { format } from "date-fns";
 // load a locale
 numeral.register("locale", "fr", {
-    delimiters: {
-        thousands: " ",
-        decimal: ",",
-    },
-    abbreviations: {
-        thousand: "k",
-        million: "m",
-        billion: "b",
-        trillion: "t",
-    },
-    ordinal: function (number) {
-
-        return number === 1 ? "er" : "ème";
-    
-    },
-    currency: {
-        symbol: "FCFA",
-    },
+  delimiters: {
+    thousands: " ",
+    decimal: ",",
+  },
+  abbreviations: {
+    thousand: "k",
+    million: "m",
+    billion: "b",
+    trillion: "t",
+  },
+  ordinal: function (number) {
+    return number === 1 ? "er" : "ème";
+  },
+  currency: {
+    symbol: "FCFA",
+  },
 });
 
 // switch between locales
 numeral.locale("fr");
 
 export default () => {
+  const currentDate = new Date();
 
-    const currentDate = new Date();
+  const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
 
-    const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
+  const [errorData, setErrorData] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [merchantId, setMerchantId] = useState("882");
+  const [startDate, setStartDate] = useState(
+    `${formattedCurrentDate}T00:00:00Z`
+  );
+  const [endDate, setEndDate] = useState(`${formattedCurrentDate}T23:59:59Z`);
+  const [merchantStats, setMerchantStats] = useState(undefined);
+  const [shouldLogin, setShouldLogin] = useState(false);
 
-    const [errorData, setErrorData] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(true);
-    const [merchantId, setMerchantId] = useState("882");
-    const [startDate, setStartDate] = useState(
-        `${formattedCurrentDate}T00:00:00Z`
-    );
-    const [endDate, setEndDate] = useState(`${formattedCurrentDate}T23:59:59Z`);
-    const [merchantStats, setMerchantStats] = useState(undefined);
-    const [shouldLogin, setShouldLogin] = useState(false);
+  const axios = AxiosWebHelper.getAxios();
+  const [cookies] = useCookies(["token"]);
 
-    const axios = AxiosWebHelper.getAxios();
-    const [cookies] = useCookies(["token"]);
+  const handleMerchantId = (event) => {
+    setMerchantId(event);
+  };
+  const handleStartDate = (event) => {
+    setStartDate(event);
+  };
+  const handleEndDate = (event) => {
+    setEndDate(event);
+  };
 
-    const handleMerchantId = (event) => {
+  console.log("========================> token ", cookies.token);
 
-        setMerchantId(event);
-    
-    };
-    const handleStartDate = (event) => {
+  const getMerchantStats = () => {
+    setIsLoaded(false);
+    setErrorData(null);
+    axios
+      .get(BASE_URL_STATS, {
+        params: {
+          merchantId,
+          start: startDate,
+          end: endDate,
+        },
+        headers: {
+          AppKey: APPKEY,
+          authenticationtoken: cookies.token,
+        },
+      })
+      .then((result) => {
+        setIsLoaded(true);
+        console.log("isLoaded value : " + isLoaded);
+        setMerchantStats(result.data);
+        console.log("In then");
+        console.log(result.data);
+      })
+      .catch((error) => {
+        setIsLoaded(true);
+        onFilters();
+        if (error.response) {
+          console.log("In catch error getMerchantStats", error.response.data);
+          // console.log(error.response.data);
+          console.log("Status code error : " + error.response.status);
+          if (error.response.status === 401) {
+            console.log(
+              "===========> in error.response.status === 401 of getMerchantStats"
+            );
+            setShouldLogin(true);
+          } else {
+            console.log("In atch error getMerchantStats");
+            console.log(error.response.data);
+            console.log(error.response.data.message);
+            setErrorData(error.response.data.message);
+          }
+        }
+      });
+  };
 
-        setStartDate(event);
-    
-    };
-    const handleEndDate = (event) => {
+  const onFilters = () => {
+    setMerchantId("");
+    setStartDate("");
+    setEndDate("");
+    setMerchantStats({});
+  };
 
-        setEndDate(event);
-    
-    };
+  const getMerchantName = () => {
+    if (!merchantStats) return "Nom du marchand";
+    if (!merchantStats.merchant) return "Nom du marchand";
+    return merchantStats.merchant.name;
+  };
+  const getFormattedDate = () => {
+    if (!merchantStats) return "Date du rapport";
 
-    console.log("========================> token ", cookies.token);
+    const { startDate: sDate, endDate: eDate } = merchantStats;
+    return `Du ${sDate} au ${eDate}`;
+  };
 
-    const getMerchantStats = () => {
+  const getProviderList = () => {
+    if (!merchantStats) return [];
 
-        setIsLoaded(false);
-        setErrorData(null);
-        axios
-            .get(BASE_URL_STATS, {
-                params: {
-                    merchantId,
-                    start: startDate,
-                    end: endDate,
-                },
-                headers: {
-                    AppKey: APPKEY,
-                    authenticationtoken: cookies.token,
-                },
-            })
-            .then((result) => {
+    const stats = merchantStats.stats;
+    if (!stats) return [];
 
-                setIsLoaded(true);
-                console.log("isLoaded value : " + isLoaded);
-                setMerchantStats(result.data);
-                console.log("In then");
-                console.log(result.data);
-            
-            })
-            .catch((error) => {
+    console.log(stats[0]);
+    return stats;
+  };
 
-                setIsLoaded(true);
-                onFilters();
-                if (error.response) {
+  const getPercent = (value) => {
+    return numeral(value).format("0.0%");
+  };
+  const getAmount = (value) => {
+    return numeral(value).format("0,0");
+  };
 
-                    console.log("In catch error getMerchantStats", error.response.data);
-                    // console.log(error.response.data);
-                    console.log("Status code error : " + error.response.status);
-                    if (error.response.status === 401) {
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
-                        console.log(
-                            "===========> in error.response.status === 401 of getMerchantStats"
-                        );
-                        setShouldLogin(true);
-                    
-                    } else {
+  const getMerchantSuccessfull = () => {
+    if (!merchantStats) return undefined;
 
-                        console.log("In atch error getMerchantStats");
-                        console.log(error.response.data);
-                        console.log(error.response.data.message);
-                        setErrorData(error.response.data.message);
-                    
-                    }
-                
-                }
-            
-            });
-    
-    };
+    return merchantStats.success;
+  };
 
-    const onFilters = () => {
+  const getMerchantFailure = () => {
+    if (!merchantStats) return undefined;
 
-        setMerchantId("");
-        setStartDate("");
-        setEndDate("");
-        setMerchantStats({});
-    
-    };
+    return merchantStats.failure;
+  };
 
-    const getMerchantName = () => {
+  const merchantSuccess = getMerchantSuccessfull();
+  const merchantFailure = getMerchantFailure();
 
-        if (!merchantStats) return "Nom du marchand";
-        if (!merchantStats.merchant) return "Nom du marchand";
-        return merchantStats.merchant.name;
-    
-    };
-    const getFormattedDate = () => {
+  const getStatusColorClass = (status) => {
+    if (status === "pending") return "text-warning fw-bold";
+    if (status === "successful") return "text-success fw-bold";
+    if (status === "failed") return "text-danger fw-bold";
+    return "";
+  };
 
-        if (!merchantStats) return "Date du rapport";
+  return (
+    <>
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2"></div>
+      <div>
+        <AlertDismissable
+          message={errorData}
+          variant="danger"
+          show={!!errorData}
+          onClose={() => setErrorData(null)}
+        />
+        <div></div>
+      </div>
 
-        const {startDate: sDate, endDate: eDate} = merchantStats;
-        return `Du ${sDate} au ${eDate}`;
-    
-    };
+      <div className="table-settings mb-4">
+        <Row className="justify-content-between align-items-center">
+          {/* Merchant input */}
+          <Col xs={12} md={4} lg={4} className="mb-2 px-2">
+            <Form.Label>Id marchant</Form.Label>
+            <InputGroup>
+              <InputGroup.Text></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={merchantId}
+                onChange={(event) => handleMerchantId(event.target.value)}
+              />
+            </InputGroup>
+          </Col>
 
-    const getProviderList = () => {
+          {/* Start date */}
+          <Col xs={12} md={4} lg={4} className="mb-2 px-2">
+            <Form.Label>Date début</Form.Label>
+            <InputGroup>
+              <InputGroup.Text></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={startDate}
+                onChange={(event) => handleStartDate(event.target.value)}
+              />
+            </InputGroup>
+          </Col>
 
-        if (!merchantStats) return [];
-
-        const stats = merchantStats.stats;
-        if (!stats) return [];
-
-        console.log(stats[0]);
-        return stats;
-    
-    };
-
-    const getPercent = (value) => {
-
-        return numeral(value).format("0.0%");
-    
-    };
-    const getAmount = (value) => {
-
-        return numeral(value).format("0,0");
-    
-    };
-
-    if (shouldLogin) {
-
-        return <Redirect to={Routes.Signin.path} />;
-    
-    }
-
-    const getMerchantSuccessfull = () => {
-
-        if (!merchantStats) return undefined;
-
-        return merchantStats.success;
-    
-    };
-
-    const getMerchantFailure = () => {
-
-        if (!merchantStats) return undefined;
-
-        return merchantStats.failure;
-    
-    };
-
-    const merchantSuccess = getMerchantSuccessfull();
-    const merchantFailure = getMerchantFailure();
-
-    const getStatusColorClass = (status) => {
-
-        if (status === "pending") return "text-warning fw-bold";
-        if (status === "successful") return "text-success fw-bold";
-        if (status === "failed") return "text-danger fw-bold";
-        return "";
-    
-    };
-
-    return (
-        <>
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2"></div>
-            <div>
-                <AlertDismissable
-                    message={errorData}
-                    variant="danger"
-                    show={!!errorData}
-                    onClose={() => setErrorData(null)}
-                />
-                <div></div>
-            </div>
-
-            <div className="table-settings mb-4">
-                <Row className="justify-content-between align-items-center">
-                    {/* Merchant input */}
-                    <Col xs={12} md={4} lg={4} className="mb-2 px-2">
-                        <Form.Label>Id marchant</Form.Label>
-                        <InputGroup>
-                            <InputGroup.Text></InputGroup.Text>
-                            <Form.Control
-                                type="text"
-                                placeholder=""
-                                value={merchantId}
-                                onChange={(event) => handleMerchantId(event.target.value)}
-                            />
-                        </InputGroup>
-                    </Col>
-
-                    {/* Start date */}
-                    <Col xs={12} md={4} lg={4} className="mb-2 px-2">
-                        <Form.Label>Date début</Form.Label>
-                        <InputGroup>
-                            <InputGroup.Text></InputGroup.Text>
-                            <Form.Control
-                                type="text"
-                                placeholder=""
-                                value={startDate}
-                                onChange={(event) => handleStartDate(event.target.value)}
-                            />
-                        </InputGroup>
-                    </Col>
-
-                    {/* End date */}
-                    <Col xs={12} md={4} lg={4} className="mb-2 px-2">
-                        <Form.Label>Date fin</Form.Label>
-                        <InputGroup>
-                            <InputGroup.Text></InputGroup.Text>
-                            <Form.Control
-                                type="text"
-                                placeholder=""
-                                value={endDate}
-                                onChange={(event) => handleEndDate(event.target.value)}
-                            />
-                        </InputGroup>
-                    </Col>
-                </Row>
-                <Row className="justify-content-between align-items-center">
-                    <Col xs={12} md={6} lg={6} className="mt-5 px-2">
-                        <Button
-                            variant="outline-primary"
-                            className="mx-2"
-                            type="button"
-                            onClick={onFilters}
-                        >
+          {/* End date */}
+          <Col xs={12} md={4} lg={4} className="mb-2 px-2">
+            <Form.Label>Date fin</Form.Label>
+            <InputGroup>
+              <InputGroup.Text></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={endDate}
+                onChange={(event) => handleEndDate(event.target.value)}
+              />
+            </InputGroup>
+          </Col>
+        </Row>
+        <Row className="justify-content-between align-items-center">
+          <Col xs={12} md={6} lg={6} className="mt-5 px-2">
+            <Button
+              variant="outline-primary"
+              className="mx-2"
+              type="button"
+              onClick={onFilters}
+            >
               Effacer
-                        </Button>
-                        <Button
-                            className="ml-3"
-                            variant="primary"
-                            type="button"
-                            onClick={getMerchantStats}
-                        >
+            </Button>
+            <Button
+              className="ml-3"
+              variant="primary"
+              type="button"
+              onClick={getMerchantStats}
+            >
               Générer le rapport
-                        </Button>
-                    </Col>
-                </Row>
-            </div>
+            </Button>
+          </Col>
+        </Row>
+      </div>
 
-            {isLoaded ? (
-                <Row>
-                    <Col xs={12} className="">
-                        <h2 className="h3">{getMerchantName()}</h2>
-                        <p className="h5 text-gray">{getFormattedDate()}</p>
-                        <Card border="light" className="shadow-sm border mb-3">
-                            <Card.Body>
-                                {getProviderList().map((provider, providerIndex) => (
-                                    <>
-                                        {providerIndex > 0 && (
-                                            <hr className="my-0 py-0" style={{height: "2px"}} />
-                                        )}
-                                        <Row>
-                                            <Col xl={1}>
-                                                <span className="d-block py-2 mb-2 text-capitalize fw-bold">
-                                                    {provider.name}
-                                                </span>
-                                            </Col>
-                                            <Col xl={11}>
-                                                {providerIndex === 0 && (
-                                                    <Row className="bg-light rounded rounded-lg py-1 mb-2 fw-bold text-muted">
-                                                        <Col xl={2}>
-                                                            <span className="d-block">Status</span>
-                                                        </Col>
-                                                        <Col xl={1}>
-                                                            <span className="text-end d-block">Number</span>
-                                                        </Col>
-                                                        <Col xl={2}>
-                                                            <span className="text-end d-block">Volume</span>
-                                                        </Col>
-                                                        <Col xl={6}>
-                                                            <span className="d-block">Failure reason</span>
-                                                        </Col>
-                                                        <Col xl={1}>
-                                                            <span className="text-end d-block">Rate</span>
-                                                        </Col>
-                                                    </Row>
-                                                )}
-                                                {provider.statuses.map((statusInfos, mainIndex) =>
-                                                    statusInfos.items.map((item, index) => (
-                                                        <>
-                                                            {mainIndex + index >= 1 && (
-                                                                <hr className="my-0 py-0" />
-                                                            )}
-                                                            <Row
-                                                                key={`${item.status}-${index}`}
-                                                                className="my-2"
-                                                            >
-                                                                <Col xl={2}>
-                                                                    <span
-                                                                        className={`text-capitalize d-block ${getStatusColorClass(
-                                                                            item.status
-                                                                        )}`}
-                                                                    >
-                                                                        {item.status}
-                                                                    </span>
-                                                                </Col>
-                                                                <Col xl={1}>
-                                                                    <span className="text-end d-block">
-                                                                        {getAmount(item.count)}
-                                                                    </span>
-                                                                </Col>
-                                                                <Col xl={2}>
-                                                                    <span className="text-end d-block">
-                                                                        {getAmount(item.total)}
-                                                                    </span>
-                                                                </Col>
-                                                                <Col xl={6}>
-                                                                    <span>{item.reason}</span>
-                                                                </Col>
-                                                                <Col xl={1}>
-                                                                    <span className="text-end d-block">
-                                                                        {getPercent(item.rate)}
-                                                                    </span>
-                                                                </Col>
-                                                            </Row>
-                                                        </>
-                                                    ))
-                                                )}
-                                            </Col>
-                                        </Row>
-                                    </>
-                                ))}
+      {isLoaded ? (
+        <Row>
+          <Col xs={12} className="">
+            <h2 className="h3">{getMerchantName()}</h2>
+            <p className="h5 text-gray">{getFormattedDate()}</p>
+            <Card border="light" className="shadow-sm border mb-3">
+              <Card.Body>
+                {getProviderList().map((provider, providerIndex) => (
+                  <>
+                    {providerIndex > 0 && (
+                      <hr className="my-0 py-0" style={{ height: "2px" }} />
+                    )}
+                    <Row>
+                      <Col xl={1}>
+                        <span className="d-block py-2 mb-2 text-capitalize fw-bold">
+                          {provider.name}
+                        </span>
+                      </Col>
+                      <Col xl={11}>
+                        {providerIndex === 0 && (
+                          <Row className="bg-light rounded rounded-lg py-1 mb-2 fw-bold text-muted">
+                            <Col xl={2}>
+                              <span className="d-block">Status</span>
+                            </Col>
+                            <Col xl={1}>
+                              <span className="text-end d-block">Number</span>
+                            </Col>
+                            <Col xl={2}>
+                              <span className="text-end d-block">Volume</span>
+                            </Col>
+                            <Col xl={6}>
+                              <span className="d-block">Failure reason</span>
+                            </Col>
+                            <Col xl={1}>
+                              <span className="text-end d-block">Rate</span>
+                            </Col>
+                          </Row>
+                        )}
+                        {provider.statuses.map((statusInfos, mainIndex) =>
+                          statusInfos.items.map((item, index) => (
+                            <>
+                              {mainIndex + index >= 1 && (
+                                <hr className="my-0 py-0" />
+                              )}
+                              <Row
+                                key={`${item.status}-${index}`}
+                                className="my-2"
+                              >
+                                <Col xl={2}>
+                                  <span
+                                    className={`text-capitalize d-block ${getStatusColorClass(
+                                      item.status
+                                    )}`}
+                                  >
+                                    {item.status}
+                                  </span>
+                                </Col>
+                                <Col xl={1}>
+                                  <span className="text-end d-block">
+                                    {getAmount(item.count)}
+                                  </span>
+                                </Col>
+                                <Col xl={2}>
+                                  <span className="text-end d-block">
+                                    {getAmount(item.total)}
+                                  </span>
+                                </Col>
+                                <Col xl={6}>
+                                  <span>{item.reason}</span>
+                                </Col>
+                                <Col xl={1}>
+                                  <span className="text-end d-block">
+                                    {getPercent(item.rate)}
+                                  </span>
+                                </Col>
+                              </Row>
+                            </>
+                          ))
+                        )}
+                      </Col>
+                    </Row>
+                  </>
+                ))}
 
-                                {merchantStats && (
-                                    <>
-                                        <hr className="my-0 py-0" style={{height: "2px"}} />
-                                        <Row>
-                                            <Col xl={1}>
-                                                <span className="d-block py-2 mb-2 text-capitalize fw-bold">
+                {merchantStats && (
+                  <>
+                    <hr className="my-0 py-0" style={{ height: "2px" }} />
+                    <Row>
+                      <Col xl={1}>
+                        <span className="d-block py-2 mb-2 text-capitalize fw-bold">
                           Total
-                                                </span>
-                                            </Col>
-                                            <Col xl={11}>
-                                                {/* <Row className="bg-light rounded rounded-lg py-1 mb-2">
+                        </span>
+                      </Col>
+                      <Col xl={11}>
+                        {/* <Row className="bg-light rounded rounded-lg py-1 mb-2">
                           <Col xl={2}>
                             <span className="d-block">Status</span>
                           </Col>
@@ -406,87 +365,86 @@ export default () => {
                             <span className="text-end d-block">Rate</span>
                           </Col>
                         </Row> */}
-                                                {merchantSuccess && (
-                                                    <Row className="my-2">
-                                                        <Col xl={2}>
-                                                            <span
-                                                                className={`d-block  ${getStatusColorClass(
-                                                                    "successful"
-                                                                )}`}
-                                                            >
+                        {merchantSuccess && (
+                          <Row className="my-2">
+                            <Col xl={2}>
+                              <span
+                                className={`d-block  ${getStatusColorClass(
+                                  "successful"
+                                )}`}
+                              >
                                 Successful
-                                                            </span>
-                                                        </Col>
-                                                        <Col xl={1}>
-                                                            <span className="text-end d-block">
-                                                                {getAmount(merchantSuccess.count)}
-                                                            </span>
-                                                        </Col>
-                                                        <Col xl={2}>
-                                                            <span className="text-end d-block">
-                                                                {getAmount(merchantSuccess.total)}
-                                                            </span>
-                                                        </Col>
-                                                        <Col xl={6}>
-                                                            <span className="d-block">&nbsp;</span>
-                                                        </Col>
-                                                        <Col xl={1}>
-                                                            <span className="text-end d-block">
-                                                                {getPercent(merchantSuccess.rate)}
-                                                            </span>
-                                                        </Col>
-                                                    </Row>
-                                                )}
-                                                {merchantFailure && (
-                                                    <>
-                                                        <hr className="my-0 py-0" />
-                                                        <Row className="my-2">
-                                                            <Col xl={2}>
-                                                                <span
-                                                                    className={`d-block ${getStatusColorClass(
-                                                                        "failed"
-                                                                    )}`}
-                                                                >
+                              </span>
+                            </Col>
+                            <Col xl={1}>
+                              <span className="text-end d-block">
+                                {getAmount(merchantSuccess.count)}
+                              </span>
+                            </Col>
+                            <Col xl={2}>
+                              <span className="text-end d-block">
+                                {getAmount(merchantSuccess.total)}
+                              </span>
+                            </Col>
+                            <Col xl={6}>
+                              <span className="d-block">&nbsp;</span>
+                            </Col>
+                            <Col xl={1}>
+                              <span className="text-end d-block">
+                                {getPercent(merchantSuccess.rate)}
+                              </span>
+                            </Col>
+                          </Row>
+                        )}
+                        {merchantFailure && (
+                          <>
+                            <hr className="my-0 py-0" />
+                            <Row className="my-2">
+                              <Col xl={2}>
+                                <span
+                                  className={`d-block ${getStatusColorClass(
+                                    "failed"
+                                  )}`}
+                                >
                                   Failed
-                                                                </span>
-                                                            </Col>
-                                                            <Col xl={1}>
-                                                                <span className="text-end d-block">
-                                                                    {getAmount(merchantFailure.count)}
-                                                                </span>
-                                                            </Col>
-                                                            <Col xl={2}>
-                                                                <span className="text-end d-block">
-                                                                    {getAmount(merchantFailure.total)}
-                                                                </span>
-                                                            </Col>
-                                                            <Col xl={6}>
-                                                                <span className="d-block">&nbsp;</span>
-                                                            </Col>
-                                                            <Col xl={1}>
-                                                                <span className="text-end d-block">
-                                                                    {getPercent(merchantFailure.rate)}
-                                                                </span>
-                                                            </Col>
-                                                        </Row>
-                                                    </>
-                                                )}
-                                            </Col>
-                                        </Row>
-                                    </>
-                                )}
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            ) : (
-                <div className="d-flex justify-content-center">
-                    <Spinner animation="border " size="sm" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                </div>
-            )}
-        </>
-    );
-
+                                </span>
+                              </Col>
+                              <Col xl={1}>
+                                <span className="text-end d-block">
+                                  {getAmount(merchantFailure.count)}
+                                </span>
+                              </Col>
+                              <Col xl={2}>
+                                <span className="text-end d-block">
+                                  {getAmount(merchantFailure.total)}
+                                </span>
+                              </Col>
+                              <Col xl={6}>
+                                <span className="d-block">&nbsp;</span>
+                              </Col>
+                              <Col xl={1}>
+                                <span className="text-end d-block">
+                                  {getPercent(merchantFailure.rate)}
+                                </span>
+                              </Col>
+                            </Row>
+                          </>
+                        )}
+                      </Col>
+                    </Row>
+                  </>
+                )}
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      ) : (
+        <div className="d-flex justify-content-center">
+          <Spinner animation="border " size="sm" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
+    </>
+  );
 };

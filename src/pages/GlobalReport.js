@@ -104,12 +104,12 @@ export default () => {
     return values;
   };
 
-  // const onFilters = () => {
-  //   setMerchantListId("");
-  //   setStartDateList("");
-  //   setEndDateList("");
-  //   setMerchantStats({});
-  // };
+  const onClean = () => {
+    setStartDate1("")
+    setEndDate1("")
+    setStartDate2("")
+    setEndDate2("")
+  };
 
   useEffect(() => {
     getMerchantFromDbList();
@@ -274,7 +274,7 @@ export default () => {
               variant="outline-primary"
               className="mx-2"
               type="button"
-              // onClick={onFilters}
+              onClick={onClean}
             >
               Effacer
             </Button>

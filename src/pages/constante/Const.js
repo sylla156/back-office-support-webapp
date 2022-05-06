@@ -37,3 +37,7 @@ export const HISTORY_MERHCANT_BALANCE_COLLECTION_PARAMS = "collection";
 export const HISTORY_MERHCANT_BALANCE_TRANSFER_PARAMS = "transfer";
 
 export const HISTORY_PROVIDER_BALANCE_TRANSFER_PARAMS = "transfer";
+
+export const SETTING_BALANCE = "/balance-setting";
+
+export const MERCHANTS_URL= "/merchants";

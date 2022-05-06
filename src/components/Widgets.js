@@ -107,8 +107,6 @@ export const ChoosePhotoWidget = (props) => {
 };
 
 export const CounterWidget = (props) => {
-
-    console.log(props);
     const {amount, currency, date, logo, name} = props.balance;
 
     const createdAtUtc = new Date(date);

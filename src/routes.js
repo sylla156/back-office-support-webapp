@@ -32,7 +32,8 @@ export const Routes = {
     HistoryMerchantBalanceCollection:{path:"/history-merchant-balance-collection"},
     BalanceSetting: {path: "/balance-setting"},
     GlobalReport: {path:"/global-report"},
-
+    SmsContentOrangeCashIn: {path:"/sms-content/orange-cash-in"},
+    SmsOrangeCashInCandidate: {path:"/sms-orange/cash-in/candidate"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

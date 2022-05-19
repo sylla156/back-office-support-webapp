@@ -41,3 +41,9 @@ export const HISTORY_PROVIDER_BALANCE_TRANSFER_PARAMS = "transfer";
 export const SETTING_BALANCE = "/balance-setting";
 
 export const MERCHANTS_URL= "/merchants";
+
+export const SMS_CONTENT_ORANGE_CASH_IN = "/sms-content/";
+
+export const SMS_ORANGE_CASH_IN_CANDIDATE = "/sms-content/candidates/";
+
+export const PAGE_SIZE = 10

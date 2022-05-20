@@ -1,14 +1,9 @@
-import { Col, Row, Card, Badge } from "@themesberg/react-bootstrap";
+import { Col, Row, Card} from "@themesberg/react-bootstrap";
 import React from "react";
 
 export const SmsOrangeCashInCandidateList = (props) => {
   const candidates = props.candidates;
 
-  /**
-   * 1 - receive the list
-   * 2 - map this list
-   * 3 - if list length === 0, display nothing
-   */
   if (candidates && candidates.length === 0) {
     return (
       <Card>
@@ -163,20 +158,6 @@ export const SmsOrangeCashInCandidateList = (props) => {
                       </span>
                     </Col>
                   </Row>
-
-                  {/* <Row className="d-block d-xl-flex align-items-center">
-                  <Col className="ms--2">
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                      content
-                    </h4>
-                  </Col>
-  
-                  <Col className="ms--2">
-                    <span className="h6 mb-0 text-wrap">
-                      {candidate.content ? candidate.content : ""}
-                    </span>
-                  </Col>
-                </Row> */}
                 </Card.Body>
               </Card>
               <div className="mt-4"></div>

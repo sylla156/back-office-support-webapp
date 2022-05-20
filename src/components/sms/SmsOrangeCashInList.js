@@ -1,15 +1,6 @@
 import {
-  Col,
-  Form,
-  Row,
-  Nav,
-  InputGroup,
-  Button,
   Card,
-  ButtonGroup,
   Table,
-  Dropdown,
-  Pagination,
 } from "@themesberg/react-bootstrap";
 import React from "react";
 import { TablePagination } from "../TablePagination";
@@ -30,9 +21,6 @@ export const SmsOrangeCashInList = (props) => {
                 <th className="border-bottom">Montant</th>
                 <th className="border-bottom">Date transfert</th>
                 <th className="border-bottom">Contenus</th>
-                {/* <th className="border-bottom">Status</th>
-                <th className="border-bottom">Mode</th> */}
-                {/* <th className="border-bottom">Action</th> */}
               </tr>
             </thead>
             <tbody>
@@ -65,16 +53,6 @@ SmsOrangeCashInList.TableRow = (props) => {
 
   const transactionDateUtc = new Date(transactionDate);
   const transactionDateFormatted = transactionDateUtc.toLocaleString("pt-BR");
-
-  // const status = transferStatus;
-  // const statusVariant =
-  //   status === "success"
-  //     ? "success"
-  //     : status === "pending"
-  //     ? "warning"
-  //     : status === "failed"
-  //     ? "danger"
-  //     : "primary";
 
   return (
     <tr>

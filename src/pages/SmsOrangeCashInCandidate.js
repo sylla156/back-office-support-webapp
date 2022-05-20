@@ -11,10 +11,7 @@ import { useCookies } from "react-cookie";
 import { Routes } from "../routes";
 import { Redirect } from "react-router-dom";
 import AxiosWebHelper from "../utils/axios-helper";
-import {
-  APPKEY,
-  SMS_ORANGE_CASH_IN_CANDIDATE,
-} from "./constante/Const";
+import { APPKEY, SMS_ORANGE_CASH_IN_CANDIDATE } from "./constante/Const";
 import { SmsOrangeCashInCandidateList } from "../components/sms/SmsOrangeCashInCandidateList";
 import { OrangeCashInInfoList } from "../components/sms/OrangeCashInInfos";
 import { format } from "date-fns";
@@ -98,7 +95,6 @@ export default () => {
     return <Redirect to={Routes.Signin.path} />;
   }
 
-  
   return (
     <>
       {/* filter system */}
@@ -146,43 +142,31 @@ export default () => {
           </div>
         </Col>
       </div>
-{/* 
-      {isLoaded ? (
-        <Row>
-    
-            <Col xs={12} xl={6} lg={2}>
-              <SmsOrangeCashInCandidateList candidates={list} />
-            </Col>
-
-            <Col xs={12} xl={6} lg={2}>
-              <OrangeCashInInfoList candidates={list} />
-            </Col>
-        </Row>
-      ) : (
-        <div className="d-flex justify-content-center">
-          <Spinner animation="border " size="sm" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </div>
-      )} */}
       <Row>
-    
-   { isLoaded ?  <Col xs={12} xl={6}>
-      <SmsOrangeCashInCandidateList candidates={smsCandidates} />
-    </Col> : <div className="d-flex justify-content-center">
-          <Spinner animation="border " size="sm" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </div>}
+        {isLoaded ? (
+          <Col xs={12} xl={6}>
+            <SmsOrangeCashInCandidateList candidates={smsCandidates} />
+          </Col>
+        ) : (
+          <div className="d-flex justify-content-center">
+            <Spinner animation="border " size="sm" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        )}
 
-   {isLoaded ? <Col xs={12} xl={6}>
-      <OrangeCashInInfoList candidates={smsCandidates} />
-    </Col>: <div className="d-flex justify-content-center">
-          <Spinner animation="border " size="sm" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </div>}
-</Row>
+        {isLoaded ? (
+          <Col xs={12} xl={6}>
+            <OrangeCashInInfoList candidates={smsCandidates} />
+          </Col>
+        ) : (
+          <div className="d-flex justify-content-center">
+            <Spinner animation="border " size="sm" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        )}
+      </Row>
     </>
   );
 };

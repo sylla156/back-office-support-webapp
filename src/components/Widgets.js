@@ -38,6 +38,7 @@ import Profile1 from "../assets/img/team/profile-picture-1.jpg";
 import ProfileCover from "../assets/img/profile-cover.jpg";
 
 import teamMembers from "../data/teamMembers";
+import { format } from "date-fns";
 
 export const ProfileCardWidget = () => {
 
@@ -156,8 +157,9 @@ export const CounterWidgetHistory = (props) => {
     console.log(props);
     const {amount, currency, balanceDate, day, logo, name} = props.balance;
 
-    const dateAtUtc = new Date(balanceDate);
-    const dateAtFormated = dateAtUtc.toLocaleString("pt-BR");
+    const dateAtUtc = new Date(day);
+    const dateAtFormated = format(dateAtUtc, 'yyyy/MM/dd');
+    const date = dateAtFormated+' '+'23:59:59';
     return (
         <Card border="light" className="shadow-sm border-warning">
             <Card.Body>
@@ -188,7 +190,7 @@ export const CounterWidgetHistory = (props) => {
                             <h4 className="mb-1 text-warning">
                                 {new Intl.NumberFormat().format(amount)} {currency}
                             </h4>
-                            <h6 className="mb-1 ">{dateAtFormated}</h6>
+                            <h6 className="mb-1 ">{date}</h6>
                         </div>
                     </Col>
                 </Row>

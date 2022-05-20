@@ -9,6 +9,7 @@ import {
   faExchangeAlt,
   faChartPie,
   faMoneyCheck,
+  faSms,
   faTimes,
   faCalendar,
   faHistory,
@@ -246,8 +247,20 @@ export default (props = {}) => {
                   link={Routes.HistoryMerchantBalanceCollection.path}
                 />
               </CollapsableNavItem>
+              <CollapsableNavItem title="Sms" icon={faSms}>
+                <NavItem
+                  title="Orange Cash in"
+                  icon={faSms}
+                  link={Routes.SmsContentOrangeCashIn.path}
+                />
+                <NavItem
+                  title="Orange candidates"
+                  icon={faSms}
+                  link={Routes.SmsOrangeCashInCandidate.path}
+                />
+              </CollapsableNavItem>
               <NavItem
-                title="Réglage"
+                title="Réglage balance"
                 link={Routes.BalanceSetting.path}
                 icon={faTools}
               />

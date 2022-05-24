@@ -1,4 +1,4 @@
-import { Col, Row, Card} from "@themesberg/react-bootstrap";
+import { Col, Row, Card, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
 
 export const SmsOrangeCashInCandidateList = (props) => {
@@ -14,8 +14,8 @@ export const SmsOrangeCashInCandidateList = (props) => {
   return (
     <>
       {candidates.map((item) => {
-        const smsCandidates = item.smsCandidates;
-
+        const smsCandidates = item?.smsCandidates;
+        const amountTransfer = item?.amount;
         if (smsCandidates && smsCandidates.length === 0) {
           return (
             <Card>
@@ -28,12 +28,12 @@ export const SmsOrangeCashInCandidateList = (props) => {
           const createDate = new Date(candidate.createDate);
           const createFormated = createDate.toLocaleString("pt-BR");
 
-          const updateDate = new Date(candidate.updateDate);
-          const updateFormated = updateDate.toLocaleString("pt-BR");
-
           const transactionDateUtc = new Date(candidate.transactionDate);
           const transactionDatFormated =
             transactionDateUtc.toLocaleString("pt-BR");
+          const amount = candidate?.amount;
+          const isAmount = amountTransfer.toString() === amount;
+          const statusVariant = isAmount ? "success" : "danger";
           return (
             <>
               <Card border="light" className="shadow-sm ">
@@ -87,9 +87,12 @@ export const SmsOrangeCashInCandidateList = (props) => {
                     </Col>
 
                     <Col className="ms--2">
-                      <span className="h6 mb-0 text-start">
-                        {candidate.amount ? candidate.amount : ""}
-                      </span>
+                    <Badge bg={`${statusVariant}`}>
+                        <span className="h6 mb-0 text-start text-light">
+                          {" "}
+                          {candidate.amount ? candidate.amount : ""}
+                        </span>
+                      </Badge>
                     </Col>
                   </Row>
                   <Row className="d-block d-xl-flex align-items-center">
@@ -132,29 +135,13 @@ export const SmsOrangeCashInCandidateList = (props) => {
                         className="h6 mb-0 text-end"
                         style={{ color: "#8a8a86" }}
                       >
-                        createdAt
+                        createDate
                       </h4>
                     </Col>
 
                     <Col className="ms--2">
                       <span className="h6 mb-0 text-start">
                         {createFormated == "Invalid Date" ? "" : createFormated}
-                      </span>
-                    </Col>
-                  </Row>
-                  <Row className="d-block d-xl-flex align-items-center">
-                    <Col className="ms--2">
-                      <h4
-                        className="h6 mb-0 text-end"
-                        style={{ color: "#8a8a86" }}
-                      >
-                        updatedAt
-                      </h4>
-                    </Col>
-
-                    <Col className="ms--2">
-                      <span className="h6 mb-0 text-start">
-                        {updateFormated == "Invalid Date" ? "" : updateFormated}
                       </span>
                     </Col>
                   </Row>

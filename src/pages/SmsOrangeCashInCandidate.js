@@ -23,20 +23,19 @@ export default () => {
   const [errorData, setErrorData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
   const [shouldLogin, setShouldLogin] = useState(false);
-  const [smsCandidates, setSmsCandidates] = useState([]);
+  const [candidates, setCandidates] = useState([]);
   const [count, setCount] = useState(undefined);
   const [startDate, setStartDate] = useState(
     `${formattedCurrentDate}T00:00:00Z`
   );
   const [endDate, setEndDate] = useState(`${formattedCurrentDate}T23:59:59Z`);
 
-  const handleEndDate = (value) => {
+  const handleStartDate = (value) => {
     setStartDate(value);
   };
-  const handleStartDate = (value) => {
+  const handleEndDate = (value) => {
     setEndDate(value);
   };
-
   const [cookies] = useCookies(["token"]);
   const axios = AxiosWebHelper.getAxios();
 
@@ -56,7 +55,7 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        setSmsCandidates(result.data);
+        setCandidates(result.data);
       })
       .catch((error) => {
         setIsLoaded(true);
@@ -82,14 +81,10 @@ export default () => {
         }
       });
   };
-
-  // useEffect(() => {
-  //   getSmsOrangeCashInCandidates();
-  // }, []);
-
-  console.log(smsCandidates);
-
-  const onFilters = () => {};
+  const onFilters = () => {
+    setStartDate("");
+    setEndDate("");
+  };
 
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
@@ -127,7 +122,7 @@ export default () => {
             <Button
               variant="outline-primary"
               type="button"
-              // onClick={onFilters}
+              onClick={onFilters}
             >
               Effacer
             </Button>
@@ -145,7 +140,7 @@ export default () => {
       <Row>
         {isLoaded ? (
           <Col xs={12} xl={6}>
-            <SmsOrangeCashInCandidateList candidates={smsCandidates} />
+            <SmsOrangeCashInCandidateList candidates={candidates} />
           </Col>
         ) : (
           <div className="d-flex justify-content-center">
@@ -157,7 +152,7 @@ export default () => {
 
         {isLoaded ? (
           <Col xs={12} xl={6}>
-            <OrangeCashInInfoList candidates={smsCandidates} />
+            <OrangeCashInInfoList candidates={candidates} />
           </Col>
         ) : (
           <div className="d-flex justify-content-center">

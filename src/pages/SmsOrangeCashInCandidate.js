@@ -15,6 +15,7 @@ import { APPKEY, SMS_ORANGE_CASH_IN_CANDIDATE } from "./constante/Const";
 import { SmsOrangeCashInCandidateList } from "../components/sms/SmsOrangeCashInCandidateList";
 import { OrangeCashInInfoList } from "../components/sms/OrangeCashInInfos";
 import { format } from "date-fns";
+import { SmsContentGlobalCashInCandidate } from "./SmsContentGlobalCashInCandidate";
 export default () => {
   const currentDate = new Date();
 
@@ -56,6 +57,7 @@ export default () => {
       .then((result) => {
         setIsLoaded(true);
         setCandidates(result.data);
+        console.log("result ", result.data)
       })
       .catch((error) => {
         setIsLoaded(true);
@@ -119,11 +121,7 @@ export default () => {
 
         <Col xs={12} md={3} lg={3} className="px-2">
           <div className="mt-3 mb-4">
-            <Button
-              variant="outline-primary"
-              type="button"
-              onClick={onFilters}
-            >
+            <Button variant="outline-primary" type="button" onClick={onFilters}>
               Effacer
             </Button>
             <Button
@@ -137,31 +135,19 @@ export default () => {
           </div>
         </Col>
       </div>
-      <Row>
-        {isLoaded ? (
-          <Col xs={12} xl={6}>
-            <SmsOrangeCashInCandidateList candidates={candidates} />
-          </Col>
-        ) : (
-          <div className="d-flex justify-content-center">
-            <Spinner animation="border " size="sm" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </div>
-        )}
-
-        {isLoaded ? (
-          <Col xs={12} xl={6}>
-            <OrangeCashInInfoList candidates={candidates} />
-          </Col>
-        ) : (
-          <div className="d-flex justify-content-center">
-            <Spinner animation="border " size="sm" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </div>
-        )}
-      </Row>
+      {isLoaded ? (
+        candidates.map((item)=> {
+          return (
+           <SmsContentGlobalCashInCandidate candidates={item} />
+          )
+        })
+      ) : (
+        <div className="d-flex justify-content-center">
+          <Spinner animation="border " size="sm" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
     </>
   );
 };

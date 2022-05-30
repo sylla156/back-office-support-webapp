@@ -46,8 +46,8 @@ export default () => {
     axios
       .get(SMS_ORANGE_CASH_IN_CANDIDATE, {
         params: {
-          start: startDate,
-          end: endDate,
+          from: startDate,
+          to: endDate,
         },
         headers: {
           AppKey: APPKEY,

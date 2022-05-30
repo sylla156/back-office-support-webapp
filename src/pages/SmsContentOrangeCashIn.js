@@ -58,8 +58,8 @@ export default () => {
           amount,
           operatorRef,
           msisdn,
-          to: startDate,
-          from: endDate,
+          from: startDate,
+          to: endDate,
           perPage: PAGE_SIZE,
           page: currentPage
         },

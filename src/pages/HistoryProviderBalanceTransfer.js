@@ -80,8 +80,8 @@ export default () => {
   };
 
   const getMerchantMessage = () => {
-    if (!balanceList) return "Nom du marchand";
-    if (!balanceList.balance) return "Solde marchand ";
+    if (!balanceList) return "Nom du fournisseur";
+    if (!balanceList.balance) return "Solde fournisseur ";
   };
 
   const getFormattedDate = () => {

@@ -50,13 +50,13 @@ export const TablePagination = (props) => {
             Précédent
           </Pagination.Prev>
           {pages.map((page) => (
-           page.index < 20 ? <Pagination.Item
+           page.index < 15 ? <Pagination.Item
            key={page.id}
            active={page.index === currentPage}
            onClick={page.action}
          >
            {page.name}
-         </Pagination.Item>: page.index > 20 ? "" : <Pagination.Ellipsis/>
+         </Pagination.Item>: page.index > 15 ? "" : <Pagination.Ellipsis/>
           ))}
           <Pagination.Next disabled={!canGoNext()} onClick={goToNext}>
             Suivant

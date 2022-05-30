@@ -28,6 +28,14 @@ export default () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [smsList, setSmsList] = useState([]);
   const [count, setCount] = useState(undefined);
+  const [startDate, setStartDate] = useState(undefined);
+  const [endDate, setEndDate] = useState(undefined);
+  const handleStartDate = (value) => {
+    setStartDate(value);
+  };
+  const handleEndDate = (value) => {
+    setEndDate(value);
+  };
 
   const handleAmount = (value) => {
     setAmount(value);
@@ -50,6 +58,8 @@ export default () => {
           amount,
           operatorRef,
           msisdn,
+          from: startDate,
+          to: endDate,
           perPage: PAGE_SIZE,
           page: currentPage
         },
@@ -95,8 +105,11 @@ export default () => {
   const onFilters = () => {
     setAmount("");
     setMsisdn("");
+    setStartDate("");
+    setEndDate("")
     setOperatorRef("");
     setSmsList([])
+    setCount(0);
   };
   const onPageChange = (page = 0) => {
     setCurrentPage(page);
@@ -111,6 +124,7 @@ export default () => {
       {/* filter system */}
       <div className="align-items-center d-flex flex-wrap">
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+        <Form.Label>Référence opérateur</Form.Label>
           <InputGroup>
             <InputGroup.Text></InputGroup.Text>
             <Form.Control
@@ -122,6 +136,7 @@ export default () => {
           </InputGroup>
         </Col>
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+        <Form.Label>Montant du transfert</Form.Label>
           <InputGroup>
             <InputGroup.Text></InputGroup.Text>
             <Form.Control
@@ -133,6 +148,7 @@ export default () => {
           </InputGroup>
         </Col>
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+        <Form.Label>Numéro de téléphone</Form.Label>
           <InputGroup>
             <InputGroup.Text></InputGroup.Text>
             <Form.Control
@@ -143,7 +159,31 @@ export default () => {
             />
           </InputGroup>
         </Col>
-        <Col xs={12} md={3} lg={3} className="px-2">
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+        <Form.Label>Date début</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="Date début"
+              value={startDate}
+              onChange={(event) => handleStartDate(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+        <Form.Label>Date fin</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="Date fin"
+              value={endDate}
+              onChange={(event) => handleEndDate(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={3} lg={3} className="px-2 mt-4">
           <div className="mt-3 mb-4">
             <Button
               variant="outline-primary"

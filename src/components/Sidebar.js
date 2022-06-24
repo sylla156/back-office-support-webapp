@@ -232,6 +232,11 @@ export default (props = {}) => {
                   icon={faCalendar}
                   link={Routes.DailyReport.path}
                 />
+                <NavItem
+                  title="Rapport"
+                  icon={faCalendar}
+                  link={Routes.TransferReporting.path}
+                />
                 {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
               </CollapsableNavItem>

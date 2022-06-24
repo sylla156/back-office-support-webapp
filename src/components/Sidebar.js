@@ -233,7 +233,7 @@ export default (props = {}) => {
                   link={Routes.DailyReport.path}
                 />
                 <NavItem
-                  title="Rapport"
+                  title="Relever"
                   icon={faCalendar}
                   link={Routes.TransferReporting.path}
                 />

@@ -115,7 +115,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.GlobalReport.path} title={'Rapport global'} component={GlobalReport} />
         <RouteWithSidebar exact path={Routes.SmsContentOrangeCashIn.path} title={'Orange Cash in'} component={SmsContentOrangeCashIn} />
         <RouteWithSidebar exact path={Routes.SmsOrangeCashInCandidate.path} title={'Orange cash in candidates'} component={SmsOrangeCashInCandidate} />
-        <RouteWithSidebar exact path={Routes.TransferReporting.path} title={'Rapport'} component={TransferReporting} />
+        <RouteWithSidebar exact path={Routes.TransferReporting.path} title={'Relever'} component={TransferReporting} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

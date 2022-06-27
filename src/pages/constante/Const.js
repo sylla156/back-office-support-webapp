@@ -46,4 +46,30 @@ export const SMS_CONTENT_ORANGE_CASH_IN = "/sms-content/";
 
 export const SMS_ORANGE_CASH_IN_CANDIDATE = "/sms-content/candidates/";
 
-export const PAGE_SIZE = 10
+export const TRANSFERS_CSV_LIST = "/transfers/list-csv";
+
+export const TRANSFER_HUB2_STATUS = "/transfers/hub2/";
+export const PAGE_SIZE = 10;
+
+export const statusList = [
+  {
+    id: 1,
+    status: "pending"
+  },
+  {
+    id: 2,
+    status: "created"
+  },
+  {
+    id: 3,
+    status: "successful"
+  },
+  {
+    id: 4,
+    status: "failed"
+  },
+];
+
+export const SelectDefaultValues = {
+  status : undefined
+}

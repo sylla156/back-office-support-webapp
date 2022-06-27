@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {Col, Spinner, Row, Form, Button, InputGroup} from '@themesberg/react-bootstrap';
 import AxiosWebHelper from "../utils/axios-helper";
 
-import {APPKEY} from "./constante/Const";
+import {APPKEY, TRANSFER_HUB2_STATUS} from "./constante/Const";
 import {Redirect} from 'react-router-dom';
 import {Routes} from "../routes";
 import Hub2TransactionStatus from "../components/Hub2TransactionStatus";
@@ -24,7 +24,7 @@ export default () => {
 
     console.log("isLoaded before : " + isLoaded);
 
-    const baseUrlSupportApiHub2 = "/transfers-status/hub2/";
+    const baseUrlSupportApiHub2 = "/transfers/hub2/";
 
 
     const axios = AxiosWebHelper.getAxios();
@@ -36,14 +36,14 @@ export default () => {
         }
     };
 
-    console.log("id enter : " + transferIdSupport);
+    console.log("id enter : " + TRANSFER_HUB2_STATUS);
 
     const checkSupportTransferStatus = function () {
 
         setErrorData(null)
         setIsLoaded(false);
         console.log("===============> Before entered in checkSupportTransferStatus")
-        axios.get(baseUrlSupportApiHub2 + transferIdSupport, resquestHeaderSupportHub2)
+        axios.get(TRANSFER_HUB2_STATUS + transferIdSupport, resquestHeaderSupportHub2)
             .then((result) => {
 
                 setIsLoaded(true);

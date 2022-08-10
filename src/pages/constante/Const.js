@@ -11,6 +11,7 @@ export const BASE_URL_REFRESH_STATUS_WITH_PARAMS_1 = BASE_URL_REFRESH_STATUS + "
 export const BASE_URL_MOOV_BALANCE = "/balances/";
 
 export const BASE_URL_STATS = "/stats";
+export const BASE_URL_COLLECTION_STATS = "/stats/merchant-collection";
 
 export const BASE_URL_REFRESH_STATUS_WITH_PARAMS_2 = "&isForceStatus=" + false + "&merchantId=" + "&status=pending" + "&to="
 

@@ -34,6 +34,7 @@ import GlobalReport from './GlobalReport';
 import SmsContentOrangeCashIn from './SmsContentOrangeCashIn';
 import SmsOrangeCashInCandidate from './SmsOrangeCashInCandidate';
 import TransferReporting from './TransferReporting';
+import CollectionDailyReport from './CollectionDailyReport';
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -106,6 +107,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MechantBalance.path} title={'Transfert - solde marchand HUB2'} component={MerchantBalance} />
         <RouteWithSidebar exact path={Routes.MoovBalance.path} title={'Solde moov'} component={MoovBalance} />
         <RouteWithSidebar exact path={Routes.DailyReport.path} title={'Rapport journalier'} component={DailyReport} />
+        <RouteWithSidebar exact path={Routes.CollectionDailyReport.path} title={'Rapport journalier'} component={CollectionDailyReport} />
         <RouteWithSidebar exact path={Routes.MerchantCollection.path} title={'Paiement - solde marchand HUB2'} component={MerchantCollection} />
 
         <RouteWithSidebar exact path={Routes.HistoryMerchantBalanceTransfer.path} title={'Transfert - Historique solde marchand'} component={HistoryMerchantBalanceTransfer} />

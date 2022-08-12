@@ -10,11 +10,11 @@ import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
 import AlertDismissable from "../AlertDismissable";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, BASE_URL_STATS } from "../../pages/constante/Const";
+import { APPKEY, BASE_URL_COLLECTION_STATS } from "../../pages/constante/Const";
 import numeral from "numeral";
 
 numeral.locale("fr");
-export const DailyReportList = (props) => {
+export const DailyReportCollectionList = (props) => {
   const version = props.version;
   const merchantId = props.merchantId;
   const date = props.date;
@@ -31,7 +31,7 @@ export const DailyReportList = (props) => {
     setIsLoaded(false);
     setErrorData(null);
     axios
-      .get(BASE_URL_STATS, {
+      .get(BASE_URL_COLLECTION_STATS, {
         params: {
           merchantId,
           start: date.formattedStartDate,

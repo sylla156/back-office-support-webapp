@@ -67,8 +67,6 @@ export default () => {
     setEndDate(event);
   };
 
-  console.log("========================> token ", cookies.token);
-
   const getMerchantStats = () => {
     setIsLoaded(false);
     setErrorData(null);
@@ -86,27 +84,15 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        console.log("isLoaded value : " + isLoaded);
         setMerchantStats(result.data);
-        console.log("In then");
-        console.log(result.data);
       })
       .catch((error) => {
         setIsLoaded(true);
         onFilters();
         if (error.response) {
-          console.log("In catch error getMerchantStats", error.response.data);
-          // console.log(error.response.data);
-          console.log("Status code error : " + error.response.status);
           if (error.response.status === 401) {
-            console.log(
-              "===========> in error.response.status === 401 of getMerchantStats"
-            );
             setShouldLogin(true);
           } else {
-            console.log("In atch error getMerchantStats");
-            console.log(error.response.data);
-            console.log(error.response.data.message);
             setErrorData(error.response.data.message);
           }
         }

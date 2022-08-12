@@ -1,41 +1,59 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Col,
   Spinner,
   Row,
+  Form,
+  Button,
+  InputGroup,
   Card,
 } from "@themesberg/react-bootstrap";
 import { useCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
-import { Routes } from "../../routes";
-import AlertDismissable from "../AlertDismissable";
-import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, BASE_URL_STATS } from "../../pages/constante/Const";
+import { Routes } from "../routes";
+import AlertDismissable from "../components/AlertDismissable";
+import AxiosWebHelper from "../utils/axios-helper";
+import { format } from "date-fns";
 import numeral from "numeral";
+import { APPKEY, BASE_URL_COLLECTION_STATS } from "./constante/Const";
 
-numeral.locale("fr");
-export const DailyReportList = (props) => {
-  const version = props.version;
-  const merchantId = props.merchantId;
-  const date = props.date;
+export default ()=> {
+  const currentDate = new Date();
+
+  const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
+
   const [errorData, setErrorData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
-  
+  const [merchantId, setMerchantId] = useState("882");
+  const [startDate, setStartDate] = useState(
+    `${formattedCurrentDate}T00:00:00Z`
+  );
+  const [endDate, setEndDate] = useState(`${formattedCurrentDate}T23:59:59Z`);
   const [merchantStats, setMerchantStats] = useState(undefined);
   const [shouldLogin, setShouldLogin] = useState(false);
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
-  const getMerchantStats = () => {
+  const handleMerchantId = (event) => {
+    setMerchantId(event);
+  };
+  const handleStartDate = (event) => {
+    setStartDate(event);
+  };
+  const handleEndDate = (event) => {
+    setEndDate(event);
+  };
+
+  const getMerchantCollectionStats = () => {
     setIsLoaded(false);
     setErrorData(null);
     axios
-      .get(BASE_URL_STATS, {
+      .get(BASE_URL_COLLECTION_STATS, {
         params: {
           merchantId,
-          start: date.formattedStartDate,
-          end: date.formattedEndDate,
+          start: startDate,
+          end: endDate,
         },
         headers: {
           AppKey: APPKEY,
@@ -60,6 +78,9 @@ export const DailyReportList = (props) => {
   };
 
   const onFilters = () => {
+    setMerchantId("");
+    setStartDate("");
+    setEndDate("");
     setMerchantStats({});
   };
 
@@ -81,6 +102,7 @@ export const DailyReportList = (props) => {
     const stats = merchantStats.stats;
     if (!stats) return [];
 
+    console.log(stats[0]);
     return stats;
   };
 
@@ -90,10 +112,6 @@ export const DailyReportList = (props) => {
   const getAmount = (value) => {
     return numeral(value).format("0,0");
   };
-
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
 
   const getMerchantSuccessfull = () => {
     if (!merchantStats) return undefined;
@@ -117,9 +135,10 @@ export const DailyReportList = (props) => {
     return "";
   };
 
-  useEffect(() => {
-    getMerchantStats();
-  }, [version]);
+
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
   return (
     <>
@@ -134,9 +153,72 @@ export const DailyReportList = (props) => {
         <div></div>
       </div>
 
-      {/* merchandList */}
-      
-    {/* merchandList */}
+      <div className="table-settings mb-4">
+        <Row className="justify-content-between align-items-center">
+          {/* Merchant input */}
+          <Col xs={12} md={4} lg={4} className="mb-2 px-2">
+            <Form.Label>Id marchant</Form.Label>
+            <InputGroup>
+              <InputGroup.Text></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={merchantId}
+                onChange={(event) => handleMerchantId(event.target.value)}
+              />
+            </InputGroup>
+          </Col>
+
+          {/* Start date */}
+          <Col xs={12} md={4} lg={4} className="mb-2 px-2">
+            <Form.Label>Date début</Form.Label>
+            <InputGroup>
+              <InputGroup.Text></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={startDate}
+                onChange={(event) => handleStartDate(event.target.value)}
+              />
+            </InputGroup>
+          </Col>
+
+          {/* End date */}
+          <Col xs={12} md={4} lg={4} className="mb-2 px-2">
+            <Form.Label>Date fin</Form.Label>
+            <InputGroup>
+              <InputGroup.Text></InputGroup.Text>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={endDate}
+                onChange={(event) => handleEndDate(event.target.value)}
+              />
+            </InputGroup>
+          </Col>
+        </Row>
+        <Row className="justify-content-between align-items-center">
+          <Col xs={12} md={6} lg={6} className="mt-5 px-2">
+            <Button
+              variant="outline-primary"
+              className="mx-2"
+              type="button"
+              onClick={onFilters}
+            >
+              Effacer
+            </Button>
+            <Button
+              className="ml-3"
+              variant="primary"
+              type="button"
+              onClick={getMerchantCollectionStats}
+            >
+              Générer le rapport
+            </Button>
+          </Col>
+        </Row>
+      </div>
+
       {isLoaded ? (
         <Row>
           <Col xs={12} className="">
@@ -330,4 +412,4 @@ export const DailyReportList = (props) => {
       )}
     </>
   );
-};
+}

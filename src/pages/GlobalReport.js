@@ -18,6 +18,7 @@ import { DateWidgetList } from "../components/globalReport/DateWidgetList";
 import { APPKEY, MERCHANTS_URL } from "./constante/Const";
 import { MultiSelect } from "react-multi-select-component";
 import { useCookies } from "react-cookie";
+import { DateWidgetCollectionList } from "../components/globalReport/DateWidgetCollectionList";
 
 export default () => {
   const currentDate = new Date();
@@ -76,18 +77,9 @@ export default () => {
         setIsLoaded(true);
         // onFilters();
         if (error.response) {
-          console.log("In catch error getMerchantStats", error.response.data);
-          // console.log(error.response.data);
-          console.log("Status code error : " + error.response.status);
           if (error.response.status === 401) {
-            console.log(
-              "===========> in error.response.status === 401 of getMerchantStats"
-            );
             setShouldLogin(true);
           } else {
-            console.log("In atch error getMerchantStats");
-            console.log(error.response.data);
-            console.log(error.response.data.message);
             setErrorData(error.response.data.message);
           }
         }
@@ -164,6 +156,22 @@ export default () => {
           {item.formattedEndDate}{" "}
         </h3>
         <DateWidgetList
+          version={currentVersion}
+          merchantList={selectedMerchant}
+          date={item}
+        />
+      </>
+    ));
+  };
+
+  const buildMapDateCollectionWidget = (list) => {
+    return list.map((item) => (
+      <>
+        <h3>
+          Rapport Journalier du {item.formattedStartDate} au{" "}
+          {item.formattedEndDate}{" "}
+        </h3>
+        <DateWidgetCollectionList
           version={currentVersion}
           merchantList={selectedMerchant}
           date={item}
@@ -307,7 +315,13 @@ export default () => {
       <MerchantCollectionBalance version={currentVersion} />
 
       <div className="mt-5"></div>
+      <h1>Transferts</h1>
       {buildMapDateWidget(dateTimeList)}
+      <div className="mb-4"></div>
+
+      <div className="mt-5"></div>
+      <h1>Paiements</h1>
+      {buildMapDateCollectionWidget(dateTimeList)}
       <div className="mb-4"></div>
     </>
   );

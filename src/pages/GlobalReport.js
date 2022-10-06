@@ -113,8 +113,6 @@ export default () => {
     getMerchantFromDbList();
   }, []);
 
-  // == Regis
-
   const buildDateIntervalList = (
     startDate1,
     endDate1,

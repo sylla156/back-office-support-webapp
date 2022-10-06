@@ -239,6 +239,11 @@ export default (props = {}) => {
                   title="Force status"
                   icon={faCheck}
                   link={Routes.TransferForceStatus.path}
+                  />
+                  <NavItem
+                  title="Local stats"
+                  icon={faChartPie}
+                  link={Routes.TransferLocalStats.path}
                 />
                 {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
@@ -273,6 +278,11 @@ export default (props = {}) => {
                   title="Relever"
                   icon={faCalendar}
                   link={Routes.PaymentReporting.path}
+                  />
+                  <NavItem
+                  title="Local stats"
+                  icon={faChartPie}
+                  link={Routes.PaymentLocalStats.path}
                 />
               </CollapsableNavItem>
               <CollapsableNavItem title="Sms" icon={faSms}>

@@ -40,6 +40,8 @@ export const Routes = {
     HistoryProviderBalanceCollection:{path:"/history-provider-balance-collection"},
     PaymentReporting:{path:"/payment-reporting"},
     TransferForceStatus: {path:"/transfer-force-status"} ,
+    PaymentLocalStats: {path:"/payment-local-stats"},
+    TransferLocalStats: {path:"/transfer-local-stats"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

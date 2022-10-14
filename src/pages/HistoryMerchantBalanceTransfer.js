@@ -31,6 +31,10 @@ export default () => {
   const [day, setDateDay] = useState(undefined);
   // const [dateEnd, setDateEnd] = useState(undefined);
 
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+
   const handleDateChange = (event) => {
     const value = event.target.value;
 
@@ -39,7 +43,6 @@ export default () => {
 
   const format = "YYYY-MM-DD";
   const dateFormated = moment(day).format(format);
-  console.log("dateFormated ", dateFormated);
   const axios = AxiosWebHelper.getAxios();
 
   const getHistoryMerchantBalanceCollection = () => {
@@ -57,19 +60,11 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        console.log("isLoaded value : " + isLoaded);
         setBalanceList(result.data);
-        console.log("In then");
-        console.log(result.data);
       })
       .catch((error) => {
         setIsLoaded(true);
-        console.log("In the catch");
         if (error.response) {
-          console.log("In catch error solde", error.response.data);
-          // console.log(error.response.data);
-          console.log("Status code error : " + error.response.status);
-          // console.log(error.response.headers);
           if (error.response.status === 401) {
             setShouldLogin(true);
           } else {

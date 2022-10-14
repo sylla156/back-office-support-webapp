@@ -10,6 +10,8 @@ import {
 import { APPKEY, SETTING_BALANCE } from "../../pages/constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
 import { useCookies } from "react-cookie";
+import { Redirect } from "react-router-dom";
+import { Routes } from "../../routes";
 
 export const BalanceSettingWidget = (props) => {
   const item = props.balanceSetting;
@@ -33,9 +35,14 @@ export const BalanceSettingWidget = (props) => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [balance, setBalance] = useState(amount);
   const [balanceDate, setBalanceDate] = useState(date);
+  const [shouldLogin, setShouldLogin] = useState(false);
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
+
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   const handleBalance = (value) => {
     setBalance(value);
@@ -68,17 +75,9 @@ export const BalanceSettingWidget = (props) => {
         setIsLoaded(true);
         onFilters();
         if (error.response) {
-          console.log("In catch error getMoovBalance", error.response.data);
-          // console.log(error.response.data);
-          console.log("Status code error : " + error.response.status);
           if (error.response.status === 401) {
-            console.log(
-              "===========> in error.response.status === 401 of getMoovBalance"
-            );
+            setShouldLogin(true);
           } else {
-            console.log("In atch error getMoovBalance");
-            console.log(error.response.data);
-            console.log(error.response.data.message);
             setErrorData(error.response.data.message);
           }
         }
@@ -88,6 +87,10 @@ export const BalanceSettingWidget = (props) => {
     setBalanceDate("");
     setBalance("");
   };
+
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
   return (
     <>

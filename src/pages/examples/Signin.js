@@ -25,14 +25,11 @@ export default function Signin() {
 
     const handleOnUsernameChange = (event) => {
 
-        console.log("username : " + event.target.value);
         setLoginUsername(event.target.value);
     
     }
 
     const handleOnPasswordChange = (event) => {
-
-        console.log("password : " + event.target.value);
         setLoginPassword(event.target.value);
     
     }
@@ -41,10 +38,8 @@ export default function Signin() {
     const axios = AxiosWebHelper.getAxios();
 
     const loginHub2Support = () => {
-
         setError(null)
         setIsLoading(true)
-        console.log("will login");
         axios.post(
             URL_LOGIN,
             {
@@ -63,13 +58,6 @@ export default function Signin() {
                 setCookie("token", result.data.token);
                 setCookie("id", result.data.id);
                 setCookie("user", result.data.user);
-                console.log("token in cookie login " + cookies.token)
-
-                console.log("id in cookie login " + cookies.id);
-
-                console.log(result);
-                console.log(result.data);
-
 
                 setIsLoginSuccess(true)
             
@@ -77,17 +65,10 @@ export default function Signin() {
             .catch((error) => {
 
                 if (error.response) {
-
-                    console.log('In catch error login')
-                    console.log(error.response.data);
-                    console.log(`Status code error : ${error.response.status}`)
-                    // console.log(error.response.headers);
                     setIsLoginSuccess(false)
                     setError(error.response.data.message)
                 
                 } else if (error) {
-
-                    console.log(error.message)
                     setError(error.message)
                 
                 } else {

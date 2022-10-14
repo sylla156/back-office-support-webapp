@@ -3,12 +3,7 @@ import {Col, Row, Card, Badge} from '@themesberg/react-bootstrap';
 
 export default function ProviderTransferIntouch(props) {
 
-    console.log("ProviderTransferIntouch props " + props.providerTransferIntouch);
-
     const providerTransferIntouchData = props.providerTransferIntouch;
-
-    console.log("ProviderTransferIntouch information ")
-    console.log(providerTransferIntouchData);
     
     let checkStatus;
     let response;
@@ -22,24 +17,16 @@ export default function ProviderTransferIntouch(props) {
     
     if (providerTransferIntouchData) {
 
-        console.log(" providerTransferIntouchData define");
-
         checkStatus = providerTransferIntouchData.checkStatus;
     
     }
 
     if(checkStatus){
-
-        console.log("checkStatus in providerTransferIntouchData define");
         response = checkStatus.response;
     
     }
 
     if (response) {
-
-        console.log("response in providerTransferIntouchData define");
-        console.log("service_id : " + service_id);
-        console.log("gu_transaction_id : " + gu_transaction_id);
         service_id = response.service_id;
         gu_transaction_id = response.gu_transaction_id;
         status = response.status;

@@ -8,6 +8,8 @@ import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../../utils/axios-helper";
 import { APPKEY, BASE_URL_MERCHANT_BALANCE } from "../../pages/constante/Const";
 import { CounterWidget } from "../Widgets";
+import { Redirect } from "react-router-dom";
+import { Routes } from "../../routes";
 export const MerchantTransferBalance = (props) => {
   const version = props.version;
 
@@ -18,6 +20,10 @@ export const MerchantTransferBalance = (props) => {
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
+
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   const getMerchantTransferBalance = () => {
     setIsLoaded(false);
@@ -34,16 +40,10 @@ export const MerchantTransferBalance = (props) => {
       })
       .catch((error) => {
         setIsLoaded(true);
-        console.log("In the catch");
         if (error.response) {
-          console.log("In catch error solde", error.response.data);
-          // console.log(error.response.data);
-          console.log("Status code error : " + error.response.status);
-          // console.log(error.response.headers);
           if (error.response.status === 401) {
             setShouldLogin(true);
           } else {
-            console.log(error.response.data.message);
             setErrorData(error.response.data.message);
           }
         }
@@ -53,6 +53,10 @@ export const MerchantTransferBalance = (props) => {
   useEffect(() => {
     getMerchantTransferBalance();
   }, [version]);
+
+  if(shouldLogin) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   return (
     <>

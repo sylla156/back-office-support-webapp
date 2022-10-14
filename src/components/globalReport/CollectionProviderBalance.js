@@ -1,35 +1,38 @@
-import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
-import React, { useState, useEffect } from "react";
-import { CounterWidget } from "../components/Widgets";
+import React, { useState, useEffect, version } from "react";
+import {
+  Col,
+  Spinner,
+  Row,
+} from "@themesberg/react-bootstrap";
+import { useCookies } from "react-cookie";
+import AxiosWebHelper from "../../utils/axios-helper";
 import {
   APPKEY,
-  BASE_URL_MERCHANT_COLLECTION_BALANCE,
-} from "./constante/Const";
-import { useCookies } from "react-cookie";
-import AxiosWebHelper from "../utils/axios-helper";
+  PROVIDER_PAYMENT_BALANCE_URL,
+} from "../../pages/constante/Const";
+import { CounterWidget } from "../Widgets";
 import { Redirect } from "react-router-dom";
-import { Routes } from "../routes";
+import { Routes } from "../../routes";
 
-export default () => {
+export const CollectionProviderBalance = (props) => {
+  const version = props.version;
+  
   const [isLoaded, setIsLoaded] = useState(true);
-  const [merchantCollectionBalanceList, setMerchantCollectionBalanceList] =
-    useState([]);
-  const [shouldLogin, setShouldLogin] = useState(false);
+  const [providerBalance, setProviderBalance] = useState([]);
   const [errorData, setErrorData] = useState(null);
+  const [shouldLogin, setShouldLogin] = useState(false);
 
+  const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
-  if (!cookies) {
-    return <Redirect to={Routes.Signin.path} />;
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
   }
 
-  // const baseUrlSolde = "/balances";
-  const axios = AxiosWebHelper.getAxios();
-
-  const checkMerchantCollectionBalance = () => {
+  const getProviderBalance = () => {
     setIsLoaded(false);
     axios
-      .get(BASE_URL_MERCHANT_COLLECTION_BALANCE, {
+      .get(PROVIDER_PAYMENT_BALANCE_URL, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -37,7 +40,7 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        setMerchantCollectionBalanceList(result.data);
+        setProviderBalance(result.data);
       })
       .catch((error) => {
         setIsLoaded(true);
@@ -46,37 +49,33 @@ export default () => {
             setShouldLogin(true);
           } else {
             console.log(error.response.data.message);
-            setErrorData(error.response.data.message);
           }
         }
       });
   };
 
   useEffect(() => {
-    checkMerchantCollectionBalance();
-  }, []);
+    getProviderBalance();
+  }, [version]);
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
+  if(shouldLogin) {
+    return <Redirect to={Routes.Signin.path}/>
   }
 
   return (
     <>
       {isLoaded ? (
         <Row className="">
-          {merchantCollectionBalanceList.map((balanceCollection) => (
+          {providerBalance.map((balance) => (
             <Col
-              key={balanceCollection.id}
+              key={balance.id}
               xs={12}
               sm={6}
               md={5}
               lg={4}
               className="mb-4 border-warning "
             >
-              <CounterWidget
-                key={balanceCollection.id}
-                balance={balanceCollection}
-              />
+              <CounterWidget key={balance.id} balance={balance} />
             </Col>
           ))}
         </Row>

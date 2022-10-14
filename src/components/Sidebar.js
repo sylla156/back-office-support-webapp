@@ -38,8 +38,6 @@ export default (props = {}) => {
   const [show, setShow] = useState(false);
   const showClass = show ? "show" : "";
 
-  console.log(cookies.user);
-
   const onCollapse = () => setShow(!show);
 
   const CollapsableNavItem = (props) => {
@@ -241,6 +239,11 @@ export default (props = {}) => {
                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
               </CollapsableNavItem>
               <CollapsableNavItem title="Paiement" icon={faMoneyCheck}>
+                <NavItem
+                  title="Solde fournisseur"
+                  icon={faWallet}
+                  link={Routes.ProviderPaymentBalance.path}
+                />
                 <NavItem
                   title="Solde marchand"
                   icon={faWallet}

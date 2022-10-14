@@ -11,6 +11,8 @@ import {
   BASE_URL_SOLDE,
 } from "../../pages/constante/Const";
 import { CounterWidget } from "../Widgets";
+import { Redirect } from "react-router-dom";
+import { Routes } from "../../routes";
 
 export const ProviderBalance = (props) => {
   const version = props.version;
@@ -22,6 +24,10 @@ export const ProviderBalance = (props) => {
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
+
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   const getProviderBalance = () => {
     setIsLoaded(false);
@@ -38,12 +44,7 @@ export const ProviderBalance = (props) => {
       })
       .catch((error) => {
         setIsLoaded(true);
-        console.log("In the catch");
         if (error.response) {
-          console.log("In catch error solde", error.response.data);
-          // console.log(error.response.data);
-          console.log("Status code error : " + error.response.status);
-          // console.log(error.response.headers);
           if (error.response.status === 401) {
             setShouldLogin(true);
           } else {
@@ -56,6 +57,10 @@ export const ProviderBalance = (props) => {
   useEffect(() => {
     getProviderBalance();
   }, [version]);
+
+  if(shouldLogin) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   return (
     <>

@@ -1,35 +1,30 @@
-import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { CounterWidget } from "../components/Widgets";
-import {
-  APPKEY,
-  BASE_URL_MERCHANT_COLLECTION_BALANCE,
-} from "./constante/Const";
-import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../utils/axios-helper";
+import { APPKEY, PROVIDER_PAYMENT_BALANCE_URL } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
 
-export default () => {
-  const [isLoaded, setIsLoaded] = useState(true);
-  const [merchantCollectionBalanceList, setMerchantCollectionBalanceList] =
-    useState([]);
+import { useCookies } from "react-cookie";
+import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
+
+export default()=> {
+
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [balanceList, setBalanceList] = useState([]);
   const [shouldLogin, setShouldLogin] = useState(false);
-  const [errorData, setErrorData] = useState(null);
 
   const [cookies] = useCookies(["token"]);
 
-  if (!cookies) {
-    return <Redirect to={Routes.Signin.path} />;
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
   }
 
-  // const baseUrlSolde = "/balances";
   const axios = AxiosWebHelper.getAxios();
-
-  const checkMerchantCollectionBalance = () => {
+  const getBalances = () => {
     setIsLoaded(false);
     axios
-      .get(BASE_URL_MERCHANT_COLLECTION_BALANCE, {
+      .get(PROVIDER_PAYMENT_BALANCE_URL, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -37,7 +32,7 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        setMerchantCollectionBalanceList(result.data);
+        setBalanceList(result.data);
       })
       .catch((error) => {
         setIsLoaded(true);
@@ -46,14 +41,13 @@ export default () => {
             setShouldLogin(true);
           } else {
             console.log(error.response.data.message);
-            setErrorData(error.response.data.message);
           }
         }
       });
   };
 
   useEffect(() => {
-    checkMerchantCollectionBalance();
+    getBalances();
   }, []);
 
   if (shouldLogin) {
@@ -64,19 +58,16 @@ export default () => {
     <>
       {isLoaded ? (
         <Row className="">
-          {merchantCollectionBalanceList.map((balanceCollection) => (
+          {balanceList.map((balance) => (
             <Col
-              key={balanceCollection.id}
+              key={balance.id}
               xs={12}
               sm={6}
               md={5}
               lg={4}
               className="mb-4 border-warning "
             >
-              <CounterWidget
-                key={balanceCollection.id}
-                balance={balanceCollection}
-              />
+              <CounterWidget key={balance.id} balance={balance} />
             </Col>
           ))}
         </Row>
@@ -89,4 +80,4 @@ export default () => {
       )}
     </>
   );
-};
+}

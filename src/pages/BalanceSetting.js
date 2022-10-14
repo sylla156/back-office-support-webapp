@@ -23,6 +23,10 @@ export default () => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+
   const getBalanceSetting = () => {
     setIsLoaded(false);
     setErrorData(null);
@@ -35,26 +39,14 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        console.log("isLoaded value : " + isLoaded);
         setBalanceSetting(result.data);
-        console.log("In then");
-        console.log(result.data);
       })
       .catch((error) => {
         setIsLoaded(true);
         if (error.response) {
-          console.log("In catch error getMoovBalance", error.response.data);
-          // console.log(error.response.data);
-          console.log("Status code error : " + error.response.status);
           if (error.response.status === 401) {
-            console.log(
-              "===========> in error.response.status === 401 of getMoovBalance"
-            );
             setShouldLogin(true);
           } else {
-            console.log("In atch error getMoovBalance");
-            console.log(error.response.data);
-            console.log(error.response.data.message);
             setErrorData(error.response.data.message);
           }
         }

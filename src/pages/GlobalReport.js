@@ -19,6 +19,7 @@ import { APPKEY, MERCHANTS_URL } from "./constante/Const";
 import { MultiSelect } from "react-multi-select-component";
 import { useCookies } from "react-cookie";
 import { DateWidgetCollectionList } from "../components/globalReport/DateWidgetCollectionList";
+import { CollectionProviderBalance } from "../components/globalReport/CollectionProviderBalance";
 
 export default () => {
   const currentDate = new Date();
@@ -57,6 +58,11 @@ export default () => {
   };
 
   const [cookies] = useCookies(["token"]);
+
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  
   const axios = AxiosWebHelper.getAxios();
 
   const getMerchantFromDbList = () => {
@@ -299,13 +305,18 @@ export default () => {
       </div>
 
       <div className="mt-5">
-        <h3>Solde fournisseur Hub2</h3>
+        <h3>Transfert - Solde fournisseur Hub2</h3>
       </div>
 
       <ProviderBalance version={currentVersion} />
 
+      <div className="mt-5">
+        <h3>Paiement - Solde fournisseur Hub2</h3>
+      </div>
+      <CollectionProviderBalance version={currentVersion}/>
+
       <div  className="mt-4">
-      <h3>Transfert-Solde Marchand</h3>
+      <h3>Transfert - Solde Marchand</h3>
       </div>
       <MerchantTransferBalance version={currentVersion} />
 

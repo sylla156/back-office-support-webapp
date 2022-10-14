@@ -35,6 +35,7 @@ import SmsContentOrangeCashIn from './SmsContentOrangeCashIn';
 import SmsOrangeCashInCandidate from './SmsOrangeCashInCandidate';
 import TransferReporting from './TransferReporting';
 import CollectionDailyReport from './CollectionDailyReport';
+import ProviderPaymentBalance from './ProviderPaymentBalance';
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -98,17 +99,17 @@ export default () => (
         <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
         <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
 
-        <RouteWithSidebar exact path={Routes.Solde.path} title={'Solde fournisseur HUB2'} component={Solde} />
+        <RouteWithSidebar exact path={Routes.Solde.path} title={'Transfert - Solde fournisseur HUB2'} component={Solde} />
 
         {/* pages */}
         <RouteWithSidebar exact path={Routes.DashboardOverview.path} title={'Tableau de bord'} component={DashboardOverview} />
 
         <RouteWithSidebar exact path={Routes.CheckStatus.path} title={'Vérification du statut'} component={CheckStatus} />
-        <RouteWithSidebar exact path={Routes.MechantBalance.path} title={'Transfert - solde marchand HUB2'} component={MerchantBalance} />
+        <RouteWithSidebar exact path={Routes.MechantBalance.path} title={'Transfert - Solde marchand HUB2'} component={MerchantBalance} />
         <RouteWithSidebar exact path={Routes.MoovBalance.path} title={'Solde moov'} component={MoovBalance} />
         <RouteWithSidebar exact path={Routes.DailyReport.path} title={'Rapport journalier'} component={DailyReport} />
         <RouteWithSidebar exact path={Routes.CollectionDailyReport.path} title={'Rapport journalier'} component={CollectionDailyReport} />
-        <RouteWithSidebar exact path={Routes.MerchantCollection.path} title={'Paiement - solde marchand HUB2'} component={MerchantCollection} />
+        <RouteWithSidebar exact path={Routes.MerchantCollection.path} title={'Paiement - Solde marchand HUB2'} component={MerchantCollection} />
 
         <RouteWithSidebar exact path={Routes.HistoryMerchantBalanceTransfer.path} title={'Transfert - Historique solde marchand'} component={HistoryMerchantBalanceTransfer} />
         <RouteWithSidebar exact path={Routes.HistoryProviderBalanceTransfer.path} title={'Transfert - Historique solde fournisseur'} component={HistoryProviderBalanceTransfer} />
@@ -118,6 +119,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.SmsContentOrangeCashIn.path} title={'Orange Cash in'} component={SmsContentOrangeCashIn} />
         <RouteWithSidebar exact path={Routes.SmsOrangeCashInCandidate.path} title={'Orange cash in candidates'} component={SmsOrangeCashInCandidate} />
         <RouteWithSidebar exact path={Routes.TransferReporting.path} title={'Relever'} component={TransferReporting} />
+        <RouteWithSidebar exact path={Routes.ProviderPaymentBalance.path} title={'Paiement - Solde fournisseur'} component={ProviderPaymentBalance} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

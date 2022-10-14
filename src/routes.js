@@ -36,6 +36,7 @@ export const Routes = {
     SmsOrangeCashInCandidate: {path:"/sms-orange/cash-in/candidate"},
     TransferReporting: {path:"/transfer-reporting"},
     CollectionDailyReport: {path:"/collection/daily-report"},
+    ProviderPaymentBalance: {path:"/provider-payment-balance"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

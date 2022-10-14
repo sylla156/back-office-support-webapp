@@ -2,7 +2,9 @@ export const APPKEY = process.env.REACT_APP_APP_KEY;
 
 export const URL_LOGIN = "/authentications";
 
-export const BASE_URL_SOLDE = "/balances";
+export const BASE_URL_SOLDE = "/balances/provider-transfer";
+
+export const PROVIDER_PAYMENT_BALANCE_URL = "/balances/provider-payment";
 
 export const BASE_URL_REFRESH_STATUS = "https://support-api.hub2.io/transfers";
 
@@ -50,6 +52,8 @@ export const SMS_ORANGE_CASH_IN_CANDIDATE = "/sms-content/candidates/";
 export const TRANSFERS_CSV_LIST = "/transfers/list-csv";
 
 export const TRANSFER_HUB2_STATUS = "/transfers/hub2/";
+
+
 export const PAGE_SIZE = 10;
 
 export const statusList = [

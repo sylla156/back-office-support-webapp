@@ -57,6 +57,10 @@ export default () => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+
   const handleMerchantId = (event) => {
     setMerchantId(event);
   };

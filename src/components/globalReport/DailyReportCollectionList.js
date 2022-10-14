@@ -27,6 +27,10 @@ export const DailyReportCollectionList = (props) => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+
   const getMerchantStats = () => {
     setIsLoaded(false);
     setErrorData(null);

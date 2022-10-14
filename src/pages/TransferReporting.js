@@ -61,6 +61,11 @@ export default () => {
     setEndDate(value);
   };
   const [cookies] = useCookies(["token"]);
+
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  
   const axios = AxiosWebHelper.getAxios();
 
   const fileName = "transfers-reporting-export";
@@ -87,7 +92,6 @@ export default () => {
       .then((result) => {
         setIsLoadedCSV(true);
         setErrorDataCSV(null);
-        console.log("in ", result);
         const url = window.URL.createObjectURL(new Blob([result.data]));
         const link = document.createElement("a");
         link.href = url;
@@ -98,8 +102,6 @@ export default () => {
       })
       .catch((error) => {
         setIsLoaded(true);
-        console.log("error exportData", error);
-        console.log("error status ", error.response.status);
       });
   };
 
@@ -124,28 +126,15 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        console.log("result ", result);
         setTransferList(result.data.result);
         setCount(result.data.count);
       })
       .catch((error) => {
         setIsLoaded(true);
         if (error.response) {
-          console.log(
-            "In catch error transfersReportingList",
-            error.response.data
-          );
-          // console.log(error.response.data);
-          console.log("Status code error : " + error.response.status);
           if (error.response.status === 401) {
-            console.log(
-              "===========> in error.response.status === 401 of transfersReportingList"
-            );
             setShouldLogin(true);
           } else {
-            console.log("In catch error transfersReportingList");
-            console.log(error.response.data);
-            console.log(error.response.data.message);
             setErrorData(error.response.data.message);
           }
         }

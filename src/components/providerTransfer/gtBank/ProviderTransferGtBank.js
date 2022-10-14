@@ -3,8 +3,6 @@ import {Col, Row, Card} from '@themesberg/react-bootstrap';
 
 export default function ProviderTransferGtBank(props) {
 
-    console.log("ProviderTransferGtBank props " + props.providerTransferGtBank);
-
     const providerTransferGtBankData = props.providerTransferGtBank;
     let response;
     let data;
@@ -31,15 +29,11 @@ export default function ProviderTransferGtBank(props) {
     let receiver_phone_number;
 
     if(providerTransferGtBankData){
-
-        console.log("providerTransferGtBankData define");
         response = providerTransferGtBankData.checkStatus.response;
     
     }
 
     if(response){
-
-        console.log("response in providerTransferGtBankData define ");
         data = response.data;
         code = response.code;
         message = response.message;
@@ -48,8 +42,6 @@ export default function ProviderTransferGtBank(props) {
     }
 
     if(data){
-
-        console.log("data in response of providerTransferGtBankData define");
         remarks = data.remarks;
         sender_name = data.sended_name;
         gtb_reference = data.gtb_reference;

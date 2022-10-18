@@ -245,6 +245,11 @@ export default (props = {}) => {
                   link={Routes.ProviderPaymentBalance.path}
                 />
                 <NavItem
+                    title="Historique Fournisseur"
+                    icon={faHistory}
+                    link={Routes.HistoryProviderBalanceCollection.path}
+                  />
+                <NavItem
                   title="Solde marchand"
                   icon={faWallet}
                   link={Routes.MerchantCollection.path}

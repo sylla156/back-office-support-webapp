@@ -31,6 +31,10 @@ export const POWER_SLIDE_ACCES_SLIDE_URL = "https://app.powerslide.io/graphql";
 
 export const HISTORY_MERHCANT_BALANCE_COLLECTION= "/balances/merchant-cached";
 
+export const HISTORY_PROVIDER_BALANCE_COLLECTION= "/balances/provider-cached";
+
+export const HISTORY_PROVIDER_BALANCE_COLLECTION_PARAMS = "collection";
+
 export const HISTORY_MERHCANT_BALANCE_TRANSFER= "/balances/merchant-cached";
 
 export const HISTORY_PROVIDER_BALANCE_TRANSFER= "/balances/provider-cached";

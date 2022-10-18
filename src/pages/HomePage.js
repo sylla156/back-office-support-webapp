@@ -36,6 +36,7 @@ import SmsOrangeCashInCandidate from './SmsOrangeCashInCandidate';
 import TransferReporting from './TransferReporting';
 import CollectionDailyReport from './CollectionDailyReport';
 import ProviderPaymentBalance from './ProviderPaymentBalance';
+import HistoryProviderBalanceCollection from './HistoryProviderBalanceCollection';
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -120,6 +121,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.SmsOrangeCashInCandidate.path} title={'Orange cash in candidates'} component={SmsOrangeCashInCandidate} />
         <RouteWithSidebar exact path={Routes.TransferReporting.path} title={'Relever'} component={TransferReporting} />
         <RouteWithSidebar exact path={Routes.ProviderPaymentBalance.path} title={'Paiement - Solde fournisseur'} component={ProviderPaymentBalance} />
+        <RouteWithSidebar exact path={Routes.HistoryProviderBalanceCollection.path} title={'Paiement - Historique solde Fournisseur HUB2'} component={HistoryProviderBalanceCollection} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

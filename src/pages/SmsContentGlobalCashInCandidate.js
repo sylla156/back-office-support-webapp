@@ -2,8 +2,18 @@ import React from "react";
 import { Col,Row} from "@themesberg/react-bootstrap";
 import { SmsOrangeCashInCandidateList } from "../components/sms/SmsOrangeCashInCandidateList";
 import { OrangeCashInInfoList } from "../components/sms/OrangeCashInInfos";
+import { useCookies } from "react-cookie";
+import { Redirect } from "react-router-dom";
+import { Routes } from "../routes";
 export const SmsContentGlobalCashInCandidate = (props) => {
   const candidates = props.candidates;
+
+  const [cookies] = useCookies(["token"]);
+
+  if(!cookies) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+
   return (
     <>
           <Row>

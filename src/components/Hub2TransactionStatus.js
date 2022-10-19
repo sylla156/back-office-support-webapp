@@ -59,7 +59,6 @@ export default function Hub2TransactionStatus(props) {
   let providerDataString;
 
   if (providerData) {
-    console.log("providerData define");
     gatewayId = providerData.gatewayId;
     processorReference = providerData.processorReference;
     transfer = providerData.transfer;

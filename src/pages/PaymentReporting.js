@@ -13,14 +13,14 @@ import {
   APPKEY,
   PAGE_SIZE,
   SelectDefaultValues,
-  TransferstatusList,
-  TRANSFERS_CSV_LIST,
+  PaymentstatusList,
+  PAYMENTS_CSV_LIST,
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
-import { TransfersReportingList } from "../components/transferList/TransfersReportingList";
 import { format, addMinutes, parseISO } from "date-fns";
 import DateTimePicker from "react-datetime-picker";
+import { PaymentsReportingList } from "../components/PaymentList/PaymentsReportingList";
 import AlertDismissable from "../components/AlertDismissable";
 
 export default () => {
@@ -40,17 +40,15 @@ export default () => {
   const [startDate, setStartDate] = useState(
     `${formattedCurrentDate}T00:00:00Z`
   );
-  const [endDate, setEndDate] = useState(
-    `${formattedCurrentDate}T23:59:59Z`
-  );
+  const [endDate, setEndDate] = useState(`${formattedCurrentDate}T23:59:59Z`);
   const [status, setStatus] = useState(undefined);
   const [merchantId, setMerchantId] = useState(undefined);
-  const [transferList, setTransferList] = useState([]);
+  const [paymentList, setPaymentList] = useState([]);
   const [count, setCount] = useState(undefined);
   const [currentPage, setCurrentPage] = useState(0);
 
   const statusValue = () =>
-    status ? TransferstatusList.id : SelectDefaultValues.status;
+    status ? PaymentstatusList.id : SelectDefaultValues.status;
   const handleStartDate = (value) => {
     setStartDate(value);
   };
@@ -59,10 +57,10 @@ export default () => {
   };
   const [cookies] = useCookies(["token"]);
 
-  if(!cookies) {
-    return <Redirect to={Routes.Signin.path}/>
+  if (!cookies) {
+    return <Redirect to={Routes.Signin.path} />;
   }
-  
+
   const axios = AxiosWebHelper.getAxios();
 
   const fileName = "transfers-reporting-export";
@@ -71,7 +69,7 @@ export default () => {
     setErrorDataCSV(null);
     setIsLoadedCSV(false);
     axios
-      .get(TRANSFERS_CSV_LIST, {
+      .get(PAYMENTS_CSV_LIST, {
         params: {
           from: startDate,
           to: endDate,
@@ -102,11 +100,11 @@ export default () => {
       });
   };
 
-  const transfersReportingList = () => {
+  const paymentsReportingList = () => {
     setIsLoaded(false);
     setErrorData(null);
     axios
-      .get(TRANSFERS_CSV_LIST, {
+      .get(PAYMENTS_CSV_LIST, {
         params: {
           from: startDate,
           to: endDate,
@@ -123,7 +121,7 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        setTransferList(result.data.result);
+        setPaymentList(result.data.result);
         setCount(result.data.count);
       })
       .catch((error) => {
@@ -147,7 +145,7 @@ export default () => {
   }
 
   useEffect(() => {
-    transfersReportingList();
+    paymentsReportingList();
   }, [currentPage]);
 
   return (
@@ -182,6 +180,7 @@ export default () => {
           <Form.Group id="status">
             <Form.Label>Status</Form.Label>
             <Form.Select
+              disabled
               value={statusValue()}
               onChange={(event) => {
                 setStatus(event.target.value);
@@ -193,7 +192,7 @@ export default () => {
               >
                 Choisissez un status
               </option>
-              {TransferstatusList.map((item) => (
+              {PaymentstatusList.map((item) => (
                 <option key={item.id} value={item.status}>
                   {item.status}
                 </option>
@@ -226,20 +225,20 @@ export default () => {
               className="mx-2"
               variant="primary"
               type="button"
-              onClick={transfersReportingList}
+              onClick={paymentsReportingList}
             >
               Filtrer
             </Button>
 
             {isLoadedCSV ? (
-            <Button
-              variant="outline-primary"
-              className=""
-              type="button"
-              onClick={exportData}
-            >
-              Exporter
-            </Button>
+              <Button
+                variant="outline-primary"
+                className=""
+                type="button"
+                onClick={exportData}
+              >
+                Exporter
+              </Button>
             ) : (
               <div className="d-flex justify-content-center">
                 <Spinner animation="border " size="sm" role="status">
@@ -247,23 +246,25 @@ export default () => {
                 </Spinner>
               </div>
             )}
-
           </div>
         </Col>
       </div>
 
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4"></div>
-            <div >
-                <AlertDismissable message={errorData} variant="danger" show={!!errorData} onClose={()=>setErrorData(null)} />
-                <div>
-      
-                </div>
-            </div>
+      <div>
+        <AlertDismissable
+          message={errorData}
+          variant="danger"
+          show={!!errorData}
+          onClose={() => setErrorData(null)}
+        />
+        <div></div>
+      </div>
 
       {isLoaded ? (
         <Row>
-          <TransfersReportingList
-            listInfo={transferList}
+          <PaymentsReportingList
+            listInfo={paymentList}
             count={count}
             currentPage={currentPage}
             onPageChange={onPageChange}

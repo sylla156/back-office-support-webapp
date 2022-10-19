@@ -55,12 +55,14 @@ export const SMS_ORANGE_CASH_IN_CANDIDATE = "/sms-content/candidates/";
 
 export const TRANSFERS_CSV_LIST = "/transfers/list-csv";
 
+export const PAYMENTS_CSV_LIST = "/payments/list-csv";
+
 export const TRANSFER_HUB2_STATUS = "/transfers/hub2/";
 
 
 export const PAGE_SIZE = 10;
 
-export const statusList = [
+export const TransferstatusList = [
   {
     id: 1,
     status: "pending"
@@ -76,6 +78,40 @@ export const statusList = [
   {
     id: 4,
     status: "failed"
+  },
+];
+export const PaymentstatusList = [
+  {
+    id: 1,
+    status: "pending"
+  },
+  {
+    id: 2,
+    status: "created"
+  },
+  {
+    id: 3,
+    status: "successful"
+  },
+  {
+    id: 4,
+    status: "failed"
+  },
+  {
+    id: 5,
+    status: "processing"
+  },
+  {
+    id: 6,
+    status: "payment_required"
+  },
+  {
+    id: 7,
+    status: "action_required"
+  },
+  {
+    id: 8,
+    status: "canceled"
   },
 ];
 

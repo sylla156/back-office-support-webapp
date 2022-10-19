@@ -264,6 +264,11 @@ export default (props = {}) => {
                   icon={faCalendar}
                   link={Routes.CollectionDailyReport.path}
                 />
+                <NavItem
+                  title="Relever"
+                  icon={faCalendar}
+                  link={Routes.PaymentReporting.path}
+                />
               </CollapsableNavItem>
               <CollapsableNavItem title="Sms" icon={faSms}>
                 <NavItem

@@ -38,6 +38,7 @@ export const Routes = {
     CollectionDailyReport: {path:"/collection/daily-report"},
     ProviderPaymentBalance: {path:"/provider-payment-balance"},
     HistoryProviderBalanceCollection:{path:"/history-provider-balance-collection"},
+    PaymentReporting:{path:"/payment-reporting"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

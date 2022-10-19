@@ -31,6 +31,10 @@ export const POWER_SLIDE_ACCES_SLIDE_URL = "https://app.powerslide.io/graphql";
 
 export const HISTORY_MERHCANT_BALANCE_COLLECTION= "/balances/merchant-cached";
 
+export const HISTORY_PROVIDER_BALANCE_COLLECTION= "/balances/provider-cached";
+
+export const HISTORY_PROVIDER_BALANCE_COLLECTION_PARAMS = "collection";
+
 export const HISTORY_MERHCANT_BALANCE_TRANSFER= "/balances/merchant-cached";
 
 export const HISTORY_PROVIDER_BALANCE_TRANSFER= "/balances/provider-cached";
@@ -51,12 +55,14 @@ export const SMS_ORANGE_CASH_IN_CANDIDATE = "/sms-content/candidates/";
 
 export const TRANSFERS_CSV_LIST = "/transfers/list-csv";
 
+export const PAYMENTS_CSV_LIST = "/payments/list-csv";
+
 export const TRANSFER_HUB2_STATUS = "/transfers/hub2/";
 
 
 export const PAGE_SIZE = 10;
 
-export const statusList = [
+export const TransferstatusList = [
   {
     id: 1,
     status: "pending"
@@ -72,6 +78,40 @@ export const statusList = [
   {
     id: 4,
     status: "failed"
+  },
+];
+export const PaymentstatusList = [
+  {
+    id: 1,
+    status: "pending"
+  },
+  {
+    id: 2,
+    status: "created"
+  },
+  {
+    id: 3,
+    status: "successful"
+  },
+  {
+    id: 4,
+    status: "failed"
+  },
+  {
+    id: 5,
+    status: "processing"
+  },
+  {
+    id: 6,
+    status: "payment_required"
+  },
+  {
+    id: 7,
+    status: "action_required"
+  },
+  {
+    id: 8,
+    status: "canceled"
   },
 ];
 

@@ -59,6 +59,11 @@ export const PAYMENTS_CSV_LIST = "/payments/list-csv";
 
 export const TRANSFER_HUB2_STATUS = "/transfers/hub2/";
 
+export const STATUS_CONFIRMATION = "/status-confirmation";
+export const DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION = "/status-confirmation";
+export const STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/transfer-list";
+export const UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/update-status-confirmation";
+export const DELETE_STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/delete";
 
 export const PAGE_SIZE = 10;
 
@@ -79,6 +84,26 @@ export const TransferstatusList = [
     id: 4,
     status: "failed"
   },
+];
+export const StatusConfirmationList = [
+  {
+    id: 1,
+    status: "pending"
+  },
+  {
+    id: 2,
+    status: "created"
+  }
+];
+export const AddStatusConfirmationList = [
+  {
+    id: 1,
+    status: "successful"
+  },
+  {
+    id: 2,
+    status: "failed"
+  }
 ];
 export const PaymentstatusList = [
   {
@@ -116,5 +141,5 @@ export const PaymentstatusList = [
 ];
 
 export const SelectDefaultValues = {
-  status : undefined
+  status : "defaultStatus"
 }

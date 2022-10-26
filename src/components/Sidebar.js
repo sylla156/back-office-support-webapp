@@ -235,6 +235,11 @@ export default (props = {}) => {
                   icon={faCalendar}
                   link={Routes.TransferReporting.path}
                 />
+                <NavItem
+                  title="Force status"
+                  icon={faCheck}
+                  link={Routes.TransferForceStatus.path}
+                />
                 {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
               </CollapsableNavItem>

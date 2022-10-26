@@ -89,6 +89,7 @@ export const AddStatusConfirmation = (props) => {
   };
 
   const handleClose = () => {
+    setErrorData(null);
     setShow(false);
   };
   

@@ -107,10 +107,7 @@ export const UpdateStatusConfirmation = (props) => {
   };
 
   const handleShow = () => {
-    if (!errorData) {
-      return setShow(true);
-    }
-    return setShow(false);
+    setShow(true);
   };
 
   const handleClose = () => {
@@ -118,8 +115,21 @@ export const UpdateStatusConfirmation = (props) => {
     setShow(false);
   };
 
-  const handlePatchClose = () => {
+  const handlePatchStatusConfirmation = () => {
     updateStatusConfirmation();
+  };
+
+  const isFormValid = () => {
+    if (!newConfirmedStatus) return false;
+    if (
+      newConfirmedStatus === "successful" &&
+      (!newProcessorReference || newProcessorReference.trim().length === 0)
+    )
+      return false;
+    if (!newDescription) return false;
+    if (newDescription.trim().length === 0) return false;
+
+    return true;
   };
 
   if (shouldLogin) {
@@ -193,9 +203,7 @@ export const UpdateStatusConfirmation = (props) => {
                 <Row>
                   <Col md={12} className="mb-3">
                     <Form.Group id="status">
-                      <Form.Label>
-                        Status
-                      </Form.Label>
+                      <Form.Label>Status (*)</Form.Label>
                       <Form.Select
                         value={newConfirmedStatus}
                         onChange={(event) => {
@@ -236,10 +244,11 @@ export const UpdateStatusConfirmation = (props) => {
                 <Row>
                   <Col md={12} className="mb-3">
                     <Form.Group id="firstName">
-                      <Form.Label>Description </Form.Label>
+                      <Form.Label>Description (*)</Form.Label>
                       <Form.Control
                         required
-                        type="textarea"
+                        as="textarea"
+                        rows="3"
                         value={newDescription}
                         onChange={(event) => {
                           setNewDescription(event.target.value);
@@ -268,10 +277,10 @@ export const UpdateStatusConfirmation = (props) => {
             Fermer
           </Button>
           <Button
-            variant="success"
-            color=""
+            disabled={!isFormValid()}
+            variant={isFormValid() ? "success" : "primary"}
             onClick={() => {
-              handlePatchClose();
+              handlePatchStatusConfirmation();
             }}
           >
             Mise à jour

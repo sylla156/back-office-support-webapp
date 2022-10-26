@@ -68,6 +68,8 @@ export const AddStatusConfirmation = (props) => {
       )
       .then((result) => {
         setIsLoaded(true);
+        // Here we should hide when add is done
+        handleClose();
         onRefresh()
       })
       .catch((error) => {
@@ -83,20 +85,29 @@ export const AddStatusConfirmation = (props) => {
   };
 
   const handleShow = () => {
-    if(!errorData) {
-      return setShow(true);
-    }
-    return setShow(false);
+    setShow(true);
   };
 
   const handleClose = () => {
     setShow(false);
   };
   
-  const handlePostClose = () => {
+  const handleAddStatusConfirmation = () => {
     addStatusConfirmation();
-    handleShow();
   };
+
+  const isFormValid = () => {
+    if (!confirmedStatus) return false;
+    if (
+      confirmedStatus === "successful" &&
+      (!processorReference || processorReference.trim().length === 0)
+    )
+      return false;
+    if (!description) return false;
+    if (description.trim().length === 0) return false;
+
+    return true;
+  }
 
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>
@@ -132,7 +143,7 @@ export const AddStatusConfirmation = (props) => {
                 <Row>
                   <Col md={12} className="mb-3">
                     <Form.Group id="status">
-                      <Form.Label>Status </Form.Label>
+                      <Form.Label>Status (*)</Form.Label>
                       <Form.Select
                         value={confirmedStatus}
                         onChange={(event) => {
@@ -173,10 +184,11 @@ export const AddStatusConfirmation = (props) => {
                 <Row>
                   <Col md={12} className="mb-3">
                     <Form.Group id="firstName">
-                      <Form.Label>Description </Form.Label>
+                      <Form.Label>Description (*) </Form.Label>
                       <Form.Control
                         required
-                        type="textarea"
+                        as="textarea"
+                        rows="3"
                         value={description}
                         onChange={(event) => {
                           setDescription(event.target.value);
@@ -201,23 +213,23 @@ export const AddStatusConfirmation = (props) => {
             Fermer
           </Button>
           <Button
-            variant="success"
-            color=""
+            disabled={!isFormValid()}
+            variant={isFormValid() ? "success" : "primary"}
             onClick={() => {
-              handlePostClose();
+              handleAddStatusConfirmation();
             }}
           >
             Ajouter un status
           </Button>
           <div className="mt-3">
-          <AlertDismissable
-            message={errorData}
-            variant="danger"
-            show={!!errorData}
-            onClose={() => setErrorData(null)}
-            isLoaded={isLoaded}
-          />
-        </div>
+            <AlertDismissable
+              message={errorData}
+              variant="danger"
+              show={!!errorData}
+              onClose={() => setErrorData(null)}
+              isLoaded={isLoaded}
+            />
+          </div>
         </Modal.Footer>
       </Modal>
     </>

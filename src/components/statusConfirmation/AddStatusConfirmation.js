@@ -118,7 +118,7 @@ export const AddStatusConfirmation = (props) => {
       <Col md={6} className="">
         <Button variant="outline-primary" size="xs" onClick={handleShow}>
           <FontAwesomeIcon icon={faPlus} className="me-2" />
-          Ajouter
+          <span className=""> Ajouter </span>
         </Button>
       </Col>
 

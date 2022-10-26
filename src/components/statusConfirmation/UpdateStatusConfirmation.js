@@ -133,6 +133,14 @@ export const UpdateStatusConfirmation = (props) => {
     return true;
   };
 
+  const canUpdate = () => {
+    if (userCanForceStatus && sessionUser.id === user.id) return true;
+
+    return false;
+  }
+  const canDelete = () => canUpdate();
+  const canEditForm = () => canUpdate();
+
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }
@@ -144,42 +152,29 @@ export const UpdateStatusConfirmation = (props) => {
   return (
     <>
       <Col md={6} className="">
-        {userCanForceStatus && user.id === sessionUser?.id ? (
-          <Button
-            className="mb-3"
-            variant="outline-light"
-            size="xs"
-            onClick={handleShow}
+        <Button
+          className="mb-3"
+          variant="outline-light"
+          size="xs"
+          onClick={handleShow}
+        >
+          <Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
+            <span className="h6 text-light"> {confirmedStatus} </span>
+          </Badge>
+          <Badge className="mx-1 mb-3" bg={`primary`}>
+            <span className="h6 text-light"> {processorReference} </span>
+          </Badge>
+          <span
+            title={user.name}
+            className=" text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary"
+            style={{ width: 10, height: 10 }}
           >
-            <Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
-              <span className="h6 text-light"> {confirmedStatus} </span>
-            </Badge>
-            <span
-              title={user.name}
-              className=" text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary"
-              style={{ width: 10, height: 10 }}
-            >
-              {SplitString.takeFirstLetterOfEachString(user.name)}
-            </span>
+            {SplitString.takeFirstLetterOfEachString(user.name)}
+          </span>
 
-            <br />
-          </Button>
-        ) : (
-          <>
-            <Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
-              <span className="h6 text-light"> {confirmedStatus} </span>
-            </Badge>
-            <span
-              title={user.name}
-              className=" text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary"
-              style={{ width: 10, height: 10 }}
-            >
-              {SplitString.takeFirstLetterOfEachString(user.name)}
-            </span>
+          <br />
 
-            <br />
-          </>
-        )}
+        </Button>
       </Col>
 
       <Modal
@@ -206,6 +201,7 @@ export const UpdateStatusConfirmation = (props) => {
                     <Form.Group id="status">
                       <Form.Label>Status (*)</Form.Label>
                       <Form.Select
+                        disabled={!canEditForm()}
                         value={newConfirmedStatus}
                         onChange={(event) => {
                           setNewConfirmedStatus(event.target.value);
@@ -232,6 +228,7 @@ export const UpdateStatusConfirmation = (props) => {
                       <Form.Label>Processor reference </Form.Label>
                       <Form.Control
                         required
+                        disabled={!canEditForm()}
                         type="text"
                         value={newProcessorReference}
                         onChange={(event) => {
@@ -250,6 +247,7 @@ export const UpdateStatusConfirmation = (props) => {
                         required
                         as="textarea"
                         rows="3"
+                        disabled={!canEditForm()}
                         value={newDescription}
                         onChange={(event) => {
                           setNewDescription(event.target.value);
@@ -264,10 +262,12 @@ export const UpdateStatusConfirmation = (props) => {
           </Card>
         </Modal.Body>
         <Modal.Footer>
-          <DeleteStatusConfirmation
-            statusConfirmationId={statusConfirmationId}
-            onRefresh={onRefresh}
-          />
+          {canDelete() && (
+            <DeleteStatusConfirmation
+              statusConfirmationId={statusConfirmationId}
+              onRefresh={onRefresh}
+            />
+          )}
           <Button
             variant="primary"
             color=""
@@ -277,15 +277,18 @@ export const UpdateStatusConfirmation = (props) => {
           >
             Fermer
           </Button>
-          <Button
-            disabled={!isFormValid()}
-            variant={isFormValid() ? "success" : "primary"}
-            onClick={() => {
-              handlePatchStatusConfirmation();
-            }}
-          >
-            Mise à jour
-          </Button>
+          {canUpdate() && (
+            <Button
+              disabled={!isFormValid()}
+              variant={isFormValid() ? "success" : "primary"}
+              onClick={() => {
+                handlePatchStatusConfirmation();
+              }}
+            >
+              Mise à jour
+            </Button>
+          )}
+
           <div className="mt-3">
             <AlertDismissable
               message={errorData}

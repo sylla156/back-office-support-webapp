@@ -1,6 +1,5 @@
 import { Card, Table, Badge } from "@themesberg/react-bootstrap";
 import React from "react";
-import SplitString from "../../utils/splitString";
 import { TablePagination } from "../TablePagination";
 import { AddStatusConfirmation } from "./AddStatusConfirmation";
 import { DangerouslyForceStatus } from "./DangerouslyForceStatus";
@@ -77,6 +76,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
   const {
     transactionsInfos,
     canForceStatus,
+    canForceStatusMessage,
     statusConfirmations,
     onRefresh,
     userCanForceStatus,
@@ -103,6 +103,21 @@ StatusConfirmationReportingList.TableRow = (props) => {
     transactionIdentifier,
     description,
   } = transactionsInfos;
+
+  const actionButton = () => {
+    if (canForceStatus) return <DangerouslyForceStatus id={id} onRefresh={onRefresh} />;
+    
+    // Here we can not force status
+    // If we have a message, display it instead of allowing to add
+    if (canForceStatusMessage) return (
+      <p className="fw-normal font-small text-wrap bg-light rounded rounded-lg py-1 px-2 mb-2">
+        {canForceStatusMessage}
+      </p>
+    );
+    
+    // If no message, then we can add
+    return <AddStatusConfirmation id={id} onRefresh={onRefresh} />;
+  }
 
   return (
     <tr>
@@ -201,6 +216,8 @@ StatusConfirmationReportingList.TableRow = (props) => {
             </>
           );
         })}
+
+        {actionButton()}
       </td>
 
       {userCanForceStatus && (

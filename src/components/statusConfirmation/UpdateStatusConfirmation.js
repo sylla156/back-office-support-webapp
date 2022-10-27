@@ -173,7 +173,6 @@ export const UpdateStatusConfirmation = (props) => {
           </span>
 
           <br />
-
         </Button>
       </Col>
 
@@ -255,6 +254,13 @@ export const UpdateStatusConfirmation = (props) => {
                         placeholder="Entrer une description "
                       />
                     </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className="mb-3">
+                    <p className="text-gray-700 text-center">
+                      Ajoutée par {user.name}
+                    </p>
                   </Col>
                 </Row>
               </Form>

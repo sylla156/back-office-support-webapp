@@ -24,20 +24,20 @@ export const StatusConfirmationReportingList = (props) => {
             <thead>
               <tr>
                 <th className="border-bottom">id</th>
-                <th className="border-bottom">type</th>
+                {/* <th className="border-bottom">type</th> */}
                 <th className="border-bottom">merchantId</th>
-                <th className="border-bottom">Référence du frs</th>
+                {/* <th className="border-bottom">Référence du frs</th> */}
                 <th className="border-bottom">amount</th>
-                <th className="border-bottom">net</th>
+                {/* <th className="border-bottom">net</th> */}
                 {/* <th className="border-bottom">fees</th> */}
-                <th className="border-bottom">currency</th>
+                {/* <th className="border-bottom">currency</th> */}
                 <th className="border-bottom">Date</th>
-                <th className="border-bottom">time</th>
-                <th className="border-bottom">timezone</th>
-                <th className="border-bottom">transaction Reference</th>
+                {/* <th className="border-bottom">time</th> */}
+                {/* <th className="border-bottom">timezone</th> */}
+                <th className="border-bottom">reference</th>
                 <th className="border-bottom">status</th>
-                <th className="border-bottom">customer Reference</th>
-                <th className="border-bottom">method</th>
+                {/* <th className="border-bottom">customer Reference</th> */}
+                {/* <th className="border-bottom">method</th> */}
                 <th className="border-bottom">country</th>
                 <th className="border-bottom">provider</th>
                 <th className="border-bottom">fournisseur</th>
@@ -83,15 +83,10 @@ StatusConfirmationReportingList.TableRow = (props) => {
   } = props;
   let {
     id,
-    type,
     merchantId,
-    referenceOfFrs,
     amount,
-    net,
-    fees,
     currency,
-    date,
-    time,
+    createdAt,
     timezone,
     transactionReference,
     status,
@@ -103,6 +98,8 @@ StatusConfirmationReportingList.TableRow = (props) => {
     transactionIdentifier,
     description,
   } = transactionsInfos;
+
+
 
   const actionButton = () => {
     if (canForceStatus) return <DangerouslyForceStatus id={id} onRefresh={onRefresh} />;
@@ -124,50 +121,50 @@ StatusConfirmationReportingList.TableRow = (props) => {
       <td>
         <Card.Link className="fw-normal">{id}</Card.Link>
       </td>
-      <td>
+      {/* <td>
         <span className="fw-normal">{type}</span>
-      </td>
+      </td> */}
       <td>
         <span className="fw-normal">{merchantId}</span>
       </td>
-      <td>
+      {/* <td>
         <span className="fw-normal">{referenceOfFrs}</span>
-      </td>
+      </td> */}
       <td>
         <span className="fw-normal">
-          {amount} {"XOF"}{" "}
+          {amount} {currency}
         </span>
       </td>
-      <td>
+      {/* <td>
         <span className="fw-normal">{net}</span>
-      </td>
+      </td> */}
       {/* <td>
         <span className="fw-normal">{fees}</span>
       </td> */}
-      <td>
+      {/* <td>
         <span className="fw-normal">{currency}</span>
-      </td>
+      </td> */}
       <td>
-        <span className="fw-normal">{date}</span>
+        <span className="fw-normal">{createdAt}</span>
       </td>
-      <td>
+      {/* <td>
         <span className="fw-normal">{time}</span>
-      </td>
-      <td>
+      </td> */}
+      {/* <td>
         <span className="fw-normal">{timezone}</span>
-      </td>
+      </td> */}
       <td>
         <span className="fw-normal">{transactionReference}</span>
       </td>
       <td>
         <span className="fw-normal">{status}</span>
       </td>
-      <td>
+      {/* <td>
         <span className="fw-normal">{customerReference}</span>
-      </td>
-      <td>
+      </td> */}
+      {/* <td>
         <span className="fw-normal">{method}</span>
-      </td>
+      </td> */}
       <td>
         <span className="fw-normal">{country}</span>
       </td>

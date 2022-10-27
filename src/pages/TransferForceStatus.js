@@ -19,7 +19,7 @@ import {
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
-import { format, addMinutes, parseISO } from "date-fns";
+import { format, addMinutes, parseISO, subDays } from "date-fns";
 import DateTimePicker from "react-datetime-picker";
 import AlertDismissable from "../components/AlertDismissable";
 import { StatusConfirmationReportingList } from "../components/statusConfirmation/StatusConfirmationReportingList";
@@ -27,6 +27,8 @@ import { StatusConfirmationReportingList } from "../components/statusConfirmatio
 export default () => {
   const currentDate = new Date();
 
+  const startDateToUse = subDays(currentDate, 2);
+  const formatStartDateToUse = format(startDateToUse, "yyyy-MM-dd");
   const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
   const formattedCurrentTime = format(currentDate, "HH:mm:ss");
 
@@ -39,7 +41,7 @@ export default () => {
   const [isLoadedCSV, setIsLoadedCSV] = useState(true);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [startDate, setStartDate] = useState(
-    `${formattedCurrentDate}T00:00:00Z`
+    `${formatStartDateToUse}T00:00:00Z`
   );
   const [endDate, setEndDate] = useState(
     `${formattedCurrentDate}T23:59:59Z`

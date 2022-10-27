@@ -25,14 +25,12 @@ export const DeleteStatusConfirmation = (props)=> {
   const onRefresh = props.onRefresh;
   const statusConfirmationId=props.statusConfirmationId;
 
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
   const [show, setShow] = useState(false);
 
 
-  const statusValue = () =>
-    status ? StatusConfirmationList.id : SelectDefaultValues.status;
   const axios = AxiosWebHelper.getAxios();
   const [cookies, ] = useCookies(["token"]);
 
@@ -41,7 +39,9 @@ export const DeleteStatusConfirmation = (props)=> {
   }
 
   const deleteStatusConfirmation = ()=> {
-    setIsLoaded(false);
+    if (isLoading) return;
+
+    setIsLoading(true);
     setErrorData(null)
     axios.delete(
       DELETE_STATUS_CONFIRMATION_TRANSFER_LIST+"/"+statusConfirmationId,
@@ -53,11 +53,11 @@ export const DeleteStatusConfirmation = (props)=> {
       }
     )
     .then((result)=> {
-      setIsLoaded(true);
+      setIsLoading(true);
       onRefresh();
     })
     .catch((error)=> {
-      setIsLoaded(true);
+      setIsLoading(true);
         if (error.response) {
           if (error.response.status === 401) {
             setShouldLogin(true);
@@ -89,9 +89,9 @@ export const DeleteStatusConfirmation = (props)=> {
   }
   return (
     <>
-    <Col md={6} className="">
+      <Col md={6} className="">
         <Button variant="danger" size="md" onClick={handleShow}>
-          Supprimer 
+          Supprimer
         </Button>
       </Col>
 
@@ -121,6 +121,7 @@ export const DeleteStatusConfirmation = (props)=> {
             Fermer
           </Button>
           <Button
+            disabled={isLoading}
             variant="danger"
             color=""
             onClick={() => {
@@ -136,7 +137,7 @@ export const DeleteStatusConfirmation = (props)=> {
             variant="danger"
             show={!!errorData}
             onClose={() => setErrorData(null)}
-            isLoaded={isLoaded}
+            isLoading={isLoading}
           />
         </div>
       </Modal>

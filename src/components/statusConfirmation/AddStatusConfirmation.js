@@ -30,7 +30,7 @@ export const AddStatusConfirmation = (props) => {
   const onRefresh = props.onRefresh;
   const transfer = props.transfer;
 
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
   const [show, setShow] = useState(false);
@@ -51,6 +51,11 @@ export const AddStatusConfirmation = (props) => {
 
   const axios = AxiosWebHelper.getAxios();
   const addStatusConfirmation = () => {
+    if (isLoading) return;
+    
+    setIsLoading(true);
+    setErrorData(null);
+
     axios
       .post(
         STATUS_CONFIRMATION,
@@ -69,13 +74,13 @@ export const AddStatusConfirmation = (props) => {
         }
       )
       .then((result) => {
-        setIsLoaded(true);
+        setIsLoading(false);
         // Here we should hide when add is done
         handleClose();
         onRefresh()
       })
       .catch((error) => {
-        setIsLoaded(true);
+        setIsLoading(false);
         if (error.response) {
           if (error.response.status === 401) {
             setShouldLogin(true);
@@ -93,6 +98,7 @@ export const AddStatusConfirmation = (props) => {
   const handleClose = () => {
     setErrorData(null);
     setShow(false);
+    setIsLoading(false);
   };
   
   const handleAddStatusConfirmation = () => {
@@ -231,7 +237,7 @@ export const AddStatusConfirmation = (props) => {
               variant="danger"
               show={!!errorData}
               onClose={() => setErrorData(null)}
-              isLoaded={isLoaded}
+              isLoading={isLoading}
             />
           </div>
         </Modal.Footer>

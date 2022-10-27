@@ -45,8 +45,7 @@ export const UpdateStatusConfirmation = (props) => {
     confirmedStatus,
   } = statusConfirmation;
 
-  const [modalVersion, setModalVersion] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
   const [show, setShow] = useState(false);
@@ -76,6 +75,10 @@ export const UpdateStatusConfirmation = (props) => {
 
   const axios = AxiosWebHelper.getAxios();
   const updateStatusConfirmation = () => {
+    if (isLoading) return;
+    
+    setIsLoading(true);
+    setErrorData(null);
     axios
       .patch(
         UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST + "/" + statusConfirmationId,
@@ -92,12 +95,12 @@ export const UpdateStatusConfirmation = (props) => {
         }
       )
       .then((result) => {
-        setIsLoaded(true);
+        setIsLoading(false);
         handleClose();
         onRefresh();
       })
       .catch((error) => {
-        setIsLoaded(true);
+        setIsLoading(false);
         if (error.response) {
           if (error.response.status === 401) {
             setShouldLogin(true);
@@ -116,6 +119,7 @@ export const UpdateStatusConfirmation = (props) => {
     setData();
     setErrorData(null);
     setShow(false);
+    setIsLoading(false);
   };
 
   const handlePatchStatusConfirmation = () => {
@@ -163,9 +167,11 @@ export const UpdateStatusConfirmation = (props) => {
           <Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
             <span className="h6 text-light"> {confirmedStatus} </span>
           </Badge>
-          {processorReference && <Badge className="mx-1 mb-3" bg={`primary`}>
-            <span className="h6 text-light"> {processorReference} </span>
-          </Badge>}
+          {processorReference && (
+            <Badge className="mx-1 mb-3" bg={`primary`}>
+              <span className="h6 text-light"> {processorReference} </span>
+            </Badge>
+          )}
           <span
             title={user.name}
             className=" text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary"
@@ -304,7 +310,7 @@ export const UpdateStatusConfirmation = (props) => {
               variant="danger"
               show={!!errorData}
               onClose={() => setErrorData(null)}
-              isLoaded={isLoaded}
+              isLoading={isLoading}
             />
           </div>
         </Modal.Footer>

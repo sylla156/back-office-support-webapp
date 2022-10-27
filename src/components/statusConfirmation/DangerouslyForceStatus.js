@@ -40,6 +40,8 @@ export const DangerouslyForceStatus = (props)=> {
 
   const axios = AxiosWebHelper.getAxios();
   const dangerouslyForceStatus = ()=> {
+    if (isLoading) return;
+
     setIsLoading(true);
     setErrorData(null);
     axios
@@ -80,6 +82,7 @@ export const DangerouslyForceStatus = (props)=> {
   const handleClose = () => {
     setErrorData(null);
     setShow(false);
+    setIsLoading(false);
   };
 
   const handleDangerouslyClose = () => {

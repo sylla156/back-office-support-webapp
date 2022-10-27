@@ -29,8 +29,9 @@ export default () => {
 
   const startDateToUse = subDays(currentDate, 2);
   const formatStartDateToUse = format(startDateToUse, "yyyy-MM-dd");
+  const defaultStartDate = `${formatStartDateToUse}T00:00:00Z`;
   const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
-  const formattedCurrentTime = format(currentDate, "HH:mm:ss");
+  const defaultEndDate = `${formattedCurrentDate}T23:59:59Z`;
 
   const addMinutesInEndDate = addMinutes(currentDate, 30);
   const formattedCurrentEndDateTime = format(addMinutesInEndDate, "HH:mm:ss");
@@ -40,13 +41,9 @@ export default () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoadedCSV, setIsLoadedCSV] = useState(true);
   const [shouldLogin, setShouldLogin] = useState(false);
-  const [startDate, setStartDate] = useState(
-    `${formatStartDateToUse}T00:00:00Z`
-  );
-  const [endDate, setEndDate] = useState(
-    `${formattedCurrentDate}T23:59:59Z`
-  );
-  const [status, setStatus] = useState(undefined);
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(defaultEndDate);
+  const [status, setStatus] = useState("pending");
   const [merchantId, setMerchantId] = useState(undefined);
   const [transactionForceStatus, setTransactionForceStatus] = useState([]);
   const [count, setCount] = useState(undefined);
@@ -152,6 +149,13 @@ export default () => {
     return currentVersion + 1;
   })
 
+  const onClearFilters = () => {
+    setMerchantId("");
+    setStartDate(defaultStartDate);
+    setEndDate(defaultEndDate);
+    setStatus("pending")
+  };
+
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }
@@ -191,17 +195,11 @@ export default () => {
           <Form.Group id="status">
             <Form.Label>Status</Form.Label>
             <Form.Select
-              value={statusValue()}
+              value={status}
               onChange={(event) => {
                 setStatus(event.target.value);
               }}
             >
-              <option
-                key={SelectDefaultValues.currency}
-                value={SelectDefaultValues.currency}
-              >
-                Choisissez un status
-              </option>
               {StatusConfirmationList.map((item) => (
                 <option key={item.id} value={item.status}>
                   {item.status}
@@ -227,7 +225,7 @@ export default () => {
             <Button
               variant="outline-primary"
               type="button"
-              // onClick={}
+              onClick={onClearFilters}
             >
               Effacer
             </Button>

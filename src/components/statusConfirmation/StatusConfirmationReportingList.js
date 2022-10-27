@@ -206,6 +206,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
                 statusVariantColor={statusVariant}
                 onRefresh={onRefresh}
                 userCanForceStatus={userCanForceStatus}
+                transfer={transactionsInfos}
               />
             </>
           );
@@ -218,9 +219,17 @@ StatusConfirmationReportingList.TableRow = (props) => {
         <td>
           <span className="fw-normal text-wrap">
             {canForceStatus ? (
-              <DangerouslyForceStatus id={id} onRefresh={onRefresh} />
+              <DangerouslyForceStatus
+                id={id}
+                onRefresh={onRefresh}
+                transfer={transactionsInfos}
+              />
             ) : (
-              <AddStatusConfirmation id={id} onRefresh={onRefresh} />
+              <AddStatusConfirmation
+                id={id}
+                onRefresh={onRefresh}
+                transfer={transactionsInfos}
+              />
             )}
           </span>
         </td>

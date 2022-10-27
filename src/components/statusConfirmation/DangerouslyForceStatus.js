@@ -20,6 +20,7 @@ import { useCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
 import AlertDismissable from "../AlertDismissable";
+import { TransferSummary } from "./TransferSummary";
 
 export const DangerouslyForceStatus = (props)=> {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +30,7 @@ export const DangerouslyForceStatus = (props)=> {
 
   const transactionId = props.id;
   const onRefresh = props.onRefresh; 
+  const transfer = props.transfer; 
 
   const [cookies, ] = useCookies(["token"]);
 
@@ -89,10 +91,10 @@ export const DangerouslyForceStatus = (props)=> {
   }
   return (
     <>
-    <Col md={6} className="">
+      <Col md={6} className="">
         <Button variant="outline-primary" size="sm" onClick={handleShow}>
           <FontAwesomeIcon icon={faTools} className="me-2" />
-          Forcer 
+          Forcer
         </Button>
       </Col>
 
@@ -110,6 +112,7 @@ export const DangerouslyForceStatus = (props)=> {
         </Modal.Header>
         <Modal.Body>
           <h4>Vous voulez forcer le status de cette transaction ?</h4>
+          <TransferSummary {...transfer} />
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -132,14 +135,14 @@ export const DangerouslyForceStatus = (props)=> {
             Forcer status
           </Button>
           <div className="mt-3">
-          <AlertDismissable
-            message={errorData}
-            variant="danger"
-            show={!!errorData}
-            onClose={() => setErrorData(null)}
-            isLoading={isLoading}
-          />
-        </div>
+            <AlertDismissable
+              message={errorData}
+              variant="danger"
+              show={!!errorData}
+              onClose={() => setErrorData(null)}
+              isLoading={isLoading}
+            />
+          </div>
         </Modal.Footer>
       </Modal>
     </>

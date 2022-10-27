@@ -26,6 +26,7 @@ import { Routes } from "../../routes";
 import AlertDismissable from "../AlertDismissable";
 import SplitString from "../../utils/splitString";
 import { DeleteStatusConfirmation } from "./DeleteStatusConfirmation";
+import { TransferSummary } from "./TransferSummary";
 
 export const UpdateStatusConfirmation = (props) => {
   const {
@@ -33,6 +34,7 @@ export const UpdateStatusConfirmation = (props) => {
     statusVariantColor: statusVariant,
     onRefresh,
     userCanForceStatus,
+    transfer,
   } = props;
 
   const {
@@ -161,9 +163,9 @@ export const UpdateStatusConfirmation = (props) => {
           <Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
             <span className="h6 text-light"> {confirmedStatus} </span>
           </Badge>
-          <Badge className="mx-1 mb-3" bg={`primary`}>
+          {processorReference && <Badge className="mx-1 mb-3" bg={`primary`}>
             <span className="h6 text-light"> {processorReference} </span>
-          </Badge>
+          </Badge>}
           <span
             title={user.name}
             className=" text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary"
@@ -264,6 +266,7 @@ export const UpdateStatusConfirmation = (props) => {
                   </Col>
                 </Row>
               </Form>
+              <TransferSummary {...transfer} />
             </Card.Body>
           </Card>
         </Modal.Body>

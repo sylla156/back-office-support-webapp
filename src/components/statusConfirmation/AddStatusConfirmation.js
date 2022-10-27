@@ -23,10 +23,12 @@ import { useCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
 import AlertDismissable from "../AlertDismissable";
+import { TransferSummary } from "./TransferSummary";
 
 export const AddStatusConfirmation = (props) => {
   const transactionId = props.id;
   const onRefresh = props.onRefresh;
+  const transfer = props.transfer;
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [shouldLogin, setShouldLogin] = useState(false);
@@ -139,7 +141,6 @@ export const AddStatusConfirmation = (props) => {
         <Modal.Body>
           <Card border="light" className="bg-white  mb-4">
             <Card.Body>
-              <h5 className="mb-4"></h5>
               <Form>
                 <Row>
                   <Col md={12} className="mb-3">
@@ -200,6 +201,8 @@ export const AddStatusConfirmation = (props) => {
                   </Col>
                 </Row>
               </Form>
+
+              <TransferSummary {...transfer} />
             </Card.Body>
           </Card>
         </Modal.Body>

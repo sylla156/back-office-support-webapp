@@ -29,7 +29,7 @@ export default (props) => {
     };*/
 
     const [cookies, , ] = useCookies(["token", "id", "user"]);
-    console.log(cookies.user);
+    // console.log(cookies.user);
 
     /* const Notification = (props) => {
 

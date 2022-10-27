@@ -46,7 +46,7 @@ export default () => {
 
   const [errorData, setErrorData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
-  const [merchantId, setMerchantId] = useState("882");
+  const [merchantId, setMerchantId] = useState("915");
   const [startDate, setStartDate] = useState(
     `${formattedCurrentDate}T00:00:00Z`
   );

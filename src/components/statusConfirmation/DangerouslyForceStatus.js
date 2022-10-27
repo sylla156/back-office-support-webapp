@@ -11,7 +11,7 @@ import {
   ButtonGroup,
 } from "@themesberg/react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION, SelectDefaultValues, StatusConfirmationList } from "../../pages/constante/Const";
+import { DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION, APPKEY } from "../../pages/constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
 import {
   faTools
@@ -22,20 +22,13 @@ import { Routes } from "../../routes";
 import AlertDismissable from "../AlertDismissable";
 
 export const DangerouslyForceStatus = (props)=> {
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
   const [show, setShow] = useState(false);
 
-  const [status, setStatus] = useState(undefined);
-  const [processorReference, setProcessorReference] = useState(undefined);
-  const [description, setDescription] = useState(undefined);
-
   const transactionId = props.id;
   const onRefresh = props.onRefresh; 
-
-  const statusValue = () =>
-    status ? StatusConfirmationList.id : SelectDefaultValues.status;
 
   const [cookies, ] = useCookies(["token"]);
 
@@ -45,22 +38,29 @@ export const DangerouslyForceStatus = (props)=> {
 
   const axios = AxiosWebHelper.getAxios();
   const dangerouslyForceStatus = ()=> {
-    setIsLoaded(false);
-    setErrorData(null)
-    axios.post(
-      DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION,
-      {
-        params: {
-          transactionId
+    setIsLoading(true);
+    setErrorData(null);
+    axios
+      .post(
+        DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION,
+        {},
+        {
+          headers: {
+            AppKey: APPKEY,
+            authenticationtoken: cookies.token,
+          },
+          params: {
+            transactionId,
+          }
         }
-      }
-    )
-    .then((result)=> {
-      setIsLoaded(true);
-      onRefresh();
-    })
-    .catch((error)=> {
-      setIsLoaded(true);
+      )
+      .then((result) => {
+        setIsLoading(false);
+        handleClose();
+        onRefresh();
+      })
+      .catch((error) => {
+        setIsLoading(false);
         if (error.response) {
           if (error.response.status === 401) {
             setShouldLogin(true);
@@ -68,23 +68,20 @@ export const DangerouslyForceStatus = (props)=> {
             setErrorData(error.response.data.message);
           }
         }
-    })
+      });
   };
 
   const handleShow = () => {
-    if(!errorData) {
-      return setShow(true);
-    }
-    return setShow(false);
+    setShow(true);
   };
 
   const handleClose = () => {
+    setErrorData(null);
     setShow(false);
   };
 
   const handleDangerouslyClose = () => {
     dangerouslyForceStatus();
-    handleShow();
   };
 
   if(shouldLogin) {
@@ -125,6 +122,7 @@ export const DangerouslyForceStatus = (props)=> {
             Fermer
           </Button>
           <Button
+            disabled={isLoading}
             variant="danger"
             color=""
             onClick={() => {
@@ -139,7 +137,7 @@ export const DangerouslyForceStatus = (props)=> {
             variant="danger"
             show={!!errorData}
             onClose={() => setErrorData(null)}
-            isLoaded={isLoaded}
+            isLoading={isLoading}
           />
         </div>
         </Modal.Footer>

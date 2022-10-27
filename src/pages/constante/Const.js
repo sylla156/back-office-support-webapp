@@ -60,7 +60,8 @@ export const PAYMENTS_CSV_LIST = "/payments/list-csv";
 export const TRANSFER_HUB2_STATUS = "/transfers/hub2/";
 
 export const STATUS_CONFIRMATION = "/status-confirmation";
-export const DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION = "/status-confirmation";
+export const DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION =
+  "/status-confirmation/dangerously-force-transfer-status";
 export const STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/transfer-list";
 export const UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/update-status-confirmation";
 export const DELETE_STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/delete";

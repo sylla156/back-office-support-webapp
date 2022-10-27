@@ -48,10 +48,10 @@ export const StatusConfirmationReportingList = (props) => {
               </tr>
             </thead>
             <tbody>
-              {listInfo.map((t) => {
+              {listInfo.map((t, index) => {
                 return (
                   <StatusConfirmationReportingList.TableRow
-                    key={`transaction-${t.transactionsInfos.id}`}
+                    key={`transaction-${t.transactionsInfos.id}-${index}`}
                     onRefresh={onRefresh}
                     userCanForceStatus={userCanForceStatus}
                     {...t}
@@ -102,7 +102,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
 
 
   const actionButton = () => {
-    if (canForceStatus) return <DangerouslyForceStatus id={id} onRefresh={onRefresh} />;
+    if (canForceStatus) return;
     
     // Here we can not force status
     // If we have a message, display it instead of allowing to add
@@ -111,9 +111,6 @@ StatusConfirmationReportingList.TableRow = (props) => {
         {canForceStatusMessage}
       </p>
     );
-    
-    // If no message, then we can add
-    return <AddStatusConfirmation id={id} onRefresh={onRefresh} />;
   }
 
   return (

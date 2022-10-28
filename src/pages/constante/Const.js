@@ -65,6 +65,20 @@ export const DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION =
 export const STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/transfer-list";
 export const UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/update-status-confirmation";
 export const DELETE_STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/delete";
+export const LOCAL_STATS_COMMISSION_BY_MONTH= "/local-stats/commission-month";
+export const LOCAL_STATS_COMMISSION_BY_DAY= "/local-stats/commission-day";
+export const LOCAL_STATS_COMMISSION_BY_WEEK= "/local-stats/commission-week";
+export const LOCAL_STATS_COMMISSION_BY_YEAR= "/local-stats/commission-year";
+
+
+export const LOCAL_STATS_COMMISSION_COUNTRY_PAYMENT_CATEGORY_WEEK= "/local-stats/commission-payment-category-week";
+export const LOCAL_STATS_COMMISSION_ALL_COUNTRY_PAYMENT_CATEGORY_WEEK= "/local-stats/commission-payment-category-all-country-week";
+export const LOCAL_STATS_COMMISSION_COUNTRY_PAYMENT_WEEK= "/local-stats/commission-payment-country-week";
+
+export const LOCAL_STATS_COMMISSION_COUNTRY_TRANSFER_CATEGORY_WEEK= "/local-stats/commission-transfer-category-week";
+export const LOCAL_STATS_COMMISSION_ALL_COUNTRY_TRANSFER_CATEGORY_WEEK= "/local-stats/commission-transfer-category-all-country-week";
+export const LOCAL_STATS_COMMISSION_COUNTRY_TRANSFER_WEEK= "/local-stats/commission-transfer-country-week";
+
 
 export const PAGE_SIZE = 10;
 
@@ -142,5 +156,78 @@ export const PaymentstatusList = [
 ];
 
 export const SelectDefaultValues = {
-  status : "defaultStatus"
+  status : "defaultStatus",
+  order: "volume-ASC"
 }
+
+export const ChooseCountry = [
+  //make all countries
+  {
+    "id":"all",
+    "country":undefined,
+    "name":"Tous les pays",
+  },
+  {
+    "id":"ci",
+    "country":"ci",
+    "name":"CÔTE D'IVOIRE",
+  },
+  {
+    "id":"sn",
+    "country":"sn",
+    "name":"SÉNÉGAL",
+  },
+  {
+    "id":"gn",
+    "country":"gn",
+    "name":"GUINÉE CONAKRY",
+  },
+  {
+    "id":"bn",
+    "country":"bn",
+    "name":"BÉNIN",
+  },
+  {
+    "id":"cm",
+    "country":"cm",
+    "name":"CAMEROUN",
+  },
+  {
+    "id":"ml",
+    "country":"ml",
+    "name":"MALI",
+  }
+];
+
+export const chooseOrderList = [
+  {
+    id:0,
+    sorted: 'volume-ASC',
+    name:"Volume Croissant"
+  },
+  {
+    id:3,
+    sorted: 'volume-DESC',
+    name:"Volume décroissant"
+  },
+  {
+    id:1,
+    sorted: 'commission_brute-ASC',
+    name:"Commission brute croissante"
+  },
+  {
+    id:4,
+    sorted: 'commission_brute-DESC',
+    name:"Commission brute décroissante"
+  },
+  {
+    id:2,
+    sorted: 'commission_nette-ASC',
+    name:"Commission nette croissante"
+  },
+  {
+    id:5,
+    sorted: 'commission_nette-DESC',
+    name:"Commission nette décroissante"
+  }
+]

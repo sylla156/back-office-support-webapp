@@ -39,6 +39,8 @@ import ProviderPaymentBalance from './ProviderPaymentBalance';
 import HistoryProviderBalanceCollection from './HistoryProviderBalanceCollection';
 import PaymentReporting from './PaymentReporting';
 import TransferForceStatus from './TransferForceStatus';
+import PaymentLocalStats from './PaymentLocalStats';
+import TransferLocalStats from './TransferLocalStats'
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -126,6 +128,8 @@ export default () => (
         <RouteWithSidebar exact path={Routes.HistoryProviderBalanceCollection.path} title={'Paiement - Historique solde Fournisseur HUB2'} component={HistoryProviderBalanceCollection} />
         <RouteWithSidebar exact path={Routes.PaymentReporting.path} title={'Relever'} component={PaymentReporting} />
         <RouteWithSidebar exact path={Routes.TransferForceStatus.path} title={'Transfer - Force status'} component={TransferForceStatus} />
+        <RouteWithSidebar exact path={Routes.PaymentLocalStats.path} title={'Chiffre d\'affaire hebdomadaire'} component={PaymentLocalStats} />
+        <RouteWithSidebar exact path={Routes.TransferLocalStats.path} title={'Chiffre d\'affaire hebdomadaire'} component={TransferLocalStats} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

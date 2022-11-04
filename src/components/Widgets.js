@@ -151,6 +151,57 @@ export const CounterWidget = (props) => {
     );
 
 };
+export const MerchantCounterWidget = (props) => {
+    const {amount, currency, date, logo, name} = props.balance;
+    const onRefresh = props.onRefresh;
+
+    const createdAtUtc = new Date(date);
+    const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
+    return (
+        <Card border="light" className="shadow-sm border-warning">
+            <Card.Body>
+                <Row className="d-block d-xl-flex align-items-center">
+                    <Col
+                        xl={5}
+                        className="text-center d-flex align-items-center justify-content-center mb-3 mb-xl-0"
+                    >
+                        {logo ? (
+                            <img
+                                className="mb-4 rounded mx-auto d-block"
+                                src={require("../assets/img/technologies/" + logo)}
+                                width="70"
+                            />
+                        ) : (
+                            <img
+                                className="p-2 d-xl-flex rounded"
+                                src={require("../assets/img/technologies/question.jpg")}
+                                width="100"
+                                style={{position: "absolute", top: 12, left: 14}}
+                            />
+                        )}
+                    </Col>
+
+                    <Col xs={12} xl={7} className="px-xl-0">
+                        <div className="d-block">
+                            <h5>{name}</h5>
+                            <h4 className="mb-1 text-warning">
+                                {new Intl.NumberFormat().format(amount)} {currency}
+                            </h4>
+                            <h6 className="mb-1 ">{createdAtFormated}</h6>
+                        </div>
+                    </Col>
+                    <Button
+                    className="mt-3"
+                    onClick={onRefresh}
+                    >
+                        Refresh
+                    </Button>
+                </Row>
+            </Card.Body>
+        </Card>
+    );
+
+};
 
 export const CounterWidgetHistory = (props) => {
 

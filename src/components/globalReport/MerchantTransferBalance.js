@@ -6,7 +6,7 @@ import {
 } from "@themesberg/react-bootstrap";
 import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, BASE_URL_MERCHANT_BALANCE } from "../../pages/constante/Const";
+import { APPKEY, BASE_URL_MERCHANT_TRANSFER_BALANCES } from "../../pages/constante/Const";
 import { CounterWidget } from "../Widgets";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
@@ -28,7 +28,7 @@ export const MerchantTransferBalance = (props) => {
   const getMerchantTransferBalance = () => {
     setIsLoaded(false);
     axios
-      .get(BASE_URL_MERCHANT_BALANCE, {
+      .get(BASE_URL_MERCHANT_TRANSFER_BALANCES, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,

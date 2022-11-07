@@ -131,10 +131,17 @@ export const SmsOrangeCashInCandidateList = (props) => {
                   </Col>
 
                   <Col className="ms--2">
-                    <span className="h6 mb-0 text-start">
+                    <span className="h6 mb-0 text-start text-">
                       {createFormated == "Invalid Date" ? "" : createFormated}
                     </span>
                   </Col>
+                </Row>
+                <Row>
+                  <Badge bg="danger">
+                    <span className="h6 mb-0 text-wrap text-white">
+                    Attention, merci de vérifier que la référence opérateur n'est pas déjà associée à un autre transfert.
+                    </span>
+                  </Badge>
                 </Row>
               </Card.Body>
             </Card>

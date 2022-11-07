@@ -20,6 +20,7 @@ export default () => {
   }
 
   const axios = AxiosWebHelper.getAxios();
+  const collectionBalanceEnable = true;
 
   const getMerchantList = () => {
     setIsLoaded(false);
@@ -30,6 +31,9 @@ export default () => {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
         },
+        params: {
+          collectionBalanceEnable
+        }
       })
       .then((result) => {
         setIsLoaded(true);

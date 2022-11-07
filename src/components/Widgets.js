@@ -155,6 +155,8 @@ export const MerchantCounterWidget = (props) => {
     const {amount, currency, date, logo, name} = props.balance;
     const onRefresh = props.onRefresh;
 
+    console.log("name ", name, " amount ", amount);
+
     const createdAtUtc = new Date(date);
     const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
     return (
@@ -185,17 +187,24 @@ export const MerchantCounterWidget = (props) => {
                         <div className="d-block">
                             <h5>{name}</h5>
                             <h4 className="mb-1 text-warning">
-                                {new Intl.NumberFormat().format(amount)} {currency}
+                                {amount == undefined ? "" : new Intl.NumberFormat().format(amount)} {currency == undefined ? "":currency}
                             </h4>
-                            <h6 className="mb-1 ">{createdAtFormated}</h6>
+                            <h6 className="mb-1 ">{createdAtFormated == undefined ? "date" : createdAtFormated}</h6>
                         </div>
                     </Col>
-                    <Button
+                    {
+                        amount == undefined ? <Button
+                        className="mt-6"
+                        onClick={onRefresh}
+                        >
+                            Refresh
+                        </Button> : <Button
                     className="mt-3"
                     onClick={onRefresh}
                     >
                         Refresh
                     </Button>
+                    }
                 </Row>
             </Card.Body>
         </Card>

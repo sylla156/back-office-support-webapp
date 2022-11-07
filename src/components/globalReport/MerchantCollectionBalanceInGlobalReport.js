@@ -6,15 +6,16 @@ import {
 } from "@themesberg/react-bootstrap";
 import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, BASE_URL_MERCHANT_TRANSFER_BALANCES } from "../../pages/constante/Const";
+import { APPKEY, BASE_URL_MERCHANT_COLLECTION_BALANCES } from "../../pages/constante/Const";
 import { CounterWidget } from "../Widgets";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
-export const MerchantTransferBalance = (props) => {
+
+export const MerchantCollectionBalanceInGlobalReport = (props) => {
   const version = props.version;
 
   const [isLoaded, setIsLoaded] = useState(true);
-  const [merchantTransferBalance, setMerchantTransferBalance] = useState([]);
+  const [merchantCollectionBalance, setMerchantCollectionBalance] = useState([]);
   const [errorData, setErrorData] = useState(null);
   const [shouldLogin, setShouldLogin] = useState(false);
 
@@ -25,10 +26,10 @@ export const MerchantTransferBalance = (props) => {
     return <Redirect to={Routes.Signin.path}/>
   }
 
-  const getMerchantTransferBalance = () => {
+  const getMerchantCollectionBalance = () => {
     setIsLoaded(false);
     axios
-      .get(BASE_URL_MERCHANT_TRANSFER_BALANCES, {
+      .get(BASE_URL_MERCHANT_COLLECTION_BALANCES, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -36,7 +37,7 @@ export const MerchantTransferBalance = (props) => {
       })
       .then((result) => {
         setIsLoaded(true);
-        setMerchantTransferBalance(result.data);
+        setMerchantCollectionBalance(result.data);
       })
       .catch((error) => {
         setIsLoaded(true);
@@ -51,7 +52,7 @@ export const MerchantTransferBalance = (props) => {
   };
 
   useEffect(() => {
-    getMerchantTransferBalance();
+    getMerchantCollectionBalance();
   }, [version]);
 
   if(shouldLogin) {
@@ -60,24 +61,17 @@ export const MerchantTransferBalance = (props) => {
 
   return (
     <>
-      {isLoaded ? (
-        <Row>
-          {merchantTransferBalance.map((merchantBalance) => (
-            <Col xs={12} sm={6} md={5} lg={4} className="mb-4 border-warning ">
-              <CounterWidget
-                key={merchantBalance.id}
-                balance={merchantBalance}
-              />
-            </Col>
-          ))}
-        </Row>
-      ) : (
-        <div className="d-flex justify-content-center">
-          <Spinner animation="border " size="sm" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </div>
-      )}
+     {isLoaded ? <Row className="">
+                {merchantCollectionBalance.map((balanceCollection) => (
+                    <Col key={balanceCollection.id} xs={12} sm={6} md={5} lg={4} className="mb-4 border-warning ">
+                        <CounterWidget key={balanceCollection.id} balance={balanceCollection} />
+                    </Col>
+                ))}
+            </Row> : <div className="d-flex justify-content-center">
+                <Spinner animation="border " size="sm" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>}
     </>
   );
 };

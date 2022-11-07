@@ -195,14 +195,16 @@ export const MerchantCounterWidget = (props) => {
                     {
                         amount == undefined ? <Button
                         className="mt-6"
+                        variant="outline-primary"
                         onClick={onRefresh}
                         >
-                            Refresh
+                            Rafraîchir
                         </Button> : <Button
                     className="mt-3"
+                    variant="outline-primary"
                     onClick={onRefresh}
                     >
-                        Refresh
+                        Rafraîchir
                     </Button>
                     }
                 </Row>

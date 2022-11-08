@@ -213,7 +213,7 @@ export default (props = {}) => {
                 <NavItem
                   title="Solde marchand"
                   icon={faWallet}
-                  link={Routes.MechantBalance.path}
+                  link={Routes.MerchantTransferBalance.path}
                 />
                 <NavItem
                   title="Historique marchand"
@@ -262,7 +262,7 @@ export default (props = {}) => {
                 <NavItem
                   title="Solde marchand"
                   icon={faWallet}
-                  link={Routes.MerchantCollection.path}
+                  link={Routes.MerchantCollectionBalance.path}
                 />
                 <NavItem
                   title="Historique marchand"

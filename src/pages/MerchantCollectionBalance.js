@@ -1,23 +1,17 @@
-import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
 import React, { useState, useEffect } from "react";
-import { MerchantCounterWidget } from "../components/Widgets";
-import {
-  APPKEY,
-  BASE_URL_MERCHANT_COLLECTION_BALANCES,
-} from "./constante/Const";
-import { useCookies } from "react-cookie";
-import AxiosWebHelper from "../utils/axios-helper";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
+import { useCookies } from "react-cookie";
+import AxiosWebHelper from "../utils/axios-helper";
+import { APPKEY, MERCHANTS_URL } from "./constante/Const";
+import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
+import { MerchantCollection } from "./MerchantCollection";
 
-export const MerchantCollection = (props) => {
-  const merchantId = props.merchantId;
+export default () => {
   const [isLoaded, setIsLoaded] = useState(true);
-  const [merchantBalance, setMerchantBalance] =
-    useState([]);
+  const [merchantList, setMerchantList] = useState([]);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
-  const [version, setVersion] = useState(0);
 
   const [cookies] = useCookies(["token"]);
 
@@ -25,22 +19,25 @@ export const MerchantCollection = (props) => {
     return <Redirect to={Routes.Signin.path} />;
   }
 
-  // const baseUrlSolde = "/balances";
   const axios = AxiosWebHelper.getAxios();
+  const collectionBalanceEnable = true;
 
-  const getMerchantBalance = () => {
+  const getMerchantList = () => {
     setIsLoaded(false);
+    setErrorData(null);
     axios
-      .get(BASE_URL_MERCHANT_COLLECTION_BALANCES + "/"+ merchantId, {
+      .get(MERCHANTS_URL, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
+        },
+        params: {
+          collectionBalanceEnable
         }
       })
       .then((result) => {
         setIsLoaded(true);
-        setMerchantBalance(result.data);
-        setVersion();
+        setMerchantList(result.data);
       })
       .catch((error) => {
         setIsLoaded(true);
@@ -48,20 +45,14 @@ export const MerchantCollection = (props) => {
           if (error.response.status === 401) {
             setShouldLogin(true);
           } else {
-            console.log(error.response.data.message);
             setErrorData(error.response.data.message);
           }
         }
       });
   };
-
-  const incrementVersion = ()=> setVersion((currentVersion)=> {
-    console
-    return currentVersion + 1;
-  })
   useEffect(() => {
-    getMerchantBalance();
-  }, [merchantId, version]);
+    getMerchantList();
+  }, []);
 
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
@@ -70,7 +61,24 @@ export const MerchantCollection = (props) => {
   return (
     <>
       {isLoaded ? (
-        <MerchantCounterWidget key={merchantBalance.id} balance={merchantBalance} onRefresh={incrementVersion} />
+        <Row>
+          {merchantList.map((merchant) => {
+            return (
+              <>
+              <Col
+              key={merchant.id}
+              xs={12}
+              sm={6}
+              md={5}
+              lg={4}
+              className="mb-4 border-warning "
+            >
+            <MerchantCollection key={merchant.id} merchantId={merchant.merchantId}/>
+            </Col>
+              </>
+            )
+          })}
+        </Row>
       ) : (
         <div className="d-flex justify-content-center">
           <Spinner animation="border " size="sm" role="status">

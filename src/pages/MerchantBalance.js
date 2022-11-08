@@ -4,7 +4,7 @@ import { Routes } from "../routes";
 import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../utils/axios-helper";
 import { MerchantCounterWidget } from "../components/Widgets";
-import { APPKEY, BASE_URL_MERCHANT_TRANSFER_BALANCE } from "./constante/Const";
+import { APPKEY, BASE_URL_MERCHANT_TRANSFER_BALANCES } from "./constante/Const";
 import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
 import AlertDismissable from "../components/AlertDismissable";
 
@@ -28,14 +28,11 @@ export const MerchantBalance = (props) => {
   const getMerchantBalance = () => {
     setIsLoaded(false);
     axios
-      .get(BASE_URL_MERCHANT_TRANSFER_BALANCE, {
+      .get(BASE_URL_MERCHANT_TRANSFER_BALANCES +"/"+ merchantId, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
-        },
-        params: {
-          merchantId,
-        },
+        }
       })
       .then((result) => {
         setIsLoaded(true);

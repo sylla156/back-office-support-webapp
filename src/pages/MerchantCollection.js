@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { MerchantCounterWidget } from "../components/Widgets";
 import {
   APPKEY,
-  BASE_URL_MERCHANT_COLLECTION_BALANCE,
+  BASE_URL_MERCHANT_COLLECTION_BALANCES,
 } from "./constante/Const";
 import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../utils/axios-helper";
@@ -31,13 +31,10 @@ export const MerchantCollection = (props) => {
   const getMerchantBalance = () => {
     setIsLoaded(false);
     axios
-      .get(BASE_URL_MERCHANT_COLLECTION_BALANCE, {
+      .get(BASE_URL_MERCHANT_COLLECTION_BALANCES + "/"+ merchantId, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
-        },
-        params: {
-          merchantId
         }
       })
       .then((result) => {

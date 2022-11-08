@@ -22,10 +22,9 @@ import Navbar from "../components/Navbar";
 import Preloader from "../components/Preloader";
 
 import Solde from './Solde';
-import MerchantBalance from './MerchantBalance';
 import MoovBalance from './MoovBalance';
 import DailyReport from './DailyReport';
-import MerchantCollection from './MerchantCollection';
+import MerchantCollectionBalance from './MerchantCollectionBalance';
 import HistoryMerchantBalanceCollection from './HistoryMerchantBalanceCollection';
 import HistoryMerchantBalanceTransfer from './HistoryMerchantBalanceTransfer';
 import HistoryProviderBalanceTransfer from './HistoryProviderBalanceTransfer';
@@ -41,6 +40,7 @@ import PaymentReporting from './PaymentReporting';
 import TransferForceStatus from './TransferForceStatus';
 import PaymentLocalStats from './PaymentLocalStats';
 import TransferLocalStats from './TransferLocalStats'
+import MerchantTransferBalance from './MerchantTransferBalance';
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -110,11 +110,11 @@ export default () => (
         <RouteWithSidebar exact path={Routes.DashboardOverview.path} title={'Tableau de bord'} component={DashboardOverview} />
 
         <RouteWithSidebar exact path={Routes.CheckStatus.path} title={'Vérification du statut'} component={CheckStatus} />
-        <RouteWithSidebar exact path={Routes.MechantBalance.path} title={'Transfert - Solde marchand HUB2'} component={MerchantBalance} />
+        <RouteWithSidebar exact path={Routes.MerchantTransferBalance.path} title={'Transfert - Solde marchand HUB2'} component={MerchantTransferBalance} />
         <RouteWithSidebar exact path={Routes.MoovBalance.path} title={'Solde moov'} component={MoovBalance} />
         <RouteWithSidebar exact path={Routes.DailyReport.path} title={'Rapport journalier'} component={DailyReport} />
         <RouteWithSidebar exact path={Routes.CollectionDailyReport.path} title={'Rapport journalier'} component={CollectionDailyReport} />
-        <RouteWithSidebar exact path={Routes.MerchantCollection.path} title={'Paiement - Solde marchand HUB2'} component={MerchantCollection} />
+        <RouteWithSidebar exact path={Routes.MerchantCollectionBalance.path} title={'Paiement - Solde marchand HUB2'} component={MerchantCollectionBalance} />
 
         <RouteWithSidebar exact path={Routes.HistoryMerchantBalanceTransfer.path} title={'Transfert - Historique solde marchand'} component={HistoryMerchantBalanceTransfer} />
         <RouteWithSidebar exact path={Routes.HistoryProviderBalanceTransfer.path} title={'Transfert - Historique solde fournisseur'} component={HistoryProviderBalanceTransfer} />

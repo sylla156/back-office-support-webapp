@@ -11,8 +11,8 @@ import { Routes } from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
 import { format } from "date-fns";
-import { MerchantTransferBalance } from "../components/globalReport/MerchantTransferBalance";
-import { MerchantCollectionBalance } from "../components/globalReport/MerchantCollectionBalance";
+import { MerchantTransferBalanceInGlobalReport } from "../components/globalReport/MerchantTransferBalanceInGlobalReport";
+import { MerchantCollectionBalanceInGlobalReport } from "../components/globalReport/MerchantCollectionBalanceInGlobalReport";
 import { ProviderBalance } from "../components/globalReport/ProviderBalance";
 import { DateWidgetList } from "../components/globalReport/DateWidgetList";
 import { APPKEY, MERCHANTS_URL } from "./constante/Const";
@@ -316,12 +316,12 @@ export default () => {
       <div  className="mt-4">
       <h3>Transfert - Solde Marchand</h3>
       </div>
-      <MerchantTransferBalance version={currentVersion} />
+      <MerchantTransferBalanceInGlobalReport version={currentVersion} />
 
       <div className="mt-4">
       <h3>Paiement - Solde Marchand</h3>
       </div>
-      <MerchantCollectionBalance version={currentVersion} />
+      <MerchantCollectionBalanceInGlobalReport version={currentVersion} />
 
       <div className="mt-5"></div>
       <h1>Transferts</h1>

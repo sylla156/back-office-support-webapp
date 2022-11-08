@@ -17,7 +17,11 @@ export const BASE_URL_COLLECTION_STATS = "/stats/merchant-collection";
 
 export const BASE_URL_REFRESH_STATUS_WITH_PARAMS_2 = "&isForceStatus=" + false + "&merchantId=" + "&status=pending" + "&to="
 
-export const BASE_URL_MERCHANT_BALANCE = "/balances/merchant-transfer";
+export const BASE_URL_MERCHANT_TRANSFER_BALANCES = "/balances/merchant-transfers";
+
+export const BASE_URL_MERCHANT_TRANSFER_BALANCE = "/balances/merchant-transfer";
+
+export const BASE_URL_MERCHANT_COLLECTION_BALANCES = "/balances/merchant-collections";
 
 export const BASE_URL_MERCHANT_COLLECTION_BALANCE = "/balances/merchant-collection";
 

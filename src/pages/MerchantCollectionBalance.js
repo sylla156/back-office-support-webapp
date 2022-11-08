@@ -54,6 +54,10 @@ export default () => {
     getMerchantList();
   }, []);
 
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+
   return (
     <>
       {isLoaded ? (

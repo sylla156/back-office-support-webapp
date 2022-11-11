@@ -11,7 +11,8 @@ import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
 
 export const MerchantCollection = (props) => {
-  const merchantId = props.merchantId;
+  const merchant = props.merchant;
+  const {merchantId} = merchant;
   const [isLoaded, setIsLoaded] = useState(true);
   const [merchantBalance, setMerchantBalance] =
     useState([]);
@@ -70,7 +71,7 @@ export const MerchantCollection = (props) => {
   return (
     <>
       {isLoaded ? (
-        <MerchantCounterWidget key={merchantBalance.id} balance={merchantBalance} onRefresh={incrementVersion} />
+        <MerchantCounterWidget key={merchantBalance.id} balance={merchantBalance} merchant={merchant} onRefresh={incrementVersion} />
       ) : (
         <div className="d-flex justify-content-center">
           <Spinner animation="border " size="sm" role="status">

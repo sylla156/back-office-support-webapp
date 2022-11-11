@@ -73,7 +73,7 @@ export default () => {
               lg={4}
               className="mb-4 border-warning "
             >
-            <MerchantCollection key={merchant.id} merchantId={merchant.merchantId}/>
+            <MerchantCollection key={merchant.id} merchant={merchant}/>
             </Col>
               </>
             )

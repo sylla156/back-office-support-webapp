@@ -76,7 +76,7 @@ export default () => {
                 >
                   <MerchantBalance
                     key={merchant.id}
-                    merchantId={merchant.merchantId}
+                    merchant={merchant}
                   />
                 </Col>
               </>

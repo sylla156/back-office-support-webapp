@@ -9,7 +9,8 @@ import { Col, Row, Spinner } from "@themesberg/react-bootstrap";
 import AlertDismissable from "../components/AlertDismissable";
 
 export const MerchantBalance = (props) => {
-  const merchantId = props.merchantId;
+  const merchant = props.merchant;
+  const {merchantId} = merchant;
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [merchantBalance, setMerchantBalance] = useState([]);
@@ -67,7 +68,7 @@ export const MerchantBalance = (props) => {
   return (
     <>
       {isLoaded ? (
-        <MerchantCounterWidget key={merchantBalance.id} balance={merchantBalance} onRefresh={incrementVersion} />
+        <MerchantCounterWidget key={merchantBalance.id} balance={merchantBalance} merchant={merchant} onRefresh={incrementVersion} />
       ) : (
         <div className="d-flex justify-content-center">
           <Spinner animation="border " size="sm" role="status">

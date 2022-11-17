@@ -49,7 +49,6 @@ export const MerchantCollection = (props) => {
           if (error.response.status === 401) {
             setShouldLogin(true);
           } else {
-            console.log(error.response.data.message);
             setErrorData(error.response.data.message);
           }
         }
@@ -57,7 +56,6 @@ export const MerchantCollection = (props) => {
   };
 
   const incrementVersion = ()=> setVersion((currentVersion)=> {
-    console
     return currentVersion + 1;
   })
   useEffect(() => {

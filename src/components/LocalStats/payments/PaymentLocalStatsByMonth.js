@@ -82,7 +82,6 @@ export default () => {
 
     return values;
   }
-  console.log("formattedValue ", formattedValue())
 
   return (
     <>

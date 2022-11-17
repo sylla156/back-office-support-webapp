@@ -156,8 +156,6 @@ export const MerchantCounterWidget = (props) => {
     const {amount, currency, date} = props.balance;
     const onRefresh = props.onRefresh;
 
-    console.log("name ", name, " amount ", amount);
-
     const createdAtUtc = new Date(date);
     const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
     return (
@@ -209,7 +207,6 @@ export const MerchantCounterWidget = (props) => {
 
 export const CounterWidgetHistory = (props) => {
 
-    console.log(props);
     const {amount, currency, balanceDate, day, logo, name} = props.balance;
 
     const dateAtUtc = new Date(day);
@@ -257,7 +254,6 @@ export const CounterWidgetHistory = (props) => {
 
 export const CounterWidgetMerchantBalance = (props) => {
 
-    console.log(props);
     const {amount, currency, date, logo, name} = props.balance;
 
     const createdAtUtc = new Date(date);

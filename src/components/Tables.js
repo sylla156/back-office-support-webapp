@@ -210,8 +210,6 @@ export const TransactionsTable = (props) => {
 
         const {id, status, merchantId, amount, description, mode, currency, reference} = props;
         const statusVariant = status === "pending" ? "warning" : status === "failed" ? "danger" : "primary";
-
-        console.log("id table refresh : " + id);
    
         return (
             <tr>

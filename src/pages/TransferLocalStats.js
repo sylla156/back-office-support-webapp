@@ -28,8 +28,6 @@ export default () => {
   const weekValue = () => week ? weekList.pay_week : formattedSubstractDateNow;
   const orderValue = ()=> order ? chooseOrderList.sorted : SelectDefaultValues.order;
 
-  console.log("order ", order);
-
   const getSuccessfulCountriesPaymentCommissionWeek = ()=> {
     setIsLoaded(false);
     setErrorData(null);

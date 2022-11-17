@@ -47,7 +47,7 @@ export default () => {
   const [merchantId, setMerchantId] = useState(undefined);
   const [transferList, setTransferList] = useState([]);
   const [count, setCount] = useState(undefined);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0)
 
   const statusValue = () =>
     status ? TransferstatusList.id : SelectDefaultValues.status;

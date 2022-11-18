@@ -80,8 +80,7 @@ export default (props) => {
 
     const categoryList = commissionList.categoryList;
     if (!categoryList) return [];
-
-    console.log(categoryList[0]);
+    
     return categoryList;
   };
 

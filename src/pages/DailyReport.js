@@ -128,7 +128,6 @@ export default () => {
     const stats = merchantStats.stats;
     if (!stats) return [];
 
-    console.log(stats[0]);
     return stats;
   };
 

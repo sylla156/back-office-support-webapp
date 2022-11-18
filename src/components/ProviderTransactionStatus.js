@@ -11,10 +11,6 @@ export default function ProviderTransactionStatus(props) {
 
     const checkProvider = props.providerTransfer;
 
-
-    console.log("props value " + props);
-    console.log("provider value " + props.providerTransfer);
-
     const processorData = props.providerTransfer.processorData;
 
 
@@ -24,7 +20,6 @@ export default function ProviderTransactionStatus(props) {
 
     if (failureCause) {
 
-        console.log("failureCause define");
         cause = failureCause.cause;
         message = failureCause.message;
     

@@ -60,12 +60,12 @@ export const StatusConfirmationReportingList = (props) => {
               })}
             </tbody>
           </Table>
-          {/* <TablePagination
+          <TablePagination
             size={listSize}
             currentPage={currentPage}
             onPageChange={onPageChange}
             count={count}
-          /> */}
+          />
         </Card.Body>
       </Card>
     </>

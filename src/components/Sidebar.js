@@ -297,6 +297,18 @@ export default (props = {}) => {
                   link={Routes.SmsOrangeCashInCandidate.path}
                 />
               </CollapsableNavItem>
+              <CollapsableNavItem title="RO en Transfert" icon={faCalendar}>
+                <NavItem
+                    title="Rapport orange"
+                    icon={faCalendar}
+                    link={Routes.OrangeReportTransfer.path}
+                    />
+                <NavItem
+                    title="Candidates"
+                    icon={faCalendar}
+                    link={Routes.OrangeReportTransferCandidate.path}
+                    />
+              </CollapsableNavItem>
               <NavItem
                 title="Réglage balance"
                 link={Routes.BalanceSetting.path}

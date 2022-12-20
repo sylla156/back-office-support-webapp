@@ -10,7 +10,7 @@ export const OrangeReportInCandidateList = (props) => {
   if (orangeReportTransferCandidates && orangeReportTransferCandidates.length === 0) {
     return (
       <Card>
-        <Card.Body>Pas de sms candidate</Card.Body>
+        <Card.Body>Pas de rapport candidate</Card.Body>
       </Card>
     );
   }

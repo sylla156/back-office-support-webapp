@@ -92,7 +92,7 @@ export default () => {
           perPage: PAGE_SIZE,
         },
         headers: {
-          Appkey: APPKEY,
+          AppKey: APPKEY,
           authenticationtoken: cookies.token,
         },
       })

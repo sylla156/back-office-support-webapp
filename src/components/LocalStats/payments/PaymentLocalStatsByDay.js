@@ -32,6 +32,11 @@ export default () => {
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
+  
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+
   const getSuccessfulPaymentCommissionByDay = () => {
     setIsLoaded(false);
     setErrorData(null);

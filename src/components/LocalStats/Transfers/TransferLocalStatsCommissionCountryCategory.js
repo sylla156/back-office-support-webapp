@@ -35,6 +35,11 @@ export default (props) => {
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
+
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  
   const getSuccessfulPaymentCommissionCountryCategory = () => {
     setIsLoaded(false);
     setErrorData(null);

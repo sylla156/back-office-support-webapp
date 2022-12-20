@@ -22,6 +22,11 @@ export default () => {
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
+
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  
   const currentDate = new Date();
 
   const formattedCurrentDate = format(currentDate, 'yyyy-I');

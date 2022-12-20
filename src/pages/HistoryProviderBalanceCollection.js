@@ -34,7 +34,7 @@ export default () => {
   const [day, setDateDay] = useState(undefined);
   // const [dateEnd, setDateEnd] = useState(undefined);
 
-  if(!cookies) {
+  if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
 

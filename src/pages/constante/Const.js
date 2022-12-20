@@ -83,7 +83,9 @@ export const LOCAL_STATS_COMMISSION_COUNTRY_TRANSFER_CATEGORY_WEEK= "/local-stat
 export const LOCAL_STATS_COMMISSION_ALL_COUNTRY_TRANSFER_CATEGORY_WEEK= "/local-stats/commission-transfer-category-all-country-week";
 export const LOCAL_STATS_COMMISSION_COUNTRY_TRANSFER_WEEK= "/local-stats/commission-transfer-country-week";
 
-
+export const ORANGE_REPORT_TRANSFER_URL="/orange-report-transfer"
+export const ORANGE_REPORT_TRANSFER_UPLOAD_URL="/orange-report-transfer/upload-file"
+export const ORANGE_REPORT_TRANSFER_CANDIDATES="/orange-report-transfer/candidates"
 export const PAGE_SIZE = 10;
 
 export const TransferstatusList = [
@@ -164,6 +166,18 @@ export const SelectDefaultValues = {
   order: "volume-ASC"
 }
 
+export const OrangeReportTransferCountry = [
+  {
+    "id":"ci",
+    "country":"ci",
+    "name":"CÔTE D'IVOIRE",
+  },
+  {
+    "id":"sn",
+    "country":"sn",
+    "name":"SÉNÉGAL",
+  },
+];
 export const ChooseCountry = [
   //make all countries
   {

@@ -34,7 +34,7 @@ export const DangerouslyForceStatus = (props)=> {
 
   const [cookies, ] = useCookies(["token"]);
 
-  if(!cookies) {
+  if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
 

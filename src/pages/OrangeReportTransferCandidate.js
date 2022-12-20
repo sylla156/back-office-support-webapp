@@ -7,16 +7,16 @@ import {
   Button,
   InputGroup,
 } from "@themesberg/react-bootstrap";
+import { format } from "date-fns";
 import { useCookies } from "react-cookie";
 import { Routes } from "../routes";
 import { Redirect } from "react-router-dom";
 import AxiosWebHelper from "../utils/axios-helper";
-import { APPKEY, SMS_ORANGE_CASH_IN_CANDIDATE } from "./constante/Const";
-import { SmsOrangeCashInCandidateList } from "../components/sms/SmsOrangeCashInCandidateList";
-import { OrangeCashInInfoList } from "../components/sms/OrangeCashInInfos";
-import { format } from "date-fns";
-import { SmsContentGlobalCashInCandidate } from "./SmsContentGlobalCashInCandidate";
-export default () => {
+import { APPKEY, ORANGE_REPORT_TRANSFER_CANDIDATES } from "./constante/Const";
+import { OrangeReportContentGlobalCandidate } from "./OrangeReportContentGlobalCandidate";
+
+export default ()=> {
+
   const currentDate = new Date();
 
   const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
@@ -45,11 +45,11 @@ export default () => {
   
   const axios = AxiosWebHelper.getAxios();
 
-  const getSmsOrangeCashInCandidates = () => {
+  const getOrangeReportTransferCandidates = () => {
     setErrorData(null);
     setIsLoaded(false);
     axios
-      .get(SMS_ORANGE_CASH_IN_CANDIDATE, {
+      .get(ORANGE_REPORT_TRANSFER_CANDIDATES, {
         params: {
           from: startDate,
           to: endDate,
@@ -86,8 +86,7 @@ export default () => {
 
   return (
     <>
-      {/* filter system */}
-      <div className="align-items-center d-flex flex-wrap">
+       <div className="align-items-center d-flex flex-wrap">
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
           <InputGroup>
             <InputGroup.Text></InputGroup.Text>
@@ -120,17 +119,18 @@ export default () => {
               className="mx-2"
               variant="primary"
               type="button"
-              onClick={getSmsOrangeCashInCandidates}
+              onClick={getOrangeReportTransferCandidates}
             >
               Filtrer
             </Button>
           </div>
         </Col>
       </div>
+
       {isLoaded ? (
         candidates.map((item)=> {
           return (
-           <SmsContentGlobalCashInCandidate candidates={item} />
+           <OrangeReportContentGlobalCandidate candidates={item} />
           )
         })
       ) : (
@@ -142,4 +142,4 @@ export default () => {
       )}
     </>
   );
-};
+}

@@ -107,6 +107,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
     description,
   } = transactionsInfos;
 
+  const isSuggestions = smsContents.length === 0;
   const actionButton = () => {
     if (canForceStatus) return;
 
@@ -161,6 +162,11 @@ StatusConfirmationReportingList.TableRow = (props) => {
           );
         })}
         {actionButton()}
+        <div
+          className="bg-dark m-auto mt-3"
+          style={{ height: 1, width: "100%" }}
+        ></div>
+        <p>Candidates suggestions</p>
         <CandidateSuggestion candidates={smsContents} message={smsContentMessage} label={"SMS"}/>
         <CandidateSuggestion candidates={orangeReportTransfers} message={orangeReportTransferMessage} label={"RO"} />
       </td>

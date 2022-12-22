@@ -1,10 +1,16 @@
 import React from "react";
 import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import { AddCandidatesSuggestions } from "../candidates/AddCandidatesSuggestions";
 
 export const CandidateSuggestion = (props)=>{
   const candidates = props.candidates;
   const message = props.message;
   const label = props.label;
+  const onRefresh = props.onRefresh;
+  const userCanForceStatus = props.userCanForceStatus;
+  const transfer=props.transfer;
+  const id= props.id
+
   if (candidates.length !== 0) {
     return candidates.map((item, index) => {
       const isStatus = item?.status === 'successful';
@@ -26,6 +32,8 @@ export const CandidateSuggestion = (props)=>{
                 </Badge> : <Badge className="mx-1 mb-3" bg={`success`}>
                   <span className="h6 text-light"> {item.id} </span>
                 </Badge>}
+               
+                <AddCandidatesSuggestions id={id} candidate={item} onRefresh={onRefresh} transfer={transfer}  />
               </>
             )}
           </Col>

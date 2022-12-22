@@ -167,8 +167,22 @@ StatusConfirmationReportingList.TableRow = (props) => {
           style={{ height: 1, width: "100%" }}
         ></div>
         <p>Candidates suggestions</p>
-        <CandidateSuggestion candidates={smsContents} message={smsContentMessage} label={"SMS"}/>
-        <CandidateSuggestion candidates={orangeReportTransfers} message={orangeReportTransferMessage} label={"RO"} />
+        <CandidateSuggestion 
+            candidates={smsContents} 
+            message={smsContentMessage} 
+            label={"SMS"} 
+            id={id} 
+            onRefresh={onRefresh} 
+            transfer={transactionsInfos} 
+        />
+        <CandidateSuggestion 
+          candidates={orangeReportTransfers}
+          message={orangeReportTransferMessage} 
+          label={"RO"} 
+          id={id} 
+          onRefresh={onRefresh}
+          transfer={transactionsInfos}
+        />
       </td>
 
       {userCanForceStatus && (

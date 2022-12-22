@@ -48,7 +48,7 @@ export const AddCandidatesSuggestions = (props)=> {
     return <Redirect to={Routes.Signin.path} />;
   }
 
-  if (confirmedStatus === "failed") {
+  if (confirmedStatus === "failed" && !processorReference) {
     processorReference = "";
   }
 

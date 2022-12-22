@@ -31,15 +31,17 @@ export const AddCandidatesSuggestions = (props)=> {
   const transfer = props.transfer;
   const candidate = props.candidate;
 
-  const descriptionCand = candidate?.content ? candidate?.content : candidate?.rawData
+  const descriptionCand = candidate?.content ? candidate?.content : candidate?.rawData;
+  const reference = candidate?.reference ? candidate?.reference : candidate?.operatorRef;
+  const status = candidate?.operatorRef ? "successful" : candidate?.status;
 
   const [isLoading, setIsLoading] = useState(false);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
   const [show, setShow] = useState(false);
 
-  const [confirmedStatus, setConfirmedStatus] = useState(candidate?.status);
-  let [processorReference, setProcessorReference] = useState(candidate?.reference);
+  const [confirmedStatus, setConfirmedStatus] = useState(status);
+  let [processorReference, setProcessorReference] = useState(reference);
   const [description, setDescription] = useState(descriptionCand);
 
   const [cookies, ] = useCookies(["token"]);

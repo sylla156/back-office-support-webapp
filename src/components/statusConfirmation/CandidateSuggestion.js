@@ -7,6 +7,8 @@ export const CandidateSuggestion = (props)=>{
   const label = props.label;
   if (candidates.length !== 0) {
     return candidates.map((item, index) => {
+      const isStatus = item?.status === 'successful';
+      const statusVariant = isStatus ? "success" : "danger";
       return (
         <>
           <Col md={6} className="">
@@ -19,9 +21,11 @@ export const CandidateSuggestion = (props)=>{
             </span>
             {item.id && (
               <>
-                <Badge className="mx-1 mb-3" bg={`success`}>
-                <span className="h6 text-light"> {item.id} </span>
-              </Badge>
+                {item?.status ?<Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
+                  <span className="h6 text-light"> {item.id} </span>
+                </Badge> : <Badge className="mx-1 mb-3" bg={`success`}>
+                  <span className="h6 text-light"> {item.id} </span>
+                </Badge>}
               </>
             )}
           </Col>

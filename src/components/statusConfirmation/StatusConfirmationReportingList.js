@@ -6,6 +6,7 @@ import { DangerouslyForceStatus } from "./DangerouslyForceStatus";
 import { UpdateStatusConfirmation } from "./UpdateStatusConfirmation";
 import { ForceStatusTableListInfos } from "../ForceStatusTableListInfos";
 import { CandidateSuggestion } from "./CandidateSuggestion";
+import { NeedToUpdateLocalDate } from "./NeedToUpdateLocalDate";
 
 export const StatusConfirmationReportingList = (props) => {
   let {
@@ -15,6 +16,7 @@ export const StatusConfirmationReportingList = (props) => {
     onPageChange,
     onRefresh,
     userCanForceStatus,
+    userCanUpdateLocalData,
   } = props;
   const listSize = listInfo.length;
   return (
@@ -58,6 +60,7 @@ export const StatusConfirmationReportingList = (props) => {
                     key={`transaction-${t.transactionsInfos.id}-${index}`}
                     onRefresh={onRefresh}
                     userCanForceStatus={userCanForceStatus}
+                    userCanUpdateLocalData={userCanUpdateLocalData}
                     {...t}
                   />
                 );
@@ -79,15 +82,18 @@ export const StatusConfirmationReportingList = (props) => {
 StatusConfirmationReportingList.TableRow = (props) => {
   const {
     transactionsInfos,
-    canForceStatus,
-    canForceStatusMessage,
-    statusConfirmations,
-    onRefresh,
-    userCanForceStatus,
-    smsContents,
-    smsContentMessage,
-    orangeReportTransfers,
-    orangeReportTransferMessage,
+    canForceStatus, // ok
+    canForceStatusMessage, //ok
+    statusConfirmations, // ok
+    onRefresh, // ok
+    userCanForceStatus, // ok
+    smsContents, // ok
+    smsContentMessage, // ok
+    orangeReportTransfers, // ok
+    orangeReportTransferMessage, // ok
+    shouldUpdateLocalData,
+    messageLocalData,
+    userCanUpdateLocalData,
   } = props;
   let {
     id,
@@ -107,7 +113,6 @@ StatusConfirmationReportingList.TableRow = (props) => {
     description,
   } = transactionsInfos;
 
-  const isSuggestions = smsContents.length === 0;
   const actionButton = () => {
     if (canForceStatus) return;
 
@@ -122,88 +127,105 @@ StatusConfirmationReportingList.TableRow = (props) => {
   };
 
   return (
-    <tr>
-      {/* <td>
-        <Card.Link className="fw-normal">{id}</Card.Link>
-      </td> */}
-      <td>
-        <ForceStatusTableListInfos transactionsInfos={transactionsInfos} />
-      </td>
-      <td>
-        {/* {statusConfirmations && statusConfirmations.length !==0 ? statusConfirmations[1].confirmedStatus : ""} */}
-        {statusConfirmations.map((item, index) => {
-          const statusVariant =
-            item.confirmedStatus === "successful" ||
-            item.confirmedStatus === "success" ||
-            item.confirmedStatus === "SUCCESSFUL" ||
-            item.confirmedStatus === "SUCCESS"
-              ? "success"
-              : item.confirmedStatus === "pending" ||
-                item.confirmedStatus === "Pending" ||
-                item.confirmedStatus === "PENDING"
-              ? "warning"
-              : item.confirmedStatus === "FAILLED" ||
-                item.confirmedStatus === "failed" ||
-                item.confirmedStatus === "FAILED" ||
-                item.confirmedStatus === "failled"
-              ? "danger"
-              : "primary";
-          return (
-            <>
-              {/* modal update */}
-              <UpdateStatusConfirmation
-                statusConfirmation={item}
-                statusVariantColor={statusVariant}
-                onRefresh={onRefresh}
-                userCanForceStatus={userCanForceStatus}
-                transfer={transactionsInfos}
-              />
-            </>
-          );
-        })}
-        {actionButton()}
-        <div
-          className="bg-dark m-auto mt-3"
-          style={{ height: 1, width: "100%" }}
-        ></div>
-        <p>Candidates suggestions</p>
-        <CandidateSuggestion 
-            candidates={smsContents} 
-            message={smsContentMessage} 
-            label={"SMS"} 
-            id={id} 
-            onRefresh={onRefresh} 
-            transfer={transactionsInfos} 
-        />
-        <CandidateSuggestion 
-          candidates={orangeReportTransfers}
-          message={orangeReportTransferMessage} 
-          label={"RO"} 
-          id={id} 
-          onRefresh={onRefresh}
-          transfer={transactionsInfos}
-        />
-      </td>
-
-      {userCanForceStatus && (
+    <>
+      <tr>
         <td>
-          <span className="fw-normal text-wrap">
-            {canForceStatus ? (
-              <DangerouslyForceStatus
-                id={id}
-                onRefresh={onRefresh}
-                transfer={transactionsInfos}
-              />
-            ) : (
-              <AddStatusConfirmation
-                id={id}
-                onRefresh={onRefresh}
-                transfer={transactionsInfos}
-              />
-            )}
-          </span>
+          <ForceStatusTableListInfos transactionsInfos={transactionsInfos} />
         </td>
-      )}
-    </tr>
+        <td>
+          {statusConfirmations.map((item, index) => {
+            const statusVariant =
+              item.confirmedStatus === "successful" ||
+              item.confirmedStatus === "success" ||
+              item.confirmedStatus === "SUCCESSFUL" ||
+              item.confirmedStatus === "SUCCESS"
+                ? "success"
+                : item.confirmedStatus === "pending" ||
+                  item.confirmedStatus === "Pending" ||
+                  item.confirmedStatus === "PENDING"
+                ? "warning"
+                : item.confirmedStatus === "FAILLED" ||
+                  item.confirmedStatus === "failed" ||
+                  item.confirmedStatus === "FAILED" ||
+                  item.confirmedStatus === "failled"
+                ? "danger"
+                : "primary";
+            return (
+              <>
+                <UpdateStatusConfirmation
+                  statusConfirmation={item}
+                  statusVariantColor={statusVariant}
+                  onRefresh={onRefresh}
+                  userCanForceStatus={userCanForceStatus}
+                  transfer={transactionsInfos}
+                />
+              </>
+            );
+          })}
+          {actionButton()}
+          {transactionsInfos?.gatewayId === "hub2_mm_ci_orange_live" && (
+            <>
+              <div
+                className="bg-dark m-auto mt-3"
+                style={{ height: 1, width: "100%" }}
+              ></div>
+              <p>Candidates suggestions</p>
+            </>
+          ) }
+          {shouldUpdateLocalData ? (
+            <NeedToUpdateLocalDate
+              userCanUpdateLocalData={userCanUpdateLocalData}
+              messageLocalData={messageLocalData}
+            />
+          ) : (
+            <CandidateSuggestion
+              candidates={smsContents}
+              message={smsContentMessage}
+              label={"SMS"}
+              id={id}
+              onRefresh={onRefresh}
+              transfer={transactionsInfos}
+              messageLocalData={messageLocalData}
+            />
+          )}
+          {shouldUpdateLocalData ? (
+            <NeedToUpdateLocalDate
+              userCanUpdateLocalData={userCanUpdateLocalData}
+              messageLocalData={messageLocalData}
+            />
+          ) : (
+            <CandidateSuggestion
+              candidates={orangeReportTransfers}
+              message={orangeReportTransferMessage}
+              label={"RO"}
+              id={id}
+              onRefresh={onRefresh}
+              transfer={transactionsInfos}
+              messageLocalData={messageLocalData}
+            />
+          )}
+        </td>
+
+        {userCanForceStatus && (
+          <td>
+            <span className="fw-normal text-wrap">
+              {canForceStatus ? (
+                <DangerouslyForceStatus
+                  id={id}
+                  onRefresh={onRefresh}
+                  transfer={transactionsInfos}
+                />
+              ) : (
+                <AddStatusConfirmation
+                  id={id}
+                  onRefresh={onRefresh}
+                  transfer={transactionsInfos}
+                />
+              )}
+            </span>
+          </td>
+        )}
+      </tr>
+    </>
   );
 };

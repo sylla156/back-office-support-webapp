@@ -9,12 +9,27 @@ export const CandidateSuggestion = (props)=>{
   const onRefresh = props.onRefresh;
   const userCanForceStatus = props.userCanForceStatus;
   const transfer=props.transfer;
-  const id= props.id
-
+  const id= props.id;
+  const messageLocalData = props.messageLocalData;
+  
+  if(!candidates) {
+    return;
+  }
+  // if(messageLocalData) {
+  //   return (
+  //     <>
+  //       <Badge className="mx-1 mb-3" bg={`danger`}>
+  //            <span className="h6 text-light"> {messageLocalData} </span>
+  //       </Badge>
+  //     </>
+  //   )
+  // }
   if (candidates.length !== 0) {
     return candidates.map((item, index) => {
-      const isStatus = item?.status === 'successful';
+      // const {content, orangeReport, message, isLocalTransfer, localTransfer} = item
+      const isStatus = item?.content?.status === 'successful';
       const statusVariant = isStatus ? "success" : "danger";
+      console.log("item ", item)
       return (
         <>
           <Col md={6} className="">
@@ -25,15 +40,25 @@ export const CandidateSuggestion = (props)=>{
             >
               {label}
             </span>
-            {item.id && (
+            {item?.content.id && (
               <>
-                {item?.status ?<Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
-                  <span className="h6 text-light"> {item.id} </span>
+                {item?.content?.status ?<Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
+                  <span className="h6 text-light"> {item?.content?.id} </span>
                 </Badge> : <Badge className="mx-1 mb-3" bg={`success`}>
-                  <span className="h6 text-light"> {item.id} </span>
+                  <span className="h6 text-light"> {item?.content?.id} </span>
+                </Badge>}
+
+                {item?.isLocalTransfer && <Badge className="mx-1 mb-3" bg={`danger`}>
+                  <span className="h6 text-light"> {item?.localTransfer?.id} </span>
+                </Badge>}
+
+                {item?.isLocalTransfer ?<Badge className="mx-1 mb-3" bg={`danger`}>
+                  <span className="h6 text-light"> {item?.message} </span>
+                </Badge> : <Badge className="mx-1 mb-3" bg={`success`}>
+                  <span className="h6 text-light"> {item?.message} </span>
                 </Badge>}
                
-                <AddCandidatesSuggestions id={id} candidate={item} onRefresh={onRefresh} transfer={transfer}  />
+                {item?.isLocalTransfer ? "" : <AddCandidatesSuggestions id={id} candidate={item?.content} onRefresh={onRefresh} transfer={transfer}  />}
               </>
             )}
           </Col>

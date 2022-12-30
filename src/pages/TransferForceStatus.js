@@ -23,6 +23,7 @@ import { format, addMinutes, parseISO, subDays } from "date-fns";
 import DateTimePicker from "react-datetime-picker";
 import AlertDismissable from "../components/AlertDismissable";
 import { StatusConfirmationReportingList } from "../components/statusConfirmation/StatusConfirmationReportingList";
+import { UpdateLocalData } from "../components/statusConfirmation/UpdateLocalData";
 
 export default () => {
   const currentDate = new Date();
@@ -48,7 +49,7 @@ export default () => {
   const [transactionForceStatus, setTransactionForceStatus] = useState([]);
   const [count, setCount] = useState(undefined);
   const [currentPage, setCurrentPage] = useState(0);
-  const [version, setVersion] = useState(0)
+  const [version, setVersion] = useState(0);
 
   const statusValue = () =>
     status ? StatusConfirmationList.id : SelectDefaultValues.status;
@@ -58,14 +59,15 @@ export default () => {
   const handleEndDate = (value) => {
     setEndDate(value);
   };
-  const [cookies, ] = useCookies(["token", "user"]);
+  const [cookies] = useCookies(["token", "user"]);
 
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
   }
 
   const userCanForceStatus = cookies.user?.canForceStatus;
-  
+  const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
+
   const axios = AxiosWebHelper.getAxios();
 
   const fileName = "status-confirmation-reporting-export";
@@ -144,16 +146,17 @@ export default () => {
   const onPageChange = (page = 0) => {
     setCurrentPage(page);
   };
-  const incrementVersion = ()=> setVersion((currentVersion)=> {
-    console
-    return currentVersion + 1;
-  })
+  const incrementVersion = () =>
+    setVersion((currentVersion) => {
+      console;
+      return currentVersion + 1;
+    });
 
   const onClearFilters = () => {
     setMerchantId("");
     setStartDate(defaultStartDate);
     setEndDate(defaultEndDate);
-    setStatus("pending")
+    setStatus("pending");
   };
 
   if (shouldLogin) {
@@ -239,14 +242,14 @@ export default () => {
             </Button>
 
             {isLoadedCSV ? (
-            <Button
-              variant="outline-primary"
-              className=""
-              type="button"
-              onClick={exportData}
-            >
-              Exporter
-            </Button>
+              <Button
+                variant="outline-primary"
+                className=""
+                type="button"
+                onClick={exportData}
+              >
+                Exporter
+              </Button>
             ) : (
               <div className="d-flex justify-content-center">
                 <Spinner animation="border " size="sm" role="status">
@@ -254,18 +257,25 @@ export default () => {
                 </Spinner>
               </div>
             )}
-
           </div>
         </Col>
       </div>
 
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4"></div>
-            <div >
-                <AlertDismissable message={errorData} variant="danger" show={!!errorData} onClose={()=>setErrorData(null)} />
-                <div>
-      
-                </div>
-            </div>
+      <div>
+        <AlertDismissable
+          message={errorData}
+          variant="danger"
+          show={!!errorData}
+          onClose={() => setErrorData(null)}
+        />
+        <div></div>
+      </div>
+
+     {userCanUpdateLocalData && <UpdateLocalData 
+        onRefresh={incrementVersion}
+        userCanUpdateLocalData={userCanUpdateLocalData}
+     />}
 
       {isLoaded ? (
         <Row>
@@ -275,10 +285,11 @@ export default () => {
             count={count}
             currentPage={currentPage}
             onPageChange={onPageChange}
-            onRefresh = {incrementVersion}
+            onRefresh={incrementVersion}
             userCanForceStatus={userCanForceStatus}
+            userCanUpdateLocalData={userCanUpdateLocalData}
           />
-        </Row> 
+        </Row>
       ) : (
         <div className="d-flex justify-content-center">
           <Spinner animation="border " size="sm" role="status">

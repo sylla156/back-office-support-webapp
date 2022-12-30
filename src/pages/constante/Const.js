@@ -88,6 +88,9 @@ export const ORANGE_REPORT_TRANSFER_UPLOAD_URL="/orange-report-transfer/upload-f
 export const ORANGE_REPORT_TRANSFER_CANDIDATES="/orange-report-transfer/candidates"
 export const PAGE_SIZE = 10;
 
+export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
+export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transaction-infos";
+
 export const TransferstatusList = [
   {
     id: 1,

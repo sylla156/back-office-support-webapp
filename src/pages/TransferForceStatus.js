@@ -163,6 +163,8 @@ export default () => {
     return <Redirect to={Routes.Signin.path} />;
   }
 
+  console.log("transactionForceStatus ", transactionForceStatus);
+
   useEffect(() => {
     statusConfirmaionReportingList();
   }, [currentPage, version]);

@@ -94,6 +94,8 @@ StatusConfirmationReportingList.TableRow = (props) => {
     shouldUpdateLocalData,
     messageLocalData,
     userCanUpdateLocalData,
+    messageReportLocalData,
+    shouldUpdateReportLocalData
   } = props;
   let {
     id,
@@ -194,7 +196,10 @@ StatusConfirmationReportingList.TableRow = (props) => {
               messageLocalData={messageLocalData}
             />
           ) : (
-            <CandidateSuggestion
+            shouldUpdateReportLocalData ? <NeedToUpdateLocalDate
+            userCanUpdateLocalData={userCanUpdateLocalData}
+            messageLocalData={messageReportLocalData}
+          /> :<CandidateSuggestion
               candidates={orangeReportTransfers}
               message={orangeReportTransferMessage}
               label={"RO"}
@@ -202,7 +207,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
               onRefresh={onRefresh}
               transfer={transactionsInfos}
               messageLocalData={messageLocalData}
-            />
+            /> 
           )}
         </td>
 

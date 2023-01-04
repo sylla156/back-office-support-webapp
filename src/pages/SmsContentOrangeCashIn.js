@@ -17,8 +17,15 @@ import {
   PAGE_SIZE,
   SMS_CONTENT_ORANGE_CASH_IN,
 } from "./constante/Const";
+import { format } from "date-fns";
 
 export default () => {
+  const currentDate = new Date();
+
+  const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
+  const defaultStartDate = `${formattedCurrentDate}T00:00:00Z`;
+  const defaultEndDate = `${formattedCurrentDate}T23:59:59Z`;
+
   const [errorData, setErrorData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
   const [shouldLogin, setShouldLogin] = useState(false);
@@ -28,8 +35,8 @@ export default () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [smsList, setSmsList] = useState([]);
   const [count, setCount] = useState(undefined);
-  const [startDate, setStartDate] = useState(undefined);
-  const [endDate, setEndDate] = useState(undefined);
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(defaultEndDate);
   const handleStartDate = (value) => {
     setStartDate(value);
   };
@@ -98,8 +105,8 @@ export default () => {
   const onFilters = () => {
     setAmount("");
     setMsisdn("");
-    setStartDate("");
-    setEndDate("")
+    setStartDate(defaultStartDate);
+    setEndDate(defaultEndDate)
     setOperatorRef("");
     setSmsList([])
     setCount(0);

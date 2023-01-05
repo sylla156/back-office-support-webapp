@@ -57,8 +57,11 @@ export const CandidateSuggestion = (props)=>{
                 </Badge> : <Badge className="mx-1 mb-3" bg={`success`}>
                   <span className="h6 text-light"> {item?.message} </span>
                 </Badge>}
-               
-                {item?.isLocalTransfer ? "" : <AddCandidatesSuggestions id={id} candidate={item?.content} onRefresh={onRefresh} transfer={transfer}  />}
+                {userCanForceStatus && (
+                  <span>
+                    {item?.isLocalTransfer ? "" : <AddCandidatesSuggestions id={id} candidate={item?.content} onRefresh={onRefresh} transfer={transfer}  />}
+                  </span>
+                )}
               </>
             )}
           </Col>

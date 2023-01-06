@@ -186,6 +186,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
               label={"SMS"}
               id={id}
               onRefresh={onRefresh}
+              userCanForceStatus={userCanForceStatus}
               transfer={transactionsInfos}
               messageLocalData={messageLocalData}
             />
@@ -205,6 +206,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
               label={"RO"}
               id={id}
               onRefresh={onRefresh}
+              userCanForceStatus={userCanForceStatus}
               transfer={transactionsInfos}
               messageLocalData={messageLocalData}
             /> 

@@ -51,6 +51,7 @@ export default () => {
   const [service, setService] = useState(undefined);
   const [fee, setFee] = useState(undefined);
   const [receiverPhoneNumber, setReceiverPhoneNumber] = useState(undefined);
+  const [receiverPhoneNumberSlice, setReceiverPhoneNumberSlice] = useState(undefined);
 
   const statusValue = () =>
     status ? AddStatusConfirmationList.id : SelectDefaultValues.status;
@@ -88,6 +89,7 @@ export default () => {
           to: endDate,
           fee,
           receiverPhoneNumber,
+          receiverPhoneNumberSlice,
           page: currentPage,
           perPage: PAGE_SIZE,
         },
@@ -133,6 +135,7 @@ export default () => {
     setService("");
     setFee("");
     setReceiverPhoneNumber("");
+    setReceiverPhoneNumberSlice("");
     setStartDate(defaultStartDate);
     setEndDate(defaultEndDate);
     setStatus("successful");
@@ -204,6 +207,30 @@ export default () => {
               placeholder="Reference"
               value={reference}
               onChange={(event) => setReference(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Montant Débité</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="Montant débité"
+              value={reference}
+              onChange={(event) => setFlowRateAmount(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Téléphone</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="3 derniers chiffres du numéros"
+              value={reference}
+              onChange={(event) => setReceiverPhoneNumberSlice(event.target.value)}
             />
           </InputGroup>
         </Col>

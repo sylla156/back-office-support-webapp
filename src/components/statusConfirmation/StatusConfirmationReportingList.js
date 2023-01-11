@@ -95,7 +95,9 @@ StatusConfirmationReportingList.TableRow = (props) => {
     messageLocalData,
     userCanUpdateLocalData,
     messageReportLocalData,
-    shouldUpdateReportLocalData
+    shouldUpdateReportLocalData,
+    shouldExtendSearch,
+    extendSearchMessage
   } = props;
   let {
     id,
@@ -203,6 +205,8 @@ StatusConfirmationReportingList.TableRow = (props) => {
           /> :<CandidateSuggestion
               candidates={orangeReportTransfers}
               message={orangeReportTransferMessage}
+              shouldExtendSearch={shouldExtendSearch}
+              extendSearchMessage={extendSearchMessage}
               label={"RO"}
               id={id}
               onRefresh={onRefresh}

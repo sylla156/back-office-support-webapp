@@ -10,7 +10,8 @@ export const CandidateSuggestion = (props)=>{
   const userCanForceStatus = props.userCanForceStatus;
   const transfer=props.transfer;
   const id= props.id;
-  const messageLocalData = props.messageLocalData;
+  const shouldExtendSearch = props.shouldExtendSearch;
+  const extendSearchMessage = props.extendSearchMessage;
   
   if(!candidates) {
     return;
@@ -29,7 +30,6 @@ export const CandidateSuggestion = (props)=>{
       // const {content, orangeReport, message, isLocalTransfer, localTransfer} = item
       const isStatus = item?.content?.status === 'successful';
       const statusVariant = isStatus ? "success" : "danger";
-      console.log("item ", item)
       return (
         <>
           <Col md={6} className="">
@@ -48,18 +48,19 @@ export const CandidateSuggestion = (props)=>{
                   <span className="h6 text-light"> {item?.content?.id} </span>
                 </Badge>}
 
-                {item?.isLocalTransfer && <Badge className="mx-1 mb-3" bg={`danger`}>
-                  <span className="h6 text-light"> {item?.localTransfer?.id} </span>
-                </Badge>}
-
                 {item?.isLocalTransfer ?<Badge className="mx-1 mb-3" bg={`danger`}>
                   <span className="h6 text-light"> {item?.message} </span>
                 </Badge> : <Badge className="mx-1 mb-3" bg={`success`}>
                   <span className="h6 text-light"> {item?.message} </span>
                 </Badge>}
+
+                {item?.isLocalTransfer && <Badge className="mx-1 mb-3" bg={`danger`}>
+                  <span className="h6 text-light"> Local transfer : {item?.localTransfer?.id} </span>
+                </Badge>}
+                
                 {userCanForceStatus && (
                   <span>
-                    {item?.isLocalTransfer ? "" : <AddCandidatesSuggestions id={id} candidate={item?.content} onRefresh={onRefresh} transfer={transfer}  />}
+                    {item?.isLocalTransfer ? <AddCandidatesSuggestions id={id} extendSearchMessage={"Introuvable dans le rapport opérateur"} onRefresh={onRefresh} transfer={transfer}  /> : <AddCandidatesSuggestions id={id} candidate={item?.content} onRefresh={onRefresh} transfer={transfer}  />}
                   </span>
                 )}
               </>
@@ -68,6 +69,25 @@ export const CandidateSuggestion = (props)=>{
         </>
       );
     });
+  }
+  if(shouldExtendSearch) {
+    return (
+      <>
+        <Col md={6} className="">
+        <br />
+        <span
+          className=" p-2 mb-2 rounded text-center border bg-warning border-warning"
+          style={{ width: 10, height: 10 }}
+        >
+          {label}
+        </span>
+          <Badge className="mx-1 mb-3" bg={`danger`}>
+            <span className="h6 text-light"> {extendSearchMessage} </span>
+          </Badge>
+          {userCanForceStatus && (<AddCandidatesSuggestions id={id} extendSearchMessage={extendSearchMessage} onRefresh={onRefresh} transfer={transfer}  />)}
+        </Col>
+      </>
+    );
   }
   return (
     <>

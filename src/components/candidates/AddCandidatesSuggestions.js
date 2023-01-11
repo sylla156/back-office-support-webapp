@@ -42,7 +42,7 @@ export const AddCandidatesSuggestions = (props)=> {
     descriptionCand = candidate?.content ? candidate?.content : candidate?.rawData;
     reference = candidate?.reference ? candidate?.reference : candidate?.operatorRef;
     status = candidate?.operatorRef ? "successful" : candidate?.status;
-  }{
+  }else{
     descriptionCand = props.extendSearchMessage;
     status = "failed"
     reference= "";

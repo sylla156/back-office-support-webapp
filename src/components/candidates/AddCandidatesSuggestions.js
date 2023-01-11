@@ -29,11 +29,25 @@ export const AddCandidatesSuggestions = (props)=> {
   const transactionId = props.id;
   const onRefresh = props.onRefresh;
   const transfer = props.transfer;
-  const candidate = props.candidate;
+  let candidate;
+  let descriptionCand;
+  let reference;
+  let status;
 
-  const descriptionCand = candidate?.content ? candidate?.content : candidate?.rawData;
-  const reference = candidate?.reference ? candidate?.reference : candidate?.operatorRef;
-  const status = candidate?.operatorRef ? "successful" : candidate?.status;
+  if(props.candidate) {
+    candidate = props.candidate;
+  }
+
+  if(candidate) {
+    descriptionCand = candidate?.content ? candidate?.content : candidate?.rawData;
+    reference = candidate?.reference ? candidate?.reference : candidate?.operatorRef;
+    status = candidate?.operatorRef ? "successful" : candidate?.status;
+  }{
+    descriptionCand = props.extendSearchMessage;
+    status = "failed"
+    reference= "";
+  }
+
 
   const [isLoading, setIsLoading] = useState(false);
   const [shouldLogin, setShouldLogin] = useState(false);

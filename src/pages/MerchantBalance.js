@@ -10,7 +10,7 @@ import AlertDismissable from "../components/AlertDismissable";
 
 export const MerchantBalance = (props) => {
   const merchant = props.merchant;
-  const {merchantId} = merchant;
+  const {id} = merchant;
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [merchantBalance, setMerchantBalance] = useState([]);
@@ -29,11 +29,11 @@ export const MerchantBalance = (props) => {
   const getMerchantBalance = () => {
     setIsLoaded(false);
     axios
-      .get(BASE_URL_MERCHANT_TRANSFER_BALANCES +"/"+ merchantId, {
+      .get(BASE_URL_MERCHANT_TRANSFER_BALANCES +"/"+ id, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
-        }
+        },
       })
       .then((result) => {
         setIsLoaded(true);
@@ -59,7 +59,7 @@ export const MerchantBalance = (props) => {
 
   useEffect(() => {
     getMerchantBalance();
-  }, [merchantId, version]);
+  }, [id, version]);
 
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;

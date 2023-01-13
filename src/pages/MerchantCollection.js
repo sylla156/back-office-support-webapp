@@ -12,7 +12,7 @@ import { Routes } from "../routes";
 
 export const MerchantCollection = (props) => {
   const merchant = props.merchant;
-  const {merchantId} = merchant;
+  const {id} = merchant;
   const [isLoaded, setIsLoaded] = useState(true);
   const [merchantBalance, setMerchantBalance] =
     useState([]);
@@ -32,7 +32,7 @@ export const MerchantCollection = (props) => {
   const getMerchantBalance = () => {
     setIsLoaded(false);
     axios
-      .get(BASE_URL_MERCHANT_COLLECTION_BALANCES + "/"+ merchantId, {
+      .get(BASE_URL_MERCHANT_COLLECTION_BALANCES + "/"+ id, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -60,7 +60,7 @@ export const MerchantCollection = (props) => {
   })
   useEffect(() => {
     getMerchantBalance();
-  }, [merchantId, version]);
+  }, [id, version]);
 
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;

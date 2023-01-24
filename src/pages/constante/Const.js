@@ -90,6 +90,8 @@ export const PAGE_SIZE = 10;
 
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transaction-infos";
+export const GET_LOCAL_RECONCILIATION_DATA="orange-report-transfer/reconciliation";
+export const GET_SERVICE_LIST="orange-report-transfer/all-report-service";
 
 export const TransferstatusList = [
   {
@@ -166,7 +168,8 @@ export const PaymentstatusList = [
 
 export const SelectDefaultValues = {
   status : "defaultStatus",
-  order: "volume-ASC"
+  order: "volume-ASC",
+  service: "Cash in"
 }
 
 export const OrangeReportTransferCountry = [

@@ -9,6 +9,7 @@ import {
   APPKEY,
   OrangeReportTransferCountry,
   ORANGE_REPORT_TRANSFER_URL,
+  GET_SERVICE_LIST,
   PAGE_SIZE,
   SelectDefaultValues,
   TransferstatusList,
@@ -24,6 +25,7 @@ import {
 } from "@themesberg/react-bootstrap";
 import { OrangeReportTransferList } from "../components/transferList/OrangeReportTransferList";
 import { OrangeReportTransferImportfile } from "../components/transferList/OrangeReportTransferImportFile";
+import { MakeORAndLocalTransferReconciliation } from "../components/transferList/MakeORAndLocalTransferReconciliation";
 export default () => {
   const currentDate = new Date();
 
@@ -52,6 +54,8 @@ export default () => {
   const [fee, setFee] = useState(undefined);
   const [receiverPhoneNumber, setReceiverPhoneNumber] = useState(undefined);
   const [receiverPhoneNumberSlice, setReceiverPhoneNumberSlice] = useState(undefined);
+  const [hasBeenCheck, setHasBeenCheck] = useState(undefined);
+  const [serviceList, setServiceList] = useState([]);
 
   const statusValue = () =>
     status ? AddStatusConfirmationList.id : SelectDefaultValues.status;
@@ -69,9 +73,12 @@ export default () => {
 
   const axios = AxiosWebHelper.getAxios();
 
-  if (!cookies || !cookies.token) {
+  if (!cookies.token) {
     return <Redirect to={Routes.Signin.path} />;
   }
+
+  const userCanForceStatus = cookies.user?.canForceStatus;
+  const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
   const getOrangeReportTransfer = () => {
     setIsLoaded(false);
@@ -115,6 +122,31 @@ export default () => {
         }
       });
   };
+  const getServiceList = () => {
+    setIsLoaded(false);
+    setErrorData(null);
+    axios
+      .get(GET_SERVICE_LIST, {
+        headers: {
+          AppKey: APPKEY,
+          authenticationtoken: cookies.token,
+        },
+      })
+      .then((result) => {
+        setIsLoaded(true);
+        setServiceList(result.data);
+      })
+      .catch((error) => {
+        setIsLoaded(true);
+        if (error.response) {
+          if (error.response.status === 401) {
+            setShouldLogin(true);
+          } else {
+            setErrorData(error.response.data.message);
+          }
+        }
+      });
+  };
 
   const onPageChange = (page = 0) => {
     setCurrentPage(page);
@@ -143,6 +175,10 @@ export default () => {
 
   useEffect(() => {
     getOrangeReportTransfer();
+  }, [currentPage, version]);
+  
+  useEffect(() => {
+    getServiceList();
   }, [currentPage, version]);
 
   if (shouldLogin) {
@@ -235,16 +271,27 @@ export default () => {
           </InputGroup>
         </Col>
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
-          <Form.Label>Service</Form.Label>
-          <InputGroup>
-            <InputGroup.Text></InputGroup.Text>
-            <Form.Control
-              type="text"
-              placeholder="Service"
+          <Form.Group id="service">
+            <Form.Label>Service</Form.Label>
+            <Form.Select
               value={service}
-              onChange={(event) => setService(event.target.value)}
-            />
-          </InputGroup>
+              onChange={(event) => {
+                setService(event.target.value);
+              }}
+            >
+              <option
+                key={SelectDefaultValues.service}
+                value={SelectDefaultValues.service}
+              >
+                Service
+              </option>
+              {serviceList.map((item) => (
+                <option key={item.ser_service} value={item.ser_service}>
+                  {item.ser_service}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
         </Col>
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
           <Form.Group id="country">
@@ -294,6 +341,11 @@ export default () => {
         />
         <div></div>
       </div>
+
+      {userCanUpdateLocalData && <MakeORAndLocalTransferReconciliation 
+        onRefresh={incrementVersion}
+        userCanUpdateLocalData={userCanUpdateLocalData}
+     />}
 
       {
       isLoaded ? <Row>

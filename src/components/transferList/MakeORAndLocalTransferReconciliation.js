@@ -192,6 +192,7 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
           </div>
         </Col>
         <Col xs={12}>
+            <h5>Transfert en local</h5>
             <p> Date min: {cachedTransferLocal?.minLocalDate} </p>
             <p> Date max: {cachedTransferLocal?.maxLocalDate} </p>
         </Col>

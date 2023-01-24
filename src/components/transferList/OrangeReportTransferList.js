@@ -37,7 +37,6 @@ export const OrangeReportTransferList =(props)=> {
                 <th className="border-bottom">Commission</th>
                 <th className="border-bottom">Sous-réseau</th>
                 <th className="border-bottom">Local Transfer Id</th>
-                <th className="border-bottom">Vérifier </th>
               </tr>
             </thead>
             <tbody>
@@ -74,13 +73,11 @@ OrangeReportTransferList.TableRow = (props) => {
     flowRateAmount,
     fee,
     country,
-    localTransferId,
-    hasBeenCheck
+    localTransferId
   } = props;
 
   // const transactionDateUtc = new Date(transactionDate);
   // const transactionDateFormatted = transactionDateUtc.toLocaleString("pt-BR");
-  const statusVariant = hasBeenCheck ? "success" : "warning"
 
   return (
     <tr>
@@ -137,12 +134,6 @@ OrangeReportTransferList.TableRow = (props) => {
       </td>
       <td>
         <span className="fw-normal">{localTransferId}</span>
-      </td>
-      <td>
-        <span className="fw-normal">{hasBeenCheck}</span>
-        <Badge  bg={statusVariant}>
-            <span className="h6 mb-0 text-start">{hasBeenCheck ? "Vérifié" : "En attente"}</span>
-        </Badge>
       </td>
       {/* <td>
       <span className="fw-normal">

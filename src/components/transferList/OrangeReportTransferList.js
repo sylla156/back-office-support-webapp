@@ -141,7 +141,7 @@ OrangeReportTransferList.TableRow = (props) => {
       <td>
         <span className="fw-normal">{hasBeenCheck}</span>
         <Badge  bg={statusVariant}>
-            <span className="h6 mb-0 text-start">{hasBeenCheck ? "Vérifier" : "Non Vérifier"}</span>
+            <span className="h6 mb-0 text-start">{hasBeenCheck ? "Vérifié" : "En attente"}</span>
         </Badge>
       </td>
       {/* <td>

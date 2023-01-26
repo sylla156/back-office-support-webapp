@@ -8,11 +8,12 @@ import {
   AddStatusConfirmationList,
   APPKEY,
   OrangeReportTransferCountry,
-  ORANGE_REPORT_TRANSFER_URL,
-  GET_ORANGE_REPORT_TRANSFER_SERVICE_LIST,
+  ORANGE_REPORT_PAYMENT_URL,
+  GET_ORANGE_REPORT_PAYMENT_SERVICE_LIST,
   PAGE_SIZE,
   SelectDefaultValues,
   TransferstatusList,
+  chooseReconciliation,
 } from "./constante/Const";
 import AlertDismissable from "../components/AlertDismissable";
 import {
@@ -23,9 +24,10 @@ import {
   Button,
   InputGroup,
 } from "@themesberg/react-bootstrap";
-import { OrangeReportTransferList } from "../components/transferList/OrangeReportTransferList";
-import { OrangeReportTransferImportfile } from "../components/transferList/OrangeReportTransferImportFile";
-import { MakeORAndLocalTransferReconciliation } from "../components/transferList/MakeORAndLocalTransferReconciliation";
+import { OrangeReportPaymentList } from "../components/PaymentList/OrangeReportPaymentList";
+import { OrangeReportPaymentImportfile } from "../components/PaymentList/OrangeReportPaymentImportFile";
+import { MakeORAndLocalPaymentReconciliation } from "../components/PaymentList/MakeORAndLocalPaymentReconciliation";
+import { UpdatePaymentLocalData } from "../components/PaymentList/UpdatePaymentLocalData";
 export default () => {
   const currentDate = new Date();
 
@@ -44,16 +46,16 @@ export default () => {
   const [endDate, setEndDate] = useState(defaultEndDate);
 
   const [count, setCount] = useState(undefined);
-  const [orangeReportTransferList, setOrangeReportTransferList] = useState([]);
+  const [orangeReportPaymentList, setOrangeReportPaymentList] = useState([]);
   const [status, setStatus] = useState("successful");
   const [reference, setReference] = useState(undefined);
   const [country, setCountry] = useState("ci");
+  const [reconciliation, setReconciliation] = useState("Reconcilié");
   const [flowRateAmount, setFlowRateAmount] = useState(undefined);
   const [creditAmount, setCreditAmount] = useState(undefined);
-  const [service, setService] = useState(undefined);
+  const [service, setService] = useState(SelectDefaultValues.servciePayment);
   const [fee, setFee] = useState(undefined);
   const [receiverPhoneNumber, setReceiverPhoneNumber] = useState(undefined);
-  const [receiverPhoneNumberSlice, setReceiverPhoneNumberSlice] = useState(undefined);
   const [serviceList, setServiceList] = useState([]);
 
   const statusValue = () =>
@@ -79,11 +81,11 @@ export default () => {
   const userCanForceStatus = cookies.user?.canForceStatus;
   const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
-  const getOrangeReportTransfer = () => {
+  const getOrangeReportPayment = () => {
     setIsLoaded(false);
     setErrorData(null);
     axios
-      .get(ORANGE_REPORT_TRANSFER_URL, {
+      .get(ORANGE_REPORT_PAYMENT_URL, {
         params: {
           reference,
           country,
@@ -95,7 +97,7 @@ export default () => {
           to: endDate,
           fee,
           receiverPhoneNumber,
-          receiverPhoneNumberSlice,
+          reconciliation,
           page: currentPage,
           perPage: PAGE_SIZE,
         },
@@ -106,7 +108,7 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        setOrangeReportTransferList(result.data.result);
+        setOrangeReportPaymentList(result.data.result);
         setCount(result.data.count);
       })
       .catch((error) => {
@@ -125,7 +127,7 @@ export default () => {
     setIsLoaded(false);
     setErrorData(null);
     axios
-      .get(GET_ORANGE_REPORT_TRANSFER_SERVICE_LIST, {
+      .get(GET_ORANGE_REPORT_PAYMENT_SERVICE_LIST, {
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -166,14 +168,13 @@ export default () => {
     setService("");
     setFee("");
     setReceiverPhoneNumber("");
-    setReceiverPhoneNumberSlice("");
     setStartDate(defaultStartDate);
     setEndDate(defaultEndDate);
     setStatus("successful");
   };
 
   useEffect(() => {
-    getOrangeReportTransfer();
+    getOrangeReportPayment();
   }, [currentPage, version]);
   
   useEffect(() => {
@@ -186,7 +187,7 @@ export default () => {
 
   return (
     <>
-      <OrangeReportTransferImportfile
+      <OrangeReportPaymentImportfile
         onRefresh = {incrementVersion}
       />
       <div className="mb-4"></div>
@@ -258,18 +259,6 @@ export default () => {
           </InputGroup>
         </Col>
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
-          <Form.Label>Téléphone</Form.Label>
-          <InputGroup>
-            <InputGroup.Text></InputGroup.Text>
-            <Form.Control
-              type="text"
-              placeholder="3 derniers chiffres du numéros"
-              value={reference}
-              onChange={(event) => setReceiverPhoneNumberSlice(event.target.value)}
-            />
-          </InputGroup>
-        </Col>
-        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
           <Form.Group id="service">
             <Form.Label>Service</Form.Label>
             <Form.Select
@@ -278,12 +267,6 @@ export default () => {
                 setService(event.target.value);
               }}
             >
-              <option
-                key={SelectDefaultValues.service}
-                value={SelectDefaultValues.service}
-              >
-                Service
-              </option>
               {serviceList.map((item) => (
                 <option key={item.ser_service} value={item.ser_service}>
                   {item.ser_service}
@@ -309,6 +292,23 @@ export default () => {
             </Form.Select>
           </Form.Group>
         </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Group id="reconciliation">
+            <Form.Label>Reconciliation</Form.Label>
+            <Form.Select
+              value={reconciliation}
+              onChange={(event) => {
+                setReconciliation(event.target.value);
+              }}
+            >
+              {chooseReconciliation.map((item) => (
+                <option key={item.id} value={item.reconciliation}>
+                  {item.reconciliation}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
         <Col xs={12} md={3} lg={6} className="px-2 mt-4">
           <div className="mt-3 mb-4">
             <Button
@@ -322,7 +322,7 @@ export default () => {
               className="mx-2"
               variant="primary"
               type="button"
-              onClick={getOrangeReportTransfer}
+              onClick={getOrangeReportPayment}
             >
               Filtrer
             </Button>
@@ -341,16 +341,21 @@ export default () => {
         <div></div>
       </div>
 
-      {userCanUpdateLocalData && <MakeORAndLocalTransferReconciliation 
+      {userCanUpdateLocalData && <MakeORAndLocalPaymentReconciliation 
         onRefresh={incrementVersion}
         userCanUpdateLocalData={userCanUpdateLocalData}
      />}
 
+      {userCanUpdateLocalData && <UpdatePaymentLocalData 
+          onRefresh={incrementVersion}
+          userCanUpdateLocalData={userCanUpdateLocalData}
+      />}
+
       {
       isLoaded ? <Row>
-        <OrangeReportTransferList
+        <OrangeReportPaymentList
           key={version}
-          listInfo={orangeReportTransferList}
+          listInfo={orangeReportPaymentList}
           count={count}
           currentPage={currentPage}
           onPageChange={onPageChange}

@@ -44,6 +44,7 @@ export const Routes = {
     TransferLocalStats: {path:"/transfer-local-stats"},
     OrangeReportTransfer: {path:"/orange-report-transfer"},
     OrangeReportTransferCandidate:{path: "/orange-report-transfer/candidate"},
+    OrangeReportPayment: {path:"/orange-report-payment"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

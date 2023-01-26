@@ -43,7 +43,7 @@ import TransferLocalStats from './TransferLocalStats'
 import MerchantTransferBalance from './MerchantTransferBalance';
 import OrangeReportTransfer from './OrangeReportTransfer';
 import OrangeReportTransferCandidate from './OrangeReportTransferCandidate';
-
+import OrangeReportPayment from './OrangeReportPayment';
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
     const [loaded, setLoaded] = useState(false);
@@ -132,7 +132,8 @@ export default () => (
         <RouteWithSidebar exact path={Routes.TransferForceStatus.path} title={'Transfer - Force status'} component={TransferForceStatus} />
         <RouteWithSidebar exact path={Routes.PaymentLocalStats.path} title={'Chiffre d\'affaire hebdomadaire'} component={PaymentLocalStats} />
         <RouteWithSidebar exact path={Routes.TransferLocalStats.path} title={'Chiffre d\'affaire hebdomadaire'} component={TransferLocalStats} />
-        <RouteWithSidebar exact path={Routes.OrangeReportTransfer.path} title={'Rapport orange'} component={OrangeReportTransfer} />
+        <RouteWithSidebar exact path={Routes.OrangeReportTransfer.path} title={'Rapport orange transfert'} component={OrangeReportTransfer} />
+        <RouteWithSidebar exact path={Routes.OrangeReportPayment.path} title={'Rapport orange paiement'} component={OrangeReportPayment} />
         <RouteWithSidebar exact path={Routes.OrangeReportTransferCandidate.path} title={'Rapport orange in candidates'} component={OrangeReportTransferCandidate} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     

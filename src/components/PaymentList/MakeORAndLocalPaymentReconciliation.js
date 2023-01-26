@@ -17,11 +17,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus,faPaperclip, faRecycle } from "@fortawesome/free-solid-svg-icons";
 import AlertDismissable from "../AlertDismissable";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, GET_LOCAL_TRANSFER_DATA, GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA } from "../../pages/constante/Const";
+import { APPKEY, GET_LOCAL_PAYMENT_DATA, GET_LOCAL_ORANGE_REPORT_PAYMENT_RECONCILIATION_DATA } from "../../pages/constante/Const";
 import { Routes } from "../../routes";
 import { format, addMinutes, parseISO, subDays } from "date-fns";
 
-export const MakeORAndLocalTransferReconciliation = (props)=> {
+export const MakeORAndLocalPaymentReconciliation = (props)=> {
 
   const currentDate = new Date();
 
@@ -30,7 +30,7 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
   const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
   const defaultEndDate = `${formattedCurrentDate}T23:59:59Z`;
 
-  const [cachedTransferLocal, setCachedTransferLocal] = useState({});
+  const [cachedPaymentLocal, setCachedPaymentLocal] = useState({});
 
   const onRefresh = props.onRefresh;
   const userCanUpdateLocalData = props.userCanUpdateLocalData;
@@ -63,7 +63,7 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
 
     axios
       .get(
-        GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA,
+        GET_LOCAL_ORANGE_REPORT_PAYMENT_RECONCILIATION_DATA,
         {
           params:{
             from: startDate,
@@ -92,12 +92,12 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
       });
   }
 
-  const getCachedTransferLocalData = () => {
+  const getCachedPaymentLocalData = () => {
     setIsLoading(true);
     setErrorData(null);
     axios
       .get(
-        GET_LOCAL_TRANSFER_DATA,
+        GET_LOCAL_PAYMENT_DATA,
         {
           headers: {
             AppKey: APPKEY,
@@ -108,7 +108,7 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
       .then((result) => {
         setIsLoading(false);
         // Here we should hide when add is done
-        setCachedTransferLocal(result.data);
+        setCachedPaymentLocal(result.data);
         onRefresh()
       })
       .catch((error) => {
@@ -137,7 +137,7 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
   }
 
   useEffect(() => {
-    getCachedTransferLocalData();
+    getCachedPaymentLocalData();
   }, []);
 
   return (
@@ -192,9 +192,9 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
           </div>
         </Col>
         <Col xs={12}>
-            <h5>Transfert en local</h5>
-            <p> Date min: {cachedTransferLocal?.minLocalDate} </p>
-            <p> Date max: {cachedTransferLocal?.maxLocalDate} </p>
+            <h5>Paiment en local</h5>
+            <p> Date min: {cachedPaymentLocal?.minLocalDate} </p>
+            <p> Date max: {cachedPaymentLocal?.maxLocalDate} </p>
         </Col>
   </div>
     </>

@@ -16,10 +16,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus,faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import AlertDismissable from "../AlertDismissable";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, ORANGE_REPORT_TRANSFER_UPLOAD_URL } from "../../pages/constante/Const";
+import { APPKEY, ORANGE_REPORT_PAYMENT_UPLOAD_URL } from "../../pages/constante/Const";
 import { Routes } from "../../routes";
 
-export const OrangeReportTransferImportfile = (props)=> {
+export const OrangeReportPaymentImportfile = (props)=> {
   const onRefresh = props.onRefresh;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -62,7 +62,7 @@ export const OrangeReportTransferImportfile = (props)=> {
     formData.append('file', file);
     axios
       .post(
-        ORANGE_REPORT_TRANSFER_UPLOAD_URL,
+        ORANGE_REPORT_PAYMENT_UPLOAD_URL,
         formData,
         {
           headers: {

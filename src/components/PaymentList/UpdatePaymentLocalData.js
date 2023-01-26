@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
 import {
   Col,
   Row,
@@ -10,18 +8,23 @@ import {
   Form,
   InputGroup,
   Dropdown,
-  Spinner,
   ButtonGroup,
+  Spinner,
 } from "@themesberg/react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus,faPaperclip, faRecycle } from "@fortawesome/free-solid-svg-icons";
-import AlertDismissable from "../AlertDismissable";
+import {
+  APPKEY,
+  GET_LOCAL_PAYMENT_DATA,
+  UPDATE_LOCAL_PAYMENT_DATA,
+} from "../../pages/constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, GET_LOCAL_TRANSFER_DATA, GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA } from "../../pages/constante/Const";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useCookies } from "react-cookie";
+import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
 import { format, addMinutes, parseISO, subDays } from "date-fns";
 
-export const MakeORAndLocalTransferReconciliation = (props)=> {
+export const UpdatePaymentLocalData = (props)=> {
 
   const currentDate = new Date();
 
@@ -30,7 +33,8 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
   const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
   const defaultEndDate = `${formattedCurrentDate}T23:59:59Z`;
 
-  const [cachedTransferLocal, setCachedTransferLocal] = useState({});
+  const addMinutesInEndDate = addMinutes(currentDate, 30);
+  const formattedCurrentEndDateTime = format(addMinutesInEndDate, "HH:mm:ss");
 
   const onRefresh = props.onRefresh;
   const userCanUpdateLocalData = props.userCanUpdateLocalData;
@@ -41,7 +45,8 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
 
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
-
+  const [cachedPaymentLocal, setCachedPaymentLocal] = useState({});
+  
   const handleStartDate = (value) => {
     setStartDate(value);
   };
@@ -55,15 +60,15 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
     return <Redirect to={Routes.Signin.path} />;
   }
 
-  const axios = AxiosWebHelper.getAxios();
 
-  const makeReconciliation = ()=> {
+  const axios = AxiosWebHelper.getAxios();
+  const getAndUpdateLocalData = () => {
     setIsLoading(true);
     setErrorData(null);
 
     axios
       .get(
-        GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA,
+        UPDATE_LOCAL_PAYMENT_DATA,
         {
           params:{
             from: startDate,
@@ -90,14 +95,13 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
           }
         }
       });
-  }
-
-  const getCachedTransferLocalData = () => {
+  };
+  const getCachedPaymentLocalData = () => {
     setIsLoading(true);
     setErrorData(null);
     axios
       .get(
-        GET_LOCAL_TRANSFER_DATA,
+        GET_LOCAL_PAYMENT_DATA,
         {
           headers: {
             AppKey: APPKEY,
@@ -108,7 +112,7 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
       .then((result) => {
         setIsLoading(false);
         // Here we should hide when add is done
-        setCachedTransferLocal(result.data);
+        setCachedPaymentLocal(result.data);
         onRefresh()
       })
       .catch((error) => {
@@ -137,11 +141,14 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
   }
 
   useEffect(() => {
-    getCachedTransferLocalData();
+    getCachedPaymentLocalData();
   }, []);
 
   return (
-    <>
+   <>
+      <div className="mt-3">
+        <h4>Mise à jour des données en local</h4>
+      </div>
        <div className="align-items-center d-flex flex-wrap">
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
           <Form.Label>Date début</Form.Label>
@@ -185,18 +192,17 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
                 variant="primary"
                 disabled={!canActivateAndUpdate()}
                 type="button"
-                onClick={makeReconciliation}
+                onClick={getAndUpdateLocalData}
               >
-                Rapprochement
+                Mise à jour
               </Button> }
           </div>
         </Col>
         <Col xs={12}>
-            <h5>Transfert en local</h5>
-            <p> Date min: {cachedTransferLocal?.minLocalDate} </p>
-            <p> Date max: {cachedTransferLocal?.maxLocalDate} </p>
+            <p> Date min: {cachedPaymentLocal?.minLocalDate} </p>
+            <p> Date max: {cachedPaymentLocal?.maxLocalDate} </p>
         </Col>
   </div>
-    </>
+   </>
   );
 }

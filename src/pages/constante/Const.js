@@ -88,10 +88,17 @@ export const ORANGE_REPORT_TRANSFER_UPLOAD_URL="/orange-report-transfer/upload-f
 export const ORANGE_REPORT_TRANSFER_CANDIDATES="/orange-report-transfer/candidates"
 export const PAGE_SIZE = 10;
 
+export const ORANGE_REPORT_PAYMENT_URL="/orange-report-payment"
+export const ORANGE_REPORT_PAYMENT_UPLOAD_URL="/orange-report-payment/upload-file"
+export const GET_ORANGE_REPORT_PAYMENT_SERVICE_LIST="orange-report-payment/all-report-service";
+export const GET_LOCAL_ORANGE_REPORT_PAYMENT_RECONCILIATION_DATA="orange-report-payment/reconciliation";
+export const GET_LOCAL_PAYMENT_DATA="local-stats/cached-payment-infos";
+export const UPDATE_LOCAL_PAYMENT_DATA="local-stats/fetch-payment-manualy";
+
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
-export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transaction-infos";
-export const GET_LOCAL_RECONCILIATION_DATA="orange-report-transfer/reconciliation";
-export const GET_SERVICE_LIST="orange-report-transfer/all-report-service";
+export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";
+export const GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA="orange-report-transfer/reconciliation";
+export const GET_ORANGE_REPORT_TRANSFER_SERVICE_LIST="orange-report-transfer/all-report-service";
 
 export const TransferstatusList = [
   {
@@ -169,7 +176,9 @@ export const PaymentstatusList = [
 export const SelectDefaultValues = {
   status : "defaultStatus",
   order: "volume-ASC",
-  service: "Cash in"
+  service: "Cash in",
+  servciePayment: "Merchant Payment",
+  reconcilation : 'Tous'
 }
 
 export const OrangeReportTransferCountry = [
@@ -258,5 +267,20 @@ export const chooseOrderList = [
     id:5,
     sorted: 'commission_nette-DESC',
     name:"Commission nette décroissante"
+  }
+]
+
+export const chooseReconciliation = [
+  {
+    id: 0,
+    reconciliation : 'Reconcilié'
+  },
+  {
+    id: 1,
+    reconciliation : 'Non Reconcilié'
+  },
+  {
+    id: 2,
+    reconciliation : 'Tout'
   }
 ]

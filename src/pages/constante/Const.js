@@ -94,6 +94,7 @@ export const GET_ORANGE_REPORT_PAYMENT_SERVICE_LIST="orange-report-payment/all-r
 export const GET_LOCAL_ORANGE_REPORT_PAYMENT_RECONCILIATION_DATA="orange-report-payment/reconciliation";
 export const GET_LOCAL_PAYMENT_DATA="local-stats/cached-payment-infos";
 export const UPDATE_LOCAL_PAYMENT_DATA="local-stats/fetch-payment-manualy";
+export const ORANGE_REPORT_PAYMENT_CANDIDATES="/orange-report-payment/candidates"
 
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";

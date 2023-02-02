@@ -315,11 +315,11 @@ export default (props = {}) => {
                     icon={faCalendar}
                     link={Routes.OrangeReportPayment.path}
                     />
-                {/* <NavItem
+                <NavItem
                     title="Candidates"
                     icon={faCalendar}
-                    link={Routes.OrangeReportTransferCandidate.path}
-                    /> */}
+                    link={Routes.OrangeReportPaymentCandidate.path}
+                    />
               </CollapsableNavItem>
               <NavItem
                 title="Réglage balance"

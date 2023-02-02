@@ -44,6 +44,7 @@ import MerchantTransferBalance from './MerchantTransferBalance';
 import OrangeReportTransfer from './OrangeReportTransfer';
 import OrangeReportTransferCandidate from './OrangeReportTransferCandidate';
 import OrangeReportPayment from './OrangeReportPayment';
+import OrangeReportPaymentCandidate from './OrangeReportPaymentCandidate';
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
     const [loaded, setLoaded] = useState(false);
@@ -135,6 +136,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.OrangeReportTransfer.path} title={'Rapport orange transfert'} component={OrangeReportTransfer} />
         <RouteWithSidebar exact path={Routes.OrangeReportPayment.path} title={'Rapport orange paiement'} component={OrangeReportPayment} />
         <RouteWithSidebar exact path={Routes.OrangeReportTransferCandidate.path} title={'Rapport orange in candidates'} component={OrangeReportTransferCandidate} />
+        <RouteWithSidebar exact path={Routes.OrangeReportPaymentCandidate.path} title={'Rapport orange paiment in candidates'} component={OrangeReportPaymentCandidate} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

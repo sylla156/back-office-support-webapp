@@ -110,6 +110,17 @@ export const OrangePaymentMarkLikeRegularisedList = (props) => {
       <Row className="d-block d-xl-flex align-items-center">
         <Col className="ms--2 " lg={3}>
           <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+          téléphone
+          </h4>
+        </Col>
+
+        <Col className="ms--2" lg={9}>
+          <span className="h6 mb-0 text-start">{number ? number : ""}</span>
+        </Col>
+      </Row>
+      <Row className="d-block d-xl-flex align-items-center">
+        <Col className="ms--2 " lg={3}>
+          <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
           gatewayId
           </h4>
         </Col>

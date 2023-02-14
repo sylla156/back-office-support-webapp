@@ -177,7 +177,7 @@ export const OrangeReportPaymentMarkLikeRegularisedImportFile = (props)=> {
           </Button>
           <div className="mt-3">
             <AlertDismissable
-              message={errorData}
+              message={"L'une des colonnes du CSV est vide"}
               variant="danger"
               show={!!errorData}
               onClose={() => setErrorData(null)}

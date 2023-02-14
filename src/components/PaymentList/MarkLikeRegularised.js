@@ -32,15 +32,16 @@ export const MarkLikeRegularised = (props)=> {
     paymentIntent,
     orangeReportPaymentCandidates,
   } = props;
+  const dateNow = new Date();
   const [isLoading, setIsLoading] = useState(false);
   const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
   const [show, setShow] = useState(false);
 
-  const [confirmedStatus, setConfirmedStatus] = useState(undefined);
+  const [confirmedStatus, setConfirmedStatus] = useState("successful");
   let [processorReference, setProcessorReference] = useState(orangeReportPaymentCandidates[0]?.reference);
   let [paymentId, setPaymentId] = useState(paymentIntent.paymentId);
-  let [regularisedDate, setRegularisedDate] = useState(undefined);
+  let [regularisedDate, setRegularisedDate] = useState(dateNow.toISOString());
 
   const [cookies, ] = useCookies(["token"]);
 
@@ -218,7 +219,7 @@ export const MarkLikeRegularised = (props)=> {
                       <Form.Label> date de régularisation </Form.Label>
                       <Form.Control
                         required
-                        type="text"
+                        type="date"
                         value={regularisedDate}
                         onChange={(event) => {
                           setRegularisedDate(event.target.value);

@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 
 export const OrangeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
-  console.log("props ", props.orangeReportPaymentCandidates);
   let orangeReportPaymentCandidates = props.orangeReportPaymentCandidates;
   if (orangeReportPaymentCandidates.length === 0) {
     return <p>Pas de candidate</p>;
@@ -107,6 +106,19 @@ export const OrangeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
               <Col className="ms--2" lg={9}>
                 <span className="h6 mb-0 text-start">
                   {creditAmount} {"XOF"}
+                </span>
+              </Col>
+            </Row>
+            <Row className="d-block d-xl-flex align-items-center">
+              <Col className="ms--2 " lg={3}>
+                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                téléphone
+                </h4>
+              </Col>
+
+              <Col className="ms--2" lg={9}>
+                <span className="h6 mb-0 text-start">
+                  {receiverPhoneNumber ? receiverPhoneNumber : ""}
                 </span>
               </Col>
             </Row>

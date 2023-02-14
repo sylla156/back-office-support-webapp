@@ -285,7 +285,7 @@ export default (props = {}) => {
                   link={Routes.PaymentLocalStats.path}
                 />
                   <NavItem
-                  title="Régularisation"
+                  title="Régularisation orange"
                   icon={faChartPie}
                   link={Routes.MarkOrangePaymentLikeRegularised.path}
                 />

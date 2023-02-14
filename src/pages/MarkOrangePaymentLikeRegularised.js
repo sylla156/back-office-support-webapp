@@ -76,6 +76,7 @@ export default()=> {
         to: endDate,
         page: currentPage,
         perPage: PAGE_SIZE,
+        csv: false,
       },
       headers: {
         AppKey: APPKEY,
@@ -98,6 +99,40 @@ export default()=> {
         }
       });
   }
+
+  const fileName = "orange-report-payment-who-must-be-regularise-export";
+  const exportData = () => {
+    setErrorDataCSV(null);
+    setIsLoadedCSV(false);
+    axios
+      .get(GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED, {
+        params: {
+          from: startDate,
+          to: endDate,
+          csv: true,
+          page: currentPage,
+          perPage: PAGE_SIZE,
+        },
+        headers: {
+          AppKey: APPKEY,
+          authenticationtoken: cookies.token,
+        },
+      })
+      .then((result) => {
+        setIsLoadedCSV(true);
+        setErrorDataCSV(null);
+        const url = window.URL.createObjectURL(new Blob([result.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", fileName + ".csv");
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      })
+      .catch((error) => {
+        setIsLoaded(true);
+      });
+  };
 
   const onPageChange = (page = 0) => {
     setCurrentPage(page);
@@ -176,7 +211,7 @@ export default()=> {
                 variant="outline-primary"
                 className=""
                 type="button"
-                // onClick={exportData}
+                onClick={exportData}
               >
                 Exporter
               </Button>

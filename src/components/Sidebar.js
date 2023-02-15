@@ -284,6 +284,11 @@ export default (props = {}) => {
                   icon={faChartPie}
                   link={Routes.PaymentLocalStats.path}
                 />
+                  <NavItem
+                  title="Régularisation orange"
+                  icon={faChartPie}
+                  link={Routes.MarkOrangePaymentLikeRegularised.path}
+                />
               </CollapsableNavItem>
               <CollapsableNavItem title="Sms" icon={faSms}>
                 <NavItem

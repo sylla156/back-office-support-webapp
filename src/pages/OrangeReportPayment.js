@@ -341,16 +341,14 @@ export default () => {
         <div></div>
       </div>
 
-      {userCanUpdateLocalData && <MakeORAndLocalPaymentReconciliation 
-        onRefresh={incrementVersion}
-        userCanUpdateLocalData={userCanUpdateLocalData}
-     />}
-
       {userCanUpdateLocalData && <UpdatePaymentLocalData 
           onRefresh={incrementVersion}
           userCanUpdateLocalData={userCanUpdateLocalData}
       />}
-
+      {userCanUpdateLocalData && <MakeORAndLocalPaymentReconciliation 
+        onRefresh={incrementVersion}
+        userCanUpdateLocalData={userCanUpdateLocalData}
+     />}
       {
       isLoaded ? <Row>
         <OrangeReportPaymentList

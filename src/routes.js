@@ -46,6 +46,7 @@ export const Routes = {
     OrangeReportTransferCandidate:{path: "/orange-report-transfer/candidate"},
     OrangeReportPayment: {path:"/orange-report-payment"},
     OrangeReportPaymentCandidate:{path: "/orange-report-payment/candidate"},
+    MarkOrangePaymentLikeRegularised:{path: "/orange-payment/regularised"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

@@ -219,7 +219,7 @@ export const MarkLikeRegularised = (props)=> {
                       <Form.Label> date de régularisation </Form.Label>
                       <Form.Control
                         required
-                        type="date"
+                        type="text"
                         value={regularisedDate}
                         onChange={(event) => {
                           setRegularisedDate(event.target.value);

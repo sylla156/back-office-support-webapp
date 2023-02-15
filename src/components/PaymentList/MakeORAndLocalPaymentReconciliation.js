@@ -142,6 +142,9 @@ export const MakeORAndLocalPaymentReconciliation = (props)=> {
 
   return (
     <>
+      <div className="mt-3">
+        <h4>Rapprochement des paiements en local </h4>
+      </div>
        <div className="align-items-center d-flex flex-wrap">
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
           <Form.Label>Date début</Form.Label>

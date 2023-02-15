@@ -158,9 +158,9 @@ export default()=> {
 
   return (
     <>
-        <OrangeReportPaymentMarkLikeRegularisedImportFile
+        {userCanAddOrangePaymentRegularised && <OrangeReportPaymentMarkLikeRegularisedImportFile
           onRefresh={incrementVersion}
-        />
+        />}
          <div className="mb-4"></div>
         <div className="align-items-center d-flex flex-wrap">
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">

@@ -37,6 +37,7 @@ export const OrangeReportTransferList =(props)=> {
                 <th className="border-bottom">Commission</th>
                 <th className="border-bottom">Sous-réseau</th>
                 <th className="border-bottom">Local Transfer Id</th>
+                <th className="border-bottom">Dernière date du rapprochement</th>
               </tr>
             </thead>
             <tbody>
@@ -73,7 +74,8 @@ OrangeReportTransferList.TableRow = (props) => {
     flowRateAmount,
     fee,
     country,
-    localTransferId
+    localTransferId,
+    lastReconciliationDate
   } = props;
 
   // const transactionDateUtc = new Date(transactionDate);
@@ -134,6 +136,9 @@ OrangeReportTransferList.TableRow = (props) => {
       </td>
       <td>
         <span className="fw-normal">{localTransferId}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{lastReconciliationDate}</span>
       </td>
       {/* <td>
       <span className="fw-normal">

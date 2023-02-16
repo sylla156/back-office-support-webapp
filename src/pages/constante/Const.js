@@ -278,14 +278,14 @@ export const chooseOrderList = [
 export const chooseReconciliation = [
   {
     id: 0,
-    reconciliation : 'Reconcilié'
+    reconciliation : 'Reconciliés'
   },
   {
     id: 1,
-    reconciliation : 'Non Reconcilié'
+    reconciliation : 'Non Reconciliés'
   },
   {
     id: 2,
-    reconciliation : 'Tout'
+    reconciliation : 'Tous'
   }
 ]

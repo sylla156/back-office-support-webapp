@@ -13,6 +13,7 @@ import {
   PAGE_SIZE,
   SelectDefaultValues,
   TransferstatusList,
+  chooseReconciliation,
 } from "./constante/Const";
 import AlertDismissable from "../components/AlertDismissable";
 import {
@@ -48,6 +49,7 @@ export default () => {
   const [status, setStatus] = useState("successful");
   const [reference, setReference] = useState(undefined);
   const [country, setCountry] = useState("ci");
+  const [reconciliation, setReconciliation] = useState("Reconciliés");
   const [flowRateAmount, setFlowRateAmount] = useState(undefined);
   const [creditAmount, setCreditAmount] = useState(undefined);
   const [service, setService] = useState(undefined);
@@ -96,6 +98,7 @@ export default () => {
           fee,
           receiverPhoneNumber,
           receiverPhoneNumberSlice,
+          reconciliation,
           page: currentPage,
           perPage: PAGE_SIZE,
         },
@@ -304,6 +307,23 @@ export default () => {
               {OrangeReportTransferCountry.map((item) => (
                 <option key={item.id} value={item.country}>
                   {item.name}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Group id="reconciliation">
+            <Form.Label>Reconciliation</Form.Label>
+            <Form.Select
+              value={reconciliation}
+              onChange={(event) => {
+                setReconciliation(event.target.value);
+              }}
+            >
+              {chooseReconciliation.map((item) => (
+                <option key={item.id} value={item.reconciliation}>
+                  {item.reconciliation}
                 </option>
               ))}
             </Form.Select>

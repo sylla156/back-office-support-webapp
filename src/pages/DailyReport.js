@@ -80,6 +80,7 @@ export default () => {
           merchantId,
           start: startDate,
           end: endDate,
+          shouldUseLocalData: false
         },
         headers: {
           AppKey: APPKEY,

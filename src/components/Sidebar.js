@@ -231,9 +231,19 @@ export default (props = {}) => {
                   link={Routes.DailyReport.path}
                 />
                 <NavItem
+                  title="Rapport journalier L"
+                  icon={faCalendar}
+                  link={Routes.TransfersLocalDailyReport.path}
+                />
+                <NavItem
                   title="Relever"
                   icon={faCalendar}
                   link={Routes.TransferReporting.path}
+                />
+                <NavItem
+                  title="Relever Local"
+                  icon={faCalendar}
+                  link={Routes.LocalTransferReporting.path}
                 />
                 <NavItem
                   title="Force status"
@@ -275,10 +285,20 @@ export default (props = {}) => {
                   link={Routes.CollectionDailyReport.path}
                 />
                 <NavItem
+                  title="Rapport journalier L"
+                  icon={faCalendar}
+                  link={Routes.CollectionsLocalDailyReport.path}
+                />
+                <NavItem
                   title="Relever"
                   icon={faCalendar}
                   link={Routes.PaymentReporting.path}
                   />
+                <NavItem
+                  title="Relever Local"
+                  icon={faCalendar}
+                  link={Routes.LocalPaymentReporting.path}
+                />
                   <NavItem
                   title="Local stats"
                   icon={faChartPie}

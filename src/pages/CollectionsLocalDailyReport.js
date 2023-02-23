@@ -58,7 +58,7 @@ export default ()=> {
           merchantId,
           start: startDate,
           end: endDate,
-          shouldUseLocalData: false
+          shouldUseLocalData: true
         },
         headers: {
           AppKey: APPKEY,

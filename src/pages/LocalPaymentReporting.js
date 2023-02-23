@@ -78,7 +78,7 @@ export default()=> {
   }
   
   const axios = AxiosWebHelper.getAxios();
-  const fileName = "local-payments-reporting";
+  const fileName = "local-payments-reporting"
   const exportData = () => {
     setErrorDataCSV(null);
     setIsLoadedCSV(false);

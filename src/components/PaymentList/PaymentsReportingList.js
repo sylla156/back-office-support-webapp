@@ -29,6 +29,7 @@ export const PaymentsReportingList = (props) => {
                 <th className="border-bottom">timezone</th>
                 <th className="border-bottom">transaction Reference</th>
                 <th className="border-bottom">status</th>
+                <th className="border-bottom">paymentStatus</th>
                 <th className="border-bottom">customer Reference</th>
                 <th className="border-bottom">method</th>
                 <th className="border-bottom">country</th>
@@ -66,6 +67,7 @@ PaymentsReportingList.TableRow = (props) => {
     timezone,
     transactionReference,
     status,
+    paymentStatus,
     customerReference,
     method,
     country,
@@ -117,6 +119,9 @@ PaymentsReportingList.TableRow = (props) => {
       </td>
       <td>
         <span className="fw-normal">{status}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{paymentStatus}</span>
       </td>
       <td>
         <span className="fw-normal">{customerReference}</span>

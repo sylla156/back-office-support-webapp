@@ -46,6 +46,7 @@ export default()=> {
   const [status, setStatus] = useState(undefined);
   const [merchantId, setMerchantId] = useState(undefined);
   const [gatewayId, setGatewayId] = useState(undefined);
+  const [transactionId, setTransactionId] = useState(undefined);
   const [processorReference, setProcessorReference] = useState(undefined);
   const [phoneNumber, setPhoneNumber] = useState(undefined);
   const [provider, setProvider] = useState(undefined);
@@ -85,6 +86,7 @@ export default()=> {
           merchantId,
           status,
           gatewayId,
+          transactionId,
           processorReference,
           phoneNumber,
           provider,
@@ -126,6 +128,7 @@ export default()=> {
           merchantId,
           status,
           gatewayId,
+          transactionId,
           processorReference,
           phoneNumber,
           provider,
@@ -255,6 +258,18 @@ export default()=> {
               placeholder="ProcessorReference"
               value={processorReference}
               onChange={(event) => setProcessorReference(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>TransactionId</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="TransactionId"
+              value={transactionId}
+              onChange={(event) => setTransactionId(event.target.value)}
             />
           </InputGroup>
         </Col>

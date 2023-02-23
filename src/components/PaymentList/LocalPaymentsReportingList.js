@@ -18,6 +18,7 @@ export const LocalPaymentReportingList = (props) => {
             <thead>
               <tr>
                 <th className="border-bottom">id</th>
+                <th className="border-bottom">paymentId</th>
                 <th className="border-bottom">type</th>
                 <th className="border-bottom">merchantId</th>
                 <th className="border-bottom">Référence du frs</th>
@@ -81,7 +82,10 @@ LocalPaymentReportingList.TableRow = (props) => {
   return (
     <tr>
       <td>
-        <Card.Link className="fw-normal">{paymentId}</Card.Link>
+        <Card.Link className="fw-normal">{id}</Card.Link>
+      </td>
+      <td>
+        <span className="fw-normal">{paymentId}</span>
       </td>
       <td>
         <span className="fw-normal">{}</span>

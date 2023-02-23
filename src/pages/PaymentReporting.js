@@ -180,7 +180,6 @@ export default () => {
           <Form.Group id="status">
             <Form.Label>Status</Form.Label>
             <Form.Select
-              disabled
               value={statusValue()}
               onChange={(event) => {
                 setStatus(event.target.value);

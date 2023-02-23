@@ -14,7 +14,8 @@ import {
   PAGE_SIZE,
   SelectDefaultValues,
   TransferstatusList,
-  LOCAT_PAYMENT_REPORTING
+  LOCAT_PAYMENT_REPORTING,
+  PaymentstatusList
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
@@ -47,6 +48,7 @@ export default()=> {
   const [status, setStatus] = useState(undefined);
   const [paymentStatus, setPaymentStatus] = useState(undefined);
   const [merchantId, setMerchantId] = useState(undefined);
+  const [transactionId, setTransactionId] = useState(undefined);
   const [gatewayId, setGatewayId] = useState(undefined);
   const [processorReference, setProcessorReference] = useState(undefined);
   const [number, setNumber] = useState(undefined);
@@ -62,8 +64,10 @@ export default()=> {
   const [count, setCount] = useState(undefined);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const statusValue = () =>
+  const statusPaymentValue = () =>
     paymentStatus ? TransferstatusList.id : SelectDefaultValues.status;
+  const statusValue = () =>
+    status ? PaymentstatusList.id : SelectDefaultValues.status;
   const handleStartDate = (value) => {
     setStartDate(value);
   };
@@ -89,8 +93,10 @@ export default()=> {
           to: endDate,
           merchantId,
           paymentStatus,
+          status,
           gatewayId,
           method,
+          transactionId,
           customerReference,
           paymentProcessorReference,
           number,
@@ -130,8 +136,10 @@ export default()=> {
           to: endDate,
           merchantId,
           paymentStatus,
+          status,
           gatewayId,
           method,
+          transactionId,
           customerReference,
           paymentProcessorReference,
           number,
@@ -207,9 +215,9 @@ export default()=> {
         </Col>
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
           <Form.Group id="status">
-            <Form.Label>Status</Form.Label>
+            <Form.Label>PaymentStatus</Form.Label>
             <Form.Select
-              value={statusValue()}
+              value={statusPaymentValue()}
               onChange={(event) => {
                 setPaymentStatus(event.target.value);
               }}
@@ -221,6 +229,29 @@ export default()=> {
                 Choisissez un status
               </option>
               {TransferstatusList.map((item) => (
+                <option key={item.id} value={item.status}>
+                  {item.status}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Group id="status">
+            <Form.Label>Status</Form.Label>
+            <Form.Select
+              value={statusValue()}
+              onChange={(event) => {
+                setStatus(event.target.value);
+              }}
+            >
+              <option
+                key={SelectDefaultValues.currency}
+                value={SelectDefaultValues.currency}
+              >
+                Choisissez un status
+              </option>
+              {PaymentstatusList.map((item) => (
                 <option key={item.id} value={item.status}>
                   {item.status}
                 </option>
@@ -261,6 +292,18 @@ export default()=> {
               placeholder="Reference du frs"
               value={paymentProcessorReference}
               onChange={(event) => setPaymentProcessorReference(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>TransactionId</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="ID"
+              value={transactionId}
+              onChange={(event) => setTransactionId(event.target.value)}
             />
           </InputGroup>
         </Col>

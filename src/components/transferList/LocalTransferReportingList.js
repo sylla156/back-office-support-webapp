@@ -4,8 +4,9 @@ import {
 } from "@themesberg/react-bootstrap";
 import React from "react";
 import { TablePagination } from "../TablePagination";
+import { format, addMinutes, parseISO } from "date-fns";
 
-export const PaymentsReportingList = (props) => {
+export const LocalTransferReportingList = (props) => {
   const { listInfo, count, currentPage, onPageChange } = props;
   const listSize = listInfo.length;
   return (
@@ -17,9 +18,9 @@ export const PaymentsReportingList = (props) => {
             <thead>
               <tr>
                 <th className="border-bottom">id</th>
-                <th className="border-bottom">type</th>
                 <th className="border-bottom">merchantId</th>
-                <th className="border-bottom">Référence du frs</th>
+                <th className="border-bottom">processorReference</th>
+                <th className="border-bottom">transaction Reference</th>
                 <th className="border-bottom">amount</th>
                 <th className="border-bottom">net</th>
                 <th className="border-bottom">fees</th>
@@ -27,9 +28,7 @@ export const PaymentsReportingList = (props) => {
                 <th className="border-bottom">Date</th>
                 <th className="border-bottom">time</th>
                 <th className="border-bottom">timezone</th>
-                <th className="border-bottom">transaction Reference</th>
                 <th className="border-bottom">status</th>
-                <th className="border-bottom">paymentStatus</th>
                 <th className="border-bottom">customer Reference</th>
                 <th className="border-bottom">method</th>
                 <th className="border-bottom">country</th>
@@ -41,7 +40,7 @@ export const PaymentsReportingList = (props) => {
             </thead>
             <tbody>
               {listInfo.map((t) => (
-                <PaymentsReportingList.TableRow key={`transaction-${t.id}`} {...t} />
+                <LocalTransferReportingList.TableRow key={`transaction-${t.id}`} {...t} />
               ))}
             </tbody>
           </Table>
@@ -52,44 +51,41 @@ export const PaymentsReportingList = (props) => {
   );
 };
 
-PaymentsReportingList.TableRow = (props) => {
+LocalTransferReportingList.TableRow = (props) => {
   let {
-    transactionId,
-    type,
+    id,
     merchantId,
-    referenceOfFrs,
+    processorReference,
+    reference,
     amount,
-    net,
     fees,
     currency,
-    date,
-    time,
-    timezone,
-    transactionReference,
+    updatedAt,
     status,
-    paymentStatus,
-    customerReference,
-    method,
     country,
     provider,
     gatewayId,
-    transactionIdentifier,
-    description,
+    phoneNumber,
+    description
   } = props;
+
+  const parseDate = parseISO(updatedAt);
+  const date = format(parseDate, "dd/MM/yyyy");
+  const time = format(parseDate, 'HH:mm:ss');
 
   return (
     <tr>
       <td>
-        <Card.Link className="fw-normal">{transactionId}</Card.Link>
-      </td>
-      <td>
-        <span className="fw-normal">{type}</span>
+        <Card.Link className="fw-normal">{id}</Card.Link>
       </td>
       <td>
         <span className="fw-normal">{merchantId}</span>
       </td>
       <td>
-        <span className="fw-normal">{referenceOfFrs}</span>
+        <span className="fw-normal">{processorReference}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{reference}</span>
       </td>
       <td>
       <span className="fw-normal">
@@ -97,7 +93,7 @@ PaymentsReportingList.TableRow = (props) => {
         </span>
       </td>
       <td>
-        <span className="fw-normal">{net}</span>
+        <span className="fw-normal">{}</span>
       </td>
       <td>
         <span className="fw-normal">{fees}</span>
@@ -112,22 +108,16 @@ PaymentsReportingList.TableRow = (props) => {
         <span className="fw-normal">{time}</span>
       </td>
       <td>
-        <span className="fw-normal">{timezone}</span>
-      </td>
-      <td>
-        <span className="fw-normal">{transactionReference}</span>
+        <span className="fw-normal">{"Z"}</span>
       </td>
       <td>
         <span className="fw-normal">{status}</span>
       </td>
       <td>
-        <span className="fw-normal">{paymentStatus}</span>
+        <span className="fw-normal">{}</span>
       </td>
       <td>
-        <span className="fw-normal">{customerReference}</span>
-      </td>
-      <td>
-        <span className="fw-normal">{method}</span>
+        <span className="fw-normal">{}</span>
       </td>
       <td>
         <span className="fw-normal">{country}</span>
@@ -139,12 +129,15 @@ PaymentsReportingList.TableRow = (props) => {
         <span className="fw-normal">{gatewayId}</span>
       </td>
       <td>
-        <span className="fw-normal">{transactionIdentifier}</span>
+        <span className="fw-normal">{phoneNumber}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{description}</span>
       </td>
   
   
       <td>
-        <span className="fw-normal text-wrap">{description}</span>
+        <span className="fw-normal text-wrap">{}</span>
       </td>
     </tr>
   );

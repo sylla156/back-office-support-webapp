@@ -4,8 +4,9 @@ import {
 } from "@themesberg/react-bootstrap";
 import React from "react";
 import { TablePagination } from "../TablePagination";
+import { format, addMinutes, parseISO } from "date-fns";
 
-export const PaymentsReportingList = (props) => {
+export const LocalPaymentReportingList = (props) => {
   const { listInfo, count, currentPage, onPageChange } = props;
   const listSize = listInfo.length;
   return (
@@ -17,6 +18,7 @@ export const PaymentsReportingList = (props) => {
             <thead>
               <tr>
                 <th className="border-bottom">id</th>
+                <th className="border-bottom">paymentId</th>
                 <th className="border-bottom">type</th>
                 <th className="border-bottom">merchantId</th>
                 <th className="border-bottom">Référence du frs</th>
@@ -41,7 +43,7 @@ export const PaymentsReportingList = (props) => {
             </thead>
             <tbody>
               {listInfo.map((t) => (
-                <PaymentsReportingList.TableRow key={`transaction-${t.id}`} {...t} />
+                <LocalPaymentReportingList.TableRow key={`transaction-${t.id}`} {...t} />
               ))}
             </tbody>
           </Table>
@@ -52,44 +54,47 @@ export const PaymentsReportingList = (props) => {
   );
 };
 
-PaymentsReportingList.TableRow = (props) => {
+LocalPaymentReportingList.TableRow = (props) => {
   let {
-    transactionId,
-    type,
-    merchantId,
-    referenceOfFrs,
-    amount,
-    net,
-    fees,
-    currency,
-    date,
-    time,
-    timezone,
-    transactionReference,
-    status,
-    paymentStatus,
-    customerReference,
-    method,
-    country,
-    provider,
-    gatewayId,
-    transactionIdentifier,
-    description,
+   id,
+   number,
+   description,
+   gatewayId,
+   provider,
+   country,
+   method,
+   paymentStatus,
+   status,
+   paymentId,
+   paymentProcessorReference,
+   currency,
+   updatedAt,
+   fees,
+   amount,
+   merchantId,
+   customerReference
   } = props;
+
+  const parseDate = parseISO(updatedAt);
+  const date = format(parseDate, "dd/MM/yyyy");
+  const time = format(parseDate, 'HH:mm:ss');
 
   return (
     <tr>
       <td>
-        <Card.Link className="fw-normal">{transactionId}</Card.Link>
+        <Card.Link className="fw-normal">{id}</Card.Link>
       </td>
       <td>
-        <span className="fw-normal">{type}</span>
+        <span className="fw-normal">{paymentId}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{}</span>
       </td>
       <td>
         <span className="fw-normal">{merchantId}</span>
       </td>
       <td>
-        <span className="fw-normal">{referenceOfFrs}</span>
+        <span className="fw-normal">{paymentProcessorReference}</span>
       </td>
       <td>
       <span className="fw-normal">
@@ -97,7 +102,7 @@ PaymentsReportingList.TableRow = (props) => {
         </span>
       </td>
       <td>
-        <span className="fw-normal">{net}</span>
+        <span className="fw-normal">{}</span>
       </td>
       <td>
         <span className="fw-normal">{fees}</span>
@@ -112,10 +117,10 @@ PaymentsReportingList.TableRow = (props) => {
         <span className="fw-normal">{time}</span>
       </td>
       <td>
-        <span className="fw-normal">{timezone}</span>
+        <span className="fw-normal">{"Z"}</span>
       </td>
       <td>
-        <span className="fw-normal">{transactionReference}</span>
+        <span className="fw-normal">{customerReference}</span>
       </td>
       <td>
         <span className="fw-normal">{status}</span>
@@ -139,7 +144,7 @@ PaymentsReportingList.TableRow = (props) => {
         <span className="fw-normal">{gatewayId}</span>
       </td>
       <td>
-        <span className="fw-normal">{transactionIdentifier}</span>
+        <span className="fw-normal">{number}</span>
       </td>
   
   

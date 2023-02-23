@@ -13,17 +13,17 @@ import {
   APPKEY,
   PAGE_SIZE,
   SelectDefaultValues,
-  PaymentstatusList,
-  PAYMENTS_CSV_LIST,
+  TransferstatusList,
+  LOCAT_TRANSFER_REPORTING
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
 import { format, addMinutes, parseISO } from "date-fns";
 import DateTimePicker from "react-datetime-picker";
-import { PaymentsReportingList } from "../components/PaymentList/PaymentsReportingList";
 import AlertDismissable from "../components/AlertDismissable";
+import { LocalTransferReportingList } from "../components/transferList/LocalTransferReportingList";
 
-export default () => {
+export default()=> {
   const currentDate = new Date();
 
   const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
@@ -40,44 +40,61 @@ export default () => {
   const [startDate, setStartDate] = useState(
     `${formattedCurrentDate}T00:00:00Z`
   );
-  const [endDate, setEndDate] = useState(`${formattedCurrentDate}T23:59:59Z`);
+  const [endDate, setEndDate] = useState(
+    `${formattedCurrentDate}T23:59:59Z`
+  );
   const [status, setStatus] = useState(undefined);
   const [merchantId, setMerchantId] = useState(undefined);
-  const [paymentList, setPaymentList] = useState([]);
+  const [gatewayId, setGatewayId] = useState(undefined);
+  const [transactionId, setTransactionId] = useState(undefined);
+  const [processorReference, setProcessorReference] = useState(undefined);
+  const [phoneNumber, setPhoneNumber] = useState(undefined);
+  const [provider, setProvider] = useState(undefined);
+  const [country, setCountry] = useState(undefined);
+  const [amount, setAmount] = useState(undefined);
+  const [currency, setCurrency] = useState(undefined);
+  const [reference, setReference] = useState(undefined);
+  const [localTransferList, setLocalTransferList] = useState([]);
   const [count, setCount] = useState(undefined);
   const [currentPage, setCurrentPage] = useState(0);
 
   const statusValue = () =>
-    status ? PaymentstatusList.id : SelectDefaultValues.status;
+    status ? TransferstatusList.id : SelectDefaultValues.status;
   const handleStartDate = (value) => {
     setStartDate(value);
   };
   const handleEndDate = (value) => {
     setEndDate(value);
   };
+
   const [cookies] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
   }
-
+  
   const axios = AxiosWebHelper.getAxios();
-
-  const fileName = "payments-reporting-export";
-
+  const fileName = "local-transfers-reporting";
   const exportData = () => {
     setErrorDataCSV(null);
     setIsLoadedCSV(false);
     axios
-      .get(PAYMENTS_CSV_LIST, {
+      .get(LOCAT_TRANSFER_REPORTING, {
         params: {
           from: startDate,
           to: endDate,
           merchantId,
           status,
-          csv: true,
-          page: currentPage,
-          perPage: PAGE_SIZE,
+          gatewayId,
+          transactionId,
+          processorReference,
+          phoneNumber,
+          provider,
+          country,
+          amount,
+          currency,
+          reference,
+          csv: true
         },
         headers: {
           AppKey: APPKEY,
@@ -100,16 +117,25 @@ export default () => {
       });
   };
 
-  const paymentsReportingList = () => {
+  const localTransfersReportingList = () => {
     setIsLoaded(false);
     setErrorData(null);
     axios
-      .get(PAYMENTS_CSV_LIST, {
+      .get(LOCAT_TRANSFER_REPORTING, {
         params: {
           from: startDate,
           to: endDate,
           merchantId,
           status,
+          gatewayId,
+          transactionId,
+          processorReference,
+          phoneNumber,
+          provider,
+          country,
+          amount,
+          currency,
+          reference,
           csv: false,
           page: currentPage,
           perPage: PAGE_SIZE,
@@ -121,7 +147,7 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        setPaymentList(result.data.result);
+        setLocalTransferList(result.data.result);
         setCount(result.data.count);
       })
       .catch((error) => {
@@ -145,12 +171,12 @@ export default () => {
   }
 
   useEffect(() => {
-    paymentsReportingList();
+    localTransfersReportingList();
   }, [currentPage]);
 
+  console.log(localTransferList)
   return (
     <>
-      {/* filter system */}
       <div className="align-items-center d-flex flex-wrap">
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
           <Form.Label>Date début</Form.Label>
@@ -191,7 +217,7 @@ export default () => {
               >
                 Choisissez un status
               </option>
-              {PaymentstatusList.map((item) => (
+              {TransferstatusList.map((item) => (
                 <option key={item.id} value={item.status}>
                   {item.status}
                 </option>
@@ -211,6 +237,90 @@ export default () => {
             />
           </InputGroup>
         </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>GatewayId</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="GatewayId"
+              value={gatewayId}
+              onChange={(event) => setGatewayId(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>ProcessorReference</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="ProcessorReference"
+              value={processorReference}
+              onChange={(event) => setProcessorReference(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>TransactionId</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="TransactionId"
+              value={transactionId}
+              onChange={(event) => setTransactionId(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>PhoneNumber</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="PhoneNumber"
+              value={phoneNumber}
+              onChange={(event) => setPhoneNumber(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Provider</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="Provider"
+              value={provider}
+              onChange={(event) => setProvider(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Amount</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="Amount"
+              value={amount}
+              onChange={(event) => setAmount(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Reference</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="Reference"
+              value={reference}
+              onChange={(event) => setReference(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
         <Col xs={12} md={3} lg={3} className="px-2 mt-4">
           <div className="mt-3 mb-4">
             <Button
@@ -224,20 +334,20 @@ export default () => {
               className="mx-2"
               variant="primary"
               type="button"
-              onClick={paymentsReportingList}
+              onClick={localTransfersReportingList}
             >
               Filtrer
             </Button>
 
             {isLoadedCSV ? (
-              <Button
-                variant="outline-primary"
-                className=""
-                type="button"
-                onClick={exportData}
-              >
-                Exporter
-              </Button>
+            <Button
+              variant="outline-primary"
+              className=""
+              type="button"
+              onClick={exportData}
+            >
+              Exporter
+            </Button>
             ) : (
               <div className="d-flex justify-content-center">
                 <Spinner animation="border " size="sm" role="status">
@@ -245,25 +355,21 @@ export default () => {
                 </Spinner>
               </div>
             )}
+
           </div>
         </Col>
       </div>
 
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4"></div>
-      <div>
-        <AlertDismissable
-          message={errorData}
-          variant="danger"
-          show={!!errorData}
-          onClose={() => setErrorData(null)}
-        />
-        <div></div>
+      <div >
+        <AlertDismissable message={errorData} variant="danger" show={!!errorData} onClose={()=>setErrorData(null)} />
+        <div>
+        </div>
       </div>
-
       {isLoaded ? (
         <Row>
-          <PaymentsReportingList
-            listInfo={paymentList}
+          <LocalTransferReportingList
+            listInfo={localTransferList}
             count={count}
             currentPage={currentPage}
             onPageChange={onPageChange}
@@ -278,4 +384,4 @@ export default () => {
       )}
     </>
   );
-};
+}

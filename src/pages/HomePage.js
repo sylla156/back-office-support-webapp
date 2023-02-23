@@ -46,6 +46,11 @@ import OrangeReportTransferCandidate from './OrangeReportTransferCandidate';
 import OrangeReportPayment from './OrangeReportPayment';
 import OrangeReportPaymentCandidate from './OrangeReportPaymentCandidate';
 import MarkOrangePaymentLikeRegularised from './MarkOrangePaymentLikeRegularised';
+import LocalTransferReporting from './LocalTransferReporting';
+import LocalPaymentReporting from './LocalPaymentReporting';
+import TransfersLocalDailyReport from './TransfersLocalDailyReport';
+import CollectionsLocalDailyReport from './CollectionsLocalDailyReport';
+
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -128,10 +133,10 @@ export default () => (
         <RouteWithSidebar exact path={Routes.GlobalReport.path} title={'Rapport global'} component={GlobalReport} />
         <RouteWithSidebar exact path={Routes.SmsContentOrangeCashIn.path} title={'Orange Cash in'} component={SmsContentOrangeCashIn} />
         <RouteWithSidebar exact path={Routes.SmsOrangeCashInCandidate.path} title={'Orange cash in candidates'} component={SmsOrangeCashInCandidate} />
-        <RouteWithSidebar exact path={Routes.TransferReporting.path} title={'Relever'} component={TransferReporting} />
+        <RouteWithSidebar exact path={Routes.TransferReporting.path} title={'Relever transfert'} component={TransferReporting} />
         <RouteWithSidebar exact path={Routes.ProviderPaymentBalance.path} title={'Paiement - Solde fournisseur'} component={ProviderPaymentBalance} />
         <RouteWithSidebar exact path={Routes.HistoryProviderBalanceCollection.path} title={'Paiement - Historique solde Fournisseur HUB2'} component={HistoryProviderBalanceCollection} />
-        <RouteWithSidebar exact path={Routes.PaymentReporting.path} title={'Relever'} component={PaymentReporting} />
+        <RouteWithSidebar exact path={Routes.PaymentReporting.path} title={'Relever paiement'} component={PaymentReporting} />
         <RouteWithSidebar exact path={Routes.TransferForceStatus.path} title={'Transfer - Force status'} component={TransferForceStatus} />
         <RouteWithSidebar exact path={Routes.PaymentLocalStats.path} title={'Chiffre d\'affaire hebdomadaire'} component={PaymentLocalStats} />
         <RouteWithSidebar exact path={Routes.TransferLocalStats.path} title={'Chiffre d\'affaire hebdomadaire'} component={TransferLocalStats} />
@@ -140,6 +145,10 @@ export default () => (
         <RouteWithSidebar exact path={Routes.OrangeReportTransferCandidate.path} title={'Rapport orange in candidates'} component={OrangeReportTransferCandidate} />
         <RouteWithSidebar exact path={Routes.OrangeReportPaymentCandidate.path} title={'Rapport orange paiment in candidates'} component={OrangeReportPaymentCandidate} />
         <RouteWithSidebar exact path={Routes.MarkOrangePaymentLikeRegularised.path} title={'Paiement - À marquer comme régularisé'} component={MarkOrangePaymentLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.LocalPaymentReporting.path} title={'Relever paiement en local'} component={LocalPaymentReporting} />
+        <RouteWithSidebar exact path={Routes.LocalTransferReporting.path} title={'Relever transfert en local'} component={LocalTransferReporting} />
+        <RouteWithSidebar exact path={Routes.TransfersLocalDailyReport.path} title={'Chiffre d\'affaire hebdomadaire en local'} component={TransfersLocalDailyReport} />
+        <RouteWithSidebar exact path={Routes.CollectionsLocalDailyReport.path} title={'Chiffre d\'affaire hebdomadaire en local'} component={CollectionsLocalDailyReport} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

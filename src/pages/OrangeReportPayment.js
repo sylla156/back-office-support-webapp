@@ -247,14 +247,14 @@ export default () => {
           </InputGroup>
         </Col>
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
-          <Form.Label>Montant Débité</Form.Label>
+          <Form.Label>Montant Créditié</Form.Label>
           <InputGroup>
             <InputGroup.Text></InputGroup.Text>
             <Form.Control
               type="text"
-              placeholder="Montant débité"
-              value={reference}
-              onChange={(event) => setFlowRateAmount(event.target.value)}
+              placeholder="Montant créditié"
+              value={flowRateAmount}
+              onChange={(event) => setCreditAmount(event.target.value)}
             />
           </InputGroup>
         </Col>

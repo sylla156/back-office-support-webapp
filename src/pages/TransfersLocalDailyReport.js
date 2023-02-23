@@ -13,11 +13,14 @@ import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
-import { format } from "date-fns";
+import { APPKEY, BASE_URL_STATS } from "./constante/Const";
 import numeral from "numeral";
-import { APPKEY, BASE_URL_COLLECTION_STATS } from "./constante/Const";
+import { format } from "date-fns";
 
-export default ()=> {
+// switch between locales
+numeral.locale("fr");
+
+export default () => {
   const currentDate = new Date();
 
   const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
@@ -49,16 +52,16 @@ export default ()=> {
     setEndDate(event);
   };
 
-  const getMerchantCollectionStats = () => {
+  const getMerchantStats = () => {
     setIsLoaded(false);
     setErrorData(null);
     axios
-      .get(BASE_URL_COLLECTION_STATS, {
+      .get(BASE_URL_STATS, {
         params: {
           merchantId,
           start: startDate,
           end: endDate,
-          shouldUseLocalData: false
+          shouldUseLocalData: true
         },
         headers: {
           AppKey: APPKEY,
@@ -117,6 +120,10 @@ export default ()=> {
     return numeral(value).format("0,0");
   };
 
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+
   const getMerchantSuccessfull = () => {
     if (!merchantStats) return undefined;
 
@@ -139,14 +146,9 @@ export default ()=> {
     return "";
   };
 
-
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   return (
     <>
-    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2"></div>
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2"></div>
       <div>
         <AlertDismissable
           message={errorData}
@@ -215,7 +217,7 @@ export default ()=> {
               className="ml-3"
               variant="primary"
               type="button"
-              onClick={getMerchantCollectionStats}
+              onClick={getMerchantStats}
             >
               Générer le rapport
             </Button>
@@ -416,4 +418,4 @@ export default ()=> {
       )}
     </>
   );
-}
+};

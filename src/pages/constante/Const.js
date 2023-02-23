@@ -12,7 +12,7 @@ export const BASE_URL_REFRESH_STATUS_WITH_PARAMS_1 = BASE_URL_REFRESH_STATUS + "
 
 export const BASE_URL_MOOV_BALANCE = "/balances/";
 
-export const BASE_URL_STATS = "/stats";
+export const BASE_URL_STATS = "/stats/merchant-transfer";
 export const BASE_URL_COLLECTION_STATS = "/stats/merchant-collection";
 
 export const BASE_URL_REFRESH_STATUS_WITH_PARAMS_2 = "&isForceStatus=" + false + "&merchantId=" + "&status=pending" + "&to="
@@ -104,6 +104,9 @@ export const GET_ORANGE_REPORT_TRANSFER_SERVICE_LIST="orange-report-transfer/all
 export const GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/orange-report-payment/candidates-in-make-regularised-process"
 export const MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/upload-file"
 export const SINGLE_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/single-mark"
+
+export const LOCAT_TRANSFER_REPORTING="/transfers/local-list";
+export const LOCAT_PAYMENT_REPORTING="/payments/local-list";
 
 export const TransferstatusList = [
   {

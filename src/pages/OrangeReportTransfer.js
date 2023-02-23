@@ -255,7 +255,7 @@ export default () => {
             <Form.Control
               type="text"
               placeholder="Montant débité"
-              value={reference}
+              value={flowRateAmount}
               onChange={(event) => setFlowRateAmount(event.target.value)}
             />
           </InputGroup>
@@ -267,7 +267,7 @@ export default () => {
             <Form.Control
               type="text"
               placeholder="3 derniers chiffres du numéros"
-              value={reference}
+              value={receiverPhoneNumberSlice}
               onChange={(event) => setReceiverPhoneNumberSlice(event.target.value)}
             />
           </InputGroup>

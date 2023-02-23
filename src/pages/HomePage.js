@@ -147,8 +147,8 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MarkOrangePaymentLikeRegularised.path} title={'Paiement - À marquer comme régularisé'} component={MarkOrangePaymentLikeRegularised} />
         <RouteWithSidebar exact path={Routes.LocalPaymentReporting.path} title={'Relever paiement en local'} component={LocalPaymentReporting} />
         <RouteWithSidebar exact path={Routes.LocalTransferReporting.path} title={'Relever transfert en local'} component={LocalTransferReporting} />
-        <RouteWithSidebar exact path={Routes.TransfersLocalDailyReport.path} title={'Chiffre d\'affaire hebdomadaire en local'} component={TransfersLocalDailyReport} />
-        <RouteWithSidebar exact path={Routes.CollectionsLocalDailyReport.path} title={'Chiffre d\'affaire hebdomadaire en local'} component={CollectionsLocalDailyReport} />
+        <RouteWithSidebar exact path={Routes.TransfersLocalDailyReport.path} title={'Rapport journalier en local'} component={TransfersLocalDailyReport} />
+        <RouteWithSidebar exact path={Routes.CollectionsLocalDailyReport.path} title={'Rapport journalier en local'} component={CollectionsLocalDailyReport} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

@@ -103,7 +103,11 @@ export const GET_ORANGE_REPORT_TRANSFER_SERVICE_LIST="orange-report-transfer/all
 
 export const GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/orange-report-payment/candidates-in-make-regularised-process"
 export const MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/upload-file"
-export const SINGLE_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/single-mark"
+export const SINGLE_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/single-mark";
+
+export const GET_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/orange-report-transfer/candidates-in-make-regularised-process"
+export const MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/regularisations/upload-orange-transfer-file"
+export const SINGLE_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/regularisations/single-orange-transfer-mark"
 
 export const LOCAT_TRANSFER_REPORTING="/transfers/local-list";
 export const LOCAT_PAYMENT_REPORTING="/payments/local-list";

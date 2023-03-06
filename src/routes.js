@@ -51,6 +51,7 @@ export const Routes = {
     CollectionsLocalDailyReport:{path:"/local/collection/daily-report"},
     LocalPaymentReporting:{path:"/local/payment-reporting"},
     LocalTransferReporting:{path:"/local/transfer-reporting"},
+    MarkOrangeTransferLikeRegularised:{path:"/orange-transfer/regularised"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

@@ -50,6 +50,7 @@ import LocalTransferReporting from './LocalTransferReporting';
 import LocalPaymentReporting from './LocalPaymentReporting';
 import TransfersLocalDailyReport from './TransfersLocalDailyReport';
 import CollectionsLocalDailyReport from './CollectionsLocalDailyReport';
+import MarkOrangeTransferLikeRegularised from './MarkOrangeTransferLikeRegularised';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -149,6 +150,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.LocalTransferReporting.path} title={'Relever transfert en local'} component={LocalTransferReporting} />
         <RouteWithSidebar exact path={Routes.TransfersLocalDailyReport.path} title={'Rapport journalier en local'} component={TransfersLocalDailyReport} />
         <RouteWithSidebar exact path={Routes.CollectionsLocalDailyReport.path} title={'Rapport journalier en local'} component={CollectionsLocalDailyReport} />
+        <RouteWithSidebar exact path={Routes.MarkOrangeTransferLikeRegularised.path} title={'Transfert - À marquer comme régularisé'} component={MarkOrangeTransferLikeRegularised} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

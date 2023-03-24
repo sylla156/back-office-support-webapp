@@ -12,7 +12,6 @@
     "react bootstrap 5",
     "bootstrap 5 dashboard"
   ],
-  "proxy": "http://192.168.1.6:4600",
   "license": "MIT",
   "homepage": ".",
   "version": "1.0.0",
@@ -71,14 +70,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "NODE_OPTIONS='--max-old-space-size=512' react-scripts build",
-    "build-local": "PUBLIC_URL=./ react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "serveNode": "node server.js",
-    "serve": "pm2 start ./server.js --name back_office_support_web_app",
+    "serve": "node server.js",
     "lint:check": "eslint \"{src,apps,libs,test}/**/*.{js,jsx}\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.{js,jsx}\" --fix"
   },

@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+    webapp:
+        container_name: webapp
+        build:
+            context: ${APP_ROOT}
+            dockerfile: infra/docker/Dockerfile
+            target: build
+        deploy:
+        env_file:
+            - "${APP_ROOT}/infra/config/.env"
+        ports:
+            - 3400:3000
+        user: "root"
+        volumes:
+            - "${APP_ROOT}:/app"
+        networks:
+            - hub2_network
+        command: /bin/sh -c "npm run start"
+    # nginx:
+    #     container_name: nginx
+    #     build:
+    #         context: ${APP_ROOT}
+    #         dockerfile: infra/docker/Dockerfile
+    #         target: serve
+    #     deploy:
+    #     env_file:
+    #         - "${APP_ROOT}/infra/config/.env"
+    #     ports:
+    #         - 80:80
+    #     networks:
+    #         - hub2_network
+
+networks:
+    hub2_network:
+        external: true
+        name: hub2_network

@@ -7,7 +7,7 @@ compose-config := infra/deploy/local/docker-compose.yml
 
 # Change the project name here, set the same name for containers to be grouped under that name
 # project-name := services
-project-name := backoffice-monitoring
+project-name := backoffice-support
 
 # Change the service name here
 # service-name := nest-app

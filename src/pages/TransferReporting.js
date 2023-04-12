@@ -39,7 +39,6 @@ export default () => {
   const [reference, setReference] = useState('');
   const [gatewayId, setGateWayId] = useState('');
   const [isForceStatus, setIsForceStatus] = useState('none');
-  const [params, setParams] = useState({})
   const [shouldLogin, setShouldLogin] = useState(false);
   const [startDate, setStartDate] = useState(
     `${formattedCurrentDate}T00:00:00Z`
@@ -84,7 +83,7 @@ export default () => {
           gatewayId,
           isForceStatus,
           status,
-          csv: false,
+          csv: true,
           page: currentPage,
           perPage: PAGE_SIZE,
       }
@@ -96,7 +95,7 @@ export default () => {
           reference,
           gatewayId,
           status,
-          csv: false,
+          csv: true,
           page: currentPage,
           perPage: PAGE_SIZE,
       }
@@ -298,14 +297,9 @@ export default () => {
               value={isForceStatus}
               onChange={handleChangeIsForceStatus}
             >
-              <option
-                value="nope"
-              >
-                Choisissez un état
-              </option>
-              <option value="none">None</option>
-              <option value="true">True</option>
-              <option value="false">False</option>
+              <option value="none">Tous les transferts</option>
+              <option value="true">Oui</option>
+              <option value="false">Non</option>
             </Form.Select>
           </Form.Group>
         </Col>

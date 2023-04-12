@@ -44,6 +44,8 @@ export default () => {
   const [status, setStatus] = useState(undefined);
   const [merchantId, setMerchantId] = useState(undefined);
   const [paymentList, setPaymentList] = useState([]);
+  const [customerReference, setCustomerReference] = useState('')
+  const [purchaseReference, setPurchaseReference] = useState('')
   const [count, setCount] = useState(undefined);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -74,6 +76,8 @@ export default () => {
           from: startDate,
           to: endDate,
           merchantId,
+          customerReference,
+          purchaseReference,
           status,
           csv: true,
           page: currentPage,
@@ -109,6 +113,8 @@ export default () => {
           from: startDate,
           to: endDate,
           merchantId,
+          customerReference,
+          purchaseReference,
           status,
           csv: false,
           page: currentPage,
@@ -208,6 +214,30 @@ export default () => {
               placeholder="MerchantId"
               value={merchantId}
               onChange={(event) => setMerchantId(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Customer Reference</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="customerReference"
+              value={customerReference}
+              onChange={(event) => setCustomerReference(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Purchase Reference</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="purchaseReference"
+              value={purchaseReference}
+              onChange={(event) => setPurchaseReference(event.target.value)}
             />
           </InputGroup>
         </Col>

@@ -36,6 +36,9 @@ export default () => {
   const [errorDataCSV, setErrorDataCSV] = useState(null);
   const [isLoaded, setIsLoaded] = useState(true);
   const [isLoadedCSV, setIsLoadedCSV] = useState(true);
+  const [reference, setReference] = useState('');
+  const [gatewayId, setGateWayId] = useState('');
+  const [isForceStatus, setIsForceStatus] = useState('none');
   const [shouldLogin, setShouldLogin] = useState(false);
   const [startDate, setStartDate] = useState(
     `${formattedCurrentDate}T00:00:00Z`
@@ -70,17 +73,36 @@ export default () => {
   const exportData = () => {
     setErrorDataCSV(null);
     setIsLoadedCSV(false);
-    axios
-      .get(TRANSFERS_CSV_LIST, {
-        params: {
-          from: startDate,
+    let params = null
+    if(isForceStatus == "true" || isForceStatus == "false"){
+      params = {
+        from: startDate,
           to: endDate,
           merchantId,
+          reference,
+          gatewayId,
+          isForceStatus,
           status,
           csv: true,
           page: currentPage,
           perPage: PAGE_SIZE,
-        },
+      }
+    }else{
+      params = {
+        from: startDate,
+          to: endDate,
+          merchantId,
+          reference,
+          gatewayId,
+          status,
+          csv: true,
+          page: currentPage,
+          perPage: PAGE_SIZE,
+      }
+    }
+    axios
+      .get(TRANSFERS_CSV_LIST, {
+        params: params,
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -105,17 +127,36 @@ export default () => {
   const transfersReportingList = () => {
     setIsLoaded(false);
     setErrorData(null);
-    axios
-      .get(TRANSFERS_CSV_LIST, {
-        params: {
-          from: startDate,
+    let params = null
+    if(isForceStatus == "true" || isForceStatus == "false"){
+      params = {
+        from: startDate,
           to: endDate,
           merchantId,
+          reference,
+          gatewayId,
+          isForceStatus,
           status,
           csv: false,
           page: currentPage,
           perPage: PAGE_SIZE,
-        },
+      }
+    }else{
+      params = {
+        from: startDate,
+          to: endDate,
+          merchantId,
+          reference,
+          gatewayId,
+          status,
+          csv: false,
+          page: currentPage,
+          perPage: PAGE_SIZE,
+      }
+    }
+    axios
+      .get(TRANSFERS_CSV_LIST, {
+        params: params,
         headers: {
           AppKey: APPKEY,
           authenticationtoken: cookies.token,
@@ -141,6 +182,18 @@ export default () => {
   const onPageChange = (page = 0) => {
     setCurrentPage(page);
   };
+
+  const handleChangeReference = (event) => {
+    setReference(event.target.value)
+  }
+
+  const handleChangeGatewayId = (event) => {
+    setGateWayId(event.target.value)
+  }
+
+  const handleChangeIsForceStatus = (e) => {
+    setIsForceStatus(e.target.value);
+  }
 
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
@@ -212,6 +265,43 @@ export default () => {
               onChange={(event) => setMerchantId(event.target.value)}
             />
           </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Reference</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="Reference transfert"
+              value={reference}
+              onChange={handleChangeReference}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>GatewayId</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="GatewayId"
+              value={gatewayId}
+              onChange={handleChangeGatewayId}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Group id="status">
+            <Form.Label>isForceStatus</Form.Label>
+            <Form.Select
+              value={isForceStatus}
+              onChange={handleChangeIsForceStatus}
+            >
+              <option value="none">Tous les transferts</option>
+              <option value="true">Oui</option>
+              <option value="false">Non</option>
+            </Form.Select>
+          </Form.Group>
         </Col>
         <Col xs={12} md={3} lg={3} className="px-2 mt-4">
           <div className="mt-3 mb-4">

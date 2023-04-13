@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Nav, Card, Pagination } from "@themesberg/react-bootstrap";
-import { PAGE_SIZE } from "../pages/constante/Const";
+import { PAGE_SIZE, FIRST_PAGE_INDEX } from "../pages/constante/Const";
+
 
 export const TablePagination = (props) => {
-  const { count, size, currentPage = 0, onPageChange = (page) => {} } = props;
+  const { count, size, currentPage = FIRST_PAGE_INDEX, onPageChange = (page) => {} } = props;
   const [pages, setPages] = useState([]);
 
   const pageSize = () => Math.max(size, PAGE_SIZE);
@@ -13,8 +14,8 @@ export const TablePagination = (props) => {
   };
   const lastIndex = () => Math.min((currentPage + 1) * pageSize(), count);
 
-  const canGoPrev = () => currentPage !== 0;
-  const canGoNext = () => !(currentPage === Math.max(pages.length - 1, 0));
+  const canGoPrev = () => currentPage > FIRST_PAGE_INDEX;
+  const canGoNext = () => currentPage < Math.max(pages.length - 1, FIRST_PAGE_INDEX);
 
   const goToPrev = () => {
     if (!canGoPrev()) return;
@@ -30,10 +31,10 @@ export const TablePagination = (props) => {
     const nbPages = Math.ceil(count / sizeToUse);
     console.log(nbPages, count / sizeToUse, count, sizeToUse);
     const pageList = [];
-    for (let i = 0; i < nbPages; i++) {
+    for (let i = FIRST_PAGE_INDEX; i < nbPages; i++) {
       pageList.push({
         id: "" + i,
-        name: "" + (i + 1),
+        name: "" + (i),
         index: i,
         action: () => {
           onPageChange(i);

@@ -15,6 +15,7 @@ import {
   SelectDefaultValues,
   PaymentstatusList,
   PAYMENTS_CSV_LIST,
+  FIRST_PAGE_INDEX
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
@@ -47,7 +48,7 @@ export default () => {
   const [customerReference, setCustomerReference] = useState('')
   const [purchaseReference, setPurchaseReference] = useState('')
   const [count, setCount] = useState(undefined);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
 
   const statusValue = () =>
     status ? PaymentstatusList.id : SelectDefaultValues.status;

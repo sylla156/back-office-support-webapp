@@ -1,7 +1,9 @@
 {
-  "name": "hub2-support-monitoring",
-  "description": "Volt React Dashboard is a free and open source admin dashboard template powered by React.js and Bootstrap 5",
-  "author": "Themesberg",
+  "name": "back-office-support-webapp",
+  "description": "Web application dashboard for Back-office Support, using the Volt React Dashboard (React.js, Bootstrap 5)",
+  "author": "HUB2 (contact@hub2.io)",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
   "keywords": [
     "bootstrap 5",
     "react",
@@ -12,7 +14,6 @@
     "react bootstrap 5",
     "bootstrap 5 dashboard"
   ],
-  "license": "MIT",
   "homepage": ".",
   "version": "1.0.0",
   "dependencies": {

@@ -16,6 +16,7 @@ import {
   APPKEY,
   PAGE_SIZE,
   SMS_CONTENT_ORANGE_CASH_IN,
+  FIRST_PAGE_INDEX
 } from "./constante/Const";
 import { format } from "date-fns";
 
@@ -32,7 +33,7 @@ export default () => {
   const [amount, setAmount] = useState(undefined);
   const [operatorRef, setOperatorRef] = useState(undefined);
   const [msisdn, setMsisdn] = useState(undefined);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
   const [smsList, setSmsList] = useState([]);
   const [count, setCount] = useState(undefined);
   const [startDate, setStartDate] = useState(defaultStartDate);

@@ -16,6 +16,7 @@ import {
   StatusConfirmationList,
   STATUS_CONFIRMATION_TRANSFER_LIST,
   TRANSFERS_CSV_LIST,
+  FIRST_PAGE_INDEX
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
@@ -48,7 +49,7 @@ export default () => {
   const [merchantId, setMerchantId] = useState(undefined);
   const [transactionForceStatus, setTransactionForceStatus] = useState([]);
   const [count, setCount] = useState(undefined);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
   const [version, setVersion] = useState(0);
 
   const statusValue = () =>

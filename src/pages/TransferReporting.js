@@ -15,6 +15,7 @@ import {
   SelectDefaultValues,
   TransferstatusList,
   TRANSFERS_CSV_LIST,
+  FIRST_PAGE_INDEX,
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
@@ -50,7 +51,7 @@ export default () => {
   const [merchantId, setMerchantId] = useState(undefined);
   const [transferList, setTransferList] = useState([]);
   const [count, setCount] = useState(undefined);
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX)
 
   const statusValue = () =>
     status ? TransferstatusList.id : SelectDefaultValues.status;
@@ -179,7 +180,7 @@ export default () => {
       });
   };
 
-  const onPageChange = (page = 0) => {
+  const onPageChange = (page = FIRST_PAGE_INDEX) => {
     setCurrentPage(page);
   };
 

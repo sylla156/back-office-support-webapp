@@ -15,6 +15,7 @@ import {
   SelectDefaultValues,
   StatusConfirmationList,
   GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED,
+  FIRST_PAGE_INDEX,
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
@@ -23,7 +24,6 @@ import DateTimePicker from "react-datetime-picker";
 import AlertDismissable from "../components/AlertDismissable";
 import { MarkOrangePaymentLikeRegularisedList } from "./MarkOrangePaymentLikeRegularisedList";
 import { OrangeReportPaymentMarkLikeRegularisedImportFile } from "../components/PaymentList/OrangeReportPaymentMarkLikeRegularisedImportFile";
-
 
 export default()=> {
   const currentDate = new Date();
@@ -47,7 +47,7 @@ export default()=> {
   const [markLikeRegularisedList, setMarkLikeRegularisedList] = useState([]);
 
   const [count, setCount] = useState(undefined);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
   const [version, setVersion] = useState(0);
 
   const handleStartDate = (value) => {

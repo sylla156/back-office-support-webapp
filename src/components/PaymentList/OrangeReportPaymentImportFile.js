@@ -105,7 +105,7 @@ export const OrangeReportPaymentImportfile = (props)=> {
       <Col xs={12} md={3} lg={8}>
         <Button variant="outline-primary" size="sm" onClick={handleShow}>
           <FontAwesomeIcon icon={faPlus} className="me-2" />
-          <span className=""> Importer un fichier CSV </span>
+          <span className=""> Importer un fichier Excel </span>
         </Button>
       </Col>
 
@@ -140,14 +140,14 @@ export const OrangeReportPaymentImportfile = (props)=> {
                             <input
                               type="file"
                               // value={file}
-                              accept=".csv"
+                              accept=".xlsx,.xls"
                               onChange={(event) => {
                                 handleChangeFile(event);
                               }}
                             />
                             <div className="d-md-block text-start">
                               <div className="fw-normal text-dark mb-1">
-                                {file?.name ? file?.name : <b> Choisir un fichier csv</b>}
+                                {file?.name ? file?.name : <b> Choisir un fichier Excel</b>}
                               </div>
                               <div className="text-gray small">
                                 

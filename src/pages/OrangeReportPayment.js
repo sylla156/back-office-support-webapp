@@ -50,7 +50,7 @@ export default () => {
   const [status, setStatus] = useState("successful");
   const [reference, setReference] = useState(undefined);
   const [country, setCountry] = useState("ci");
-  const [reconciliation, setReconciliation] = useState("Reconcilié");
+  const [reconciliation, setReconciliation] = useState("Tous");
   const [flowRateAmount, setFlowRateAmount] = useState(undefined);
   const [creditAmount, setCreditAmount] = useState(undefined);
   const [service, setService] = useState(SelectDefaultValues.servciePayment);
@@ -235,12 +235,12 @@ export default () => {
           </Form.Group>
         </Col>
         <Col xs={12} md={6} lg={3} className="mb-2 px-2">
-          <Form.Label>Reference</Form.Label>
+          <Form.Label>Référence</Form.Label>
           <InputGroup>
             <InputGroup.Text></InputGroup.Text>
             <Form.Control
               type="text"
-              placeholder="Reference"
+              placeholder="Référence"
               value={reference}
               onChange={(event) => setReference(event.target.value)}
             />

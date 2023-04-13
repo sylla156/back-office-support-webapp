@@ -4,16 +4,6 @@
   "author": "HUB2 (contact@hub2.io)",
   "license": "SEE LICENSE IN LICENSE.md",
   "private": true,
-  "keywords": [
-    "bootstrap 5",
-    "react",
-    "react dashboard",
-    "react admin template",
-    "free react",
-    "react ui library",
-    "react bootstrap 5",
-    "bootstrap 5 dashboard"
-  ],
   "homepage": ".",
   "version": "1.0.0",
   "dependencies": {

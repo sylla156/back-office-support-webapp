@@ -87,6 +87,7 @@ export const ORANGE_REPORT_TRANSFER_URL="/orange-report-transfer"
 export const ORANGE_REPORT_TRANSFER_UPLOAD_URL="/orange-report-transfer/upload-file"
 export const ORANGE_REPORT_TRANSFER_CANDIDATES="/orange-report-transfer/candidates"
 export const PAGE_SIZE = 10;
+export const FIRST_PAGE_INDEX = 1;
 
 export const ORANGE_REPORT_PAYMENT_URL="/orange-report-payment"
 export const ORANGE_REPORT_PAYMENT_UPLOAD_URL="/orange-report-payment/upload-file"

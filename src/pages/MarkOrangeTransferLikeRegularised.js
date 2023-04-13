@@ -15,6 +15,7 @@ import {
   SelectDefaultValues,
   StatusConfirmationList,
   GET_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED,
+  FIRST_PAGE_INDEX
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../routes";
@@ -45,7 +46,7 @@ export default()=>{
   const [markLikeRegularisedList, setMarkLikeRegularisedList] = useState([]);
 
   const [count, setCount] = useState(undefined);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
   const [version, setVersion] = useState(0);
 
   const handleStartDate = (value) => {

@@ -14,6 +14,7 @@ import {
   SelectDefaultValues,
   TransferstatusList,
   chooseReconciliation,
+  FIRST_PAGE_INDEX
 } from "./constante/Const";
 import AlertDismissable from "../components/AlertDismissable";
 import {
@@ -67,7 +68,7 @@ export default () => {
     setEndDate(value);
   };
 
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
   const [version, setVersion] = useState(0);
 
   const [cookies] = useCookies(["token"]);

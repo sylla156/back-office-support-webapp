@@ -10,12 +10,13 @@ export const TablePagination = (props) => {
   const pageSize = () => Math.max(size, PAGE_SIZE);
   const firstIndex = () => {
     if (count === 0) return 0;
-    return currentPage * pageSize() + 1;
+    //formule pour trouver le premier index ==> (Numéro de page - 1) * Taille de page + 1
+    return (currentPage - 1) * pageSize() + 1;
   };
-  const lastIndex = () => Math.min((currentPage + 1) * pageSize(), count);
+  const lastIndex = () => Math.min((currentPage) * pageSize(), count);
 
   const canGoPrev = () => currentPage > FIRST_PAGE_INDEX;
-  const canGoNext = () => currentPage < Math.max(pages.length - 1, FIRST_PAGE_INDEX);
+  const canGoNext = () => currentPage < Math.max(pages.length, FIRST_PAGE_INDEX);
 
   const goToPrev = () => {
     if (!canGoPrev()) return;
@@ -29,9 +30,9 @@ export const TablePagination = (props) => {
   useEffect(() => {
     const sizeToUse = pageSize();
     const nbPages = Math.ceil(count / sizeToUse);
-    console.log(nbPages, count / sizeToUse, count, sizeToUse);
+    //console.log(nbPages, count / sizeToUse, count, sizeToUse);
     const pageList = [];
-    for (let i = FIRST_PAGE_INDEX; i < nbPages; i++) {
+    for (let i = FIRST_PAGE_INDEX; i <= nbPages; i++) {
       pageList.push({
         id: "" + i,
         name: "" + (i),
@@ -41,6 +42,7 @@ export const TablePagination = (props) => {
         },
       });
     }
+    console.log("pageList",pageList);
     setPages(pageList);
   }, [count, size]);
   return (

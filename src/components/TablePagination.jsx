@@ -42,7 +42,6 @@ export const TablePagination = (props) => {
         },
       });
     }
-    console.log("pageList",pageList);
     setPages(pageList);
   }, [count, size]);
   return (

@@ -36,6 +36,10 @@ export default() => {
     const [count, setCount] = useState(undefined);
     const [waveReportPaymentList, setWaveReportPaymentList] = useState([]);
     const [reference, setReference] = useState(undefined);
+    const [referenceHub2, setReferenceHub2] = useState(undefined);
+    const [phoneNumber, SetPhoneNumber] = useState(undefined);
+    const [feeFrom, setFeeFrom] = useState(undefined);
+    const [feeTo, setFeeTo] = useState(undefined);
     const [country, setCountry] = useState("CI");
     const [reconciliation, setReconciliation] = useState("Tous");
     const [creditAmount, setCreditAmount] = useState(undefined);
@@ -69,6 +73,8 @@ export default() => {
         axios.get(WAVE_REPORT_PAYMENT_URL,{
             params:{
                 reference,
+                referenceHub2,
+                phoneNumber,
                 country,
                 creditAmount,
                 from: startDate,
@@ -111,7 +117,7 @@ export default() => {
 
     const onClearFilters = () => { 
         setReference("");
-        setCountry("ci");
+        setCountry("CI");
         setCreditAmount("");
         setFee("");
         setStartDate(defaultStartDate);
@@ -159,14 +165,40 @@ export default() => {
             </Col>
 
             <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+                <Form.Label>Transaction ID</Form.Label>
+                <InputGroup>
+                    <InputGroup.Text></InputGroup.Text>
+                    <Form.Control
+                    type="text"
+                    placeholder="Transaction ID"
+                    value={reference}
+                    onChange={(event) => setReference(event.target.value)}
+                    />
+                </InputGroup>
+            </Col>
+
+            <Col xs={12} md={6} lg={3} className="mb-2 px-2">
                 <Form.Label>Référence</Form.Label>
                 <InputGroup>
                     <InputGroup.Text></InputGroup.Text>
                     <Form.Control
                     type="text"
                     placeholder="Référence"
-                    value={reference}
-                    onChange={(event) => setReference(event.target.value)}
+                    value={referenceHub2}
+                    onChange={(event) => setReferenceHub2(event.target.value)}
+                    />
+                </InputGroup>
+            </Col>
+
+            <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+                <Form.Label>Numéro de téléphone</Form.Label>
+                <InputGroup>
+                    <InputGroup.Text></InputGroup.Text>
+                    <Form.Control
+                    type="text"
+                    placeholder="Numéro de téléphone"
+                    value={phoneNumber}
+                    onChange={(event) => SetPhoneNumber(event.target.value)}
                     />
                 </InputGroup>
             </Col>

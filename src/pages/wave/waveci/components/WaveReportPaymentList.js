@@ -20,14 +20,13 @@ export const WaveReportPaymentList =(props)=> {
               <thead>
                 <tr>
                   <th className="border-bottom">id</th>
-                  <th className="border-bottom">Date de transaction</th>
+                  <th className="border-bottom">Date de la transaction</th>
                   <th className="border-bottom">Transaction ID</th>
-                  <th className="border-bottom">Identifiant du groupe</th>
+                  <th className="border-bottom">Identifiant de groupe</th>
                   <th className="border-bottom">N° de téléphone</th>
-                  <th className="border-bottom">Description</th>
+                  <th className="border-bottom">Résumé</th>
                   <th className="border-bottom">Montant net</th>
                   <th className="border-bottom">Frais</th>
-                  <th className="border-bottom">Pays</th>
                   <th className="border-bottom">Montant brut</th>
                   <th className="border-bottom">Solde</th>
                   <th className="border-bottom">Devise</th>
@@ -36,6 +35,7 @@ export const WaveReportPaymentList =(props)=> {
                   <th className="border-bottom">Nom du client</th>
                   <th className="border-bottom">N° d'identification national</th>
                   <th className="border-bottom">Référence</th>
+                  <th className="border-bottom">Pays</th>
                   <th className="border-bottom">Local Payment Id</th>
                   <th className="border-bottom">Dernière date du Rapprochement</th>
                 </tr>
@@ -106,9 +106,6 @@ export const WaveReportPaymentList =(props)=> {
           <span className="fw-normal">{fee}</span>
         </td>
         <td>
-          <span className="fw-normal">{country}</span>
-        </td>
-        <td>
           <span className="fw-normal">{grossAmount}</span>
         </td>
         <td>
@@ -133,7 +130,7 @@ export const WaveReportPaymentList =(props)=> {
           <span className="fw-normal">{reference}</span>
         </td>
         <td>
-          <span className="fw-normal">{}</span>
+          <span className="fw-normal">{country}</span>
         </td>
         <td>
           <span className="fw-normal">{localPaymentId}</span>

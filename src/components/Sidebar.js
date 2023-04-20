@@ -14,6 +14,7 @@ import {
   faCalendar,
   faHistory,
   faTools,
+  faUpload,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
@@ -269,6 +270,11 @@ export default (props = {}) => {
                   icon={faWallet}
                   link={Routes.ProviderPaymentBalance.path}
                 />
+                <NavItem
+                    title="Importez les rapports"
+                    icon={faUpload}
+                    link={Routes.ChooseOperator.path}
+                  />
                 <NavItem
                     title="Historique Fournisseur"
                     icon={faHistory}

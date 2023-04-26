@@ -100,6 +100,7 @@ export const ORANGE_REPORT_PAYMENT_CANDIDATES="/orange-report-payment/candidates
 export const WAVE_REPORT_PAYMENT_UPLOAD_URL="/wave-report-payment/upload-file"
 export const GET_LOCAL_WAVE_REPORT_PAYMENT_RECONCILIATION_DATA="wave-report-payment/reconciliation";
 export const WAVE_REPORT_PAYMENT_URL="/wave-report-payment"
+export const GET_MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/wave-retrieve-payments-candidates"
 
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";

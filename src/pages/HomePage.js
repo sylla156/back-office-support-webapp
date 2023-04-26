@@ -53,6 +53,7 @@ import CollectionsLocalDailyReport from './CollectionsLocalDailyReport';
 import MarkOrangeTransferLikeRegularised from './MarkOrangeTransferLikeRegularised';
 import ChooseOperator from './ChooseOperator';
 import WaveReportPayment from './wave/waveci/WaveReportPayment';
+import MarkWavePaymentLikeRegularised from './wave/waveci/components/MarkWavePaymentLikeRegularised';
 
 
 
@@ -156,6 +157,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MarkOrangeTransferLikeRegularised.path} title={'Transfert - À marquer comme régularisé'} component={MarkOrangeTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.ChooseOperator.path} title={'Importer les rapports opérateurs'} component={ChooseOperator} />
         <RouteWithSidebar exact path={Routes.WaveReportPayment.path} title={"Rapport wave paiement"} component={WaveReportPayment}/>
+        <RouteWithSidebar exact path={Routes.MarkWavePaymentLikeRegularised.path} title={'Paiement Wave - À marquer comme régularisé'} component={MarkWavePaymentLikeRegularised} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

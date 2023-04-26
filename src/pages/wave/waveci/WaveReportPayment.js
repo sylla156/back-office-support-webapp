@@ -271,10 +271,6 @@ export default() => {
                 <div></div>
             </div>
 
-            {userCanUpdateLocalData && <UpdatePaymentLocalData 
-                onRefresh={incrementVersion}
-                userCanUpdateLocalData={userCanUpdateLocalData}
-            />}
             {userCanUpdateLocalData && <WaveMakeORAndLocalPaymentReconciliation onRefresh={incrementVersion} userCanUpdateLocalData={userCanUpdateLocalData} />}
             {
                 isLoaded ? <Row>

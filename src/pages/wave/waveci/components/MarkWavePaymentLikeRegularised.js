@@ -9,7 +9,7 @@ import {
 } from "@themesberg/react-bootstrap";
 import { useCookies } from 'react-cookie';
 import AxiosWebHelper from '../../../../utils/axios-helper';
-import { APPKEY,PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED } from '../../../constante/Const';
+import { APPKEY,PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED, EXPORT_WAVE_REPORT_PAYMENT_MARK_LIKE_REGULARISED } from '../../../constante/Const';
 import { Redirect } from 'react-router-dom';
 import { Routes } from '../../../../routes';
 import { format, addMinutes, subDays } from 'date-fns';
@@ -63,7 +63,7 @@ export default () => {
         axios.get(GET_MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED,{
             params:{
                 from: startDate,
-                to: endDate
+                to: endDate,
             },
             headers:{
                 AppKey: APPKEY,
@@ -72,7 +72,7 @@ export default () => {
         }).then((result) => {
             setIsLoaded(true)
             setMarkLikeRegularisedList(result.data.data)
-            setCount(result.data.candidates)
+            setCount(result.data.count)
         }).catch((error) => {
             setIsLoaded(true);
             if (error.response) {
@@ -83,6 +83,40 @@ export default () => {
               }
             }
           });
+    }
+
+    const fileName = "wave-report-payment-who-must-be-regularise-export";
+    const exportData = () => {
+        setErrorDataCSV(null);
+        setIsLoadedCSV(false);
+
+        axios.get(EXPORT_WAVE_REPORT_PAYMENT_MARK_LIKE_REGULARISED,{
+            params:{
+                from: startDate,
+                to: endDate,
+                csv: true,
+                page: currentDate,
+                perPage: PAGE_SIZE,
+            },
+            headers:{
+                AppKey: APPKEY,
+                authenticationtoken: cookies.token
+            },
+        }).then((result) => {
+            console.log(result.data)
+            setIsLoadedCSV(true);
+            setErrorDataCSV(null);
+            const url = window.URL.createObjectURL(new Blob([result.data]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", fileName + ".csv");
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }).catch((error) => {
+            setIsLoaded(true);
+            console.log("une erreur s'est produite", error);
+        });
     }
 
     const onPageChange = (page = 0) => {
@@ -150,7 +184,7 @@ export default () => {
               className="mx-2"
               variant="primary"
               type="button"
-              onClick={() => console.log('okokok')}
+              onClick={() => getMarkWaveReportPaymentListRegularised()}
             >
               Filtrer
             </Button>
@@ -160,7 +194,7 @@ export default () => {
                 variant="outline-primary"
                 className=""
                 type="button"
-                onClick={() => console.log('okokok')}
+                onClick={() => exportData()}
               >
                 Exporter
               </Button>

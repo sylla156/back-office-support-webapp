@@ -103,7 +103,6 @@ export default () => {
                 authenticationtoken: cookies.token
             },
         }).then((result) => {
-            console.log(result.data)
             setIsLoadedCSV(true);
             setErrorDataCSV(null);
             const url = window.URL.createObjectURL(new Blob([result.data]));

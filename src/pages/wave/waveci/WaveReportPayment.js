@@ -117,6 +117,7 @@ export default() => {
 
     const onClearFilters = () => { 
         setReference("");
+        setReferenceHub2("");
         setCountry("CI");
         setCreditAmount("");
         setFee("");

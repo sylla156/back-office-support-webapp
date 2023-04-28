@@ -41,6 +41,19 @@ export const WaveReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
                     <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    reference Hub2
+                    </h4>
+                </Col>
+
+                <Col className="ms--2" lg={9}>
+                    <span className="h6 mb-0 text-start">
+                    {reference ? reference : ""}
+                    </span>
+                </Col>
+            </Row>
+            <Row className="d-block d-xl-flex align-items-center">
+                <Col className="ms--2 " lg={3}>
+                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
                     Date de transaction
                     </h4>
                 </Col>
@@ -85,11 +98,7 @@ export const WaveReportPaymentInProcessMarkLikeRegularisedList = (props) => {
                 </Col>
 
                 <Col className="ms--2" lg={9}>
-                    <Badge bg="sucess">
-                    <span className="h6 mb-0 text-start">
-                    success
-                    </span>
-                    </Badge>
+                    <h2 className=" badge bg-success py-2">SUCCESSFUL</h2>
                 </Col>
             </Row>
         </>

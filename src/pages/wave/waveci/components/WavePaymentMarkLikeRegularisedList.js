@@ -4,7 +4,7 @@ import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 export const WavePaymentMarkLikeRegularisedList = (props) => {
     const candidates = props.candidates
     if(candidates.length === 0) {
-        return <p className="badge bg-danger h2">Pas de candidat</p>
+        return <p className="badge bg-danger h2 py-3">Pas de candidat</p>
     }
 
     return(
@@ -80,6 +80,17 @@ export const WavePaymentMarkLikeRegularisedList = (props) => {
 
                             <Col className="ms--2" lg={9}>
                             <span className="h6 mb-0 text-start">{paymentId ? paymentId : ""}</span>
+                            </Col>
+                        </Row>
+                        <Row className="d-block d-xl-flex align-items-center">
+                            <Col className="ms--2 " lg={3}>
+                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                            paymentProcessorReference
+                            </h4>
+                            </Col>
+
+                            <Col className="ms--2" lg={9}>
+                            <span className="h6 mb-0 text-start">{paymentProcessorReference ? paymentProcessorReference : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">

@@ -14,7 +14,6 @@ import {
   faCalendar,
   faHistory,
   faTools,
-  faUpload,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
@@ -271,11 +270,6 @@ export default (props = {}) => {
                   link={Routes.ProviderPaymentBalance.path}
                 />
                 <NavItem
-                    title="Rapports opérateurs"
-                    icon={faCalendar}
-                    link={Routes.ChooseOperator.path}
-                  />
-                <NavItem
                     title="Historique Fournisseur"
                     icon={faHistory}
                     link={Routes.HistoryProviderBalanceCollection.path}
@@ -315,11 +309,11 @@ export default (props = {}) => {
                   icon={faChartPie}
                   link={Routes.PaymentLocalStats.path}
                 />
-                  <NavItem
-                  title="Régularisation orange"
-                  icon={faChartPie}
-                  link={Routes.MarkOrangePaymentLikeRegularised.path}
-                />
+                <NavItem
+                    title="Rapports opérateurs"
+                    icon={faCalendar}
+                    link={Routes.ChooseOperator.path}
+                  />
               </CollapsableNavItem>
               <CollapsableNavItem title="Sms" icon={faSms}>
                 <NavItem

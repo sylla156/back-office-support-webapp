@@ -8,7 +8,7 @@ import {
     InputGroup,
 } from "@themesberg/react-bootstrap";
 import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Routes } from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
@@ -20,26 +20,22 @@ export default () => {
     const [data, setData] = useState([
         {
             id:1,
-            name:"Wave CI",
-            image:"wave.jpg",
+            name:"Orange CI",
+            image:"orange.jpg",
             order:0,
-            routeUrl:"/wave-report-payment",
-            //routeUrl:"/payment/rapport-payment-wave-ci",
-            createdDate:new Date(),
-            updatedDate: new Date()
+            routeRapportUrl:"/orange-report-payment",
+            routeRegularisation:"/orange-payment/regularised",
         },
         {
             id:2,
-            name:"Wave SN",
+            name:"Wave CI",
             image:"wave.jpg",
             order:0,
-            routeUrl:"/payment/rapport-payment-wave-sn",
-            createdDate:new Date(),
-            updatedDate: new Date()
-        }
+            routeRapportUrl:"/wave-report-payment",
+            routeRegularisation:"/wave-payment/regularised",
+        },
     ])
     const createdAtUtc = new Date();
-    const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
 
     const axios = AxiosWebHelper.getAxios();
     const [cookies] = useCookies(["token"]);
@@ -56,20 +52,23 @@ export default () => {
                         <div className="row">
                             {data.map((operator) => {
                                 return(
-                                    <div className="col-md-3">
-                                        <div className="card">
+                                    <div className="col-md-3" key={operator.id}>
+                                        <div className="card" style={{overflow:"hidden"}}>
                                             <div className="row">
                                                 <div className="col-md-5">
-                                                    <img src={require('../assets/img/technologies/wave.jpg')} className="card-img-left" alt="Image wave" height={137} />
+                                                    <img src={require(`../assets/img/technologies/${operator.image}`)} className="" style={{width:"100%", height:"100%"}} alt="Logo operateur"/>
                                                 </div>
                                                 <div className="col-md-7">
                                                     <div className="card-body">
-                                                    <a className="card-title text-warning" href={operator.routeUrl}>{operator.name}</a>
-                                                    <p className="card-text">{createdAtFormated}</p>
-                                                    {/* <div className="row">
-                                                        <button className="">Rapport transfert</button>
-                                                        <button>Rapport paiement</button>
-                                                    </div> */}
+                                                    <h5 className="card-title text-warning text-bold">{operator.name}</h5>
+                                                    <div className="row" style={{marginTop:5}}>
+                                                        <Link className="btn btn-outline-primary btn-xs mb-1" to={operator.routeRapportUrl}>
+                                                            <p className="mb-0">Rapport paiement</p>
+                                                        </Link>
+                                                        <Link className="btn btn-outline-primary btn-xs" to={operator.routeRegularisation}>
+                                                            <p className="mb-0">Régularisation</p>
+                                                        </Link>
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>

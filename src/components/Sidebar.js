@@ -271,8 +271,8 @@ export default (props = {}) => {
                   link={Routes.ProviderPaymentBalance.path}
                 />
                 <NavItem
-                    title="Importez les rapports"
-                    icon={faUpload}
+                    title="Rapports opérateurs"
+                    icon={faCalendar}
                     link={Routes.ChooseOperator.path}
                   />
                 <NavItem

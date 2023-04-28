@@ -118,6 +118,8 @@ export default() => {
     const onClearFilters = () => { 
         setReference("");
         setReferenceHub2("");
+        SetPhoneNumber("");
+        setReconciliation('Tous')
         setCountry("CI");
         setCreditAmount("");
         setFee("");

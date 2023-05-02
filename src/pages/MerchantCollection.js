@@ -22,11 +22,6 @@ export const MerchantCollection = (props) => {
 
   const [cookies] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
-  // const baseUrlSolde = "/balances";
   const axios = AxiosWebHelper.getAxios();
 
   const getMerchantBalance = () => {
@@ -61,7 +56,10 @@ export const MerchantCollection = (props) => {
   useEffect(() => {
     getMerchantBalance();
   }, [id, version]);
-
+  
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

@@ -27,10 +27,6 @@ export default () => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const handleBalance = (event) => {
     setBalance(event);
   };
@@ -74,7 +70,9 @@ export default () => {
     setBalance("");
     setProviderBalance({});
   };
-
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

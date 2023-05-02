@@ -56,11 +56,6 @@ export const UpdatePaymentLocalData = (props)=> {
 
   const [cookies, ] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
-
   const axios = AxiosWebHelper.getAxios();
   const getAndUpdateLocalData = () => {
     setIsLoading(true);
@@ -136,13 +131,18 @@ export const UpdatePaymentLocalData = (props)=> {
     setEndDate(defaultEndDate);
   };
 
-  if(shouldLogin) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
-
+  
   useEffect(() => {
     getCachedPaymentLocalData();
   }, []);
+
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  
+  if(shouldLogin) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   return (
    <>

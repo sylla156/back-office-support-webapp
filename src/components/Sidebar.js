@@ -66,10 +66,6 @@ export default (props = {}) => {
     );
   };
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const NavItem = (props) => {
     const {
       home,
@@ -128,6 +124,10 @@ export default (props = {}) => {
     );
   };
 
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  
   return (
     <>
       <Navbar
@@ -309,11 +309,11 @@ export default (props = {}) => {
                   icon={faChartPie}
                   link={Routes.PaymentLocalStats.path}
                 />
-                  <NavItem
-                  title="Régularisation orange"
-                  icon={faChartPie}
-                  link={Routes.MarkOrangePaymentLikeRegularised.path}
-                />
+                <NavItem
+                    title="Rapports opérateurs"
+                    icon={faCalendar}
+                    link={Routes.ChooseOperator.path}
+                  />
               </CollapsableNavItem>
               <CollapsableNavItem title="Sms" icon={faSms}>
                 <NavItem

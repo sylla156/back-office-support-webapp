@@ -22,10 +22,6 @@ export const MerchantCollectionBalanceInGlobalReport = (props) => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
-
   const getMerchantCollectionBalance = () => {
     setIsLoaded(false);
     axios
@@ -55,6 +51,9 @@ export const MerchantCollectionBalanceInGlobalReport = (props) => {
     getMerchantCollectionBalance();
   }, [version]);
 
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>
   }

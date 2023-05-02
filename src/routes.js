@@ -52,6 +52,9 @@ export const Routes = {
     LocalPaymentReporting:{path:"/local/payment-reporting"},
     LocalTransferReporting:{path:"/local/transfer-reporting"},
     MarkOrangeTransferLikeRegularised:{path:"/orange-transfer/regularised"},
+    ChooseOperator:{path:"/payment/choose-operator"},
+    WaveReportPayment:{path:"/wave-report-payment"},
+    MarkWavePaymentLikeRegularised:{path:"/wave-payment/regularised"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

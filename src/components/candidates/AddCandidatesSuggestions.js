@@ -60,9 +60,6 @@ export const AddCandidatesSuggestions = (props)=> {
 
   const [cookies, ] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
 
   if (confirmedStatus === "failed" && !processorReference) {
     processorReference = "";
@@ -136,7 +133,10 @@ export const AddCandidatesSuggestions = (props)=> {
 
     return true;
   }
-
+  
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>
   }

@@ -29,11 +29,6 @@ export default () => {
 
   const [cookies] = useCookies(["token"]);
   const [day, setDateDay] = useState(undefined);
-  // const [dateEnd, setDateEnd] = useState(undefined);
-
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
 
   const handleDateChange = (event) => {
     const value = event.target.value;
@@ -86,7 +81,9 @@ export default () => {
   useEffect(() => {
     getHistoryMerchantBalanceCollection();
   }, []);
-
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

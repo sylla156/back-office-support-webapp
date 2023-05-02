@@ -57,10 +57,6 @@ export default () => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
-
   const handleMerchantId = (event) => {
     setMerchantId(event);
   };
@@ -139,10 +135,6 @@ export default () => {
     return numeral(value).format("0,0");
   };
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const getMerchantSuccessfull = () => {
     if (!merchantStats) return undefined;
 
@@ -165,6 +157,13 @@ export default () => {
     return "";
   };
 
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2"></div>

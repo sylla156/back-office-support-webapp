@@ -58,10 +58,6 @@ export const UpdateStatusConfirmation = (props) => {
 
   const [cookies] = useCookies(["token", "user"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const sessionUser = cookies.user;
 
   const setData = () => {
@@ -147,13 +143,16 @@ export const UpdateStatusConfirmation = (props) => {
   const canDelete = () => canUpdate();
   const canEditForm = () => canUpdate();
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   useEffect(() => {
     setData();
   }, [processorReference, description, confirmedStatus]);
+
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
   console.log("confirmedStatus ", confirmedStatus, "processorReference ", "user.name ", user.name);
   return (

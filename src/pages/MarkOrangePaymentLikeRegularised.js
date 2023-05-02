@@ -58,10 +58,6 @@ export default()=> {
   };
   const [cookies] = useCookies(["token", "user"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const userCanAddOrangePaymentRegularised = cookies.user.canAddPaymentRegularised;
 
   const axios = AxiosWebHelper.getAxios();
@@ -148,13 +144,16 @@ export default()=> {
     setEndDate(defaultEndDate);
   };
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   useEffect(() => {
     getMarkOrangeReportPaymentListRegularised();
   }, [currentPage, version]);
+
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
   return (
     <>

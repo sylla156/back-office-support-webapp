@@ -40,10 +40,6 @@ export const BalanceSettingWidget = (props) => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
-
   const handleBalance = (value) => {
     setBalance(value);
   };
@@ -87,6 +83,10 @@ export const BalanceSettingWidget = (props) => {
     setBalanceDate("");
     setBalance("");
   };
+  
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;

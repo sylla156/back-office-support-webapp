@@ -15,10 +15,6 @@ export default () => {
 
   const [cookies] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const axios = AxiosWebHelper.getAxios();
   const collectionBalanceEnable = true;
 
@@ -53,7 +49,9 @@ export default () => {
   useEffect(() => {
     getMerchantList();
   }, []);
-
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

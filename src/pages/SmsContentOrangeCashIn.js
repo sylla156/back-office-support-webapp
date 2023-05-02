@@ -55,12 +55,21 @@ export default () => {
     setOperatorRef(value);
   };
   const [cookies] = useCookies(["token"]);
-
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
   
   const axios = AxiosWebHelper.getAxios();
+
+  const onFilters = () => {
+    setAmount("");
+    setMsisdn("");
+    setStartDate(defaultStartDate);
+    setEndDate(defaultEndDate)
+    setOperatorRef("");
+    setSmsList([])
+    setCount(0);
+  };
+  const onPageChange = (page = 0) => {
+    setCurrentPage(page);
+  };
 
   const getSmsContentOrangeCashIn = () => {
     setErrorData(null);
@@ -103,19 +112,9 @@ export default () => {
     getSmsContentOrangeCashIn();
   }, [currentPage]);
 
-  const onFilters = () => {
-    setAmount("");
-    setMsisdn("");
-    setStartDate(defaultStartDate);
-    setEndDate(defaultEndDate)
-    setOperatorRef("");
-    setSmsList([])
-    setCount(0);
-  };
-  const onPageChange = (page = 0) => {
-    setCurrentPage(page);
-  };
-
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

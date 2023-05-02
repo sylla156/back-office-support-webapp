@@ -62,10 +62,6 @@ export default () => {
   };
   const [cookies] = useCookies(["token", "user"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const userCanForceStatus = cookies.user?.canForceStatus;
   const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
@@ -160,13 +156,16 @@ export default () => {
     setStatus("pending");
   };
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   useEffect(() => {
     statusConfirmaionReportingList();
   }, [currentPage, version]);
+
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
   return (
     <>
       {/* filter system */}

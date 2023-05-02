@@ -22,10 +22,6 @@ export default () => {
 
     const [cookies] = useCookies(['token']);
 
-    if(!cookies.token) {
-        return <Redirect to={Routes.Signin.path} />;
-    }
-
     const axios = AxiosWebHelper.getAxios();
 
     const resquestHeaderSupportHub2 = {
@@ -75,11 +71,11 @@ export default () => {
     
     };
 
-
-    if (shouldLogin) {
-
+    if(!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
-    
+    }
+    if (shouldLogin) {
+        return <Redirect to={Routes.Signin.path} />;
     }
     return (
         <>

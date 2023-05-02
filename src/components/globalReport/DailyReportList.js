@@ -27,10 +27,6 @@ export const DailyReportList = (props) => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
-
   const getMerchantStats = () => {
     setIsLoaded(false);
     setErrorData(null);
@@ -95,10 +91,6 @@ export const DailyReportList = (props) => {
     return numeral(value).format("0,0");
   };
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const getMerchantSuccessfull = () => {
     if (!merchantStats) return undefined;
 
@@ -124,6 +116,14 @@ export const DailyReportList = (props) => {
   useEffect(() => {
     getMerchantStats();
   }, [version]);
+
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
   return (
     <>

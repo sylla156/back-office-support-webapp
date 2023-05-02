@@ -34,9 +34,7 @@ export const DangerouslyForceStatus = (props)=> {
 
   const [cookies, ] = useCookies(["token"]);
 
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
+  
 
   const axios = AxiosWebHelper.getAxios();
   const dangerouslyForceStatus = ()=> {
@@ -88,7 +86,10 @@ export const DangerouslyForceStatus = (props)=> {
   const handleDangerouslyClose = () => {
     dangerouslyForceStatus();
   };
-
+  
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>;
   }

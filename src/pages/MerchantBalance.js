@@ -20,10 +20,6 @@ export const MerchantBalance = (props) => {
 
   const [cookies] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const axios = AxiosWebHelper.getAxios();
 
   const getMerchantBalance = () => {
@@ -60,7 +56,10 @@ export const MerchantBalance = (props) => {
   useEffect(() => {
     getMerchantBalance();
   }, [id, version]);
-
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

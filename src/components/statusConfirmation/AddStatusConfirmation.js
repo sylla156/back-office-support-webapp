@@ -41,10 +41,6 @@ export const AddStatusConfirmation = (props) => {
 
   const [cookies, ] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   if (confirmedStatus === "failed") {
     processorReference = "";
   }
@@ -118,9 +114,14 @@ export const AddStatusConfirmation = (props) => {
     return true;
   }
 
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>
   }
+  
   return (
     <>
       <Col md={6} className="">

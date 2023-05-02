@@ -62,10 +62,6 @@ export default () => {
     setEndDate(value);
   };
   const [cookies] = useCookies(["token"]);
-
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
   
   const axios = AxiosWebHelper.getAxios();
 
@@ -196,13 +192,16 @@ export default () => {
     setIsForceStatus(e.target.value);
   }
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   useEffect(() => {
     transfersReportingList();
   }, [currentPage]);
+
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
   return (
     <>

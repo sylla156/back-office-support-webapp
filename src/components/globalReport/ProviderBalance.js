@@ -25,10 +25,6 @@ export const ProviderBalance = (props) => {
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
 
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
-
   const getProviderBalance = () => {
     setIsLoaded(false);
     axios
@@ -58,6 +54,10 @@ export const ProviderBalance = (props) => {
     getProviderBalance();
   }, [version]);
 
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>
   }

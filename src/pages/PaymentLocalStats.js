@@ -22,10 +22,6 @@ export default () => {
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
-
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
   
   const currentDate = new Date();
 
@@ -66,7 +62,9 @@ export default () => {
   useEffect(() => {
     getSuccessfulCountriesPaymentCommissionWeek();
   }, []);
-
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

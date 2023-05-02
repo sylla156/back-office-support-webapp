@@ -58,10 +58,6 @@ export default () => {
   };
 
   const [cookies] = useCookies(["token"]);
-
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
   
   const axios = AxiosWebHelper.getAxios();
 
@@ -109,10 +105,6 @@ export default () => {
     setEndDate2("")
   };
 
-  useEffect(() => {
-    getMerchantFromDbList();
-  }, []);
-
   const buildDateIntervalList = (
     startDate1,
     endDate1,
@@ -135,23 +127,7 @@ export default () => {
 
     return list;
   };
-
-  useEffect(() => {
-    const newList = buildDateIntervalList(
-      startDate1,
-      endDate1,
-      startDate2,
-      endDate2
-    );
-    setDateTimeList(newList);
-  }, [startDate1, endDate1, startDate2, endDate2]);
-
-  useEffect(() => {
-    setSelectedMerchant(selected);
-  }, [currentVersion]);
-
-  // ==
-
+  
   const buildMapDateWidget = (list) => {
     return list.map((item) => (
       <>
@@ -184,9 +160,32 @@ export default () => {
     ));
   };
 
+  useEffect(() => {
+    const newList = buildDateIntervalList(
+      startDate1,
+      endDate1,
+      startDate2,
+      endDate2
+    );
+    setDateTimeList(newList);
+  }, [startDate1, endDate1, startDate2, endDate2]);
+
+  useEffect(() => {
+    setSelectedMerchant(selected);
+  }, [currentVersion]);
+
+  useEffect(() => {
+    getMerchantFromDbList();
+  }, []);
+
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }
+  // ==
 
   return (
     <>

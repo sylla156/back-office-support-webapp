@@ -69,10 +69,6 @@ export default()=> {
   };
 
   const [cookies] = useCookies(["token"]);
-
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
   
   const axios = AxiosWebHelper.getAxios();
   const fileName = "local-transfers-reporting";
@@ -167,15 +163,17 @@ export default()=> {
     setCurrentPage(page);
   };
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   useEffect(() => {
     localTransfersReportingList();
   }, [currentPage]);
 
-  console.log(localTransferList)
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+
   return (
     <>
       <div className="align-items-center d-flex flex-wrap">

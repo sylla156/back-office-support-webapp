@@ -61,10 +61,6 @@ export default() => {
 
     const axios = AxiosWebHelper.getAxios();
 
-    if(!cookies.token){
-        return <Redirect to={Routes.Signin.path} />
-    }
-
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
     const getWaveReportPayment = () => {
@@ -130,7 +126,9 @@ export default() => {
     useEffect(() => {
         getWaveReportPayment()
     }, [currentPage, version]);
-
+    if(!cookies.token){
+        return <Redirect to={Routes.Signin.path} />
+    }
     if (shouldLogin) {
         return <Redirect to={Routes.Signin.path} />;
       }

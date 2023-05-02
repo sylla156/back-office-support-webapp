@@ -60,10 +60,6 @@ export default () => {
   };
   const [cookies] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const axios = AxiosWebHelper.getAxios();
 
   const fileName = "payments-reporting-export";
@@ -147,13 +143,16 @@ export default () => {
     setCurrentPage(page);
   };
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   useEffect(() => {
     paymentsReportingList();
   }, [currentPage]);
+
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
   return (
     <>

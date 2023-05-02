@@ -48,10 +48,6 @@ export default () => {
     };
     
     const [cookies] = useCookies(["token", "user"]);
-    
-    if (!cookies.token) {
-        return <Redirect to={Routes.Signin.path} />;
-    }
 
     const userCanAddWavePaymentRegularised = cookies.user.canAddPaymentRegularised;
 
@@ -132,13 +128,16 @@ export default () => {
     setEndDate(defaultEndDate);
     };
 
-    if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
-    }
-
     useEffect(() => {
         getMarkWaveReportPaymentListRegularised();
     }, [currentPage, version]);
+
+    if (!cookies.token) {
+      return <Redirect to={Routes.Signin.path} />;
+    }
+    if (shouldLogin) {
+      return <Redirect to={Routes.Signin.path} />;
+    }
 
   return (
     <>

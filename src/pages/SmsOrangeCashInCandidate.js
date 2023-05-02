@@ -38,10 +38,6 @@ export default () => {
     setEndDate(value);
   };
   const [cookies] = useCookies(["token"]);
-
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
   
   const axios = AxiosWebHelper.getAxios();
 
@@ -79,7 +75,10 @@ export default () => {
     setStartDate("");
     setEndDate("");
   };
-
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
+  
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

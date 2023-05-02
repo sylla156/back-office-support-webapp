@@ -34,10 +34,6 @@ export default (props) => {
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
-
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
   
   const getSuccessfulPaymentCommissionCountryCategory = () => {
     setIsLoaded(false);
@@ -92,7 +88,10 @@ export default (props) => {
   useEffect(() => {
     getSuccessfulPaymentCommissionCountryCategory();
   }, [country, week, order]);
-
+  
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

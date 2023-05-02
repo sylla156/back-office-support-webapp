@@ -75,10 +75,6 @@ export default () => {
 
   const axios = AxiosWebHelper.getAxios();
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const userCanForceStatus = cookies.user?.canForceStatus;
   const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
@@ -184,6 +180,9 @@ export default () => {
     getServiceList();
   }, [currentPage, version]);
 
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

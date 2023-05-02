@@ -45,10 +45,6 @@ export const MarkOrangeTransferkLikeRegularised = (props)=> {
 
   const [cookies, ] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const handleShow = () => {
     setShow(true);
   };
@@ -124,7 +120,10 @@ export const MarkOrangeTransferkLikeRegularised = (props)=> {
 
     return true;
   }
-
+  
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>
   }

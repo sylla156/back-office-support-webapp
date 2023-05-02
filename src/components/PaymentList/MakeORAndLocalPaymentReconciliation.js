@@ -51,10 +51,6 @@ export const MakeORAndLocalPaymentReconciliation = (props)=> {
 
   const [cookies, ] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const axios = AxiosWebHelper.getAxios();
 
   const makeReconciliation = ()=> {
@@ -132,13 +128,17 @@ export const MakeORAndLocalPaymentReconciliation = (props)=> {
     setEndDate(defaultEndDate);
   };
 
-  if(shouldLogin) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
-
   useEffect(() => {
     getCachedPaymentLocalData();
   }, []);
+
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  
+  if(shouldLogin) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   return (
     <>

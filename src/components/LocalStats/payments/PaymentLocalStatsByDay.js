@@ -32,10 +32,6 @@ export default () => {
 
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
-  
-  if(!cookies.token) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
 
   const getSuccessfulPaymentCommissionByDay = () => {
     setIsLoaded(false);
@@ -73,19 +69,12 @@ export default () => {
     getSuccessfulPaymentCommissionByDay();
   }, []);
 
-  if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
+  if(!cookies.token) {
+    return <Redirect to={Routes.Signin.path}/>
   }
 
-  const formattedValue = ()=> {
-    const values = commission.map((item)=> {
-      return {
-        commission_brute: item.commission_brute,
-        commission_nette: item.commission_nette
-      };
-    });
-
-    return values;
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
   }
 
   return (

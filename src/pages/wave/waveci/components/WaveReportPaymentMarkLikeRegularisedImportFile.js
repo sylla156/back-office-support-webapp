@@ -30,10 +30,6 @@ export const WaveReportPaymentMarkLikeRegularisedImportFile = (props) => {
 
     const [cookies] = useCookies(["token"])
 
-    if(!cookies.token) {
-        return <Redirect to={Routes.Signin.path}/>
-    }
-
     const handleChangeFile = async (event) => {
         let files = event.target.files;
         let file = files[0];
@@ -95,7 +91,9 @@ export const WaveReportPaymentMarkLikeRegularisedImportFile = (props) => {
     const handlePostFile = ()=> {
         postFile();
     }
-
+    if(!cookies.token) {
+        return <Redirect to={Routes.Signin.path}/>
+    }
     if(shouldLogin) {
         return <Redirect to={Routes.Signin.path}/>;
     }

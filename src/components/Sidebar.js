@@ -66,10 +66,6 @@ export default (props = {}) => {
     );
   };
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const NavItem = (props) => {
     const {
       home,
@@ -128,6 +124,10 @@ export default (props = {}) => {
     );
   };
 
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  
   return (
     <>
       <Navbar

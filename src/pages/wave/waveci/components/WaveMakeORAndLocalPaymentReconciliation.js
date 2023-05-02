@@ -48,10 +48,6 @@ export const WaveMakeORAndLocalPaymentReconciliation = (props)=> {
 
   const [cookies, ] = useCookies(["token"]);
 
-  if (!cookies.token) {
-    return <Redirect to={Routes.Signin.path} />;
-  }
-
   const axios = AxiosWebHelper.getAxios();
 
   const makeReconciliation = ()=> {
@@ -129,13 +125,16 @@ export const WaveMakeORAndLocalPaymentReconciliation = (props)=> {
     setEndDate(defaultEndDate);
   };
 
-  if(shouldLogin) {
-    return <Redirect to={Routes.Signin.path}/>
-  }
-
   useEffect(() => {
     getCachedPaymentLocalData();
   }, []);
+
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
+  if(shouldLogin) {
+    return <Redirect to={Routes.Signin.path}/>
+  }
 
   return (
     <>

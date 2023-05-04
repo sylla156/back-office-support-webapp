@@ -97,6 +97,11 @@ export const GET_LOCAL_PAYMENT_DATA="local-stats/cached-payment-infos";
 export const UPDATE_LOCAL_PAYMENT_DATA="local-stats/fetch-payment-manualy";
 export const ORANGE_REPORT_PAYMENT_CANDIDATES="/orange-report-payment/candidates"
 
+export const WAVE_REPORT_TRANSFER_UPLOAD_URL="/wave-report-transfer/upload-file"
+export const GET_LOCAL_WAVE_REPORT_TRANSFER_RECONCILIATION_DATA="wave-report-transfer/reconciliation";
+export const WAVE_REPORT_TRANSFER_URL="/wave-report-transfer"
+export const GET_WAVE_REPORT_TRANSFER_TRANSACTION_TYPE_LIST="wave-report-transfer/wave-report-transfer-transactiontype-values";
+
 export const WAVE_REPORT_PAYMENT_UPLOAD_URL="/wave-report-payment/upload-file"
 export const GET_LOCAL_WAVE_REPORT_PAYMENT_RECONCILIATION_DATA="wave-report-payment/reconciliation";
 export const WAVE_REPORT_PAYMENT_URL="/wave-report-payment"
@@ -198,6 +203,10 @@ export const SelectDefaultValues = {
   service: "Cash in",
   servciePayment: "Merchant Payment",
   reconcilation : 'Tous'
+}
+
+export const SelectWaveTransferDefaultValues = {
+  type: "Tous",
 }
 
 export const OrangeReportTransferCountry = [

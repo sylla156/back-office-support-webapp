@@ -260,6 +260,11 @@ export default (props = {}) => {
                 icon={faChartPie}
                 link={Routes.MarkOrangeTransferLikeRegularised.path}
               />
+              <NavItem
+                    title="Rapports opérateurs"
+                    icon={faCalendar}
+                    link={Routes.ChooseOperatorTransfer.path}
+                  />
                 {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
               </CollapsableNavItem>

@@ -59,20 +59,20 @@ WaveReportTransferList.TableRow = (props) => {
         id,
         transactionDate,
         transactionId,
+        transactionType,
         groupId,
         phoneNumber,
-        transactionType,
         description,
         netAmount,
         fee,
-        country,
         grossAmount,
         balance,
+        country,
         currency,
         paymentReason,
-        cashier,
-        emitterName,
-        nationalIdentificationNumber,
+        cashierName,
+        customerName,
+        nationalId,
         reference,
         localPaymentId,
         lastReconciliationDate
@@ -123,13 +123,13 @@ WaveReportTransferList.TableRow = (props) => {
             <span className="fw-normal">{paymentReason}</span>
             </td>
             <td>
-            <span className="fw-normal">{cashier}</span>
+            <span className="fw-normal">{cashierName}</span>
             </td>
             <td>
-            <span className="fw-normal">{emitterName}</span>
+            <span className="fw-normal">{customerName}</span>
             </td>
             <td>
-            <span className="fw-normal">{nationalIdentificationNumber}</span>
+            <span className="fw-normal">{nationalId}</span>
             </td>
             <td>
             <span className="fw-normal">{reference}</span>

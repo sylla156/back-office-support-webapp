@@ -9,7 +9,7 @@ import {
 } from "@themesberg/react-bootstrap";
 import { useCookies } from 'react-cookie';
 import AxiosWebHelper from '../../../../../utils/axios-helper';
-import { APPKEY, PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED } from '../../../../constante/Const';
+import { APPKEY, PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED,EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED } from '../../../../constante/Const';
 import { Routes } from '../../../../../routes';
 import { Redirect } from 'react-router-dom';
 import { format, subDays } from 'date-fns';
@@ -77,7 +77,34 @@ export default () => {
         });
     }
 
-    const exportData = () => {}
+    const fileName = "orange-report-transfer-who-must-be-regularise-export";
+    const exportData = () => {
+        setErrorDataCSV(null)
+        setIsLoadedCSV(false)
+        axios.get(EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED,{
+            params:{
+                from: startDate,
+                to: endDate
+            },
+            headers:{
+                AppKey: APPKEY,
+                authenticationtoken: cookies.token,
+            }
+        }).then((result) => {
+            setIsLoadedCSV(true);
+            setErrorDataCSV(null);
+            const url = window.URL.createObjectURL(new Blob([result.data]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", fileName + ".csv");
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }).catch((error) => {
+            setIsLoaded(true)
+            console.log("error", error);
+        })
+    }
 
     const onPageChange = (page = 0) => {
         setCurrentPage(page);
@@ -100,7 +127,7 @@ export default () => {
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
     }
-    
+
     if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
     }

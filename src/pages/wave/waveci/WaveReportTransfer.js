@@ -111,7 +111,6 @@ export default() => {
                 }
             }).then((result) => {
                 setIsLoaded(true)
-                // console.log("result",result.data.result);
                 setWaveReportTransferList(result.data.result)
                 setCount(result.data.count)
             }).catch((error) => {

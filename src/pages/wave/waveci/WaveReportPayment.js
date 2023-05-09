@@ -77,7 +77,7 @@ export default() => {
                 to: endDate,
                 fee,
                 reconciliation,
-                page: currentDate,
+                page: currentPage,
                 perPage: PAGE_SIZE
             },
             headers:{

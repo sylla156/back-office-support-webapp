@@ -111,7 +111,7 @@ export const WaveReportPaymentImportFile = (props) => {
         >
             <Modal.Header closeButton closeVariant="white" className="bg-primary">
             <Modal.Title className="text-white">
-                Ajouter le rapport orange
+                Ajouter le rapport wave
             </Modal.Title>
             </Modal.Header>
             <Modal.Body>

@@ -23,16 +23,16 @@ export default () => {
             name:"Orange CI",
             image:"orange.jpg",
             order:0,
-            routeRapportPaymentUrl:"/orange-report-payment",
-            routeRegularisation:"/orange-payment/regularised",
+            routeRapportTransfer:"/orange-report-transfer",
+            routeRegularisation:"/orange-transfer/regularised",
         },
         {
             id:2,
             name:"Wave CI",
             image:"wave.jpg",
             order:0,
-            routeRapportPaymentUrl:"/wave-report-payment",
-            routeRegularisation:"/wave-payment/regularised",
+            routeRapportTransfer:"/wave-report-transfer",
+            routeRegularisation:"/wave-transfer/regularised",
         },
     ])
     const createdAtUtc = new Date();
@@ -62,11 +62,11 @@ export default () => {
                                                     <div className="card-body">
                                                     <h5 className="card-title text-warning text-bold">{operator.name}</h5>
                                                     <div className="row" style={{marginTop:5}}>
-                                                        <Link className="btn btn-outline-primary btn-xs mb-1" to={operator.routeRapportPaymentUrl}>
-                                                            <p className="mb-0">Rapport paiement</p>
+                                                        <Link className="btn btn-outline-primary btn-xs mb-1" to={operator.routeRapportTransfer}>
+                                                            <p className="mb-0">Rapport transfert</p>
                                                         </Link>
-                                                        <Link className="btn btn-outline-primary btn-xs" to={operator.routeRegularisation}>
-                                                            <p className="mb-0">Régularisation paiement</p>
+                                                        <Link className="btn btn-outline-primary btn-xs mb-1" to={operator.routeRegularisation}>
+                                                            <p className="mb-0">Régularisation transfert</p>
                                                         </Link>
                                                     </div>
                                                     </div>

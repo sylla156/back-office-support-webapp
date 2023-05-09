@@ -5,7 +5,7 @@ export const WaveReportTransferInProcessMarkLikeRegularisedList = (props) => {
     let processorTransfer = props.processorTransfer
 
     const {
-        id, transactionDate, transactionId, transactionType,groupId, rawphoneNumber, phoneNumber, description, netAmount, fee, country, grossAmount, balance, currency, paymentReason, cashierName, customerName, nationalId, localPaymentId, reference
+        id, transactionDate, transactionId, transactionType,groupId, rawphoneNumber, phoneNumber, description, netAmount, fee, country, grossAmount, amount, balance, currency, paymentReason, cashierName, customerName, nationalId, localPaymentId, reference
     } = processorTransfer
 
     return(
@@ -65,13 +65,13 @@ export const WaveReportTransferInProcessMarkLikeRegularisedList = (props) => {
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
                     <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                    montant brut
+                    montant
                     </h4>
                 </Col>
 
                 <Col className="ms--2" lg={9}>
                     <span className="h6 mb-0 text-start">
-                    {grossAmount} {"XOF"}
+                    {amount} {"XOF"}
                     </span>
                 </Col>
             </Row>

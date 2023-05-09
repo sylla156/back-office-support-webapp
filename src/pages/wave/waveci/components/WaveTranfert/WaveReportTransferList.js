@@ -26,6 +26,7 @@ export const WaveReportTransferList = (props) => {
                             <th className="border-bottom">N° de téléphone</th>
                             <th className="border-bottom">Type de la transaction</th>
                             <th className="border-bottom">Résumé</th>
+                            <th className="border-bottom">Montant</th>
                             <th className="border-bottom">Montant net</th>
                             <th className="border-bottom">Frais</th>
                             <th className="border-bottom">Montant brut</th>
@@ -66,6 +67,7 @@ WaveReportTransferList.TableRow = (props) => {
         netAmount,
         fee,
         grossAmount,
+        amount,
         balance,
         country,
         currency,
@@ -103,6 +105,9 @@ WaveReportTransferList.TableRow = (props) => {
             </td>
             <td>
                 <span className="fw-normal">{description}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{amount}</span>
             </td>
             <td>
                 <span className="fw-normal">{netAmount}</span>

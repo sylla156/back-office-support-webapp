@@ -34,6 +34,14 @@ export default () => {
             routeRapportPaymentUrl:"/wave-report-payment",
             routeRegularisation:"/wave-payment/regularised",
         },
+        {
+            id:3,
+            name:"Moov CI",
+            image:"moov.jpg",
+            order:0,
+            routeRapportPaymentUrl:"/moov-report-payment",
+            routeRegularisation:"/moov-payment/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 

@@ -111,6 +111,10 @@ export const WAVE_REPORT_PAYMENT_URL="/wave-report-payment"
 export const GET_MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/wave-retrieve-payments-candidates"
 export const EXPORT_WAVE_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/regularisations/export-wave-report-payment-candidates"
 
+export const MOOV_REPORT_PAYMENT_URL="/moov-report-payment"
+export const MOOV_REPORT_PAYMENT_UPLOAD_URL="/moov-report-payment/upload-file"
+export const GET_LOCAL_MOOV_REPORT_PAYMENT_RECONCILIATION_DATA="moov-report-payment/reconciliation";
+
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";
 export const GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA="orange-report-transfer/reconciliation";
@@ -226,6 +230,19 @@ export const OrangeReportTransferCountry = [
 ];
 
 export const WaveReportTransferCountry = [
+  {
+    "id":"ci",
+    "country":"CI",
+    "name":"CÔTE D'IVOIRE",
+  },
+  {
+    "id":"sn",
+    "country":"SN",
+    "name":"SÉNÉGAL",
+  },
+];
+
+export const MoovReportPaymentCountry = [
   {
     "id":"ci",
     "country":"CI",

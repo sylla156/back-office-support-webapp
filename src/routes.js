@@ -58,6 +58,7 @@ export const Routes = {
     MarkWavePaymentLikeRegularised:{path:"/wave-payment/regularised"},
     WaveReportTransfer:{path:"/wave-report-transfer"},
     MarkWaveTransferLikeRegularised:{path: "/wave-transfer/regularised"},
+    MoovReportPayment:{path:"/moov-report-payment"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

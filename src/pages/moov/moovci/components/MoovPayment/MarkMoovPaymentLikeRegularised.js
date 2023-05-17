@@ -9,7 +9,7 @@ import {
 } from "@themesberg/react-bootstrap";
 import { useCookies } from 'react-cookie';
 import AxiosWebHelper from '../../../../../utils/axios-helper';
-import { APPKEY, PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_MOOV_REPORT_PAYMENT_LIKE_REGULARISED } from '../../../../constante/Const';
+import { APPKEY, PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_MOOV_REPORT_PAYMENT_LIKE_REGULARISED, EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED } from '../../../../constante/Const';
 import { Redirect } from 'react-router-dom';
 import { Routes } from '../../../../../routes';
 import { format, addMinutes, subDays } from 'date-fns';
@@ -79,7 +79,35 @@ export default () => {
         });
     }
 
-    const exportData = () => { }
+    const fileName = "moov-report-payment-who-must-be-regularise-export";
+    const exportData = () => {
+        setErrorDataCSV(null);
+        setIsLoadedCSV(false);
+
+        axios.get(EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED,{
+            params:{
+                from: startDate,
+                to: endDate,
+            },
+            headers:{
+                AppKey: APPKEY,
+                authenticationtoken: cookies.token
+            },
+        }).then((result) => {
+            setIsLoadedCSV(true);
+            setErrorDataCSV(null);
+            const url = window.URL.createObjectURL(new Blob([result.data]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", fileName + ".csv");
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }).catch((error) => {
+            setIsLoaded(true);
+            console.log("une erreur s'est produite", error);
+        });
+    }
 
     const onPageChange = (page = 0) => {
         setCurrentPage(page);

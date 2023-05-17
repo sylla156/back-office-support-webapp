@@ -115,6 +115,7 @@ export const MOOV_REPORT_PAYMENT_URL="/moov-report-payment"
 export const MOOV_REPORT_PAYMENT_UPLOAD_URL="/moov-report-payment/upload-file"
 export const GET_LOCAL_MOOV_REPORT_PAYMENT_RECONCILIATION_DATA="moov-report-payment/reconciliation";
 export const GET_MARK_MOOV_REPORT_PAYMENT_LIKE_REGULARISED="/moov-report-payment/moov-retrieve-payments-candidates"
+export const EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/moov-report-payment/export-moov-report-payment-candidates"
 
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";

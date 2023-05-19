@@ -4,14 +4,17 @@ import {
     Nav,
     Navbar,
     Container,
+    Row,Col
 } from "@themesberg/react-bootstrap";
 import {useCookies} from "react-cookie";
 import SplitString from "../utils/splitString";
 import Logout from "../UserProfile/Logout";
+import { useHistory } from "react-router-dom";
 
 export default (props) => {
 
     const {pageTitle = "HUB2 SUPPORT"} = props;
+    const history = useHistory()
     // const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
     /* const areNotificationsRead = notifications.reduce(
         (acc, notif) => acc && notif.read,
@@ -27,6 +30,10 @@ export default (props) => {
         }, 300);
     
     };*/
+
+    const goBack = () => {
+        history.goBack()
+    }
 
     const [cookies, , ] = useCookies(["token", "id", "user"]);
     // console.log(cookies.user);
@@ -67,9 +74,18 @@ export default (props) => {
             <Container fluid className="px-0">
                 <div className="d-flex justify-content-between w-100">
                     <div className="media d-flex align-items-center">
-                        <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                            <h2 className="h2 mb-0">{pageTitle}</h2>
-                        </div>
+                        <Row className="align-items-center" md={12}>
+                            <Col md={1}>
+                                <button className="btn btn-outline-custom" onClick={goBack}>
+                                    <i className="fas fa-arrow-left"></i>
+                                </button>
+                            </Col>
+                            <Col className="text-center" md={11}>
+                                <div className="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+                                    <h2 className="h3 mb-0 my-0">{pageTitle}</h2>
+                                </div>
+                            </Col>
+                        </Row>
                     </div>
                     <Nav className="align-items-center">
                         <Dropdown as={Nav.Item}>

@@ -13,6 +13,7 @@ import {
     Form,
     Button,
     InputGroup,
+    FormControl
 } from "@themesberg/react-bootstrap";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { MoovReportPaymentImportFile } from "./components/MoovPayment/MoovReportPaymentImportFile";
@@ -36,14 +37,15 @@ export default () => {
     const [count, setCount] = useState(undefined);
     const [moovReportPaymentList, setMoovReportPaymentList] = useState([]);
     const [reference, setReference] = useState(undefined);
-    const [phoneNumber, SetPhoneNumber] = useState(undefined);
-    const [recipientNumber, setRecipientNumber] = useState(undefined);
+    const [sourceNumber, setSourceNumber] = useState(undefined);
     const [country, setCountry] = useState("CI");
     const [reconciliation, setReconciliation] = useState("Tous");
     const [creditAmount, setCreditAmount] = useState(undefined);
-    const [commission, setCommission] = useState(undefined);
     const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
     const [version, setVersion] = useState(0);
+    const [minValue, setMinValue] = useState();
+    const [maxValue, setMaxValue] = useState();
+    const [sourceFullName, setSourceFullName] = useState("");
 
     const handleStartDate = (value) => {
         setStartDate(value);
@@ -65,12 +67,14 @@ export default () => {
         axios.get(MOOV_REPORT_PAYMENT_URL, {
             params: {
                 reference,
-                phoneNumber,
+                sourceNumber,
                 country,
+                sourceFullName,
+                montantMin: minValue,
+                montantMax: maxValue,
                 creditAmount,
                 from: startDate,
                 to: endDate,
-                commission,
                 reconciliation,
                 page: currentPage,
                 perPage: PAGE_SIZE
@@ -81,7 +85,7 @@ export default () => {
             }
         }).then((result) => {
             setIsLoaded(true)
-            console.log(result.data.result);
+            // console.log(result.data.result);
             setMoovReportPaymentList(result.data.result)
             setCount(result.data.count)
         }).catch((error) => {
@@ -108,11 +112,13 @@ export default () => {
 
     const onClearFilters = () => {
         setReference("");
-        SetPhoneNumber("");
+        setSourceNumber("");
         setReconciliation('Tous')
         setCountry("CI");
         setCreditAmount("");
-        setCommission("");
+        setMinValue("");
+        setMaxValue("")
+        setSourceFullName('')
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
     };
@@ -171,42 +177,42 @@ export default () => {
                 </Col>
 
                 <Col xs={12} md={6} lg={3} className="mb-2 px-2">
-                    <Form.Label>Commission</Form.Label>
-                    <InputGroup>
-                        <InputGroup.Text></InputGroup.Text>
-                        <Form.Control
-                            type="text"
-                            placeholder="Commission"
-                            value={commission}
-                            onChange={(event) => setCommission(event.target.value)}
-                        />
-                    </InputGroup>
-                </Col>
-
-                <Col xs={12} md={6} lg={3} className="mb-2 px-2">
                     <Form.Label>Numéro de téléphone origine</Form.Label>
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
                             type="text"
                             placeholder="Numéro de téléphone origine"
-                            value={phoneNumber}
-                            onChange={(event) => SetPhoneNumber(event.target.value)}
+                            value={sourceNumber}
+                            onChange={(event) => setSourceNumber(event.target.value)}
+                        />
+                    </InputGroup>
+                </Col>
+                <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+                    <Form.Label>Montant</Form.Label>
+                    <InputGroup>
+                        <FormControl
+                            placeholder="Valeur minimale"
+                            value={minValue}
+                            onChange={(e) => setMinValue(e.target.value)}
+                        />
+                        <FormControl
+                            placeholder="Valeur maximale"
+                            value={maxValue}
+                            onChange={(e) => setMaxValue(e.target.value)}
                         />
                     </InputGroup>
                 </Col>
 
                 <Col xs={12} md={6} lg={3} className="mb-2 px-2">
-                    <Form.Label>Numéro de téléphone destinataire</Form.Label>
+                    <Form.Label>Nom & prenoms compte origine</Form.Label>
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
                             type="text"
-                            placeholder="Numéro de téléphone destinataire"
-                            value={recipientNumber}
-                            onChange={(event) => 
-                                setRecipientNumber(event.target.value)
-                            }
+                            placeholder="Nom & prenoms compte destinataire"
+                            value={sourceFullName}
+                            onChange={(event) => setSourceFullName(event.target.value)}
                         />
                     </InputGroup>
                 </Col>

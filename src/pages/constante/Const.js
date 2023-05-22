@@ -121,6 +121,8 @@ export const EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/moov-report-paym
 export const MOOV_REPORT_TRANSFER_URL="/moov-report-transfer"
 export const MOOV_REPORT_TRANSFER_UPLOAD_URL="/moov-report-transfer/upload-file"
 export const GET_LOCAL_MOOV_REPORT_TRANSFER_RECONCILIATION_DATA="moov-report-transfer/reconciliation";
+export const GET_MARK_MOOV_REPORT_TRANSFER_LIKE_REGULARISED="/moov-report-transfer/moov-retrieve-transfers-candidates"
+export const EXPORT_MOOV_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/moov-report-transfer/export-moov-report-transfer-candidates"
 
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";

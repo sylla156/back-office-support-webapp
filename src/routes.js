@@ -61,6 +61,7 @@ export const Routes = {
     MoovReportPayment:{path:"/moov-report-payment"},
     MarkMoovPaymentLikeRegularised:{path:"/moov-payment/regularised"},
     MoovReportTransfer:{path:"/moov-report-transfer"},
+    MarkMoovTransferLikeRegularised:{path:"/moov-transfer/regularised"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

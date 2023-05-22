@@ -34,6 +34,14 @@ export default () => {
             routeRapportTransfer:"/wave-report-transfer",
             routeRegularisation:"/wave-transfer/regularised",
         },
+        {
+            id:3,
+            name:"Moov CI",
+            image:"moov.jpg",
+            order:0,
+            routeRapportTransfer:"/moov-report-transfer",
+            routeRegularisation:"/moov-transfer/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 

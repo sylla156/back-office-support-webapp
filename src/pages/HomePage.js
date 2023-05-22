@@ -59,6 +59,7 @@ import ChooseOperatorTransfer from './ChooseOperatorTransfer';
 import MarkWaveTransferLikeRegularised from './wave/waveci/components/WaveTranfert/MarkWaveTransferLikeRegularised';
 import MoovReportPayment from './moov/moovci/MoovReportPayment';
 import MarkMoovPaymentLikeRegularised from './moov/moovci/components/MoovPayment/MarkMoovPaymentLikeRegularised';
+import MoovReportTransfer from './moov/moovci/MoovReportTransfer';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -165,6 +166,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MarkWaveTransferLikeRegularised.path} title={'Transfert Wave - À marquer comme régularisé'} component={MarkWaveTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.MoovReportPayment.path} title={'Rapport moov paiement'} component={MoovReportPayment} />
         <RouteWithSidebar exact path={Routes.MarkMoovPaymentLikeRegularised.path} title={'Paiement Moov - À marquer comme régularisé'} component={MarkMoovPaymentLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MoovReportTransfer.path} title={'Rapport moov transfert'} component={MoovReportTransfer} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

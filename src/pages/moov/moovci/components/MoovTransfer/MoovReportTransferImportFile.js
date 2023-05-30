@@ -50,7 +50,38 @@ export const MoovReportTransferImportFile = (props) => {
 
     const axios = AxiosWebHelper.getAxios();
 
-    const postFile = () => { }
+    const postFile = () => {
+        if(!file) return
+
+        setIsLoading(true)
+        setErrorData(null)
+        const formData = new FormData()
+        formData.append('file', file)
+
+        axios.post(MOOV_REPORT_TRANSFER_UPLOAD_URL, formData,{
+            headers:{
+                "Content-Type":"multipart/form-data",
+                AppKey: APPKEY,
+                authenticationtoken: cookies.token
+            },
+            params:{
+                country: "CI"
+            }
+        }).then((_result) => {
+            setIsLoading(false)
+            handleClose()
+            onRefresh()
+        }).catch((error) => {
+            setIsLoading(false)
+            if(error.response){
+                if(error.response.status === 401){
+                    setShouldLogin(true)
+                }else{
+                    setErrorData(error.response.data.message)
+                }
+            }
+        })
+    }
 
     const handlePostFile = () => {
         postFile();

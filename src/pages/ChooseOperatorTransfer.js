@@ -42,6 +42,14 @@ export default () => {
             routeRapportTransfer:"/moov-report-transfer",
             routeRegularisation:"/moov-transfer/regularised",
         },
+        {
+            id:4,
+            name:"Intouch",
+            image:"intouch.jpg",
+            order:0,
+            routeRapportTransfer:"/intouch-report-transfer",
+            routeRegularisation:"/intouch-transfer/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 

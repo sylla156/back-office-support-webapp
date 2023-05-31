@@ -117,6 +117,11 @@ export const GET_LOCAL_MOOV_REPORT_PAYMENT_RECONCILIATION_DATA="moov-report-paym
 export const GET_MARK_MOOV_REPORT_PAYMENT_LIKE_REGULARISED="/moov-report-payment/moov-retrieve-payments-candidates"
 export const EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/moov-report-payment/export-moov-report-payment-candidates"
 
+export const INTOUCH_REPORT_TRANSFER_URL="/intouch-report-transfer"
+export const INTOUCH_REPORT_TRANSFER_UPLOAD_URL="/intouch-report-transfer/upload-file"
+export const GET_LOCAL_INTOUCH_REPORT_TRANSFER_RECONCILIATION_DATA="intouch-report-transfer/reconciliation";
+export const GET_MARK_INTOUCH_REPORT_TRANSFER_LIKE_REGULARISED="/intouch-report-transfer/intouch-retrieve-transfers-candidates"
+export const EXPORT_INTOUCH_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/intouch-report-transfer/export-intouch-report-transfer-candidates"
 
 export const MOOV_REPORT_TRANSFER_URL="/moov-report-transfer"
 export const MOOV_REPORT_TRANSFER_UPLOAD_URL="/moov-report-transfer/upload-file"
@@ -248,6 +253,39 @@ export const WaveReportTransferCountry = [
     "id":"sn",
     "country":"SN",
     "name":"SÉNÉGAL",
+  },
+];
+
+export const IntouchReportPaymentCountry = [
+  {
+    "id":"ci",
+    "country":"CI",
+    "name":"CÔTE D'IVOIRE",
+  },
+  {
+    "id":"sn",
+    "country":"SN",
+    "name":"SÉNÉGAL",
+  },
+  {
+    "id":"ml",
+    "country":"ML",
+    "name":"MALI",
+  },
+  {
+    "id":"bf",
+    "country":"BF",
+    "name":"BURKINA FASO",
+  },
+  {
+    "id":"gu",
+    "country":"GU",
+    "name":"GUINÉE",
+  },
+  {
+    "id":"cm",
+    "country":"CM",
+    "name":"CAMEROUN",
   },
 ];
 

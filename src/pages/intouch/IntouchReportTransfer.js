@@ -69,7 +69,7 @@ export default () => {
                 // sourceFullName,
                 montantMin: minValue,
                 montantMax: maxValue,
-                typeTransaction,
+                transactionType:typeTransaction,
                 // creditAmount,
                 from: startDate,
                 to: endDate,

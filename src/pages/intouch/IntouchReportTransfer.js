@@ -35,6 +35,7 @@ export default () => {
     const [intouchReportTransferList, setIntouchReportTransferList] = useState([]);
     const [country, setCountry] = useState("CI");
     const [reconciliation, setReconciliation] = useState("Tous");
+    const [typeTransaction, setType] = useState("TRANSFERT");
     const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
     const [version, setVersion] = useState(0);
     const [reference, setReference] = useState(undefined);
@@ -68,6 +69,7 @@ export default () => {
                 // sourceFullName,
                 montantMin: minValue,
                 montantMax: maxValue,
+                typeTransaction,
                 // creditAmount,
                 from: startDate,
                 to: endDate,

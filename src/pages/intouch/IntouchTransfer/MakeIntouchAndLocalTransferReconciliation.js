@@ -25,6 +25,7 @@ export const MakeIntouchAndLocalTransferReconciliation = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [shouldLogin, setShouldLogin] = useState(false);
     const [country, setCountry] = useState("CI");
+    const [transactionType, setType] = useState("TRANSFERT");
     const [errorData, setErrorData] = useState(null);
     const [startDate, setStartDate] = useState(defaultStartDate);
     const [endDate, setEndDate] = useState(defaultEndDate);
@@ -49,7 +50,8 @@ export const MakeIntouchAndLocalTransferReconciliation = (props) => {
             params: {
                 from: startDate,
                 to: endDate,
-                country
+                country,
+                transactionType
             },
             headers: {
                 AppKey: APPKEY,

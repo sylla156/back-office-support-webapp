@@ -24,6 +24,7 @@ export default () => {
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
     const defaultEndDate = `${formattedCurrentDate}T23:59:59Z`;
     const addMinutesInEndDate = addMinutes(currentDate, 30);
+    const [transactionType, setType] = useState("TRANSFERT");
 
     const [errorData, setErrorData] = useState(null);
     const [errorDataCSV, setErrorDataCSV] = useState(null);
@@ -59,7 +60,8 @@ export default () => {
             params:{
                 from: startDate,
                 to: endDate,
-                country
+                country,
+                transactionType
             },
             headers:{
                 AppKey: APPKEY,

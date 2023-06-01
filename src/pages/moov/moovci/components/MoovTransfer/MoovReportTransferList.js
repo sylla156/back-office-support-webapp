@@ -76,7 +76,7 @@ MoovReportTransferList.TableRow = (props) => {
         profileRecipientAccount,
         transactionType,
         sourceAccountFullname,
-        recipientAccountFullname,amount,sourceAccountBalanceBefore,recipientAccountBalanceBefore,sourceAccountBalanceAfter,country,recipientAccountBalanceAfter,localPaymentId,lastReconciliationDate,createDate,updateDate
+        recipientAccountFullname,amount,sourceAccountBalanceBefore,recipientAccountBalanceBefore,sourceAccountBalanceAfter,country,recipientAccountBalanceAfter,localTransferId,lastReconciliationDate,createDate,updateDate
     } = props
 
     const transactionDateUtc = new Date(transactionDate);
@@ -149,7 +149,7 @@ MoovReportTransferList.TableRow = (props) => {
                 <span className="fw-normal">{transactionProcessorId}</span>
             </td>
             <td>
-                <span className="fw-normal">{localPaymentId}</span>
+                <span className="fw-normal">{localTransferId}</span>
             </td>
             <td>
                 <span className="fw-normal">{lastReconciliationDate}</span>

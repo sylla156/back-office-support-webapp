@@ -287,6 +287,11 @@ export const IntouchReportPaymentCountry = [
     "country":"CM",
     "name":"CAMEROUN",
   },
+  {
+    "id":"ts",
+    "country":"",
+    "name":"TOUS",
+  },
 ];
 
 export const MoovReportPaymentCountry = [
@@ -393,3 +398,22 @@ export const chooseReconciliation = [
     reconciliation : 'Tous'
   }
 ]
+
+export const TransactionstatusList = [
+  {
+    id: 1,
+    status: "pending"
+  },
+  {
+    id: 2,
+    status: "successful"
+  },
+  {
+    id: 3,
+    status: "failed"
+  },
+  {
+    id: 4,
+    status: "Tous"
+  },
+];

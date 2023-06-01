@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
 import { format, addMinutes, parseISO } from "date-fns";
 import { Routes } from "../../routes";
-import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, chooseReconciliation, IntouchReportPaymentCountry, INTOUCH_REPORT_TRANSFER_URL } from "../constante/Const";
+import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, chooseReconciliation,TransactionstatusList, IntouchReportPaymentCountry, INTOUCH_REPORT_TRANSFER_URL } from "../constante/Const";
 import AlertDismissable from "../../components/AlertDismissable";
 import {
     Col,
@@ -33,8 +33,9 @@ export default () => {
     const [endDate, setEndDate] = useState(defaultEndDate);
     const [count, setCount] = useState(undefined);
     const [intouchReportTransferList, setIntouchReportTransferList] = useState([]);
-    const [country, setCountry] = useState("CI");
+    const [country, setCountry] = useState("");
     const [reconciliation, setReconciliation] = useState("Tous");
+    const [transactionStatus, setTransactionStatus] = useState("Tous");
     const [typeTransaction, setType] = useState("TRANSFERT");
     const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
     const [version, setVersion] = useState(0);
@@ -64,13 +65,11 @@ export default () => {
         axios.get(INTOUCH_REPORT_TRANSFER_URL,{
             params: {
                 reference,
-                // sourceNumber,
                 country,
-                // sourceFullName,
                 montantMin: minValue,
                 montantMax: maxValue,
                 typeTransaction,
-                // creditAmount,
+                transactionStatus,
                 from: startDate,
                 to: endDate,
                 reconciliation,
@@ -215,6 +214,23 @@ export default () => {
                             onChange={(e) => setMaxValue(e.target.value)}
                         />
                     </InputGroup>
+                </Col>
+                <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+                    <Form.Group id="country">
+                        <Form.Label>Transaction Status</Form.Label>
+                        <Form.Select
+                            value={transactionStatus}
+                            onChange={(event) => {
+                                setTransactionStatus(event.target.value);
+                            }}
+                        >
+                            {TransactionstatusList.map((item) => (
+                                <option key={item.id} value={item.status}>
+                                    {item.status}
+                                </option>
+                            ))}
+                        </Form.Select>
+                    </Form.Group>
                 </Col>
                 <Col xs={12} md={6} lg={3} className="mb-2 px-2">
                     <Form.Group id="reconciliation">

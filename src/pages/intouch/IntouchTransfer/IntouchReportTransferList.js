@@ -22,9 +22,11 @@ export const IntouchReportTransferList = (props) => {
                             <tr>
                                 <th className="border-bottom">id</th>
                                 <th className="border-bottom">Groupe Réseaux</th>
+                                <th className="border-bottom">Pays</th>
                                 <th className="border-bottom">Code agence</th>
                                 <th className="border-bottom">Code de service</th>
                                 <th className="border-bottom">N° transaction</th>
+                                <th className="border-bottom">Transaction status</th>
                                 <th className="border-bottom">N° destinataire</th>
                                 <th className="border-bottom">Login agent</th>
                                 <th className="border-bottom">Type agent</th>
@@ -39,8 +41,7 @@ export const IntouchReportTransferList = (props) => {
                                 <th className="border-bottom">Motif/Identifiant</th>
                                 <th className="border-bottom">Raw ID Partenaire DIST</th>
                                 <th className="border-bottom">ID Partenaire DIST</th>
-                                <th className="border-bottom">Pays</th>
-                                <th className="border-bottom">Local Payment Id</th>
+                                <th className="border-bottom">Local Transfert Id</th>
                                 <th className="border-bottom">Dernière date du Rapprochement</th>
                                 <th className="border-bottom">CreatedAt</th>
                                 <th className="border-bottom">UpdatedAt</th>
@@ -61,7 +62,7 @@ export const IntouchReportTransferList = (props) => {
 
 IntouchReportTransferList.TableRow = (props) => {
     const {
-        id, networkGroup, transactionId, country, agency_code, serviceCode, numTransactionGu, recipient, loginAgent, agentType,rawPartnerDistTransactionId, partnerDistTransactionId, lastReconciliationDate, regularisationDate, createdAtDate, sendingDate, state, actionDone, statut, message, transactionMontant, reloadedCode, reason, customerCode, localPaymentId, createDate, updateDate
+        id, networkGroup, transactionId, transactionStatus, country, agency_code, serviceCode, numTransactionGu, recipient, loginAgent, agentType,rawPartnerDistTransactionId, partnerDistTransactionId, lastReconciliationDate, regularisationDate, createdAtDate, sendingDate, state, actionDone, statut, message, transactionMontant, reloadedCode, reason, customerCode, localPaymentId, createDate, updateDate
     } = props
     const transactionDateUtc = new Date(sendingDate);
 
@@ -75,13 +76,19 @@ IntouchReportTransferList.TableRow = (props) => {
                 <span className="fw-normal">{networkGroup}</span>
             </td>
             <td>
+                <span className="fw-normal">{country}</span>
+            </td>
+            <td>
                 <span className="fw-normal">{agency_code}</span>
             </td>
             <td>
                 <span className="fw-normal">{serviceCode}</span>
             </td>
             <td>
-                <span className="fw-normal">{partnerDistTransactionId}</span>
+                <span className="fw-normal">{numTransactionGu}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{transactionStatus}</span>
             </td>
             <td>
                 <span className="fw-normal">{recipient}</span>
@@ -125,9 +132,6 @@ IntouchReportTransferList.TableRow = (props) => {
             
             <td>
                 <span className="fw-normal">{partnerDistTransactionId}</span>
-            </td>
-            <td>
-                <span className="fw-normal">{country}</span>
             </td>
             <td>
                 <span className="fw-normal">{localPaymentId}</span>

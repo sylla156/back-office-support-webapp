@@ -127,7 +127,7 @@ export const MakeIntouchAndLocalTransferReconciliation = (props) => {
     return (
         <>
             <div className="mt-3">
-                <h4>Rapprochement des paiements en local </h4>
+                <h4>Rapprochement des transferts en local </h4>
             </div>
             <div className="align-items-center d-flex flex-wrap">
                 <Col xs={12} md={6} lg={3} className="mb-2 px-2">
@@ -196,7 +196,7 @@ export const MakeIntouchAndLocalTransferReconciliation = (props) => {
                     </div>
                 </Col>
                 <Col xs={12}>
-                    <h5>Paiment en local</h5>
+                    <h5>Transfert en local</h5>
                     <p> Date min: {cachedPaymentLocal?.minLocalDate} </p>
                     <p> Date max: {cachedPaymentLocal?.maxLocalDate} </p>
                 </Col>

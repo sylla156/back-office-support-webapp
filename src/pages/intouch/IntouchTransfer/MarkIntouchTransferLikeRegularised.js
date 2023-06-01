@@ -93,7 +93,8 @@ export default () => {
             params: {
                 from: startDate,
                 to: endDate,
-                country
+                country,
+                transactionType
             },
             headers: {
                 AppKey: APPKEY,

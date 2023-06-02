@@ -184,7 +184,7 @@ export default () => {
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
                             type="text"
-                            placeholder="Numéro de téléphone origine"
+                            placeholder="Numéro de téléphone destinataire"
                             value={recipientNumber}
                             onChange={(event) => setRecipientNumber(event.target.value)}
                         />

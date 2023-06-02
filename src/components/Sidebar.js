@@ -236,12 +236,12 @@ export default (props = {}) => {
                   link={Routes.TransfersLocalDailyReport.path}
                 />
                 <NavItem
-                  title="Relever"
+                  title="Relevé"
                   icon={faCalendar}
                   link={Routes.TransferReporting.path}
                 />
                 <NavItem
-                  title="Relever Local"
+                  title="Relevé Local"
                   icon={faCalendar}
                   link={Routes.LocalTransferReporting.path}
                 />
@@ -260,6 +260,11 @@ export default (props = {}) => {
                 icon={faChartPie}
                 link={Routes.MarkOrangeTransferLikeRegularised.path}
               />
+              <NavItem
+                    title="Rapports opérateurs"
+                    icon={faCalendar}
+                    link={Routes.ChooseOperatorTransfer.path}
+                  />
                 {/* <NavItem title="Mise à jour du statut" icon={faSync} link={Routes.RefreshStatus.path}/> */}
                 {/* <NavItem title="Solde fournisseur" icon={faWallet} link={Routes.Solde.path}/> */}
               </CollapsableNavItem>
@@ -295,12 +300,12 @@ export default (props = {}) => {
                   link={Routes.CollectionsLocalDailyReport.path}
                 />
                 <NavItem
-                  title="Relever"
+                  title="Relevé"
                   icon={faCalendar}
                   link={Routes.PaymentReporting.path}
                   />
                 <NavItem
-                  title="Relever Local"
+                  title="Relevé Local"
                   icon={faCalendar}
                   link={Routes.LocalPaymentReporting.path}
                 />

@@ -111,6 +111,24 @@ export const WAVE_REPORT_PAYMENT_URL="/wave-report-payment"
 export const GET_MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/wave-retrieve-payments-candidates"
 export const EXPORT_WAVE_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/regularisations/export-wave-report-payment-candidates"
 
+export const MOOV_REPORT_PAYMENT_URL="/moov-report-payment"
+export const MOOV_REPORT_PAYMENT_UPLOAD_URL="/moov-report-payment/upload-file"
+export const GET_LOCAL_MOOV_REPORT_PAYMENT_RECONCILIATION_DATA="moov-report-payment/reconciliation";
+export const GET_MARK_MOOV_REPORT_PAYMENT_LIKE_REGULARISED="/moov-report-payment/moov-retrieve-payments-candidates"
+export const EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/moov-report-payment/export-moov-report-payment-candidates"
+
+export const INTOUCH_REPORT_TRANSFER_URL="/intouch-report-transfer"
+export const INTOUCH_REPORT_TRANSFER_UPLOAD_URL="/intouch-report-transfer/upload-file"
+export const GET_LOCAL_INTOUCH_REPORT_TRANSFER_RECONCILIATION_DATA="intouch-report-transfer/reconciliation";
+export const GET_MARK_INTOUCH_REPORT_TRANSFER_LIKE_REGULARISED="/intouch-report-transfer/intouch-retrieve-transfers-candidates"
+export const EXPORT_INTOUCH_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/intouch-report-transfer/export-intouch-report-transfer-candidates"
+
+export const MOOV_REPORT_TRANSFER_URL="/moov-report-transfer"
+export const MOOV_REPORT_TRANSFER_UPLOAD_URL="/moov-report-transfer/upload-file"
+export const GET_LOCAL_MOOV_REPORT_TRANSFER_RECONCILIATION_DATA="moov-report-transfer/reconciliation";
+export const GET_MARK_MOOV_REPORT_TRANSFER_LIKE_REGULARISED="/moov-report-transfer/moov-retrieve-transfers-candidates"
+export const EXPORT_MOOV_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/moov-report-transfer/export-moov-report-transfer-candidates"
+
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";
 export const GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA="orange-report-transfer/reconciliation";
@@ -238,6 +256,57 @@ export const WaveReportTransferCountry = [
   },
 ];
 
+export const IntouchReportPaymentCountry = [
+  {
+    "id":"ci",
+    "country":"CI",
+    "name":"CÔTE D'IVOIRE",
+  },
+  {
+    "id":"sn",
+    "country":"SN",
+    "name":"SÉNÉGAL",
+  },
+  {
+    "id":"ml",
+    "country":"ML",
+    "name":"MALI",
+  },
+  {
+    "id":"bf",
+    "country":"BF",
+    "name":"BURKINA FASO",
+  },
+  {
+    "id":"gu",
+    "country":"GU",
+    "name":"GUINÉE",
+  },
+  {
+    "id":"cm",
+    "country":"CM",
+    "name":"CAMEROUN",
+  },
+  {
+    "id":"ts",
+    "country":"",
+    "name":"TOUS",
+  },
+];
+
+export const MoovReportPaymentCountry = [
+  {
+    "id":"ci",
+    "country":"CI",
+    "name":"CÔTE D'IVOIRE",
+  },
+  {
+    "id":"sn",
+    "country":"SN",
+    "name":"SÉNÉGAL",
+  },
+];
+
 export const ChooseCountry = [
   //make all countries
   {
@@ -329,3 +398,22 @@ export const chooseReconciliation = [
     reconciliation : 'Tous'
   }
 ]
+
+export const TransactionstatusList = [
+  {
+    id: 1,
+    status: "pending"
+  },
+  {
+    id: 2,
+    status: "successful"
+  },
+  {
+    id: 3,
+    status: "failed"
+  },
+  {
+    id: 4,
+    status: "Tous"
+  },
+];

@@ -13,6 +13,7 @@ import { Routes } from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
 import { APPKEY } from "./constante/Const";
+import { UpdatePaymentLocalData } from "../components/PaymentList/UpdatePaymentLocalData";
 
 export default () => {
     const [isLoaded, setIsLoaded] = useState(true);
@@ -34,11 +35,28 @@ export default () => {
             routeRapportPaymentUrl:"/wave-report-payment",
             routeRegularisation:"/wave-payment/regularised",
         },
+        {
+            id:3,
+            name:"Moov CI",
+            image:"moov.jpg",
+            order:0,
+            routeRapportPaymentUrl:"/moov-report-payment",
+            routeRegularisation:"/moov-payment/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 
     const axios = AxiosWebHelper.getAxios();
-    const [cookies] = useCookies(["token"]);
+    const [cookies] = useCookies(["token", "user"]);
+    const [version, setVersion] = useState(0);
+
+    const incrementVersion = () =>
+    setVersion((currentVersion) => {
+      console;
+      return currentVersion + 1;
+    });
+    const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
+
 
     return(
         <>
@@ -77,6 +95,12 @@ export default () => {
                                 )
                             })}
                             
+                        </div>
+                        <div className="row mt-5 justify-content align-items-center">
+                            {userCanUpdateLocalData &&<UpdatePaymentLocalData 
+                                onRefresh={incrementVersion}
+                                userCanUpdateLocalData={userCanUpdateLocalData}
+                            />}
                         </div>
                     </div>
                 </>):(

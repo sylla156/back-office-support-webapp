@@ -13,6 +13,7 @@ import { Routes } from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
 import { APPKEY } from "./constante/Const";
+import { UpdateLocalData } from "../components/statusConfirmation/UpdateLocalData";
 
 export default () => {
     const [isLoaded, setIsLoaded] = useState(true);
@@ -34,11 +35,35 @@ export default () => {
             routeRapportTransfer:"/wave-report-transfer",
             routeRegularisation:"/wave-transfer/regularised",
         },
+        {
+            id:3,
+            name:"Moov CI",
+            image:"moov.jpg",
+            order:0,
+            routeRapportTransfer:"/moov-report-transfer",
+            routeRegularisation:"/moov-transfer/regularised",
+        },
+        {
+            id:4,
+            name:"Intouch",
+            image:"intouch.jpg",
+            order:0,
+            routeRapportTransfer:"/intouch-report-transfer",
+            routeRegularisation:"/intouch-transfer/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 
     const axios = AxiosWebHelper.getAxios();
-    const [cookies] = useCookies(["token"]);
+    const [cookies] = useCookies(["token", "user"]);
+    const [version, setVersion] = useState(0);
+
+    const incrementVersion = () =>
+    setVersion((currentVersion) => {
+      console;
+      return currentVersion + 1;
+    });
+    const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
     return(
         <>
@@ -77,6 +102,13 @@ export default () => {
                                 )
                             })}
                             
+                        </div>
+                        <div className="row mt-5 justify-content align-items-center">
+                            <h4>Mise à jour des données en local</h4>
+                            {userCanUpdateLocalData && <UpdateLocalData 
+                                onRefresh={incrementVersion}
+                                userCanUpdateLocalData={userCanUpdateLocalData}
+                            />}
                         </div>
                     </div>
                 </>):(

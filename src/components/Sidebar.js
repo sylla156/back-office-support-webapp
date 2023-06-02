@@ -236,12 +236,12 @@ export default (props = {}) => {
                   link={Routes.TransfersLocalDailyReport.path}
                 />
                 <NavItem
-                  title="Relever"
+                  title="Relevé"
                   icon={faCalendar}
                   link={Routes.TransferReporting.path}
                 />
                 <NavItem
-                  title="Relever Local"
+                  title="Relevé Local"
                   icon={faCalendar}
                   link={Routes.LocalTransferReporting.path}
                 />
@@ -300,12 +300,12 @@ export default (props = {}) => {
                   link={Routes.CollectionsLocalDailyReport.path}
                 />
                 <NavItem
-                  title="Relever"
+                  title="Relevé"
                   icon={faCalendar}
                   link={Routes.PaymentReporting.path}
                   />
                 <NavItem
-                  title="Relever Local"
+                  title="Relevé Local"
                   icon={faCalendar}
                   link={Routes.LocalPaymentReporting.path}
                 />

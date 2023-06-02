@@ -41,7 +41,7 @@ export const MoovReportTransferList = (props) => {
                                 <th className="border-bottom">Commission</th>
                                 <th className="border-bottom">Pays</th>
                                 <th className="border-bottom">Operateur Transaction ID</th>
-                                <th className="border-bottom">Local Payment Id</th>
+                                <th className="border-bottom">Local Transfert Id</th>
                                 <th className="border-bottom">Dernière date du Rapprochement</th>
                                 <th className="border-bottom">CreatedAt</th>
                                 <th className="border-bottom">UpdatedAt</th>

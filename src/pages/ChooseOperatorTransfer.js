@@ -104,7 +104,7 @@ export default () => {
                             
                         </div>
                         <div className="row mt-5 justify-content align-items-center">
-                            <h4>Mise à jour des données de transfert en local</h4>
+                            <h4>Mise à jour des données en local</h4>
                             {userCanUpdateLocalData && <UpdateLocalData 
                                 onRefresh={incrementVersion}
                                 userCanUpdateLocalData={userCanUpdateLocalData}

@@ -26,6 +26,7 @@ export const MoovReportTransferList = (props) => {
                                 <th className="border-bottom">N° destinataire</th>
                                 <th className="border-bottom">Compte origine</th>
                                 <th className="border-bottom">Compte destinataire</th>
+                                <th className="border-bottom">Numéro de téléphone</th>
                                 <th className="border-bottom">Profile compte origine</th>
                                 <th className="border-bottom">Profile compte destinataire</th>
                                 <th className="border-bottom">Date de la transaction</th>
@@ -70,6 +71,7 @@ MoovReportTransferList.TableRow = (props) => {
         commission,
         rawSourceNumber,
         rawRecipientNumber,
+        recipientNumber,
         sourceAccount,
         recipientAccount,
         profileSourceAccount,
@@ -101,6 +103,9 @@ MoovReportTransferList.TableRow = (props) => {
             </td>
             <td>
                 <span className="fw-normal">{recipientAccount}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{recipientNumber}</span>
             </td>
             <td>
                 <span className="fw-normal">{profileSourceAccount}</span>

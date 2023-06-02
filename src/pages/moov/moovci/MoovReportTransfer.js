@@ -36,7 +36,7 @@ export default () => {
     const [count, setCount] = useState(undefined);
     const [moovReportTransferList, setMoovReportTransferList] = useState([]);
     const [reference, setReference] = useState(undefined);
-    const [sourceNumber, setSourceNumber] = useState(undefined);
+    const [recipientNumber, setRecipientNumber] = useState(undefined);
     const [country, setCountry] = useState("CI");
     const [reconciliation, setReconciliation] = useState("Tous");
     const [creditAmount, setCreditAmount] = useState(undefined);
@@ -66,7 +66,7 @@ export default () => {
         axios.get(MOOV_REPORT_TRANSFER_URL,{
             params: {
                 reference,
-                sourceNumber,
+                recipientNumber,
                 country,
                 sourceFullName,
                 montantMin: minValue,
@@ -179,14 +179,14 @@ export default () => {
                 </Col>
 
                 <Col xs={12} md={6} lg={3} className="mb-2 px-2">
-                    <Form.Label>Numéro de téléphone origine</Form.Label>
+                    <Form.Label>Numéro de téléphone destinataire</Form.Label>
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
                             type="text"
                             placeholder="Numéro de téléphone origine"
-                            value={sourceNumber}
-                            onChange={(event) => setSourceNumber(event.target.value)}
+                            value={recipientNumber}
+                            onChange={(event) => setRecipientNumber(event.target.value)}
                         />
                     </InputGroup>
                 </Col>

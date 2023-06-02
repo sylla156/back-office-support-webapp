@@ -13,6 +13,7 @@ import { Routes } from "../routes";
 import AlertDismissable from "../components/AlertDismissable";
 import AxiosWebHelper from "../utils/axios-helper";
 import { APPKEY } from "./constante/Const";
+import { UpdatePaymentLocalData } from "../components/PaymentList/UpdatePaymentLocalData";
 
 export default () => {
     const [isLoaded, setIsLoaded] = useState(true);
@@ -46,7 +47,16 @@ export default () => {
     const createdAtUtc = new Date();
 
     const axios = AxiosWebHelper.getAxios();
-    const [cookies] = useCookies(["token"]);
+    const [cookies] = useCookies(["token", "user"]);
+    const [version, setVersion] = useState(0);
+
+    const incrementVersion = () =>
+    setVersion((currentVersion) => {
+      console;
+      return currentVersion + 1;
+    });
+    const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
+
 
     return(
         <>
@@ -85,6 +95,12 @@ export default () => {
                                 )
                             })}
                             
+                        </div>
+                        <div className="row mt-5 justify-content align-items-center">
+                            {userCanUpdateLocalData &&<UpdatePaymentLocalData 
+                                onRefresh={incrementVersion}
+                                userCanUpdateLocalData={userCanUpdateLocalData}
+                            />}
                         </div>
                     </div>
                 </>):(

@@ -4,7 +4,7 @@ import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 export const MoovReportTransferInProcessMarkLikeRegularisedList = (props) => {
     let processorTransfer = props.processorTransfer
 
-    const { id, transactionDate, transactionNumber, sourceNumber, amount, processorReference, status } = processorTransfer
+    const { id, transactionDate, transactionNumber, recipientNumber, amount, processorReference, status } = processorTransfer
 
     return (
         <>
@@ -69,7 +69,7 @@ export const MoovReportTransferInProcessMarkLikeRegularisedList = (props) => {
 
                 <Col className="ms--2" lg={9}>
                     <span className="h6 mb-0 text-start">
-                        {sourceNumber ? sourceNumber : ""}
+                        {recipientNumber ? recipientNumber : ""}
                     </span>
                 </Col>
             </Row>

@@ -63,6 +63,8 @@ import MoovReportTransfer from './moov/moovci/MoovReportTransfer';
 import MarkMoovTransferLikeRegularised from './moov/moovci/components/MoovTransfer/MarkMoovTransferLikeRegularised';
 import IntouchReportTransfer from './intouch/IntouchReportTransfer';
 import MarkIntouchTransferLikeRegularised from './intouch/IntouchTransfer/MarkIntouchTransferLikeRegularised';
+import IntouchReportPayment from './intouch/IntouchReportPayment';
+import MarkIntouchPaymentLikeRegularised from './intouch/IntouchPayment/MarkIntouchPaymentLikeRegularised';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -173,6 +175,8 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MarkMoovTransferLikeRegularised.path} title={'Paiement Moov - À marquer comme régularisé'} component={MarkMoovTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.MarkIntouchTransferLikeRegularised.path} title={'Transfert Intouch - À marquer comme régularisé'} component={MarkIntouchTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.IntouchReportTransfer.path} title={'Rapport intouch transfert'} component={IntouchReportTransfer} />
+        <RouteWithSidebar exact path={Routes.IntouchReportPayment.path} title={'Rapport intouch paiement'} component={IntouchReportPayment} />
+        <RouteWithSidebar exact path={Routes.MarkIntouchPaymentLikeRegularised.path} title={'Paiement Intouch - À marquer comme régularisé'} component={MarkIntouchPaymentLikeRegularised} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

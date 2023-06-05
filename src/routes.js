@@ -64,6 +64,8 @@ export const Routes = {
     MarkMoovTransferLikeRegularised:{path:"/moov-transfer/regularised"},
     IntouchReportTransfer:{path:"/intouch-report-transfer"},
     MarkIntouchTransferLikeRegularised:{path:"/intouch-transfer/regularised"},
+    IntouchReportPayment:{path:"/intouch-report-payment"},
+    MarkIntouchPaymentLikeRegularised:{path:"/intouch-payment/regularised"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

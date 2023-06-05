@@ -43,6 +43,14 @@ export default () => {
             routeRapportPaymentUrl:"/moov-report-payment",
             routeRegularisation:"/moov-payment/regularised",
         },
+        {
+            id:4,
+            name:"Intouch",
+            image:"intouch.jpg",
+            order:0,
+            routeRapportPaymentUrl:"/intouch-report-payment",
+            routeRegularisation:"/intouch-payment/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 

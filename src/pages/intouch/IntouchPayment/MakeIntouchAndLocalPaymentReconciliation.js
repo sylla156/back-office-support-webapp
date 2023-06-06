@@ -11,7 +11,7 @@ import {
 import { format } from "date-fns";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { Routes } from "../../../routes";
-import { APPKEY ,GET_LOCAL_PAYMENT_DATA, IntouchReportPaymentCountry, GET_LOCAL_INTOUCH_REPORT_TRANSFER_RECONCILIATION_DATA} from "../../constante/Const";
+import { APPKEY ,GET_LOCAL_PAYMENT_DATA, IntouchReportPaymentCountry, GET_LOCAL_INTOUCH_REPORT_PAYMENT_RECONCILIATION_DATA} from "../../constante/Const";
 
 
 export const MakeIntouchAndLocalPaymentReconciliation = (props) => {
@@ -46,7 +46,7 @@ export const MakeIntouchAndLocalPaymentReconciliation = (props) => {
         setIsLoading(true)
         setErrorData(null);
 
-        axios.get(GET_LOCAL_INTOUCH_REPORT_TRANSFER_RECONCILIATION_DATA,{
+        axios.get(GET_LOCAL_INTOUCH_REPORT_PAYMENT_RECONCILIATION_DATA,{
             params: {
                 from: startDate,
                 to: endDate,

@@ -120,7 +120,7 @@ export const EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/moov-report-paym
 export const INTOUCH_REPORT_TRANSFER_URL="/intouch-report-transfer"
 export const INTOUCH_REPORT_TRANSFER_UPLOAD_URL="/intouch-report-transfer/upload-file"
 export const GET_LOCAL_INTOUCH_REPORT_TRANSFER_RECONCILIATION_DATA="intouch-report-transfer/reconciliation";
-export const GET_LOCAL_INTOUCH_REPORT_PAYMENT_RECONCILIATION_DATA="intouch-report-transfer/reconciliation-candidates";
+export const GET_LOCAL_INTOUCH_REPORT_PAYMENT_RECONCILIATION_DATA="intouch-report-transfer/reconciliation-payments";
 export const GET_MARK_INTOUCH_REPORT_TRANSFER_LIKE_REGULARISED="/intouch-report-transfer/intouch-retrieve-transfers-candidates"
 export const EXPORT_INTOUCH_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/intouch-report-transfer/export-intouch-report-transfer-candidates"
 

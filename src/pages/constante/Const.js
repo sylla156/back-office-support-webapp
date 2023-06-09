@@ -130,6 +130,12 @@ export const GET_LOCAL_MOOV_REPORT_TRANSFER_RECONCILIATION_DATA="moov-report-tra
 export const GET_MARK_MOOV_REPORT_TRANSFER_LIKE_REGULARISED="/moov-report-transfer/moov-retrieve-transfers-candidates"
 export const EXPORT_MOOV_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/moov-report-transfer/export-moov-report-transfer-candidates"
 
+export const MTN_REPORT_TRANSFER_URL="/mtn-report-transfer"
+export const MTN_REPORT_TRANSFER_UPLOAD_URL="/mtn-report-transfer/upload-file"
+export const GET_LOCAL_MTN_REPORT_TRANSFER_RECONCILIATION_DATA="mtn-report-transfer/reconciliation";
+export const GET_MARK_MTN_REPORT_TRANSFER_LIKE_REGULARISED="/mtn-report-transfer/mtn-retrieve-transfers-candidates"
+export const EXPORT_MTN_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/mtn-report-transfer/export-mtn-report-transfer-candidates"
+
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";
 export const GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA="orange-report-transfer/reconciliation";
@@ -254,6 +260,14 @@ export const WaveReportTransferCountry = [
     "id":"sn",
     "country":"SN",
     "name":"SÉNÉGAL",
+  },
+];
+
+export const MtnReportTransferCountry = [
+  {
+    "id":"ci",
+    "country":"CI",
+    "name":"CÔTE D'IVOIRE",
   },
 ];
 

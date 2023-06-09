@@ -51,6 +51,14 @@ export default () => {
             routeRapportTransfer:"/intouch-report-transfer",
             routeRegularisation:"/intouch-transfer/regularised",
         },
+        {
+            id:5,
+            name:"Mtn",
+            image:"mtn.jpg",
+            order:0,
+            routeRapportTransfer:"/mtn-report-transfer",
+            routeRegularisation:"/mtn-transfer/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 
@@ -77,7 +85,7 @@ export default () => {
                         <div className="row">
                             {data.map((operator) => {
                                 return(
-                                    <div className="col-md-3" key={operator.id}>
+                                    <div className="col-md-3 mb-2" key={operator.id}>
                                         <div className="card" style={{overflow:"hidden"}}>
                                             <div className="row">
                                                 <div className="col-md-4">

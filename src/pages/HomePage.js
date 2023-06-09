@@ -65,6 +65,8 @@ import IntouchReportTransfer from './intouch/IntouchReportTransfer';
 import MarkIntouchTransferLikeRegularised from './intouch/IntouchTransfer/MarkIntouchTransferLikeRegularised';
 import IntouchReportPayment from './intouch/IntouchReportPayment';
 import MarkIntouchPaymentLikeRegularised from './intouch/IntouchPayment/MarkIntouchPaymentLikeRegularised';
+import MtnReportTransfer from './mtn/MtnReportTransfer';
+import MarkMtnTransferLikeRegularised from './mtn/MtnTransfer/MarkMtnTransferLikeRegularised';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -177,6 +179,8 @@ export default () => (
         <RouteWithSidebar exact path={Routes.IntouchReportTransfer.path} title={'Rapport intouch transfert'} component={IntouchReportTransfer} />
         <RouteWithSidebar exact path={Routes.IntouchReportPayment.path} title={'Rapport intouch paiement'} component={IntouchReportPayment} />
         <RouteWithSidebar exact path={Routes.MarkIntouchPaymentLikeRegularised.path} title={'Paiement Intouch - À marquer comme régularisé'} component={MarkIntouchPaymentLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MtnReportTransfer.path} title={'Rapport mtn transfert'} component={MtnReportTransfer} />
+        <RouteWithSidebar exact path={Routes.MarkMtnTransferLikeRegularised.path} title={'Transfert Mtn - À marquer comme régularisé'} component={MarkMtnTransferLikeRegularised} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

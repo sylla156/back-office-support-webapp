@@ -136,6 +136,12 @@ export const GET_LOCAL_MTN_REPORT_TRANSFER_RECONCILIATION_DATA="mtn-report-trans
 export const GET_MARK_MTN_REPORT_TRANSFER_LIKE_REGULARISED="/mtn-report-transfer/mtn-retrieve-transfers-candidates"
 export const EXPORT_MTN_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/mtn-report-transfer/export-mtn-report-transfer-candidates"
 
+export const MTN_REPORT_PAYMENT_URL="/mtn-report-payment"
+export const MTN_REPORT_PAYMENT_UPLOAD_URL="/mtn-report-payment/upload-file"
+export const GET_LOCAL_MTN_REPORT_PAYMENT_RECONCILIATION_DATA="mtn-report-payment/reconciliation";
+export const GET_MARK_MTN_REPORT_PAYMENT_LIKE_REGULARISED="/mtn-report-payment/mtn-retrieve-payments-candidates"
+export const EXPORT_MTN_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/mtn-report-payment/export-mtn-report-payment-candidates"
+
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";
 export const GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA="orange-report-transfer/reconciliation";

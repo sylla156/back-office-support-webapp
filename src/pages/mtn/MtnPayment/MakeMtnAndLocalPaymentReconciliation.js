@@ -13,20 +13,20 @@ import {
     Spinner,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { APPKEY, GET_LOCAL_TRANSFER_DATA, GET_LOCAL_MTN_REPORT_TRANSFER_RECONCILIATION_DATA } from "../../constante/Const";
+import { APPKEY, GET_LOCAL_PAYMENT_DATA, GET_LOCAL_MTN_REPORT_PAYMENT_RECONCILIATION_DATA } from "../../constante/Const";
 import { format } from "date-fns";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { Routes } from "../../../routes";
 
 
-export const MakeMtnAndLocalTransferReconciliation = (props) => {
+export const MakeMtnAndLocalPaymentReconciliation = (props) => {
     const currentDate = new Date()
 
     const formatStartDateToUse = format(currentDate, "yyyy-MM-dd");
     const defaultStartDate = `${formatStartDateToUse}T00:00:00Z`;
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
     const defaultEndDate = `${formattedCurrentDate}T23:59:59Z`;
-    const [cachedTransferLocal, setCachedTransferLocal] = useState({});
+    const [cachedPaymentLocal, setCachedPaymentLocal] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
@@ -49,7 +49,7 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
         setIsLoading(true)
         setErrorData(null);
 
-        axios.get(GET_LOCAL_MTN_REPORT_TRANSFER_RECONCILIATION_DATA, {
+        axios.get(GET_LOCAL_MTN_REPORT_PAYMENT_RECONCILIATION_DATA, {
             params: {
                 from: startDate,
                 to: endDate
@@ -58,7 +58,7 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
                 AppKey: APPKEY,
                 authenticationtoken: cookies.token
             }
-        }).then((result) => {
+        }).then((_result) => {
             setIsLoading(false)
             onRefresh()
         }).catch((error) => {
@@ -73,12 +73,12 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
         })
     }
 
-    const getCachedTransferLocalData = () => {
+    const getCachedPaymentLocalData = () => {
         setIsLoading(true);
         setErrorData(null);
         axios
             .get(
-                GET_LOCAL_TRANSFER_DATA,
+                GET_LOCAL_PAYMENT_DATA,
                 {
                     headers: {
                         AppKey: APPKEY,
@@ -89,7 +89,7 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
             .then((result) => {
                 setIsLoading(false);
                 // Here we should hide when add is done
-                setCachedTransferLocal(result.data);
+                setCachedPaymentLocal(result.data);
                 onRefresh()
             })
             .catch((error) => {
@@ -115,7 +115,7 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
     };
 
     useEffect(() => {
-        getCachedTransferLocalData();
+        getCachedPaymentLocalData();
     }, []);
 
     if (!cookies.token) {
@@ -124,13 +124,13 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
     if (shouldLogin) {
         return <Redirect to={Routes.Signin.path} />
     }
-    
+
     return(
         <>
             <div className="mt-3">
-                <h4>Rapprochement des transferts en local </h4>
-            </div>
-            <div className="align-items-center d-flex flex-wrap">
+                <h4>Rapprochement des paiements en local </h4>
+
+                <div className="align-items-center d-flex flex-wrap">
                 <Col xs={12} md={6} lg={3} className="mb-2 px-2">
                     <Form.Label>Date début</Form.Label>
                     <InputGroup>
@@ -181,9 +181,10 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
                 </Col>
                 <Col xs={12}>
                     <h5>Transfert en local</h5>
-                    <p> Date min: {cachedTransferLocal?.minLocalDate} </p>
-                    <p> Date max: {cachedTransferLocal?.maxLocalDate} </p>
+                    <p> Date min: {cachedPaymentLocal?.minLocalDate} </p>
+                    <p> Date max: {cachedPaymentLocal?.maxLocalDate} </p>
                 </Col>
+            </div>
             </div>
         </>
     )

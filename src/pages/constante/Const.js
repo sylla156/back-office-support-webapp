@@ -321,11 +321,11 @@ export const MoovReportPaymentCountry = [
     "country":"CI",
     "name":"CÔTE D'IVOIRE",
   },
-  {
-    "id":"sn",
-    "country":"SN",
-    "name":"SÉNÉGAL",
-  },
+  // {
+  //   "id":"sn",
+  //   "country":"SN",
+  //   "name":"SÉNÉGAL",
+  // },
 ];
 
 export const ChooseCountry = [

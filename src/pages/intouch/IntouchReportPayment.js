@@ -68,6 +68,7 @@ export default () => {
             params: {
                 reference,
                 country,
+                phoneNumber: numDestinataire,
                 montantMin: minValue,
                 montantMax: maxValue,
                 transactionStatus,
@@ -118,6 +119,7 @@ export default () => {
         setCountry("CI");
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+        setNumDestinataire("")
     };
 
     useEffect(() => {

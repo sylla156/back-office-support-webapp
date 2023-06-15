@@ -151,7 +151,8 @@ export const GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/orange-report-pay
 export const MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/upload-file"
 export const SINGLE_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/single-mark";
 
-export const GET_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/orange-report-transfer/candidates-in-make-regularised-process"
+export const GET_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/orange-report-transfer/orange-retrieve-transfers-candidates"
+export const EXPORT_ORANGE_REPORT_TRANSFER_MARK_LIKE_REGULARISED = 'orange-report-transfer/export-orange-report-transfer-candidates'
 export const MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/regularisations/upload-orange-transfer-file"
 export const SINGLE_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/regularisations/single-orange-transfer-mark"
 

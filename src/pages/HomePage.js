@@ -166,7 +166,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.LocalTransferReporting.path} title={'Relevé transfert en local'} component={LocalTransferReporting} />
         <RouteWithSidebar exact path={Routes.TransfersLocalDailyReport.path} title={'Rapport journalier en local'} component={TransfersLocalDailyReport} />
         <RouteWithSidebar exact path={Routes.CollectionsLocalDailyReport.path} title={'Rapport journalier en local'} component={CollectionsLocalDailyReport} />
-        <RouteWithSidebar exact path={Routes.MarkOrangeTransferLikeRegularised.path} title={'Transfert - À marquer comme régularisé'} component={MarkOrangeTransferLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MarkOrangeTransferLikeRegularised.path} title={'Transfert Orange - À marquer comme régularisé'} component={MarkOrangeTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.ChooseOperator.path} title={'Importer les rapports opérateurs'} component={ChooseOperator} />
         <RouteWithSidebar exact path={Routes.ChooseOperatorTransfer.path} title={'Importer les rapports opérateurs'} component={ChooseOperatorTransfer} />
         <RouteWithSidebar exact path={Routes.WaveReportPayment.path} title={"Rapport wave paiement"} component={WaveReportPayment}/>

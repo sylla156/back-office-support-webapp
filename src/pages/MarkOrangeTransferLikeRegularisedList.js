@@ -4,69 +4,38 @@ import { OrangeTransferMarkLikeRegularisedList } from "../components/transferLis
 import { OrangeReportTransferInProcessMarkLikeRegularisedList } from "../components/transferList/OrangeReportTransferInProcessMarkLikeRegularisedList";
 import MarkOrangeTransferLikeRegularised from "./MarkOrangeTransferLikeRegularised";
 
-export const MarkOrangeTransferLikeRegularisedList = (props)=> {
+export const MarkOrangeTransferLikeRegularisedList = (props) => {
   let {
     listInfo,
-    count,
-    currentPage,
-    onPageChange,
     onRefresh,
     userCanAddOrangeTransactiontRegularised,
   } = props
-  const listSize = listInfo.length;
+
   return (
     <>
-        {/* Transfer table liste  */}
-        <Card border="light" className="table-wrapper table-responsive shadow-sm">
+      <Card border="light" className="table-wrapper table-responsive shadow-sm">
         <Card.Body className="pt-0">
           <Table hover className="user-table align-items-center">
             <thead>
               <tr>
-                {/* <th className="border-bottom">id</th> */}
-                {/* <th className="border-bottom">type</th> */}
-                <th className="border-bottom">Local Transfer infos</th>
-                {/* <th className="border-bottom">Référence du frs</th> */}
-                {/* <th className="border-bottom">amount</th> */}
-                {/* <th className="border-bottom">net</th> */}
-                {/* <th className="border-bottom">fees</th> */}
-                {/* <th className="border-bottom">currency</th> */}
-                {/* <th className="border-bottom">Date</th> */}
-                {/* <th className="border-bottom">time</th> */}
-                {/* <th className="border-bottom">timezone</th> */}
-                {/* <th className="border-bottom">reference</th> */}
-                {/* <th className="border-bottom">status</th> */}
-                {/* <th className="border-bottom">customer Reference</th> */}
-                {/* <th className="border-bottom">method</th> */}
-                {/* <th className="border-bottom">country</th> */}
-                {/* <th className="border-bottom">provider</th>
-                <th className="border-bottom">fournisseur</th>
-                <th className="border-bottom">transaction Identifier</th>
-                <th className="border-bottom">description</th> */}
-                <th className="border-bottom">Orange report transfer</th>
-                {userCanAddOrangeTransactiontRegularised && (
-                  <th className="border-bottom">action</th>
-                )}
+                <th className="border-bottom">Transfert Hub2</th>
+                <th className="border-bottom">Transfert Orange</th>
               </tr>
             </thead>
             <tbody>
-              {listInfo.map((t, index) => {
+              {listInfo.map((datum, index) => {
                 return (
                   <MarkOrangeTransferLikeRegularisedList.TableRow
-                    key={`transaction-${t.transfer.id}-${index}`}
+                    key={`transaction-${index}`}
                     onRefresh={onRefresh}
+                    processorTransfer={datum.processorTransfer}
+                    candidates={datum.candidates}
                     userCanAddOrangeTransactiontRegularised={userCanAddOrangeTransactiontRegularised}
-                    {...t}
                   />
                 );
               })}
             </tbody>
           </Table>
-          {/* <TablePagination
-            size={listSize}
-            currentPage={currentPage}
-            onPageChange={onPageChange}
-            count={count}
-          /> */}
         </Card.Body>
       </Card>
     </>
@@ -75,9 +44,8 @@ export const MarkOrangeTransferLikeRegularisedList = (props)=> {
 
 MarkOrangeTransferLikeRegularisedList.TableRow = (props) => {
   const {
-    onRefresh,
-    transfer,
-    orangeReportTransferCandidates,
+    candidates,
+    processorTransfer,
     userCanAddOrangeTransactiontRegularised
   } = props;
 
@@ -85,10 +53,10 @@ MarkOrangeTransferLikeRegularisedList.TableRow = (props) => {
     <>
       <tr>
         <td>
-          <OrangeTransferMarkLikeRegularisedList transfer={transfer} />
+          <OrangeTransferMarkLikeRegularisedList candidates={candidates} />
         </td>
         <td>
-          <OrangeReportTransferInProcessMarkLikeRegularisedList orangeReportTransferCandidates={orangeReportTransferCandidates} />
+          <OrangeReportTransferInProcessMarkLikeRegularisedList processorTransfer={processorTransfer} />
         </td>
         {
           userCanAddOrangeTransactiontRegularised && (
@@ -96,8 +64,8 @@ MarkOrangeTransferLikeRegularisedList.TableRow = (props) => {
               <span>
                 <MarkOrangeTransferLikeRegularised
                   onRefresh={onRefresh}
-                  tranfer={transfer}
-                  orangeReportTransferCandidates={orangeReportTransferCandidates}
+                  candidates={candidates}
+                  processorTransfer={processorTransfer}
                 />
               </span>
             </td>

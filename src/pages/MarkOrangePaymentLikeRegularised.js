@@ -12,8 +12,6 @@ import AxiosWebHelper from "../utils/axios-helper";
 import {
   APPKEY,
   PAGE_SIZE,
-  SelectDefaultValues,
-  StatusConfirmationList,
   GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED,
   FIRST_PAGE_INDEX,
 } from "./constante/Const";
@@ -81,8 +79,8 @@ export default()=> {
     })
     .then((result) => {
         setIsLoaded(true);
-        setMarkLikeRegularisedList(result.data.transactionMarkLikeRegularised);
-        setCount(result.data.count);
+        setMarkLikeRegularisedList(result.data.data);
+        setCount(result.count);
       })
       .catch((error) => {
         setIsLoaded(true);

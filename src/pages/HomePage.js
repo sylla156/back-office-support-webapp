@@ -161,7 +161,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.OrangeReportPayment.path} title={'Rapport orange paiement'} component={OrangeReportPayment} />
         <RouteWithSidebar exact path={Routes.OrangeReportTransferCandidate.path} title={'Rapport orange in candidates'} component={OrangeReportTransferCandidate} />
         <RouteWithSidebar exact path={Routes.OrangeReportPaymentCandidate.path} title={'Rapport orange paiment in candidates'} component={OrangeReportPaymentCandidate} />
-        <RouteWithSidebar exact path={Routes.MarkOrangePaymentLikeRegularised.path} title={'Paiement - À marquer comme régularisé'} component={MarkOrangePaymentLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MarkOrangePaymentLikeRegularised.path} title={'Paiement Orange - À marquer comme régularisé'} component={MarkOrangePaymentLikeRegularised} />
         <RouteWithSidebar exact path={Routes.LocalPaymentReporting.path} title={'Relevé paiement en local'} component={LocalPaymentReporting} />
         <RouteWithSidebar exact path={Routes.LocalTransferReporting.path} title={'Relevé transfert en local'} component={LocalTransferReporting} />
         <RouteWithSidebar exact path={Routes.TransfersLocalDailyReport.path} title={'Rapport journalier en local'} component={TransfersLocalDailyReport} />

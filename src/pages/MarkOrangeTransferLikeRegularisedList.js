@@ -61,13 +61,7 @@ MarkOrangeTransferLikeRegularisedList.TableRow = (props) => {
         {
           userCanAddOrangeTransactiontRegularised && (
             <td>
-              <span>
-                <MarkOrangeTransferLikeRegularised
-                  onRefresh={onRefresh}
-                  candidates={candidates}
-                  processorTransfer={processorTransfer}
-                />
-              </span>
+              <span></span>
             </td>
           )
         }

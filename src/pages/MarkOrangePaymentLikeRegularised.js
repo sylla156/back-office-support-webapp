@@ -13,6 +13,7 @@ import {
   APPKEY,
   PAGE_SIZE,
   GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED,
+  EXPORT_ORANGE_REPORT_PAYMENT_MARK_LIKE_REGULARISED,
   FIRST_PAGE_INDEX,
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
@@ -99,7 +100,7 @@ export default()=> {
     setErrorDataCSV(null);
     setIsLoadedCSV(false);
     axios
-      .get(GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED, {
+      .get(EXPORT_ORANGE_REPORT_PAYMENT_MARK_LIKE_REGULARISED, {
         params: {
           from: startDate,
           to: endDate,

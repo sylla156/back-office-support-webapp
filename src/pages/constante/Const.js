@@ -150,6 +150,7 @@ export const GET_ORANGE_REPORT_TRANSFER_SERVICE_LIST="orange-report-transfer/all
 export const GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/orange-report-payment/orange-retrieve-payments-candidates"
 export const MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/upload-file"
 export const SINGLE_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/single-mark";
+export const EXPORT_ORANGE_REPORT_PAYMENT_MARK_LIKE_REGULARISED = "orange-report-payment/export-orange-report-payment-candidates"
 
 export const GET_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/orange-report-transfer/orange-retrieve-transfers-candidates"
 export const EXPORT_ORANGE_REPORT_TRANSFER_MARK_LIKE_REGULARISED = 'orange-report-transfer/export-orange-report-transfer-candidates'

@@ -12,9 +12,8 @@ import AxiosWebHelper from "../utils/axios-helper";
 import {
   APPKEY,
   PAGE_SIZE,
-  SelectDefaultValues,
-  StatusConfirmationList,
   GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED,
+  EXPORT_ORANGE_REPORT_PAYMENT_MARK_LIKE_REGULARISED,
   FIRST_PAGE_INDEX,
 } from "./constante/Const";
 import { Redirect } from "react-router-dom";
@@ -81,8 +80,8 @@ export default()=> {
     })
     .then((result) => {
         setIsLoaded(true);
-        setMarkLikeRegularisedList(result.data.transactionMarkLikeRegularised);
-        setCount(result.data.count);
+        setMarkLikeRegularisedList(result.data.data);
+        setCount(result.count);
       })
       .catch((error) => {
         setIsLoaded(true);
@@ -101,7 +100,7 @@ export default()=> {
     setErrorDataCSV(null);
     setIsLoadedCSV(false);
     axios
-      .get(GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED, {
+      .get(EXPORT_ORANGE_REPORT_PAYMENT_MARK_LIKE_REGULARISED, {
         params: {
           from: startDate,
           to: endDate,

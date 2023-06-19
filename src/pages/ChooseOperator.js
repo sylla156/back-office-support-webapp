@@ -43,6 +43,22 @@ export default () => {
             routeRapportPaymentUrl:"/moov-report-payment",
             routeRegularisation:"/moov-payment/regularised",
         },
+        {
+            id:4,
+            name:"Intouch",
+            image:"intouch.jpg",
+            order:0,
+            routeRapportPaymentUrl:"/intouch-report-payment",
+            routeRegularisation:"/intouch-payment/regularised",
+        },
+        {
+            id:5,
+            name:"Mtn",
+            image:"mtn.jpg",
+            order:0,
+            routeRapportPaymentUrl:"/mtn-report-payment",
+            routeRegularisation:"/mtn-payment/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 
@@ -70,7 +86,7 @@ export default () => {
                         <div className="row">
                             {data.map((operator) => {
                                 return(
-                                    <div className="col-md-3" key={operator.id}>
+                                    <div className="col-md-3 mb-2" key={operator.id}>
                                         <div className="card" style={{overflow:"hidden"}}>
                                             <div className="row">
                                                 <div className="col-md-4">

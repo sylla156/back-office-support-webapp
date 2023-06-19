@@ -120,6 +120,7 @@ export const EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/moov-report-paym
 export const INTOUCH_REPORT_TRANSFER_URL="/intouch-report-transfer"
 export const INTOUCH_REPORT_TRANSFER_UPLOAD_URL="/intouch-report-transfer/upload-file"
 export const GET_LOCAL_INTOUCH_REPORT_TRANSFER_RECONCILIATION_DATA="intouch-report-transfer/reconciliation";
+export const GET_LOCAL_INTOUCH_REPORT_PAYMENT_RECONCILIATION_DATA="intouch-report-transfer/reconciliation-payments";
 export const GET_MARK_INTOUCH_REPORT_TRANSFER_LIKE_REGULARISED="/intouch-report-transfer/intouch-retrieve-transfers-candidates"
 export const EXPORT_INTOUCH_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/intouch-report-transfer/export-intouch-report-transfer-candidates"
 
@@ -129,16 +130,30 @@ export const GET_LOCAL_MOOV_REPORT_TRANSFER_RECONCILIATION_DATA="moov-report-tra
 export const GET_MARK_MOOV_REPORT_TRANSFER_LIKE_REGULARISED="/moov-report-transfer/moov-retrieve-transfers-candidates"
 export const EXPORT_MOOV_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/moov-report-transfer/export-moov-report-transfer-candidates"
 
+export const MTN_REPORT_TRANSFER_URL="/mtn-report-transfer"
+export const MTN_REPORT_TRANSFER_UPLOAD_URL="/mtn-report-transfer/upload-file"
+export const GET_LOCAL_MTN_REPORT_TRANSFER_RECONCILIATION_DATA="mtn-report-transfer/reconciliation";
+export const GET_MARK_MTN_REPORT_TRANSFER_LIKE_REGULARISED="/mtn-report-transfer/mtn-retrieve-transfers-candidates"
+export const EXPORT_MTN_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/mtn-report-transfer/export-mtn-report-transfer-candidates"
+
+export const MTN_REPORT_PAYMENT_URL="/mtn-report-payment"
+export const MTN_REPORT_PAYMENT_UPLOAD_URL="/mtn-report-payment/upload-file"
+export const GET_LOCAL_MTN_REPORT_PAYMENT_RECONCILIATION_DATA="mtn-report-payment/reconciliation";
+export const GET_MARK_MTN_REPORT_PAYMENT_LIKE_REGULARISED="/mtn-report-payment/mtn-retrieve-payments-candidates"
+export const EXPORT_MTN_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/mtn-report-payment/export-mtn-report-payment-candidates"
+
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";
 export const GET_LOCAL_ORANGE_REPORT_TRANSFER_RECONCILIATION_DATA="orange-report-transfer/reconciliation";
 export const GET_ORANGE_REPORT_TRANSFER_SERVICE_LIST="orange-report-transfer/all-report-service";
 
-export const GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/orange-report-payment/candidates-in-make-regularised-process"
+export const GET_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/orange-report-payment/orange-retrieve-payments-candidates"
 export const MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/upload-file"
 export const SINGLE_MARK_ORANGE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/single-mark";
+export const EXPORT_ORANGE_REPORT_PAYMENT_MARK_LIKE_REGULARISED = "orange-report-payment/export-orange-report-payment-candidates"
 
-export const GET_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/orange-report-transfer/candidates-in-make-regularised-process"
+export const GET_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/orange-report-transfer/orange-retrieve-transfers-candidates"
+export const EXPORT_ORANGE_REPORT_TRANSFER_MARK_LIKE_REGULARISED = 'orange-report-transfer/export-orange-report-transfer-candidates'
 export const MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/regularisations/upload-orange-transfer-file"
 export const SINGLE_MARK_ORANGE_REPORT_TRANSFER_LIKE_REGULARISED="/regularisations/single-orange-transfer-mark"
 
@@ -256,6 +271,14 @@ export const WaveReportTransferCountry = [
   },
 ];
 
+export const MtnReportTransferCountry = [
+  {
+    "id":"ci",
+    "country":"CI",
+    "name":"CÔTE D'IVOIRE",
+  },
+];
+
 export const IntouchReportPaymentCountry = [
   {
     "id":"ci",
@@ -278,8 +301,8 @@ export const IntouchReportPaymentCountry = [
     "name":"BURKINA FASO",
   },
   {
-    "id":"gu",
-    "country":"GU",
+    "id":"gn",
+    "country":"GN",
     "name":"GUINÉE",
   },
   {
@@ -300,11 +323,11 @@ export const MoovReportPaymentCountry = [
     "country":"CI",
     "name":"CÔTE D'IVOIRE",
   },
-  {
-    "id":"sn",
-    "country":"SN",
-    "name":"SÉNÉGAL",
-  },
+  // {
+  //   "id":"sn",
+  //   "country":"SN",
+  //   "name":"SÉNÉGAL",
+  // },
 ];
 
 export const ChooseCountry = [

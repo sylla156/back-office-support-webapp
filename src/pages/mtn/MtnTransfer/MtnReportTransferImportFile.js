@@ -17,9 +17,9 @@ import { faPlus, faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import AlertDismissable from "../../../components/AlertDismissable";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { Routes } from "../../../routes";
-import { APPKEY, INTOUCH_REPORT_TRANSFER_UPLOAD_URL } from "../../constante/Const";
+import { APPKEY, MTN_REPORT_TRANSFER_UPLOAD_URL } from "../../constante/Const";
 
-export const IntouchReportTransferImportFile = (props) => {
+export const MtnReportTransferImportFile = (props) => {
     const onRefresh = props.onRefresh
 
     const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +27,6 @@ export const IntouchReportTransferImportFile = (props) => {
     const [errorData, setErrorData] = useState(null);
     const [show, setShow] = useState(false);
     const [file, setFile] = useState();
-
     const [cookies] = useCookies(["token"])
 
     const handleChangeFile = async (event) => {
@@ -46,33 +45,35 @@ export const IntouchReportTransferImportFile = (props) => {
         setIsLoading(false);
         setFile(undefined)
     };
-
     const axios = AxiosWebHelper.getAxios();
 
     const postFile = () => {
-        if(!file) return
+        if (!file) return
 
         setIsLoading(true)
         setErrorData(null)
         const formData = new FormData()
         formData.append('file', file)
 
-        axios.post(INTOUCH_REPORT_TRANSFER_UPLOAD_URL, formData,{
-            headers:{
-                "Content-Type":"multipart/form-data",
+        axios.post(MTN_REPORT_TRANSFER_UPLOAD_URL, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
                 AppKey: APPKEY,
                 authenticationtoken: cookies.token
             },
+            params: {
+                country: "CI"
+            }
         }).then((_result) => {
             setIsLoading(false)
             handleClose()
             onRefresh()
         }).catch((error) => {
             setIsLoading(false)
-            if(error.response){
-                if(error.response.status === 401){
+            if (error.response) {
+                if (error.response.status === 401) {
                     setShouldLogin(true)
-                }else{
+                } else {
                     setErrorData(error.response.data.message)
                 }
             }
@@ -90,12 +91,12 @@ export const IntouchReportTransferImportFile = (props) => {
         return <Redirect to={Routes.Signin.path} />
     }
 
-    return(
+    return (
         <>
             <Col xs={12} md={3} lg={8}>
                 <Button variant="outline-primary" size="sm" onClick={handleShow}>
                     <FontAwesomeIcon icon={faPlus} className="me-2" />
-                    <span className=""> Importer un fichier CSV</span>
+                    <span className=""> Importer un fichier Excel ou CSV</span>
                 </Button>
             </Col>
             <Modal
@@ -109,7 +110,7 @@ export const IntouchReportTransferImportFile = (props) => {
             >
                 <Modal.Header closeButton closeVariant="white" className="bg-primary">
                     <Modal.Title className="text-white">
-                        Ajouter le rapport intouch
+                        Ajouter le rapport mtn
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -117,34 +118,34 @@ export const IntouchReportTransferImportFile = (props) => {
                         <Card.Body>
                             <Form.Group className="mb-3">
                                 <Form.Label></Form.Label>
-                                    <div className="file-field">
-                                        <div className="d-flex justify-content-xl-center ms-xl-3">
-                                            <div className="d-flex">
-                                                <span className="icon icon-md">
-                                                    <FontAwesomeIcon
-                                                        icon={faPaperclip}
-                                                        className="me-3"
-                                                    />
-                                                </span>
-                                                <input
-                                                    type="file"
-                                                    // value={file}
-                                                    accept=".csv"
-                                                    onChange={(event) => {
-                                                        handleChangeFile(event);
-                                                    }}
+                                <div className="file-field">
+                                    <div className="d-flex justify-content-xl-center ms-xl-3">
+                                        <div className="d-flex">
+                                            <span className="icon icon-md">
+                                                <FontAwesomeIcon
+                                                    icon={faPaperclip}
+                                                    className="me-3"
                                                 />
-                                                <div className="d-md-block text-start">
-                                                    <div className="fw-normal text-dark mb-1">
-                                                        {file?.name ? file?.name : <b> Choisir un fichier CSV</b>}
-                                                    </div>
-                                                    <div className="text-gray small">
+                                            </span>
+                                            <input
+                                                type="file"
+                                                // value={file}
+                                                accept=".xlsx,.xls,.csv"
+                                                onChange={(event) => {
+                                                    handleChangeFile(event);
+                                                }}
+                                            />
+                                            <div className="d-md-block text-start">
+                                                <div className="fw-normal text-dark mb-1">
+                                                    {file?.name ? file?.name : <b> Choisir un fichier Excel ou CSV</b>}
+                                                </div>
+                                                <div className="text-gray small">
 
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </Form.Group>
                         </Card.Body>
                     </Card>

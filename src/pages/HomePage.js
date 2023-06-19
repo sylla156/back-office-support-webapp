@@ -63,6 +63,12 @@ import MoovReportTransfer from './moov/moovci/MoovReportTransfer';
 import MarkMoovTransferLikeRegularised from './moov/moovci/components/MoovTransfer/MarkMoovTransferLikeRegularised';
 import IntouchReportTransfer from './intouch/IntouchReportTransfer';
 import MarkIntouchTransferLikeRegularised from './intouch/IntouchTransfer/MarkIntouchTransferLikeRegularised';
+import IntouchReportPayment from './intouch/IntouchReportPayment';
+import MarkIntouchPaymentLikeRegularised from './intouch/IntouchPayment/MarkIntouchPaymentLikeRegularised';
+import MtnReportTransfer from './mtn/MtnReportTransfer';
+import MarkMtnTransferLikeRegularised from './mtn/MtnTransfer/MarkMtnTransferLikeRegularised';
+import MtnReportPayment from './mtn/MtnReportPayment';
+import MarkMtnPaymentLikeRegularised from './mtn/MtnPayment/MarkMtnPaymentLikeRegularised';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -155,12 +161,12 @@ export default () => (
         <RouteWithSidebar exact path={Routes.OrangeReportPayment.path} title={'Rapport orange paiement'} component={OrangeReportPayment} />
         <RouteWithSidebar exact path={Routes.OrangeReportTransferCandidate.path} title={'Rapport orange in candidates'} component={OrangeReportTransferCandidate} />
         <RouteWithSidebar exact path={Routes.OrangeReportPaymentCandidate.path} title={'Rapport orange paiment in candidates'} component={OrangeReportPaymentCandidate} />
-        <RouteWithSidebar exact path={Routes.MarkOrangePaymentLikeRegularised.path} title={'Paiement - À marquer comme régularisé'} component={MarkOrangePaymentLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MarkOrangePaymentLikeRegularised.path} title={'Paiement Orange - À marquer comme régularisé'} component={MarkOrangePaymentLikeRegularised} />
         <RouteWithSidebar exact path={Routes.LocalPaymentReporting.path} title={'Relevé paiement en local'} component={LocalPaymentReporting} />
         <RouteWithSidebar exact path={Routes.LocalTransferReporting.path} title={'Relevé transfert en local'} component={LocalTransferReporting} />
         <RouteWithSidebar exact path={Routes.TransfersLocalDailyReport.path} title={'Rapport journalier en local'} component={TransfersLocalDailyReport} />
         <RouteWithSidebar exact path={Routes.CollectionsLocalDailyReport.path} title={'Rapport journalier en local'} component={CollectionsLocalDailyReport} />
-        <RouteWithSidebar exact path={Routes.MarkOrangeTransferLikeRegularised.path} title={'Transfert - À marquer comme régularisé'} component={MarkOrangeTransferLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MarkOrangeTransferLikeRegularised.path} title={'Transfert Orange - À marquer comme régularisé'} component={MarkOrangeTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.ChooseOperator.path} title={'Importer les rapports opérateurs'} component={ChooseOperator} />
         <RouteWithSidebar exact path={Routes.ChooseOperatorTransfer.path} title={'Importer les rapports opérateurs'} component={ChooseOperatorTransfer} />
         <RouteWithSidebar exact path={Routes.WaveReportPayment.path} title={"Rapport wave paiement"} component={WaveReportPayment}/>
@@ -173,6 +179,12 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MarkMoovTransferLikeRegularised.path} title={'Paiement Moov - À marquer comme régularisé'} component={MarkMoovTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.MarkIntouchTransferLikeRegularised.path} title={'Transfert Intouch - À marquer comme régularisé'} component={MarkIntouchTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.IntouchReportTransfer.path} title={'Rapport intouch transfert'} component={IntouchReportTransfer} />
+        <RouteWithSidebar exact path={Routes.IntouchReportPayment.path} title={'Rapport intouch paiement'} component={IntouchReportPayment} />
+        <RouteWithSidebar exact path={Routes.MarkIntouchPaymentLikeRegularised.path} title={'Paiement Intouch - À marquer comme régularisé'} component={MarkIntouchPaymentLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MtnReportTransfer.path} title={'Rapport mtn transfert'} component={MtnReportTransfer} />
+        <RouteWithSidebar exact path={Routes.MarkMtnTransferLikeRegularised.path} title={'Transfert Mtn - À marquer comme régularisé'} component={MarkMtnTransferLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MtnReportPayment.path} title={'Rapport MTN paiement'} component={MtnReportPayment} />
+        <RouteWithSidebar exact path={Routes.MarkMtnPaymentLikeRegularised.path} title={'Paiement MTN - À marquer comme régularisé'} component={MarkMtnPaymentLikeRegularised} />
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     
         <Redirect to={Routes.NotFound.path} />

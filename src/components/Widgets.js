@@ -152,7 +152,7 @@ export const CounterWidget = (props) => {
 
 };
 export const MerchantCounterWidget = (props) => {
-    const {logo, name} = props.merchant;
+    const {logo, name, merchantId} = props.merchant;
     const {amount, currency, date} = props.balance;
     const onRefresh = props.onRefresh;
 
@@ -185,6 +185,7 @@ export const MerchantCounterWidget = (props) => {
                     <Col xs={12} xl={7} className="px-xl-0">
                         <div className="d-block">
                             <h5>{name}</h5>
+                            <p className="text-black-50 mb-0">{merchantId}</p>
                             <h4 className="mb-1 text-warning">
                                 {amount == undefined ? "" : new Intl.NumberFormat().format(amount)} {currency == undefined ? "":currency}
                             </h4>

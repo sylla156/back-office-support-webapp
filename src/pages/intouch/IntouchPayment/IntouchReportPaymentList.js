@@ -2,7 +2,7 @@ import { Card, Table, Badge } from "@themesberg/react-bootstrap";
 import React from "react";
 import { TablePagination } from "../../../components/TablePagination";
 
-export const IntouchReportTransferList = (props) => {
+export const IntouchReportPaymentList = (props) => {
     const {
         listInfo,
         count,
@@ -12,9 +12,9 @@ export const IntouchReportTransferList = (props) => {
     } = props;
     const listSize = listInfo.length;
 
-    return (
+    return(
         <>
-            <Card border="light" className="table-wrapper table-responsive shadow-sm">
+         <Card border="light" className="table-wrapper table-responsive shadow-sm">
                 <Card.Body className="pt-0">
                     <Table hover className="user-table align-items-center">
                         <thead>
@@ -27,8 +27,11 @@ export const IntouchReportTransferList = (props) => {
                                 <th className="border-bottom">N° transaction</th>
                                 <th className="border-bottom">Transaction status</th>
                                 <th className="border-bottom">N° destinataire</th>
+                                <th className="border-bottom">Moyen de paiement</th>
                                 <th className="border-bottom">Login agent</th>
                                 <th className="border-bottom">Type agent</th>
+                                <th className="border-bottom">Latitude</th>
+                                <th className="border-bottom">Longitude</th>
                                 <th className="border-bottom">Date de création</th>
                                 <th className="border-bottom">Date d'envoi vers part</th>
                                 <th className="border-bottom">Etat</th>
@@ -40,7 +43,7 @@ export const IntouchReportTransferList = (props) => {
                                 <th className="border-bottom">Motif/Identifiant</th>
                                 <th className="border-bottom">Raw ID Partenaire DIST</th>
                                 <th className="border-bottom">ID Partenaire DIST</th>
-                                <th className="border-bottom">Local Transfert Id</th>
+                                <th className="border-bottom">Local Payment Id</th>
                                 <th className="border-bottom">Dernière date du Rapprochement</th>
                                 <th className="border-bottom">CreatedAt</th>
                                 <th className="border-bottom">UpdatedAt</th>
@@ -48,7 +51,7 @@ export const IntouchReportTransferList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((t) => (
-                                <IntouchReportTransferList.TableRow key={`transaction-${t.id}`} {...t} />
+                                <IntouchReportPaymentList.TableRow key={`transaction-${t.id}`} {...t} />
                             ))}
                         </tbody>
                     </Table>
@@ -59,9 +62,9 @@ export const IntouchReportTransferList = (props) => {
     )
 }
 
-IntouchReportTransferList.TableRow = (props) => {
+IntouchReportPaymentList.TableRow = (props) => {
     const {
-        id, networkGroup, transactionId, transactionStatus, country, agency_code, serviceCode, numTransactionGu, recipient, loginAgent, agentType,rawPartnerDistTransactionId, partnerDistTransactionId, lastReconciliationDate, regularisationDate, createdAtDate, sendingDate, state, actionDone, statut, message, transactionMontant, reloadedCode, reason, customerCode, localPaymentId, createDate, updateDate
+        id, networkGroup, transactionId, transactionStatus, paymentMethod, latitude, longitude, country, agency_code, serviceCode, numTransactionGu, recipient, loginAgent, agentType,rawPartnerDistTransactionId, partnerDistTransactionId, lastReconciliationDate, regularisationDate, createdAtDate, sendingDate, state, actionDone, statut, message, transactionMontant, reloadedCode, reason, customerCode, localPaymentId, createDate, updateDate
     } = props
     const transactionDateUtc = new Date(sendingDate);
 
@@ -93,10 +96,19 @@ IntouchReportTransferList.TableRow = (props) => {
                 <span className="fw-normal">{recipient}</span>
             </td>
             <td>
+                <span className="fw-normal">{paymentMethod}</span>
+            </td>
+            <td>
                 <span className="fw-normal">{loginAgent}</span>
             </td>
             <td>
                 <span className="fw-normal">{agentType}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{latitude}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{longitude}</span>
             </td>
             <td>
                 <span className="fw-normal">{createdAtDate}</span>

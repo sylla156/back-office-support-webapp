@@ -51,7 +51,7 @@ export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
                     <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                        montant brut
+                        montant
                     </h4>
                 </Col>
 

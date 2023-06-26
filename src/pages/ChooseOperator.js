@@ -59,6 +59,14 @@ export default () => {
             routeRapportPaymentUrl:"/mtn-report-payment",
             routeRegularisation:"/mtn-payment/regularised",
         },
+        {
+            id:6,
+            name:"Orange SN",
+            image:"orange.jpg",
+            order:0,
+            routeRapportPaymentUrl:"/orange-sn-payment",
+            routeRegularisation:"/orange-sn-payment/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 

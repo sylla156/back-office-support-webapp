@@ -138,9 +138,15 @@ export const EXPORT_MTN_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/mtn-report-trans
 
 export const MTN_REPORT_PAYMENT_URL="/mtn-report-payment"
 export const MTN_REPORT_PAYMENT_UPLOAD_URL="/mtn-report-payment/upload-file"
-export const GET_LOCAL_MTN_REPORT_PAYMENT_RECONCILIATION_DATA="mtn-report-payment/reconciliation";
+export const GET_LOCAL_MTN_REPORT_PAYMENT_RECONCILIATION_DATA="/mtn-report-payment/reconciliation";
 export const GET_MARK_MTN_REPORT_PAYMENT_LIKE_REGULARISED="/mtn-report-payment/mtn-retrieve-payments-candidates"
 export const EXPORT_MTN_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/mtn-report-payment/export-mtn-report-payment-candidates"
+
+export const ORANGE_SN_REPORT_PAYMENT_URL="/orange-sn-payment"
+export const ORANGE_SN_REPORT_PAYMENT_UPLOAD_URL="/orange-sn-payment/upload-file"
+export const GET_LOCAL_ORANGE_SN_REPORT_PAYMENT_RECONCILIATION_DATA="/orange-sn-payment/reconciliation";
+export const GET_MARK_ORANGE_SN_REPORT_PAYMENT_LIKE_REGULARISED="/orange-sn-payment/orange-sn-retrieve-payments-candidates"
+export const EXPORT_ORANGE_SN_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/orange-sn-payment/export-orange-sn-payment-candidates"
 
 export const UPDATE_LOCAL_TRANSFER_DATA="local-stats/fetch-transfers-manualy";
 export const GET_LOCAL_TRANSFER_DATA="local-stats/cached-transfer-infos";

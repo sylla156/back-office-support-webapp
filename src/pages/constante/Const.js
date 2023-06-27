@@ -123,6 +123,12 @@ export const GET_LOCAL_FREE_REPORT_PAYMENT_RECONCILIATION_DATA="free-payment-sn/
 export const GET_MARK_FREE_REPORT_PAYMENT_LIKE_REGULARISED="/free-payment-sn/free-retrieve-payments-candidates"
 export const EXPORT_FREE_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/free-payment-sn/export-free-report-payment-candidates"
 
+export const FREE_REPORT_TRANSFER_URL="/free-sn-transfer"
+export const FREE_REPORT_TRANSFER_UPLOAD_URL="/free-sn-transfer/upload-file"
+export const GET_LOCAL_FREE_REPORT_TRANSFER_RECONCILIATION_DATA="free-sn-transfer/reconciliation";
+export const GET_MARK_FREE_REPORT_TRANSFER_LIKE_REGULARISED="/free-sn-transfer/free-retrieve-transfers-candidates"
+export const EXPORT_FREE_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/free-sn-transfer/export-free-report-transfer-candidates"
+
 export const INTOUCH_REPORT_TRANSFER_URL="/intouch-report-transfer"
 export const INTOUCH_REPORT_TRANSFER_UPLOAD_URL="/intouch-report-transfer/upload-file"
 export const GET_LOCAL_INTOUCH_REPORT_TRANSFER_RECONCILIATION_DATA="intouch-report-transfer/reconciliation";

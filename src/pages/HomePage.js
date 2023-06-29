@@ -180,7 +180,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MoovReportPayment.path} title={'Rapport moov paiement'} component={MoovReportPayment} />
         <RouteWithSidebar exact path={Routes.MarkMoovPaymentLikeRegularised.path} title={'Paiement Moov - À marquer comme régularisé'} component={MarkMoovPaymentLikeRegularised} />
         <RouteWithSidebar exact path={Routes.MoovReportTransfer.path} title={'Rapport moov transfert'} component={MoovReportTransfer} />
-        <RouteWithSidebar exact path={Routes.MarkMoovTransferLikeRegularised.path} title={'Paiement Moov - À marquer comme régularisé'} component={MarkMoovTransferLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.MarkMoovTransferLikeRegularised.path} title={'Transfert Moov - À marquer comme régularisé'} component={MarkMoovTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.MarkIntouchTransferLikeRegularised.path} title={'Transfert Intouch - À marquer comme régularisé'} component={MarkIntouchTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.IntouchReportTransfer.path} title={'Rapport intouch transfert'} component={IntouchReportTransfer} />
         <RouteWithSidebar exact path={Routes.IntouchReportPayment.path} title={'Rapport intouch paiement'} component={IntouchReportPayment} />

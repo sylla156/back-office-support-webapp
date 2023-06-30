@@ -8,20 +8,21 @@ export const MtnTransferMarkLikeRegularised = (props) => {
         return <p className="badge bg-danger h2 py-3">Pas de candidat</p>
     }
 
+    function toUpperCase(provider) {
+        return provider.toUpperCase()
+    }
+
     return (
         <>
             {candidates.map((candidate) => {
                 let {
                     id,
-                    paymentId,
                     merchantId,
                     merchantName,
-                    purchaseReference,
-                    customerReference,
+                    reference,
                     phoneNumber,
+                    gatewayId,
                     status,
-                    paymentStatus,
-                    providerStatus,
                     createdAt,
                     updatedAt,
                     createdAtDate,
@@ -32,10 +33,10 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                     week,
                     weekDay,
                     day,
+                    dayHour,
                     hour,
                     country,
                     provider,
-                    method,
                     amount,
                     currency,
                     convertedAmount,
@@ -43,44 +44,41 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                     cost,
                     convertedCost,
                     reason,
-                    reasonGroup,
+                    description,
                     rawData,
-                    processorReferenceUpdated,
-                    isAnomaly,
-                    gatewayId,
                     processorReference,
-                    regularisationDate,
+                    regularisationdate,
                     finalStatus,
-                    paymentProcessorReferenceRegularised,
+                    transferProcessorReferenceRegularised
                 } = candidate
 
-                const paymentStatusVariant =
-                    paymentStatus === "successful" ||
-                        paymentStatus === "success" ||
-                        paymentStatus === "SUCCESSFUL" ||
-                        paymentStatus === "SUCCESS"
-                        ? "success"
-                        : paymentStatus === "pending" ||
-                            paymentStatus === "Pending" ||
-                            paymentStatus === "PENDING"
-                            ? "warning"
-                            : paymentStatus === "FAILLED" ||
-                                paymentStatus === "failed" ||
-                                paymentStatus === "FAILED" ||
-                                paymentStatus === "failled"
-                                ? "danger"
-                                : "primary";
+                const transferStatusVariant =
+                status === "successful" ||
+                status === "success" ||
+                status === "SUCCESSFUL" ||
+                status === "SUCCESS"
+                    ? "success"
+                    : status === "pending" ||
+                    status === "Pending" ||
+                    status === "PENDING"
+                    ? "warning"
+                    : status === "FAILLED" ||
+                    status === "failed" ||
+                    status === "FAILED" ||
+                    status === "failled"
+                    ? "danger"
+                    : "primary";
                 return (
                     <>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
                                 <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                                    paymentId
+                                    TransferId
                                 </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                                <span className="h6 mb-0 text-start">{paymentId ? paymentId : ""}</span>
+                                <span className="h6 mb-0 text-start">{id ? id : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
@@ -152,13 +150,13 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
                                 <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                                    paymentStatus
+                                    Transfer status
                                 </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                                <Badge bg={paymentStatusVariant}>
-                                    <span className="h6 mb-0 text-start">{paymentStatus ? paymentStatus : ""}</span>
+                                <Badge bg={transferStatusVariant}>
+                                    <span className="h6 mb-0 text-start">{status ? status : ""}</span>
                                 </Badge>
                             </Col>
                         </Row>
@@ -170,7 +168,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                                <span className="h6 mb-0 text-start">{provider ? provider : ""}</span>
+                                <span className="h6 mb-0 text-start">{toUpperCase(provider) ? provider : ""}</span>
                             </Col>
                         </Row>
                     </>

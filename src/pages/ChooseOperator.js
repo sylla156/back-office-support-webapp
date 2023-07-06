@@ -59,6 +59,14 @@ export default () => {
             routeRapportPaymentUrl:"/mtn-report-payment",
             routeRegularisation:"/mtn-payment/regularised",
         },
+        {
+            id:6,
+            name:"Free SN",
+            image:"free.jpg",
+            order:0,
+            routeRapportPaymentUrl:"/free-report-payment",
+            routeRegularisation:"/free-payment/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 

@@ -117,6 +117,18 @@ export const GET_LOCAL_MOOV_REPORT_PAYMENT_RECONCILIATION_DATA="moov-report-paym
 export const GET_MARK_MOOV_REPORT_PAYMENT_LIKE_REGULARISED="/moov-report-payment/moov-retrieve-payments-candidates"
 export const EXPORT_MOOV_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/moov-report-payment/export-moov-report-payment-candidates"
 
+export const FREE_REPORT_PAYMENT_URL="/free-payment-sn"
+export const FREE_REPORT_PAYMENT_UPLOAD_URL="/free-payment-sn/upload-file"
+export const GET_LOCAL_FREE_REPORT_PAYMENT_RECONCILIATION_DATA="free-payment-sn/reconciliation";
+export const GET_MARK_FREE_REPORT_PAYMENT_LIKE_REGULARISED="/free-payment-sn/free-retrieve-payments-candidates"
+export const EXPORT_FREE_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/free-payment-sn/export-free-report-payment-candidates"
+
+export const FREE_REPORT_TRANSFER_URL="/free-sn-transfer"
+export const FREE_REPORT_TRANSFER_UPLOAD_URL="/free-sn-transfer/upload-file"
+export const GET_LOCAL_FREE_REPORT_TRANSFER_RECONCILIATION_DATA="free-sn-transfer/reconciliation";
+export const GET_MARK_FREE_REPORT_TRANSFER_LIKE_REGULARISED="/free-sn-transfer/free-retrieve-transfers-candidates"
+export const EXPORT_FREE_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/free-sn-transfer/export-free-report-transfer-candidates"
+
 export const INTOUCH_REPORT_TRANSFER_URL="/intouch-report-transfer"
 export const INTOUCH_REPORT_TRANSFER_UPLOAD_URL="/intouch-report-transfer/upload-file"
 export const GET_LOCAL_INTOUCH_REPORT_TRANSFER_RECONCILIATION_DATA="intouch-report-transfer/reconciliation";
@@ -426,6 +438,25 @@ export const TransactionstatusList = [
   {
     id: 1,
     status: "pending"
+  },
+  {
+    id: 2,
+    status: "successful"
+  },
+  {
+    id: 3,
+    status: "failed"
+  },
+  {
+    id: 4,
+    status: "Tous"
+  },
+];
+
+export const FreeTransactionStatusList = [
+  {
+    id: 1,
+    status: "initiated"
   },
   {
     id: 2,

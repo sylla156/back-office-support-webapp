@@ -12,15 +12,12 @@ export const MoovTransferMarkLikeRegularised = (props) => {
             {candidates.map((candidate) => {
                 let {
                     id,
-                    paymentId,
                     merchantId,
                     merchantName,
-                    purchaseReference,
-                    customerReference,
-                    number,
+                    reference,
+                    phoneNumber,
+                    gatewayId,
                     status,
-                    paymentStatus,
-                    providerStatus,
                     createdAt,
                     updatedAt,
                     createdAtDate,
@@ -31,10 +28,10 @@ export const MoovTransferMarkLikeRegularised = (props) => {
                     week,
                     weekDay,
                     day,
+                    dayHour,
                     hour,
                     country,
                     provider,
-                    method,
                     amount,
                     currency,
                     convertedAmount,
@@ -42,44 +39,41 @@ export const MoovTransferMarkLikeRegularised = (props) => {
                     cost,
                     convertedCost,
                     reason,
-                    reasonGroup,
+                    description,
                     rawData,
-                    processorReferenceUpdated,
-                    isAnomaly,
-                    gatewayId,
                     processorReference,
-                    regularisationDate,
+                    regularisationdate,
                     finalStatus,
-                    paymentProcessorReferenceRegularised,
+                    transferProcessorReferenceRegularised
                 } = candidate
 
-                const paymentStatusVariant =
-                    paymentStatus === "successful" ||
-                        paymentStatus === "success" ||
-                        paymentStatus === "SUCCESSFUL" ||
-                        paymentStatus === "SUCCESS"
-                        ? "success"
-                        : paymentStatus === "pending" ||
-                            paymentStatus === "Pending" ||
-                            paymentStatus === "PENDING"
-                            ? "warning"
-                            : paymentStatus === "FAILLED" ||
-                                paymentStatus === "failed" ||
-                                paymentStatus === "FAILED" ||
-                                paymentStatus === "failled"
-                                ? "danger"
-                                : "primary";
+                const transferStatusVariant =
+                status === "successful" ||
+                status === "success" ||
+                status === "SUCCESSFUL" ||
+                status === "SUCCESS"
+                    ? "success"
+                    : status === "pending" ||
+                    status === "Pending" ||
+                    status === "PENDING"
+                    ? "warning"
+                    : status === "FAILLED" ||
+                    status === "failed" ||
+                    status === "FAILED" ||
+                    status === "failled"
+                    ? "danger"
+                    : "primary";
                 return (
                     <>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
                                 <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                                    paymentId
+                                    TransferId
                                 </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                                <span className="h6 mb-0 text-start">{paymentId ? paymentId : ""}</span>
+                                <span className="h6 mb-0 text-start">{id ? id : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
@@ -134,7 +128,7 @@ export const MoovTransferMarkLikeRegularised = (props) => {
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                                <span className="h6 mb-0 text-start">{number ? number : ""}</span>
+                                <span className="h6 mb-0 text-start">{phoneNumber ? phoneNumber : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
@@ -151,13 +145,13 @@ export const MoovTransferMarkLikeRegularised = (props) => {
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
                                 <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                                    paymentStatus
+                                    Transfer status
                                 </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                                <Badge bg={paymentStatusVariant}>
-                                    <span className="h6 mb-0 text-start">{paymentStatus ? paymentStatus : ""}</span>
+                                <Badge bg={transferStatusVariant}>
+                                    <span className="h6 mb-0 text-start">{status ? status : ""}</span>
                                 </Badge>
                             </Col>
                         </Row>

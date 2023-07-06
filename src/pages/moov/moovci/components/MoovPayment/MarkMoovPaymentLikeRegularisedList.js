@@ -14,8 +14,8 @@ export const MarkMoovPaymentLikeRegularisedList = (props) => {
                     <Table hover className="user-table align-items-center">
                         <thead>
                         <tr>
-                            <th className="border-bottom">Paiement Hub2</th>
-                            <th className="border-bottom">Paiement moov</th>
+                            <th className="border-bottom">Paiement HUB2</th>
+                            <th className="border-bottom">Paiement Moov</th>
                         </tr>
                         </thead>
                         <tbody>

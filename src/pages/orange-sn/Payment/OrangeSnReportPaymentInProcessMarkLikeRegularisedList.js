@@ -1,11 +1,9 @@
 import React from "react";
 import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 
-export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
-    let processorTransfer = props.processorTransfer
-
-    const { id, transactionDate, identifiant, toNumber, amount, processorReference, statut } = processorTransfer
-
+export const OrangeSnReportPaymentInProcessMarkLikeRegularisedList = (props) => {
+    let processorPayment = props.processorPayment;
+    const { id, transactionDate, transactionId, senderMsisdn, transactionAmount, status, localPaymentId } = processorPayment
 
     return (
         <>
@@ -31,7 +29,7 @@ export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
 
                 <Col className="ms--2" lg={9}>
                     <span className="h6 mb-0 text-start">
-                        {identifiant ? identifiant : ""}
+                        {transactionId ? transactionId : ""}
                     </span>
                 </Col>
             </Row>
@@ -57,7 +55,7 @@ export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
 
                 <Col className="ms--2" lg={9}>
                     <span className="h6 mb-0 text-start">
-                        {amount} {"XOF"}
+                        {transactionAmount} {"XOF"}
                     </span>
                 </Col>
             </Row>
@@ -70,7 +68,7 @@ export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
 
                 <Col className="ms--2" lg={9}>
                     <span className="h6 mb-0 text-start">
-                        {toNumber ? toNumber : ""}
+                        {senderMsisdn ? senderMsisdn : ""}
                     </span>
                 </Col>
             </Row>
@@ -82,9 +80,10 @@ export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
                 </Col>
 
                 <Col className="ms--2" lg={9}>
-                    <h2 className=" badge bg-success py-2">{statut}</h2>
+                    <h2 className=" badge bg-success py-2">{status}</h2>
                 </Col>
             </Row>
         </>
     )
+
 }

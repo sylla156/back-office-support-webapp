@@ -1,9 +1,8 @@
 import React from "react";
 import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 
-export const MtnPaymentMarkLikeRegularised = (props) => {
+export const FreePaymentMarkLikeRegularised = (props) => {
     const candidates = props.candidates
-
     if (candidates.length === 0) {
         return <p className="badge bg-danger h2 py-3">Pas de candidat</p>
     }
@@ -18,6 +17,7 @@ export const MtnPaymentMarkLikeRegularised = (props) => {
                     merchantName,
                     purchaseReference,
                     customerReference,
+                    paymentProcessorReference,
                     number,
                     status,
                     paymentStatus,
@@ -48,7 +48,6 @@ export const MtnPaymentMarkLikeRegularised = (props) => {
                     processorReferenceUpdated,
                     isAnomaly,
                     gatewayId,
-                    processorReference,
                     regularisationDate,
                     finalStatus,
                     paymentProcessorReferenceRegularised,
@@ -86,12 +85,12 @@ export const MtnPaymentMarkLikeRegularised = (props) => {
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
                                 <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                                    Reference
+                                    paymentProcessorReference
                                 </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                                <span className="h6 mb-0 text-start">{processorReference ? processorReference : ""}</span>
+                                <span className="h6 mb-0 text-start">{paymentProcessorReference ? paymentProcessorReference : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">

@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 
-export const MtnPaymentMarkLikeRegularised = (props) => {
+export const OrangeSnPaymentMarkLikeRegularised = (props) => {
     const candidates = props.candidates
 
     if (candidates.length === 0) {
@@ -18,7 +18,7 @@ export const MtnPaymentMarkLikeRegularised = (props) => {
                     merchantName,
                     purchaseReference,
                     customerReference,
-                    number,
+                    phoneNumber,
                     status,
                     paymentStatus,
                     providerStatus,
@@ -135,7 +135,7 @@ export const MtnPaymentMarkLikeRegularised = (props) => {
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                                <span className="h6 mb-0 text-start">{number ? number : ""}</span>
+                                <span className="h6 mb-0 text-start">{phoneNumber ? phoneNumber : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">

@@ -1,11 +1,10 @@
 import React from "react";
 import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 
-export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
-    let processorTransfer = props.processorTransfer
+export const FreeReportTransferInProcessMarkLikeRegularisedList = (props) => {
+    let processorTransfer = props.processorTransfer;
 
-    const { id, transactionDate, identifiant, toNumber, amount, processorReference, statut } = processorTransfer
-
+    const { id, transactionDate, transactionId, phoneNumber, amount, processorReference, statut } = processorTransfer
 
     return (
         <>
@@ -31,7 +30,7 @@ export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
 
                 <Col className="ms--2" lg={9}>
                     <span className="h6 mb-0 text-start">
-                        {identifiant ? identifiant : ""}
+                        {transactionId ? transactionId : ""}
                     </span>
                 </Col>
             </Row>
@@ -51,7 +50,7 @@ export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
                     <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                        montant
+                        montant brut
                     </h4>
                 </Col>
 
@@ -70,14 +69,14 @@ export const MtnReportTransferInProcessMarkLikeRegularisedList = (props) => {
 
                 <Col className="ms--2" lg={9}>
                     <span className="h6 mb-0 text-start">
-                        {toNumber ? toNumber : ""}
+                        {phoneNumber ? phoneNumber : ""}
                     </span>
                 </Col>
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
                     <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
-                        status
+                        statut
                     </h4>
                 </Col>
 

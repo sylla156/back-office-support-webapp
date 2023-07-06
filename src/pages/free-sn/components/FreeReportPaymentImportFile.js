@@ -16,16 +16,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPaperclip } from "@fortawesome/free-solid-svg-icons";
 import AlertDismissable from "../../../components/AlertDismissable";
 import AxiosWebHelper from "../../../utils/axios-helper";
+import { APPKEY, FREE_REPORT_PAYMENT_UPLOAD_URL } from "../../constante/Const";
 import { Routes } from "../../../routes";
-import { APPKEY, MTN_REPORT_PAYMENT_UPLOAD_URL } from "../../constante/Const";
 
-export const MtnReportPaymentImportFile = (props) => {
+export const FreeReportPaymentImportFile = (props) => {
     const onRefresh = props.onRefresh
+
     const [isLoading, setIsLoading] = useState(false);
     const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
     const [show, setShow] = useState(false);
     const [file, setFile] = useState();
+
     const [cookies] = useCookies(["token"])
 
     const handleChangeFile = async (event) => {
@@ -44,6 +46,7 @@ export const MtnReportPaymentImportFile = (props) => {
         setIsLoading(false);
         setFile(undefined)
     };
+
     const axios = AxiosWebHelper.getAxios();
 
     const postFile = () => {
@@ -54,7 +57,7 @@ export const MtnReportPaymentImportFile = (props) => {
         const formData = new FormData()
         formData.append('file', file)
 
-        axios.post(MTN_REPORT_PAYMENT_UPLOAD_URL, formData, {
+        axios.post(FREE_REPORT_PAYMENT_UPLOAD_URL, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 AppKey: APPKEY,
@@ -63,7 +66,7 @@ export const MtnReportPaymentImportFile = (props) => {
             params: {
                 country: "CI"
             }
-        }).then((_result) => {
+        }).then((result) => {
             setIsLoading(false)
             handleClose()
             onRefresh()
@@ -82,7 +85,6 @@ export const MtnReportPaymentImportFile = (props) => {
     const handlePostFile = () => {
         postFile();
     }
-
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />
     }
@@ -95,7 +97,7 @@ export const MtnReportPaymentImportFile = (props) => {
             <Col xs={12} md={3} lg={8}>
                 <Button variant="outline-primary" size="sm" onClick={handleShow}>
                     <FontAwesomeIcon icon={faPlus} className="me-2" />
-                    <span className=""> Importer un fichier CSV</span>
+                    <span className=""> Importer le fichier Excel </span>
                 </Button>
             </Col>
             <Modal
@@ -109,7 +111,7 @@ export const MtnReportPaymentImportFile = (props) => {
             >
                 <Modal.Header closeButton closeVariant="white" className="bg-primary">
                     <Modal.Title className="text-white">
-                        Ajouter le rapport MTN
+                        Ajouter le rapport Free
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -129,14 +131,14 @@ export const MtnReportPaymentImportFile = (props) => {
                                             <input
                                                 type="file"
                                                 // value={file}
-                                                accept=".csv"
+                                                accept=".xlsx,.xls"
                                                 onChange={(event) => {
                                                     handleChangeFile(event);
                                                 }}
                                             />
                                             <div className="d-md-block text-start">
                                                 <div className="fw-normal text-dark mb-1">
-                                                    {file?.name ? file?.name : <b> Choisir un fichier CSV</b>}
+                                                    {file?.name ? file?.name : <b> Choisir un fichier Excel</b>}
                                                 </div>
                                                 <div className="text-gray small">
 

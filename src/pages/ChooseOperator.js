@@ -61,12 +61,20 @@ export default () => {
         },
         {
             id:6,
+            name:"Orange SN",
+            image:"orange.jpg",
+            order:0,
+            routeRapportPaymentUrl:"/orange-sn-payment",
+            routeRegularisation:"/orange-sn-payment/regularised",
+        },
+        {
+            id:7,
             name:"Free SN",
             image:"free.jpg",
             order:0,
             routeRapportPaymentUrl:"/free-report-payment",
             routeRegularisation:"/free-payment/regularised",
-        },
+        }
     ])
     const createdAtUtc = new Date();
 

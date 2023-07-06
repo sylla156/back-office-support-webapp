@@ -70,6 +70,8 @@ export const Routes = {
     MarkMtnTransferLikeRegularised: {path:"/mtn-transfer/regularised"},
     MtnReportPayment:{path:"/mtn-report-payment"},
     MarkMtnPaymentLikeRegularised: {path:"/mtn-payment/regularised"},
+    OrangeSnPayment:{path:"/orange-sn-payment"},
+    MarkOrangeSnPaymentLikeRegularised:{path:"/orange-sn-payment/regularised"},
     FreeReportPayment:{path:"/free-report-payment"},
     MarkFreePaymentLikeRegularised: {path:"/free-payment/regularised"},
     FreeReportTransfer:{path:"/free-report-transfer"},

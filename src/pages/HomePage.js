@@ -69,6 +69,8 @@ import MtnReportTransfer from './mtn/MtnReportTransfer';
 import MarkMtnTransferLikeRegularised from './mtn/MtnTransfer/MarkMtnTransferLikeRegularised';
 import MtnReportPayment from './mtn/MtnReportPayment';
 import MarkMtnPaymentLikeRegularised from './mtn/MtnPayment/MarkMtnPaymentLikeRegularised';
+import OrangeSnPayment from './orange-sn/OrangeSnPayment';
+import MarkOrangeSnPaymentLikeRegularised from './orange-sn/Payment/MarkOrangeSnPaymentLikeRegularised';
 import FreeReportPayment from './free-sn/FreeReportPayment';
 import MarkFreePaymentLikeRegularised from './free-sn/components/MarkFreePaymentLikeRegularised';
 import FreeReportTransfer from './free-sn/FreeReportTransfer';
@@ -189,6 +191,9 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MarkMtnTransferLikeRegularised.path} title={'Transfert Mtn - À marquer comme régularisé'} component={MarkMtnTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.MtnReportPayment.path} title={'Rapport MTN paiement'} component={MtnReportPayment} />
         <RouteWithSidebar exact path={Routes.MarkMtnPaymentLikeRegularised.path} title={'Paiement MTN - À marquer comme régularisé'} component={MarkMtnPaymentLikeRegularised} />
+        <RouteWithSidebar exact path={Routes.OrangeSnPayment.path} title={'Rapport Orange SN paiement'} component={OrangeSnPayment} />
+        <RouteWithSidebar exact path={Routes.MarkOrangeSnPaymentLikeRegularised.path} title={'Paiement Orange - À marquer comme régularisé'} component={MarkOrangeSnPaymentLikeRegularised} />
+
         <RouteWithSidebar exact path={Routes.FreeReportPayment.path} title={'Rapport Free paiement'} component={FreeReportPayment} />
         <RouteWithSidebar exact path={Routes.MarkFreePaymentLikeRegularised.path} title={'Paiement Free - À marquer comme régularisé'} component={MarkFreePaymentLikeRegularised} />
         <RouteWithSidebar exact path={Routes.FreeReportTransfer.path} title={'Rapport Free transfert'} component={FreeReportTransfer} />

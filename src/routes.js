@@ -72,6 +72,11 @@ export const Routes = {
     MarkMtnPaymentLikeRegularised: {path:"/mtn-payment/regularised"},
     OrangeSnPayment:{path:"/orange-sn-payment"},
     MarkOrangeSnPaymentLikeRegularised:{path:"/orange-sn-payment/regularised"},
+    FreeReportPayment:{path:"/free-report-payment"},
+    MarkFreePaymentLikeRegularised: {path:"/free-payment/regularised"},
+    FreeReportTransfer:{path:"/free-report-transfer"},
+    MarkFreeTransferLikeRegularised: {path:"/free-transfer/regularised"},
+
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions
     Alerts: {path: "/components/alerts"}, // D  D des fonctions

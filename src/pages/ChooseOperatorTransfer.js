@@ -59,6 +59,14 @@ export default () => {
             routeRapportTransfer:"/mtn-report-transfer",
             routeRegularisation:"/mtn-transfer/regularised",
         },
+        {
+            id:6,
+            name:"Free SN",
+            image:"free.jpg",
+            order:0,
+            routeRapportTransfer:"/free-report-transfer",
+            routeRegularisation:"/free-transfer/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 

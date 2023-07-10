@@ -69,6 +69,7 @@ import MtnReportTransfer from './mtn/MtnReportTransfer';
 import MarkMtnTransferLikeRegularised from './mtn/MtnTransfer/MarkMtnTransferLikeRegularised';
 import MtnReportPayment from './mtn/MtnReportPayment';
 import MarkMtnPaymentLikeRegularised from './mtn/MtnPayment/MarkMtnPaymentLikeRegularised';
+import VerifyAuth from './examples/VerifyAuth';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -92,7 +93,7 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 
     const [loaded, setLoaded] = useState(false);
 
-    const [cookies, ] = useCookies(['token']);
+    const [cookies, ] = useCookies(["token","user"]);
 
     useEffect(() => {
 
@@ -103,6 +104,9 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
+    }
+    if(!cookies.user.isActive2FA) {
+        return <Redirect to={Routes.Signin.path} />
     }
     return (
 
@@ -127,6 +131,7 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 export default () => (
     <Switch>
         <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
+        <RouteWithLoader exact path={Routes.VerifyAuth.path} component={VerifyAuth} />
 
         <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
         <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />

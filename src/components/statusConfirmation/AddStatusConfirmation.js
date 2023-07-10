@@ -39,7 +39,7 @@ export const AddStatusConfirmation = (props) => {
   let [processorReference, setProcessorReference] = useState(undefined);
   const [description, setDescription] = useState(undefined);
 
-  const [cookies, ] = useCookies(["token"]);
+  const [cookies, ] = useCookies(["token","user"]);
 
   if (confirmedStatus === "failed") {
     processorReference = "";
@@ -116,6 +116,10 @@ export const AddStatusConfirmation = (props) => {
 
   if (!cookies.token) {
     return <Redirect to={Routes.Signin.path} />;
+  }
+
+  if(!cookies.user.isActive2FA) {
+    return <Redirect to={Routes.Signin.path} />
   }
 
   if(shouldLogin) {

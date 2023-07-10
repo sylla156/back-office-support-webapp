@@ -19,7 +19,7 @@ export const MerchantTransferBalanceInGlobalReport = (props) => {
   const [shouldLogin, setShouldLogin] = useState(false);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token"]);
+  const [cookies] = useCookies(["token","user"]);
 
   const getMerchantTransferBalance = () => {
     setIsLoaded(false);
@@ -52,6 +52,10 @@ export const MerchantTransferBalanceInGlobalReport = (props) => {
 
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
+  }
+
+  if(!cookies.user.isActive2FA) {
+    return <Redirect to={Routes.Signin.path} />
   }
   
   if(shouldLogin) {

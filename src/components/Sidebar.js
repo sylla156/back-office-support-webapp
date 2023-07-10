@@ -127,6 +127,10 @@ export default (props = {}) => {
   if (!cookies.token) {
     return <Redirect to={Routes.Signin.path} />;
   }
+
+  if(!cookies.user.isActive2FA) {
+    return <Redirect to={Routes.Signin.path} />
+}
   
   return (
     <>

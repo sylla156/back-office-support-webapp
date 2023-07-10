@@ -23,7 +23,7 @@ export const CollectionProviderBalance = (props) => {
   const [shouldLogin, setShouldLogin] = useState(false);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token"]);
+  const [cookies] = useCookies(["token","user"]);
 
   const getProviderBalance = () => {
     setIsLoaded(false);
@@ -60,6 +60,10 @@ export const CollectionProviderBalance = (props) => {
 
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
+  }
+
+  if(!cookies.user.isActive2FA) {
+    return <Redirect to={Routes.Signin.path} />
   }
 
   return (

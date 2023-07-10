@@ -10,6 +10,7 @@ import AxiosWebHelper from "../../utils/axios-helper";
 import {Redirect} from "react-router-dom";
 import {Routes} from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
+import VerifyAuth from "./VerifyAuth";
 
 // Signin({ setToken })
 export default function Signin() {
@@ -18,6 +19,8 @@ export default function Signin() {
 
     const [loginPassword, setLoginPassword] = useState('');
     const [isLoginSuccess, setIsLoginSuccess] = useState(false);
+    const [shouldValidate2FA, setShouldValidate2FA] = useState(false);
+    const [tOptUrl, setTOptUrl] = useState('');
     const [, setLogin] = useState({});
     const [error, setError] = useState(null);
     const [cookies, setCookie] = useCookies(['token', 'id', 'user']);
@@ -58,8 +61,13 @@ export default function Signin() {
                 setCookie("token", result.data.token);
                 setCookie("id", result.data.id);
                 setCookie("user", result.data.user);
+                setTOptUrl(result.data.tOtpAuthUrl)
 
-                setIsLoginSuccess(true)
+                if(result.data.user.isActive2FA == false){
+                    setShouldValidate2FA(true)
+                }else{
+                    setIsLoginSuccess(true)
+                }
             
             })
             .catch((error) => {
@@ -135,7 +143,8 @@ export default function Signin() {
                                         <AlertDismissable message={error} variant="danger" show={!!error} onClose={() => setError(null)} isLoading={isLoading}/>
                                     </div>
 
-                                    {isLoginSuccess ? <Redirect to={Routes.DashboardOverview.path} /> : ""}
+                                    {isLoginSuccess ? <Redirect to={Routes.VerifyAuth.path} /> : ""}
+                                    {shouldValidate2FA ? <Redirect to={{pathname:Routes.VerifyAuth.path, state:{tOtpAuthUrl: tOptUrl}}} /> : ""}
                                 </Form>
                                 <div className="d-flex justify-content-center my-4">
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUnlockAlt, faHouseUser } from "@fortawesome/free-solid-svg-icons";
+import { faUnlockAlt, faHouseUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Col, Row, Form, Button, Spinner, Container, InputGroup } from '@themesberg/react-bootstrap';
 
 import { useCookies } from 'react-cookie';
@@ -18,6 +18,7 @@ export default function VerifyAuth(props) {
     const [text, setText] = useState('');
     const [error, setError] = useState(null);
     const [cookies, setCookie] = useCookies(['token', 'id', 'user']);
+    const [, , removeCookie] = useCookies(['token', 'id', 'user']);
     const [isLoading, setIsLoading] = useState(false)
 
     const handleOnTokenChange = (event) => {
@@ -35,6 +36,18 @@ export default function VerifyAuth(props) {
                 //console.log('success!')
             })
         }
+    }
+
+    const buttonStyle = {
+        backgroundColor: "white"
+    };
+
+    const logout = ()=>{
+
+        removeCookie("token");
+        removeCookie("id");
+        removeCookie("user");
+    
     }
 
     const getText = (isActive2FA) => {
@@ -79,9 +92,19 @@ export default function VerifyAuth(props) {
     }
 
     useEffect(() => {
-        getText(cookies.user.isActive2FA)
-        generateQR(cookies.user.isActive2FA)
+        if(cookies.user){
+            getText(cookies.user.isActive2FA)
+            generateQR(cookies.user.isActive2FA)
+        }
     }, [])
+
+    if (!cookies.token) {
+        return <Redirect to={Routes.Signin.path} />
+    }
+
+    if(!cookies.user.isActive2FA) {
+        return <Redirect to={Routes.Signin.path} />
+    }
 
     return (
         <main>
@@ -117,6 +140,10 @@ export default function VerifyAuth(props) {
                                     </div> : <Button type="button" className="w-100 btn-primary" onClick={VerifyHub2Support2FAToken}>
                                         Vérifier
                                     </Button>}
+
+                                    <div style={{marginTop: "1rem"}}>
+                                        <Button type="button" style={buttonStyle} onClick={logout} className="btn btn-outline-danger" > <FontAwesomeIcon icon={faArrowLeft} />  Deconnexion</Button>
+                                    </div>
 
                                     <div className="mt-3">
                                         <AlertDismissable message={error} variant="danger" show={!!error} onClose={() => setError(null)} isLoading={isLoading} />

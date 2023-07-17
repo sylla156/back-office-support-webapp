@@ -2,6 +2,8 @@ export const APPKEY = process.env.REACT_APP_APP_KEY;
 
 export const URL_LOGIN = "/authentications";
 
+export const URL_2FA_VERIFICATION = "/authentications/2fa/turn-on";
+
 export const BASE_URL_SOLDE = "/balances/provider-transfer";
 
 export const PROVIDER_PAYMENT_BALANCE_URL = "/balances/provider-payment";
@@ -104,6 +106,10 @@ export const GET_WAVE_REPORT_TRANSFER_TRANSACTION_TYPE_LIST="wave-report-transfe
 export const MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED="/wave-report-transfer/upload-file"
 export const GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED="/wave-report-transfer/wave-retrieve-transfers-candidates"
 export const EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/wave-report-transfer/export-wave-report-transfer-candidates"
+
+export const MERCHANTS_FEES_URL="/merchant-fees"
+export const APPLY_MERCHANT_FEES_URL="/merchant-fees/apply-fees"
+export const ADD_APPLY_MERCHANT_FEES_URL="/merchant-fees"
 
 export const WAVE_REPORT_PAYMENT_UPLOAD_URL="/wave-report-payment/upload-file"
 export const GET_LOCAL_WAVE_REPORT_PAYMENT_RECONCILIATION_DATA="wave-report-payment/reconciliation";
@@ -262,6 +268,88 @@ export const SelectDefaultValues = {
 export const SelectWaveTransferDefaultValues = {
   type: "Tous",
 }
+
+export const MerchantFeeType = [
+  {
+    "id": 1,
+    "type": "percent",
+    "label": "Pourcentage"
+  },
+  {
+    "id": 2,
+    "type": "flat",
+    "label": "Fixe"
+  }
+]
+
+export const MerchantFeeTransactionType = [
+  {
+    "id": 1,
+    "type": "payment",
+    "label": "Paiement"
+  },
+  {
+    "id": 2,
+    "type": "transfer",
+    "label": "Transfert"
+  }
+]
+
+export const MerchantFeeMethod = [
+  {
+    "id": 1,
+    "type": "bt",
+    "label": "Transfert bancaire"
+  },
+  {
+    "id": 2,
+    "type": "mm",
+    "label": "Mobile Money"
+  }
+]
+
+export const MerchantsCountry = [
+  {
+    "id":"ci",
+    "country":"CI",
+    "name":"CÔTE D'IVOIRE",
+  },
+  {
+    "id":"sn",
+    "country":"SN",
+    "name":"SÉNÉGAL",
+  },
+  {
+    "id":"ml",
+    "country":"ML",
+    "name":"MALI",
+  },
+  {
+    "id":"bf",
+    "country":"BF",
+    "name":"BURKINA FASO",
+  },
+  {
+    "id":"gn",
+    "country":"GN",
+    "name":"GUINÉE",
+  },
+  {
+    "id":"cm",
+    "country":"CM",
+    "name":"CAMEROUN",
+  },
+  {
+    "id":"bj",
+    "country":"BJ",
+    "name":"BENIN",
+  },
+  {
+    "id":"ts",
+    "country":"",
+    "name":"TOUS",
+  },
+];
 
 export const OrangeReportTransferCountry = [
   {

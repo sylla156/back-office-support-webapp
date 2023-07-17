@@ -21,7 +21,7 @@ export default () => {
   const [shouldLogin, setShouldLogin] = useState(false);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token"]);
+  const [cookies] = useCookies(["token",]);
 
   const getBalanceSetting = () => {
     setIsLoaded(false);
@@ -56,6 +56,7 @@ export default () => {
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
+  
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

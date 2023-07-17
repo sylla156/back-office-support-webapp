@@ -9,6 +9,7 @@ export const Routes = {
     Billing: {path: "/examples/billing"},
     Invoice: {path: "/examples/invoice"},
     Signin: {path: "/signin"}, // examples/sign-in
+    VerifyAuth:{path:"/verify-auth"},
     Signup: {path: "/examples/sign-up"},
     ForgotPassword: {path: "/examples/forgot-password"},
     ResetPassword: {path: "/examples/reset-password"},
@@ -76,6 +77,7 @@ export const Routes = {
     MarkFreePaymentLikeRegularised: {path:"/free-payment/regularised"},
     FreeReportTransfer:{path:"/free-report-transfer"},
     MarkFreeTransferLikeRegularised: {path:"/free-transfer/regularised"},
+    MerchantListFees:{path:"/merchant-list-fees"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

@@ -38,7 +38,7 @@ export const MakeIntouchAndLocalTransferReconciliation = (props) => {
     const handleEndDate = (value) => {
         setEndDate(value);
     };
-    const [cookies] = useCookies(["token"]);
+    const [cookies] = useCookies(["token",]);
 
     const axios = AxiosWebHelper.getAxios();
 
@@ -120,6 +120,7 @@ export const MakeIntouchAndLocalTransferReconciliation = (props) => {
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
     }
+
     if (shouldLogin) {
         return <Redirect to={Routes.Signin.path} />
     }

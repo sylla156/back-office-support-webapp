@@ -54,7 +54,7 @@ export const UpdatePaymentLocalData = (props)=> {
     setEndDate(value);
   };
 
-  const [cookies, ] = useCookies(["token"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const axios = AxiosWebHelper.getAxios();
   const getAndUpdateLocalData = () => {
@@ -139,6 +139,8 @@ export const UpdatePaymentLocalData = (props)=> {
   if (!cookies.token) {
     return <Redirect to={Routes.Signin.path} />;
   }
+
+  
   
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>

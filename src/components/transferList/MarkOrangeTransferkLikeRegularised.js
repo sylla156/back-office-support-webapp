@@ -43,7 +43,7 @@ export const MarkOrangeTransferkLikeRegularised = (props)=> {
   let [id, setId] = useState(transfer.id);
   let [regularisedDate, setRegularisedDate] = useState(dateNow.toISOString());
 
-  const [cookies, ] = useCookies(["token"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const handleShow = () => {
     setShow(true);
@@ -127,6 +127,7 @@ export const MarkOrangeTransferkLikeRegularised = (props)=> {
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>
   }
+  
 
   return (
     <>

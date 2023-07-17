@@ -41,7 +41,7 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
     const handleEndDate = (value) => {
         setEndDate(value);
     };
-    const [cookies,] = useCookies(["token"]);
+    const [cookies,] = useCookies(["token",]);
 
     const axios = AxiosWebHelper.getAxios();
 
@@ -121,6 +121,9 @@ export const MakeMtnAndLocalTransferReconciliation = (props) => {
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
     }
+
+
+    
     if (shouldLogin) {
         return <Redirect to={Routes.Signin.path} />
     }

@@ -31,7 +31,7 @@ export default () => {
   const [total, setTotal] = useState([]);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token"]);
+  const [cookies] = useCookies(["token",]);
   
   const getSuccessfulPaymentCommissionByMonth = () => {
     setIsLoaded(false);
@@ -72,6 +72,8 @@ export default () => {
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
+
+  
 
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;

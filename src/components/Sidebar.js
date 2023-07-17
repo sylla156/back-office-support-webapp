@@ -31,7 +31,7 @@ import { Redirect } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 export default (props = {}) => {
-  const [cookies, ,] = useCookies(["token", "id", "user"]);
+  const [cookies, ,] = useCookies(["token", "id"]);
 
   const location = useLocation();
   const { pathname } = location;
@@ -127,6 +127,8 @@ export default (props = {}) => {
   if (!cookies.token) {
     return <Redirect to={Routes.Signin.path} />;
   }
+
+
   
   return (
     <>
@@ -191,6 +193,11 @@ export default (props = {}) => {
                 title="Rapport global"
                 link={Routes.GlobalReport.path}
                 icon={faCalendar}
+              />
+              <NavItem
+                title="Frais marchand"
+                link={Routes.MerchantListFees.path}
+                icon={faMoneyCheck}
               />
 
               <CollapsableNavItem title="Transfert" icon={faExchangeAlt}>

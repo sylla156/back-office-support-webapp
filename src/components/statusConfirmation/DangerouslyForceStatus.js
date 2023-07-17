@@ -32,7 +32,7 @@ export const DangerouslyForceStatus = (props)=> {
   const onRefresh = props.onRefresh; 
   const transfer = props.transfer; 
 
-  const [cookies, ] = useCookies(["token"]);
+  const [cookies, ] = useCookies(["token",]);
 
   
 
@@ -90,6 +90,7 @@ export const DangerouslyForceStatus = (props)=> {
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
+  
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>;
   }

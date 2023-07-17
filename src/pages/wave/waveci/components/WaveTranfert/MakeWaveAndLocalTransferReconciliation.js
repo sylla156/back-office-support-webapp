@@ -40,7 +40,7 @@ export default function MakeWaveAndLocalTransferReconciliation(props) {
   
     const [startDate, setStartDate] = useState(defaultStartDate);
     const [endDate, setEndDate] = useState(defaultEndDate);
-    const [cookies, ] = useCookies(["token"]);
+    const [cookies, ] = useCookies(["token",]);
   
     const axios = AxiosWebHelper.getAxios();
   
@@ -130,6 +130,8 @@ export default function MakeWaveAndLocalTransferReconciliation(props) {
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
     }
+
+
 
     if(shouldLogin) {
         return <Redirect to={Routes.Signin.path}/>

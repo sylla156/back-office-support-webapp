@@ -32,7 +32,7 @@ export const DeleteStatusConfirmation = (props)=> {
 
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies, ] = useCookies(["token"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const deleteStatusConfirmation = ()=> {
     if (isLoading) return;
@@ -82,6 +82,8 @@ export const DeleteStatusConfirmation = (props)=> {
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
+
+  
   
   if(shouldLogin){
     return <Redirect to={Routes.Signin.path}/>

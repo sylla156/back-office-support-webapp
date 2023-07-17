@@ -108,6 +108,7 @@ export const GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED="/wave-report-transf
 export const EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/wave-report-transfer/export-wave-report-transfer-candidates"
 
 export const MERCHANTS_FEES_URL="/merchant-fees"
+export const MERCHANTS_LIVE_FEES_URL="/merchant-fees-live"
 export const APPLY_MERCHANT_FEES_URL="/merchant-fees/apply-fees"
 export const ADD_APPLY_MERCHANT_FEES_URL="/merchant-fees"
 

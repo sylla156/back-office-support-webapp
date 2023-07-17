@@ -88,6 +88,9 @@ export default function VerifyAuth(props) {
                     setCookie("user",result.data.user);
                     setIsLoginSuccess(true)
                 }
+            }).catch((error) => {
+                setIsLoading(false)
+                setError(error.response.data.message)
             })
     }
 

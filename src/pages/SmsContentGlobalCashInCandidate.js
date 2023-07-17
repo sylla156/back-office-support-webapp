@@ -8,11 +8,12 @@ import { Routes } from "../routes";
 export const SmsContentGlobalCashInCandidate = (props) => {
   const candidates = props.candidates;
 
-  const [cookies, ] = useCookies(["token"]);
+  const [cookies, ] = useCookies(["token",]);
 
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
+  
 
   return (
     <>

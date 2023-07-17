@@ -76,6 +76,7 @@ import MarkFreePaymentLikeRegularised from './free-sn/components/MarkFreePayment
 import FreeReportTransfer from './free-sn/FreeReportTransfer';
 import MarkFreeTransferLikeRegularised from './free-sn/components/Transfer/MarkFreeTransferLikeRegularised';
 import ListFees from './merchant-fees/ListFees';
+import VerifyAuth from './examples/VerifyAuth';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -99,7 +100,7 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 
     const [loaded, setLoaded] = useState(false);
 
-    const [cookies, ] = useCookies(['token']);
+    const [cookies, ] = useCookies(["token",]);
 
     useEffect(() => {
 
@@ -111,6 +112,7 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
     }
+
     return (
 
         <Route {...rest} render={props => (
@@ -134,6 +136,7 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 export default () => (
     <Switch>
         <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
+        <RouteWithLoader exact path={Routes.VerifyAuth.path} component={VerifyAuth} />
 
         <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
         <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />

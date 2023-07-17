@@ -2,6 +2,8 @@ export const APPKEY = process.env.REACT_APP_APP_KEY;
 
 export const URL_LOGIN = "/authentications";
 
+export const URL_2FA_VERIFICATION = "/authentications/2fa/turn-on";
+
 export const BASE_URL_SOLDE = "/balances/provider-transfer";
 
 export const PROVIDER_PAYMENT_BALANCE_URL = "/balances/provider-payment";

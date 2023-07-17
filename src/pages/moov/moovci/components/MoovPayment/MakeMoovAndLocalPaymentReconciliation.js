@@ -42,7 +42,7 @@ export const MakeMoovAndLocalPaymentReconciliation = (props) => {
     const handleEndDate = (value) => {
         setEndDate(value);
     };
-    const [cookies,] = useCookies(["token"]);
+    const [cookies,] = useCookies(["token",]);
 
     const axios = AxiosWebHelper.getAxios();
 
@@ -125,6 +125,7 @@ export const MakeMoovAndLocalPaymentReconciliation = (props) => {
     if (shouldLogin) {
         return <Redirect to={Routes.Signin.path} />
     }
+
 
     return (
         <>

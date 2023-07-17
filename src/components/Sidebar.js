@@ -194,6 +194,11 @@ export default (props = {}) => {
                 link={Routes.GlobalReport.path}
                 icon={faCalendar}
               />
+              <NavItem
+                title="Frais marchand"
+                link={Routes.MerchantListFees.path}
+                icon={faMoneyCheck}
+              />
 
               <CollapsableNavItem title="Transfert" icon={faExchangeAlt}>
                 {/* <NavItem title="Liste de transfert" icon={faExchangeAlt} link={Routes.TransferList.path} /> */}

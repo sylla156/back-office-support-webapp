@@ -77,6 +77,7 @@ export const Routes = {
     MarkFreePaymentLikeRegularised: {path:"/free-payment/regularised"},
     FreeReportTransfer:{path:"/free-report-transfer"},
     MarkFreeTransferLikeRegularised: {path:"/free-transfer/regularised"},
+    MerchantListFees:{path:"/merchant-list-fees"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

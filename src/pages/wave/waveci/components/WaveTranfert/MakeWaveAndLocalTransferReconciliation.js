@@ -40,7 +40,7 @@ export default function MakeWaveAndLocalTransferReconciliation(props) {
   
     const [startDate, setStartDate] = useState(defaultStartDate);
     const [endDate, setEndDate] = useState(defaultEndDate);
-    const [cookies, ] = useCookies(["token","user"]);
+    const [cookies, ] = useCookies(["token",]);
   
     const axios = AxiosWebHelper.getAxios();
   

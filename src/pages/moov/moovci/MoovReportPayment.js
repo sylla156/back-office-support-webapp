@@ -55,7 +55,7 @@ export default () => {
         setEndDate(value);
     };
 
-    const [cookies] = useCookies(["token","user"]);
+    const [cookies] = useCookies(["token",]);
 
     const axios = AxiosWebHelper.getAxios();
 
@@ -106,7 +106,7 @@ export default () => {
 
     const incrementVersion = () =>
         setVersion((currentVersion) => {
-            console;
+            
             return currentVersion + 1;
         });
 

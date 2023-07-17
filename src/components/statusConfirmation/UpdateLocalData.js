@@ -54,7 +54,7 @@ export const UpdateLocalData = (props)=> {
     setEndDate(value);
   };
 
-  const [cookies, ] = useCookies(["token","user"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const axios = AxiosWebHelper.getAxios();
   const getAndUpdateLocalData = () => {

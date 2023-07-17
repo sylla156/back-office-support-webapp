@@ -43,7 +43,7 @@ export const MarkLikeRegularised = (props)=> {
   let [paymentId, setPaymentId] = useState(paymentIntent.paymentId);
   let [regularisedDate, setRegularisedDate] = useState(dateNow.toISOString());
 
-  const [cookies, ] = useCookies(["token","user"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const handleShow = () => {
     setShow(true);

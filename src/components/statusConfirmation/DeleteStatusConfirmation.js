@@ -32,7 +32,7 @@ export const DeleteStatusConfirmation = (props)=> {
 
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies, ] = useCookies(["token","user"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const deleteStatusConfirmation = ()=> {
     if (isLoading) return;

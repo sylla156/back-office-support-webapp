@@ -14,7 +14,7 @@ export default () => {
   const [balanceList, setBalanceList] = useState([]);
   const [shouldLogin, setShouldLogin] = useState(false);
 
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
 
   // const baseUrlSolde = "/balances";
   const axios = AxiosWebHelper.getAxios();

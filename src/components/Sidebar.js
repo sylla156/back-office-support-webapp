@@ -31,7 +31,7 @@ import { Redirect } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 export default (props = {}) => {
-  const [cookies, ,] = useCookies(["token", "id", "user"]);
+  const [cookies, ,] = useCookies(["token", "id"]);
 
   const location = useLocation();
   const { pathname } = location;

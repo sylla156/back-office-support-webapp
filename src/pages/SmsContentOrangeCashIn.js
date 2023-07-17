@@ -54,7 +54,7 @@ export default () => {
   const handleOperatorRef = (value) => {
     setOperatorRef(value);
   };
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
   
   const axios = AxiosWebHelper.getAxios();
 

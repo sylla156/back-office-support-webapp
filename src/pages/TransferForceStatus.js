@@ -145,7 +145,7 @@ export default () => {
   };
   const incrementVersion = () =>
     setVersion((currentVersion) => {
-      console;
+      
       return currentVersion + 1;
     });
 

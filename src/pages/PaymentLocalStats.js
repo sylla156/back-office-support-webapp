@@ -21,7 +21,7 @@ export default () => {
   const [week, setWeek] = useState(undefined);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
   
   const currentDate = new Date();
 

@@ -45,7 +45,7 @@ export default () => {
         setEndDate(value);
     };
 
-    const [cookies] = useCookies(["token", "user"]);
+    const [cookies] = useCookies(["token", ]);
 
     const userCanAddMoovPaymentRegularised = cookies.user.canAddPaymentRegularised;
 
@@ -114,7 +114,7 @@ export default () => {
     };
     const incrementVersion = () =>
         setVersion((currentVersion) => {
-            console;
+            
             return currentVersion + 1;
         });
 

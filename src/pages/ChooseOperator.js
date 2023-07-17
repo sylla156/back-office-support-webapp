@@ -79,12 +79,11 @@ export default () => {
     const createdAtUtc = new Date();
 
     const axios = AxiosWebHelper.getAxios();
-    const [cookies] = useCookies(["token", "user"]);
+    const [cookies] = useCookies(["token", ]);
     const [version, setVersion] = useState(0);
 
     const incrementVersion = () =>
     setVersion((currentVersion) => {
-      console;
       return currentVersion + 1;
     });
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;

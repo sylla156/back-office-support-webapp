@@ -99,7 +99,7 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 
     const [loaded, setLoaded] = useState(false);
 
-    const [cookies, ] = useCookies(["token","user"]);
+    const [cookies, ] = useCookies(["token",]);
 
     useEffect(() => {
 

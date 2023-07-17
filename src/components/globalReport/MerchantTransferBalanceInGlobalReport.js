@@ -19,7 +19,7 @@ export const MerchantTransferBalanceInGlobalReport = (props) => {
   const [shouldLogin, setShouldLogin] = useState(false);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
 
   const getMerchantTransferBalance = () => {
     setIsLoaded(false);

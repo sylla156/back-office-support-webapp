@@ -9,7 +9,7 @@ import { OrangeReportPaymentInCandidateList } from "../components/PaymentList/Or
 export const OrangePaymentReportContentGlobalCandidate = (props) => {
   const candidates = props.candidates;
 
-  const [cookies, ] = useCookies(["token","user"]);
+  const [cookies, ] = useCookies(["token",]);
 
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>

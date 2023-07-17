@@ -38,7 +38,7 @@ export const MakeIntouchAndLocalTransferReconciliation = (props) => {
     const handleEndDate = (value) => {
         setEndDate(value);
     };
-    const [cookies] = useCookies(["token","user"]);
+    const [cookies] = useCookies(["token",]);
 
     const axios = AxiosWebHelper.getAxios();
 

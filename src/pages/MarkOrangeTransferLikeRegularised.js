@@ -56,7 +56,7 @@ export default()=>{
   const handleEndDate = (value) => {
     setEndDate(value);
   };
-  const [cookies] = useCookies(["token", "user"]);
+  const [cookies] = useCookies(["token", ]);
 
   const userCanAddOrangeTransactiontRegularised = cookies.user.canAddPaymentRegularised;
 
@@ -135,7 +135,7 @@ export default()=>{
   };
   const incrementVersion = () =>
     setVersion((currentVersion) => {
-      console;
+      
       return currentVersion + 1;
     });
 

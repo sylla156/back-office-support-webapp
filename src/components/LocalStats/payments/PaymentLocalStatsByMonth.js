@@ -31,7 +31,7 @@ export default () => {
   const [total, setTotal] = useState([]);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
   
   const getSuccessfulPaymentCommissionByMonth = () => {
     setIsLoaded(false);

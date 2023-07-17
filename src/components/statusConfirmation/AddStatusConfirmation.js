@@ -39,7 +39,7 @@ export const AddStatusConfirmation = (props) => {
   let [processorReference, setProcessorReference] = useState(undefined);
   const [description, setDescription] = useState(undefined);
 
-  const [cookies, ] = useCookies(["token","user"]);
+  const [cookies, ] = useCookies(["token",]);
 
   if (confirmedStatus === "failed") {
     processorReference = "";

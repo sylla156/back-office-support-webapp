@@ -20,7 +20,7 @@ export default () => {
     const [providerTransfer, setProviderTransfer] = useState({});
     const [shouldLogin, setShouldLogin] = useState(false);
 
-    const [cookies] = useCookies(["token","user"]);
+    const [cookies] = useCookies(["token",]);
 
     const axios = AxiosWebHelper.getAxios();
 

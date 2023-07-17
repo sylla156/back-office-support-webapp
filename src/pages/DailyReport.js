@@ -55,7 +55,7 @@ export default () => {
   const [shouldLogin, setShouldLogin] = useState(false);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
 
   const handleMerchantId = (event) => {
     setMerchantId(event);

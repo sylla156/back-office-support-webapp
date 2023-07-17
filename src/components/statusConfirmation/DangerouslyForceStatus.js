@@ -32,7 +32,7 @@ export const DangerouslyForceStatus = (props)=> {
   const onRefresh = props.onRefresh; 
   const transfer = props.transfer; 
 
-  const [cookies, ] = useCookies(["token","user"]);
+  const [cookies, ] = useCookies(["token",]);
 
   
 

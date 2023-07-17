@@ -49,7 +49,7 @@ export const MakeORAndLocalTransferReconciliation = (props)=> {
     setEndDate(value);
   };
 
-  const [cookies, ] = useCookies(["token","user"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const axios = AxiosWebHelper.getAxios();
 

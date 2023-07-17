@@ -43,7 +43,7 @@ export const MarkOrangeTransferkLikeRegularised = (props)=> {
   let [id, setId] = useState(transfer.id);
   let [regularisedDate, setRegularisedDate] = useState(dateNow.toISOString());
 
-  const [cookies, ] = useCookies(["token","user"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const handleShow = () => {
     setShow(true);

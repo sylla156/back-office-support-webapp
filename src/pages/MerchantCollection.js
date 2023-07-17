@@ -20,7 +20,7 @@ export const MerchantCollection = (props) => {
   const [errorData, setErrorData] = useState(null);
   const [version, setVersion] = useState(0);
 
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
 
   const axios = AxiosWebHelper.getAxios();
 

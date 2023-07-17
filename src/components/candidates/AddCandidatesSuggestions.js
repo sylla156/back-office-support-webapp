@@ -58,7 +58,7 @@ export const AddCandidatesSuggestions = (props)=> {
   let [processorReference, setProcessorReference] = useState(reference);
   const [description, setDescription] = useState(descriptionCand);
 
-  const [cookies, ] = useCookies(["token", "user"]);
+  const [cookies, ] = useCookies(["token"]);
 
 
   if (confirmedStatus === "failed" && !processorReference) {

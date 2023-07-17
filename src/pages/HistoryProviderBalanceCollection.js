@@ -30,7 +30,7 @@ export default () => {
   const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
 
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
   const [day, setDateDay] = useState(undefined);
 
   const handleDateChange = (event) => {

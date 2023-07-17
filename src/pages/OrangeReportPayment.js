@@ -71,7 +71,7 @@ export default () => {
   const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
   const [version, setVersion] = useState(0);
 
-  const [cookies] = useCookies(["token","user"]);
+  const [cookies] = useCookies(["token",]);
 
   const axios = AxiosWebHelper.getAxios();
 
@@ -152,7 +152,7 @@ export default () => {
 
   const incrementVersion = () =>
     setVersion((currentVersion) => {
-      console;
+      
       return currentVersion + 1;
     });
 

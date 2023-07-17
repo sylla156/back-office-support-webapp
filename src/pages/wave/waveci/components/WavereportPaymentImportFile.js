@@ -28,7 +28,7 @@ export const WaveReportPaymentImportFile = (props) => {
     const [show, setShow] = useState(false);
     const [file, setFile] = useState();
 
-    const [cookies] = useCookies(["token","user"])
+    const [cookies] = useCookies(["token",])
 
     const handleChangeFile = async (event) => {
         let files = event.target.files;

@@ -28,7 +28,7 @@ export const OrangeReportPaymentMarkLikeRegularisedImportFile = (props)=> {
   const [show, setShow] = useState(false);
   const [file, setFile] = useState();
 
-  const [cookies] = useCookies(["token"])
+  const [cookies] = useCookies(["token",])
 
   const handleChangeFile = async (event) => {
     let files = event.target.files;
@@ -95,6 +95,8 @@ export const OrangeReportPaymentMarkLikeRegularisedImportFile = (props)=> {
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
+
+  
 
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>;

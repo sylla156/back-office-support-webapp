@@ -57,7 +57,7 @@ export default () => {
     setter(value);
   };
 
-  const [cookies] = useCookies(["token"]);
+  const [cookies] = useCookies(["token",]);
   
   const axios = AxiosWebHelper.getAxios();
 
@@ -181,6 +181,8 @@ export default () => {
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
+
+  
 
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;

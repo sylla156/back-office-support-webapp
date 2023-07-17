@@ -21,7 +21,7 @@ export default () => {
   const [week, setWeek] = useState(undefined);
 
   const axios = AxiosWebHelper.getAxios();
-  const [cookies] = useCookies(["token"]);
+  const [cookies] = useCookies(["token",]);
   
   const currentDate = new Date();
 
@@ -65,6 +65,7 @@ export default () => {
   if(!cookies.token) {
     return <Redirect to={Routes.Signin.path}/>
   }
+  
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

@@ -9,6 +9,7 @@ export const Routes = {
     Billing: {path: "/examples/billing"},
     Invoice: {path: "/examples/invoice"},
     Signin: {path: "/signin"}, // examples/sign-in
+    VerifyAuth:{path:"/verify-auth"},
     Signup: {path: "/examples/sign-up"},
     ForgotPassword: {path: "/examples/forgot-password"},
     ResetPassword: {path: "/examples/reset-password"},

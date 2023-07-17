@@ -111,7 +111,7 @@ export default () => {
     };
     const incrementVersion = () =>
         setVersion((currentVersion) => {
-          console;
+          
           return currentVersion + 1;
     });
     
@@ -127,6 +127,8 @@ export default () => {
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
     }
+
+
 
     if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;

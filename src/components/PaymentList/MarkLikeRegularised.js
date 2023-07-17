@@ -43,7 +43,7 @@ export const MarkLikeRegularised = (props)=> {
   let [paymentId, setPaymentId] = useState(paymentIntent.paymentId);
   let [regularisedDate, setRegularisedDate] = useState(dateNow.toISOString());
 
-  const [cookies, ] = useCookies(["token"]);
+  const [cookies, ] = useCookies(["token",]);
 
   const handleShow = () => {
     setShow(true);
@@ -124,6 +124,8 @@ export const MarkLikeRegularised = (props)=> {
   if (!cookies.token) {
     return <Redirect to={Routes.Signin.path} />;
   }
+
+  
   
   if(shouldLogin) {
     return <Redirect to={Routes.Signin.path}/>

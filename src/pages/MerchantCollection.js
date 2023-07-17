@@ -20,7 +20,7 @@ export const MerchantCollection = (props) => {
   const [errorData, setErrorData] = useState(null);
   const [version, setVersion] = useState(0);
 
-  const [cookies] = useCookies(["token"]);
+  const [cookies] = useCookies(["token",]);
 
   const axios = AxiosWebHelper.getAxios();
 
@@ -60,6 +60,7 @@ export const MerchantCollection = (props) => {
   if (!cookies.token) {
     return <Redirect to={Routes.Signin.path} />;
   }
+  
   if (shouldLogin) {
     return <Redirect to={Routes.Signin.path} />;
   }

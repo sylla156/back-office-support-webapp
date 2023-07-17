@@ -63,7 +63,7 @@ export default function Signin() {
                 setCookie("user", result.data.user);
                 setTOptUrl(result.data.tOtpAuthUrl)
 
-                if(result.data.user.isActive2FA == false){
+                if(result.data.user.isActive2FA === false){
                     setShouldValidate2FA(true)
                 }else{
                     setIsLoginSuccess(true)

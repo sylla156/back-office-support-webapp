@@ -102,10 +102,6 @@ export default function VerifyAuth(props) {
         return <Redirect to={Routes.Signin.path} />
     }
 
-    if(!cookies.user.isActive2FA) {
-        return <Redirect to={Routes.Signin.path} />
-    }
-
     return (
         <main>
             <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">

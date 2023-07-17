@@ -89,9 +89,7 @@ export default () => {
     });
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
-    if(!cookies.user.isActive2FA) {
-        return <Redirect to={Routes.Signin.path} />
-    }
+
 
     return(
         <>

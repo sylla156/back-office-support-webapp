@@ -90,6 +90,7 @@ export default function VerifyAuth(props) {
                 }
             }).catch((error) => {
                 setIsLoading(false)
+                console.log(error.response);
                 setError(error.response.data.message)
             })
     }

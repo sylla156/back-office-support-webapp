@@ -283,6 +283,63 @@ export const MerchantFeeType = [
   }
 ]
 
+export const merchantFeeProviders = [
+  {
+    "id": 1,
+    "type": "moov",
+    "label": "Moov"
+  },
+  {
+    "id": 2,
+    "type": "mtn",
+    "label": "Mtn"
+  },
+  {
+    "id": 3,
+    "type": "wave",
+    "label": "Wave"
+  },
+  {
+    "id": 4,
+    "type": "orange",
+    "label": "Orange"
+  },
+  {
+    "id": 5,
+    "type": "free",
+    "label": "Free"
+  },
+  {
+    "id": 6,
+    "type": "ecobank",
+    "label": "Ecobank"
+  },
+  {
+    "id": 7,
+    "type": "free money",
+    "label": "Free Money"
+  },
+  {
+    "id": 8,
+    "type": "mobicash",
+    "label": "Mobicash"
+  },
+  {
+    "id": 9,
+    "type": "togocell",
+    "label": "Togocell"
+  },
+  {
+    "id": 10,
+    "type": "emoney",
+    "label": "eMoney"
+  },{
+    "id": 11,
+    "type": "null",
+    "label": "Null"
+  }
+]
+
 export const MerchantFeeTransactionType = [
   {
     "id": 1,
@@ -346,10 +403,10 @@ export const MerchantsCountry = [
     "name":"BENIN",
   },
   {
-    "id":"ts",
-    "country":"",
-    "name":"TOUS",
-  },
+    "id":"tg",
+    "country":"TG",
+    "name":"TOGO",
+  }
 ];
 
 export const OrangeReportTransferCountry = [

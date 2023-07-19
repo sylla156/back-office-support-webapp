@@ -1,7 +1,7 @@
 import { Card, Table, Badge, Button, Spinner } from "@themesberg/react-bootstrap";
 import React, { useState } from "react";
 import { TablePagination } from "../../../components/TablePagination";
-import { APPLY_MERCHANT_FEES_URL, APPKEY } from "../../constante/Const";
+import { APPLY_MERCHANT_FEES_URL, APPKEY, MERCHANTS_FEES_URL } from "../../constante/Const";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { useCookies } from "react-cookie";
 
@@ -67,7 +67,8 @@ MerchantsFeesList.TableRow = (props) => {
     const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
     const axios = AxiosWebHelper.getAxios();
-    const [cookies] = useCookies(["token"])
+    const [cookies] = useCookies(["token","user"])
+    const userCanCreateMerchantFees = cookies.user.canAddMerchantFee
 
 
 
@@ -100,50 +101,80 @@ MerchantsFeesList.TableRow = (props) => {
         })
     }
 
+    const deleteMerchantFees = async(id) => {
+        if (!id) return 'Fees id is required';
+
+        setIsLoading(true)
+        setErrorData(null)
+        const url = `${MERCHANTS_FEES_URL}/${id}`;
+        await axios.delete(url, {
+            headers: {
+                AppKey: APPKEY,
+                authenticationtoken: cookies.token
+            },
+        }).then((_result) => {
+            setIsLoading(false)
+            onRefresh()
+        }).catch((error) => {
+            setIsLoading(false)
+            if (error.response) {
+                if (error.response.status === 401) {
+                    setShouldLogin(true)
+                } else {
+                    setErrorData(error.response.data.message)
+                }
+            }
+        })
+    }
+
     return (
-        <tr>
-            <td>
-                <span className="fw-normal">{merchantId}</span>
-            </td>
-            <td>
-                <span className="fw-normal">{country}</span>
-            </td>
-            <td>
-                <span className="fw-normal">{provider}</span>
-            </td>
-            <td>
-                <span className="fw-normal">{method}</span>
-            </td>
-            <td>
-                <span className="fw-normal">{transactionType}</span>
-            </td>
-            <td>
-                <span className="fw-normal">{type}</span>
-            </td>
-            <td>
-                <span className="fw-normal">{value}</span>
-            </td>
-            {hasBeenApplied ? (
+        <>
+            <tr>
                 <td>
-                    <p>Frais appliqué</p>
+                    <span className="fw-normal">{merchantId}</span>
                 </td>
-            ) : (
-                <>
-                    {isLoading ? (
-                        <div className="d-flex justify-content-center">
-                            <Spinner animation="border " size="sm" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                        </div>
-                    ) : (
+                <td>
+                    <span className="fw-normal">{country}</span>
+                </td>
+                <td>
+                    <span className="fw-normal">{provider}</span>
+                </td>
+                <td>
+                    <span className="fw-normal">{method}</span>
+                </td>
+                <td>
+                    <span className="fw-normal">{transactionType}</span>
+                </td>
+                <td>
+                    <span className="fw-normal">{type}</span>
+                </td>
+                <td>
+                    <span className="fw-normal">{value}</span>
+                </td>
+                {hasBeenApplied ? (
+                    <td>
+                        <p>Frais appliqué</p>
+                    </td>
+                ) : (
+                    <>
+                        {isLoading ? (
+                            <div className="d-flex justify-content-center">
+                                <Spinner animation="border " size="sm" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </Spinner>
+                            </div>
+                        ) : (
+                            <>
+                                <td>
+                                    <Button variant="primary" onClick={() => applyMerchantFees(id)} disabled={!userCanApplyMerchantFees}>Appliquer</Button>
+                                    <Button variant="danger" className="ms-2" onClick={() => deleteMerchantFees(id)} disabled={!userCanCreateMerchantFees}>Supprimer</Button>
+                                </td>
+                            </>
+                        )}
 
-                        <td>
-                            <Button variant="primary" onClick={() => applyMerchantFees(id)} disabled={!userCanApplyMerchantFees}>Appliquer</Button>
-                        </td>
-                    )}
-
-                </>
-            )}
-        </tr>
+                    </>
+                )}
+            </tr>
+        </>
     )
 }

@@ -167,8 +167,8 @@ export const AddMerchantsFees = (props) => {
                         <Form.Label>Provider</Form.Label>
                         <Form.Select value={provider} onChange={(e) => setProvider(e.target.value)}>
                         {merchantFeeProviders.map((item) => (
-                                <option key={item.id} value={item.provider}>
-                                    {item.name}
+                                <option key={item.id} value={item.type}>
+                                    {item.label}
                                 </option>
                             ))}
                         </Form.Select>

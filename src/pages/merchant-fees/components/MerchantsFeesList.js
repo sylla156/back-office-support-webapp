@@ -5,7 +5,6 @@ import { APPLY_MERCHANT_FEES_URL, APPKEY } from "../../constante/Const";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { useCookies } from "react-cookie";
 
-AxiosWebHelper
 
 export const MerchantsFeesList = (props) => {
     const {

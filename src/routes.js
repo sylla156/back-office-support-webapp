@@ -78,6 +78,7 @@ export const Routes = {
     FreeReportTransfer:{path:"/free-report-transfer"},
     MarkFreeTransferLikeRegularised: {path:"/free-transfer/regularised"},
     MerchantListFees:{path:"/merchant-list-fees"},
+    RightsManagement:{path:"/rights-management"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

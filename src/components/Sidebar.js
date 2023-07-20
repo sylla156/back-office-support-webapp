@@ -14,6 +14,7 @@ import {
   faCalendar,
   faHistory,
   faTools,
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
@@ -367,6 +368,11 @@ export default (props = {}) => {
                 title="Réglage balance"
                 link={Routes.BalanceSetting.path}
                 icon={faTools}
+              />
+               <NavItem
+                title="Gestion des droits"
+                link={Routes.RightsManagement.path}
+                icon={faLock}
               />
 
               <Dropdown.Divider className="my-3 border-indigo" />

@@ -418,7 +418,7 @@ export const IntouchReportPaymentCountry = [
   },
   {
     "id":"ts",
-    "country":"",
+    "country":"TOUS",
     "name":"TOUS",
   },
 ];

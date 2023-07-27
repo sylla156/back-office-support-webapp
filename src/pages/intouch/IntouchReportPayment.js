@@ -35,7 +35,7 @@ export default () => {
     const [endDate, setEndDate] = useState(defaultEndDate);
     const [count, setCount] = useState(undefined);
     const [intouchReportPaymentList, setIntouchReportPaymentList] = useState([]);
-    const [country, setCountry] = useState("");
+    const [country, setCountry] = useState("Tous");
     const [reconciliation, setReconciliation] = useState("Tous");
     const [transactionStatus, setTransactionStatus] = useState("Tous");
     const [typeTransaction, setType] = useState("PAIEMENT");
@@ -116,7 +116,7 @@ export default () => {
         setMinValue("");
         setMaxValue("")
         setReconciliation('Tous')
-        setCountry("CI");
+        setCountry("Tous");
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
         setNumDestinataire("")

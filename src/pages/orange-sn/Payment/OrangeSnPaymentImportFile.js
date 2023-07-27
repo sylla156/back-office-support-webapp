@@ -60,10 +60,15 @@ export const OrangeSnPaymentImportFile = (props) => {
                 AppKey: APPKEY,
                 authenticationtoken: cookies.token
             }
-        }).then((_result) => {
-            setIsLoading(false)
-            handleClose()
-            onRefresh()
+        }).then((result) => {
+            if(result.data.code === 204){
+                setIsLoading(false)
+                setErrorData(result.data.status)
+            }else{
+                setIsLoading(false)
+                handleClose()
+                onRefresh()
+            }
         }).catch((error) => {
             setIsLoading(false)
             if (error.response) {

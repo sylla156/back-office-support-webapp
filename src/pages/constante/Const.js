@@ -108,8 +108,12 @@ export const GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED="/wave-report-transf
 export const EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/wave-report-transfer/export-wave-report-transfer-candidates"
 
 export const MERCHANTS_FEES_URL="/merchant-fees"
+export const MERCHANTS_LIVE_FEES_URL="/merchant-fees-live"
 export const APPLY_MERCHANT_FEES_URL="/merchant-fees/apply-fees"
 export const ADD_APPLY_MERCHANT_FEES_URL="/merchant-fees"
+
+export const GET_ALL_USERS = 'rights-management/users'
+export const APPLY_RIGHTS_UPDATE = 'rights-management/grant-user'
 
 export const WAVE_REPORT_PAYMENT_UPLOAD_URL="/wave-report-payment/upload-file"
 export const GET_LOCAL_WAVE_REPORT_PAYMENT_RECONCILIATION_DATA="wave-report-payment/reconciliation";
@@ -282,6 +286,63 @@ export const MerchantFeeType = [
   }
 ]
 
+export const merchantFeeProviders = [
+  {
+    "id": 1,
+    "type": "moov",
+    "label": "Moov"
+  },
+  {
+    "id": 2,
+    "type": "mtn",
+    "label": "Mtn"
+  },
+  {
+    "id": 3,
+    "type": "wave",
+    "label": "Wave"
+  },
+  {
+    "id": 4,
+    "type": "orange",
+    "label": "Orange"
+  },
+  {
+    "id": 5,
+    "type": "free",
+    "label": "Free"
+  },
+  {
+    "id": 6,
+    "type": "ecobank",
+    "label": "Ecobank"
+  },
+  {
+    "id": 7,
+    "type": "free money",
+    "label": "Free Money"
+  },
+  {
+    "id": 8,
+    "type": "mobicash",
+    "label": "Mobicash"
+  },
+  {
+    "id": 9,
+    "type": "togocell",
+    "label": "Togocell"
+  },
+  {
+    "id": 10,
+    "type": "emoney",
+    "label": "eMoney"
+  },{
+    "id": 11,
+    "type": "null",
+    "label": "Null"
+  }
+]
+
 export const MerchantFeeTransactionType = [
   {
     "id": 1,
@@ -345,10 +406,10 @@ export const MerchantsCountry = [
     "name":"BENIN",
   },
   {
-    "id":"ts",
-    "country":"",
-    "name":"TOUS",
-  },
+    "id":"tg",
+    "country":"TG",
+    "name":"TOGO",
+  }
 ];
 
 export const OrangeReportTransferCountry = [
@@ -418,7 +479,7 @@ export const IntouchReportPaymentCountry = [
   },
   {
     "id":"ts",
-    "country":"",
+    "country":"TOUS",
     "name":"TOUS",
   },
 ];

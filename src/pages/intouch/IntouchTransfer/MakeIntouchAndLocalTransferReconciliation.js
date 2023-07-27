@@ -24,7 +24,7 @@ export const MakeIntouchAndLocalTransferReconciliation = (props) => {
     const [cachedPaymentLocal, setCachedPaymentLocal] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [shouldLogin, setShouldLogin] = useState(false);
-    const [country, setCountry] = useState("CI");
+    const [country, setCountry] = useState("TOUS");
     const [transactionType, setType] = useState("TRANSFERT");
     const [errorData, setErrorData] = useState(null);
     const [startDate, setStartDate] = useState(defaultStartDate);

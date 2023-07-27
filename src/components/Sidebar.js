@@ -14,6 +14,7 @@ import {
   faCalendar,
   faHistory,
   faTools,
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
@@ -194,11 +195,18 @@ export default (props = {}) => {
                 link={Routes.GlobalReport.path}
                 icon={faCalendar}
               />
-              <NavItem
-                title="Frais marchand"
-                link={Routes.MerchantListFees.path}
-                icon={faMoneyCheck}
-              />
+              <CollapsableNavItem title="Frais marchand" icon={faMoneyCheck}>
+                <NavItem
+                  title="Frais à appliquer"
+                  link={Routes.MerchantListFees.path}
+                  icon={faMoneyCheck}
+                />
+                <NavItem
+                  title="Frais live"
+                  link={Routes.MerchantListFeesLive.path}
+                  icon={faMoneyCheck}
+                />
+              </CollapsableNavItem>
 
               <CollapsableNavItem title="Transfert" icon={faExchangeAlt}>
                 {/* <NavItem title="Liste de transfert" icon={faExchangeAlt} link={Routes.TransferList.path} /> */}
@@ -367,6 +375,11 @@ export default (props = {}) => {
                 title="Réglage balance"
                 link={Routes.BalanceSetting.path}
                 icon={faTools}
+              />
+               <NavItem
+                title="Gestion des droits"
+                link={Routes.RightsManagement.path}
+                icon={faLock}
               />
 
               <Dropdown.Divider className="my-3 border-indigo" />

@@ -112,6 +112,9 @@ export const MERCHANTS_LIVE_FEES_URL="/merchant-fees-live"
 export const APPLY_MERCHANT_FEES_URL="/merchant-fees/apply-fees"
 export const ADD_APPLY_MERCHANT_FEES_URL="/merchant-fees"
 
+export const GET_ALL_USERS = 'rights-management/users'
+export const APPLY_RIGHTS_UPDATE = 'rights-management/grant-user'
+
 export const WAVE_REPORT_PAYMENT_UPLOAD_URL="/wave-report-payment/upload-file"
 export const GET_LOCAL_WAVE_REPORT_PAYMENT_RECONCILIATION_DATA="wave-report-payment/reconciliation";
 export const WAVE_REPORT_PAYMENT_URL="/wave-report-payment"

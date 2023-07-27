@@ -68,6 +68,12 @@ export default function VerifyAuth(props) {
         }
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+        }
+    };
+
     const VerifyHub2Support2FAToken = () => {
         setError(null)
         setIsLoading(true)
@@ -131,7 +137,7 @@ export default function VerifyAuth(props) {
                                             <InputGroup.Text>
                                                 <FontAwesomeIcon icon={faUnlockAlt} />
                                             </InputGroup.Text>
-                                            <Form.Control required type="text" placeholder="Token" onChange={handleOnTokenChange} />
+                                            <Form.Control required type="text" placeholder="Token" onChange={handleOnTokenChange} onKeyPress={handleKeyPress} />
                                         </InputGroup>
                                     </Form.Group>
 

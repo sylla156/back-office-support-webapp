@@ -77,6 +77,7 @@ import FreeReportTransfer from './free-sn/FreeReportTransfer';
 import MarkFreeTransferLikeRegularised from './free-sn/components/Transfer/MarkFreeTransferLikeRegularised';
 import ListFees from './merchant-fees/ListFees';
 import VerifyAuth from './examples/VerifyAuth';
+import ListFeesLive from './merchant-fees/ListFeesLive';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -203,6 +204,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.FreeReportTransfer.path} title={'Rapport Free transfert'} component={FreeReportTransfer} />
         <RouteWithSidebar exact path={Routes.MarkFreeTransferLikeRegularised.path} title={'Paiement Free - À marquer comme régularisé'} component={MarkFreeTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.MerchantListFees.path} title={'Liste des frais marchand à appliquer'} component={ListFees} />
+        <RouteWithSidebar exact path={Routes.MerchantListFeesLive.path} title={'Liste des frais marchand en live'} component={ListFeesLive} />
 
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     

@@ -69,9 +69,14 @@ export const WaveReportTransferImportFile = (props) => {
                     }
                 }
             ).then((result) => {
-                setIsLoading(false)
-                handleClose()
-                onRefresh()
+                if (result.data.status === "Ce fichier ne peut pas être pris en charge.") {
+                    setIsLoading(false)
+                    setErrorData(result.data.status)
+                }else{
+                    setIsLoading(false)
+                    handleClose()
+                    onRefresh()
+                }
             }).catch((error) => {
                 setIsLoading(false)
                 if(error.response){
@@ -103,7 +108,7 @@ export const WaveReportTransferImportFile = (props) => {
             <Col xs={12} md={3} lg={8}>
                 <Button variant="outline-primary" size="sm" onClick={handleShow}>
                 <FontAwesomeIcon icon={faPlus} className="me-2" />
-                <span className=""> Importer un fichier Excel </span>
+                <span className=""> Importer un fichier Excel ou CSV </span>
                 </Button>
             </Col>
             <Modal
@@ -137,14 +142,14 @@ export const WaveReportTransferImportFile = (props) => {
                                     <input
                                     type="file"
                                     // value={file}
-                                    accept=".xlsx,.xls"
+                                    accept=".xlsx,.xls,.csv"
                                     onChange={(event) => {
                                         handleChangeFile(event);
                                     }}
                                     />
                                     <div className="d-md-block text-start">
                                     <div className="fw-normal text-dark mb-1">
-                                        {file?.name ? file?.name : <b> Choisir un fichier Excel</b>}
+                                        {file?.name ? file?.name : <b> Choisir un fichier Excel ou CSV</b>}
                                     </div>
                                     <div className="text-gray small">
                                         

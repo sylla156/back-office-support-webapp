@@ -4,7 +4,7 @@ import AlertDismissable from "../../../components/AlertDismissable"
 import { Routes } from "../../../routes"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faPaperclip, faStop, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import { APPKEY, ADD_APPLY_MERCHANT_FEES_URL, MerchantFeeType, MerchantFeeTransactionType, MerchantFeeMethod, MerchantsCountry } from "../../constante/Const"
+import { APPKEY, ADD_APPLY_MERCHANT_FEES_URL, MerchantFeeType, MerchantFeeTransactionType, MerchantFeeMethod, MerchantsCountry, merchantFeeProviders } from "../../constante/Const"
 import { useCookies } from "react-cookie"
 import AxiosWebHelper from "../../../utils/axios-helper";
 
@@ -166,9 +166,11 @@ export const AddMerchantsFees = (props) => {
                         <div className="mb-2"></div>
                         <Form.Label>Provider</Form.Label>
                         <Form.Select value={provider} onChange={(e) => setProvider(e.target.value)}>
-                            <option value="orange">Orange</option>
-                            <option value="moov">Moov</option>
-                            <option value="mtn">MTN</option>
+                        {merchantFeeProviders.map((item) => (
+                                <option key={item.id} value={item.type}>
+                                    {item.label}
+                                </option>
+                            ))}
                         </Form.Select>
                         <div className="mb-2"></div>
                         <div className="mb-2"></div>

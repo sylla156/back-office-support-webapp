@@ -37,6 +37,7 @@ export default () => {
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
     // const userCanApplyMerchantFees = cookies.user.email === "regis.animan@hub2.io"
     const userCanApplyMerchantFees = cookies.user.canApplyMerchantFee
+    const userCanCreateMerchantFees = cookies.user.canAddMerchantFee
 
     const handleStartDate = (value) => {
         setStartDate(value);
@@ -110,7 +111,7 @@ export default () => {
 
     return (
         <div>
-            <AddMerchantsFees onRefresh={incrementVersion} />
+            {userCanCreateMerchantFees && <AddMerchantsFees onRefresh={incrementVersion} />}
             <div className="mb-4"></div>
             {
                 isLoaded ?

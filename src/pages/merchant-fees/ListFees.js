@@ -24,7 +24,7 @@ export default () => {
     const [transactionType, setTransactionType] = useState(undefined);
     const [valueMin, setValueMin] = useState(undefined);
     const [valueMax, setValueMax] = useState(undefined);
-    const [country, setCountry] = useState("CI");
+    const [country, setCountry] = useState(undefined);
     const [method, setMethod] = useState(undefined);
     const [provider, setProvider] = useState(undefined);
     const [hasBeenApplied, setHasBeenApplied] = useState(false);
@@ -39,13 +39,6 @@ export default () => {
     const userCanApplyMerchantFees = cookies.user.canApplyMerchantFee
     const userCanCreateMerchantFees = cookies.user.canAddMerchantFee
 
-    const handleStartDate = (value) => {
-        setStartDate(value);
-    };
-
-    const handleEndDate = (value) => {
-        setEndDate(value);
-    };
 
     const onPageChange = (page = 0) => {
         setCurrentPage(page);

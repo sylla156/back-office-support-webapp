@@ -1,9 +1,12 @@
-import { Card, Table, Badge, Button, Spinner } from "@themesberg/react-bootstrap";
+import { Card, Table, Badge, Button, Spinner, Modal, Form } from "@themesberg/react-bootstrap";
 import React, { useState } from "react";
 import { TablePagination } from "../../../components/TablePagination";
 import { APPLY_MERCHANT_FEES_URL, APPKEY, MERCHANTS_FEES_URL } from "../../constante/Const";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { useCookies } from "react-cookie";
+import AlertDismissable from "../../../components/AlertDismissable";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
 
 
 export const MerchantsFeesList = (props) => {
@@ -65,11 +68,14 @@ MerchantsFeesList.TableRow = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
+    const [show, setShow] = useState(false);
     const axios = AxiosWebHelper.getAxios();
     const [cookies] = useCookies(["token","user"])
     const userCanCreateMerchantFees = cookies.user.canAddMerchantFee
 
-
+    const handleShow = () => {
+        setShow(true);
+    }
 
     const applyMerchantFees = (id) => {
         if (!id) return 'Fees id is required';
@@ -166,7 +172,7 @@ MerchantsFeesList.TableRow = (props) => {
                             <>
                                 <td>
                                     <Button variant="primary" onClick={() => applyMerchantFees(id)} disabled={!userCanApplyMerchantFees}>Appliquer</Button>
-                                    <Button variant="danger" className="ms-2" onClick={() => deleteMerchantFees(id)} disabled={!userCanCreateMerchantFees}>Supprimer</Button>
+                                    <Button variant="danger" className="ms-2" onClick={() => handleShow()} disabled={!userCanCreateMerchantFees}>Supprimer</Button>
                                 </td>
                             </>
                         )}
@@ -174,6 +180,58 @@ MerchantsFeesList.TableRow = (props) => {
                     </>
                 )}
             </tr>
+            <Modal
+                size="md"
+                show={show}
+                onHide={() => {
+                    handleClose(false);
+                }}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton closeVariant="white" className="bg-primary">
+                    <Modal.Title className="text-white">
+                        Suppresion de frais marchand
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="file-field">
+                        <div className="d-flex justify-content-xl-center ms-xl-3">
+                            <div className="d-flex">
+                                <div>
+                                    <h5>Voulez vous supprimer ce frais marchand ?</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="primary"
+                        color=""
+                        onClick={() => {
+                            handleClose(false);
+                        }}
+                    >
+                        Fermer
+                    </Button>
+                    <Button
+                        variant="danger"
+                        onClick={() => { deleteMerchantFees(id) }}
+                    >
+                        Supprimer
+                    </Button>
+                    <div className="mt-3">
+                        <AlertDismissable
+                            message={errorData}
+                            variant="danger"
+                            show={!!errorData}
+                            onClose={() => setErrorData(null)}
+                            isLoading={isLoading}
+                        />
+                    </div>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

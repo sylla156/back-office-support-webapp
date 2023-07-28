@@ -39,13 +39,6 @@ export default () => {
     const userCanApplyMerchantFees = cookies.user.canApplyMerchantFee
     const userCanCreateMerchantFees = cookies.user.canAddMerchantFee
 
-    const handleStartDate = (value) => {
-        setStartDate(value);
-    };
-
-    const handleEndDate = (value) => {
-        setEndDate(value);
-    };
 
     const onPageChange = (page = 0) => {
         setCurrentPage(page);

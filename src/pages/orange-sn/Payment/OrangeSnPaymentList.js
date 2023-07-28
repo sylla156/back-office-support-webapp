@@ -78,7 +78,7 @@ OrangeSnPaymentList.TableRow = (props) => {
         <>
             <tr>
                 <td>
-                    <Card.Link className="fw-normal">{transactionId}</Card.Link>
+                    <Card.Link className="fw-normal">{id}</Card.Link>
                 </td>
                 <td>
                     <span className="fw-normal">{senderMsisdn}</span>

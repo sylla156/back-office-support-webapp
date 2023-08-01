@@ -34,6 +34,8 @@ export const MerchantsFeesList = (props) => {
                                 <th className="border-bottom">Type de la transaction</th>
                                 <th className="border-bottom">Type</th>
                                 <th className="border-bottom">Value</th>
+                                <th className="border-bottom">Crée par</th>
+                                <th className="border-bottom">Date de creation</th>
                                 <th className="border-bottom">Action</th>
                             </tr>
                         </thead>
@@ -62,6 +64,8 @@ MerchantsFeesList.TableRow = (props) => {
         provider,
         hasBeenApplied,
         userCanApplyMerchantFees,
+        createdBy,
+        createdAt,
         onRefresh
     } = props;
 
@@ -155,6 +159,12 @@ MerchantsFeesList.TableRow = (props) => {
                 </td>
                 <td>
                     <span className="fw-normal">{value}</span>
+                </td>
+                <td>
+                    <span className="fw-normal">{createdBy}</span>
+                </td>
+                <td>
+                    <span className="fw-normal">{createdAt}</span>
                 </td>
                 {hasBeenApplied ? (
                     <td>

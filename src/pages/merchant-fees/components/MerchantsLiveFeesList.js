@@ -32,6 +32,7 @@ export const MerchantsLiveFees = (props) => {
                                 <th className="border-bottom">Type de la transaction</th>
                                 <th className="border-bottom">Type</th>
                                 <th className="border-bottom">Value</th>
+                                <th className="border-bottom">Date d'application</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +58,7 @@ MerchantsLiveFees.TableRow = (props) => {
         country,
         transactionType,
         provider,
+        createdAt
     } = props;
 
     return(
@@ -81,6 +83,9 @@ MerchantsLiveFees.TableRow = (props) => {
             </td>
             <td>
                 <span className="fw-normal">{value}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{createdAt}</span>
             </td>
         </tr>
     )

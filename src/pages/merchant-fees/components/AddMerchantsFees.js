@@ -23,7 +23,7 @@ export const AddMerchantsFees = (props) => {
     const [provider, setProvider] = useState("orange");
     const [hasBeenApplied, setHasBeenApplied] = useState(false);
 
-    const [cookies] = useCookies(["token"])
+    const [cookies] = useCookies(["token","user"])
     const axios = AxiosWebHelper.getAxios();
     const onRefresh = props.onRefresh
 
@@ -56,6 +56,7 @@ export const AddMerchantsFees = (props) => {
                 merchantId: merchantId,
                 method: method,
                 country: country,
+                createdBy: cookies.user.name,
                 provider: provider
             }
 

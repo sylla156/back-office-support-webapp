@@ -36,6 +36,8 @@ export const LocalTransferReportingList = (props) => {
                 <th className="border-bottom">fournisseur</th>
                 <th className="border-bottom">transaction Identifier</th>
                 <th className="border-bottom">description</th>
+                <th className="border-bottom">Created Date</th>
+                <th className="border-bottom">Updated Date</th>
               </tr>
             </thead>
             <tbody>
@@ -61,6 +63,7 @@ LocalTransferReportingList.TableRow = (props) => {
     fees,
     currency,
     updatedAt,
+    createdAt,
     status,
     country,
     provider,
@@ -133,6 +136,12 @@ LocalTransferReportingList.TableRow = (props) => {
       </td>
       <td>
         <span className="fw-normal">{description}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{createdAt}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{updatedAt}</span>
       </td>
   
   

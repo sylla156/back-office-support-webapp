@@ -39,6 +39,8 @@ export const LocalPaymentReportingList = (props) => {
                 <th className="border-bottom">fournisseur</th>
                 <th className="border-bottom">transaction Identifier</th>
                 <th className="border-bottom">description</th>
+                <th className="border-bottom">createdAt</th>
+                <th className="border-bottom">updatedAt</th>
               </tr>
             </thead>
             <tbody>
@@ -72,7 +74,8 @@ LocalPaymentReportingList.TableRow = (props) => {
    fees,
    amount,
    merchantId,
-   customerReference
+   customerReference,
+   createdAt,
   } = props;
 
   const parseDate = parseISO(updatedAt);
@@ -150,6 +153,12 @@ LocalPaymentReportingList.TableRow = (props) => {
   
       <td>
         <span className="fw-normal text-wrap">{description}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{createdAt}</span>
+      </td>
+      <td>
+        <span className="fw-normal">{updatedAt}</span>
       </td>
     </tr>
   );

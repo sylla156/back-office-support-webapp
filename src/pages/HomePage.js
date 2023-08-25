@@ -79,6 +79,8 @@ import ListFees from './merchant-fees/ListFees';
 import VerifyAuth from './examples/VerifyAuth';
 import RightManagement from './right-management/RightManagement';
 import ListFeesLive from './merchant-fees/ListFeesLive';
+import FedapayReportTransfer from './fedapay-bj/FedapayReportTransfer';
+import MarkFedapayTransferLikeRegularised from './fedapay-bj/FedapayTransferts/MarkFedapayTransferLikeRegularised';
 
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
@@ -207,6 +209,8 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MerchantListFees.path} title={'Liste des frais marchand à appliquer'} component={ListFees} />
         <RouteWithSidebar exact path={Routes.RightsManagement.path} title={'Gestion des droits des utilisateurs'} component={RightManagement} />
         <RouteWithSidebar exact path={Routes.MerchantListFeesLive.path} title={'Liste des frais marchand en live'} component={ListFeesLive} />
+        <RouteWithSidebar exact path={Routes.FedapayReportTransfer.path} title={'Rapport fedapay transfert'} component={FedapayReportTransfer} />
+        <RouteWithSidebar exact path={Routes.MarkFedapayTransferLikeRegularised.path} title={'Transferts Fedapay - À marquer comme régularisé'} component={MarkFedapayTransferLikeRegularised} />
 
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     

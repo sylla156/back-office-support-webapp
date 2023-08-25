@@ -67,6 +67,14 @@ export default () => {
             routeRapportTransfer:"/free-report-transfer",
             routeRegularisation:"/free-transfer/regularised",
         },
+        {
+            id:7,
+            name:"Fedapay BJ",
+            image:"fedapay.jpg",
+            order:0,
+            routeRapportTransfer:"/fedapay-report-transfer",
+            routeRegularisation:"/fedapay-transfer/regularised",
+        },
     ])
     const createdAtUtc = new Date();
 

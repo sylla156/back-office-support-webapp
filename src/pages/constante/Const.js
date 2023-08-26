@@ -121,6 +121,12 @@ export const WAVE_REPORT_PAYMENT_URL="/wave-report-payment"
 export const GET_MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/wave-retrieve-payments-candidates"
 export const EXPORT_WAVE_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/regularisations/export-wave-report-payment-candidates"
 
+export const FEDAPAY_REPORT_PAYMENT_URL="/fedapay-bj-report-payment"
+export const FEDAPAY_REPORT_PAYMENT_UPLOAD_URL="/fedapay-bj-report-payment/upload-file"
+export const GET_LOCAL_FEDAPAY_REPORT_PAYMENT_RECONCILIATION_DATA="/fedapay-bj-report-payment/reconciliation";
+export const GET_MARK_FEDAPAY_REPORT_PAYMENT_LIKE_REGULARISED="/fedapay-bj-report-payment/fedapay-retrieve-payments-candidates"
+export const EXPORT_FEDAPAY_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/fedapay-bj-report-payment/export-fedapay-report-payment-candidates"
+
 export const MOOV_REPORT_PAYMENT_URL="/moov-report-payment"
 export const MOOV_REPORT_PAYMENT_UPLOAD_URL="/moov-report-payment/upload-file"
 export const GET_LOCAL_MOOV_REPORT_PAYMENT_RECONCILIATION_DATA="moov-report-payment/reconciliation";

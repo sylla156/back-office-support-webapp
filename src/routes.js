@@ -81,6 +81,9 @@ export const Routes = {
     RightsManagement:{path:"/rights-management"},
     MerchantListFeesLive:{path:"/merchant-list-fees-live"},
 
+
+    FedapayReportPayment: {path: "/fedapay-report-payment"},
+    MarkFedapayPaymentLikeRegularised: {path: "/fedapay-payment/regularised"},
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions
     Alerts: {path: "/components/alerts"}, // D  D des fonctions

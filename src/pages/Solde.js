@@ -30,7 +30,10 @@ export default () => {
       })
       .then((result) => {
         setIsLoaded(true);
-        setBalanceList(result.data);
+        const data = result.data;
+        // Trier les fournisseurs par ordre alphabétique du nom
+        const sortedProviders = data.sort((a, b) => a.name.localeCompare(b.name));
+        setBalanceList(sortedProviders);
       })
       .catch((error) => {
         setIsLoaded(true);

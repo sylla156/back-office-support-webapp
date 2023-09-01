@@ -55,6 +55,8 @@ export const SETTING_BALANCE = "/balance-setting";
 
 export const MERCHANTS_URL= "/merchants";
 
+export const PROVIDERS_URL= "/provider";
+
 export const SMS_CONTENT_ORANGE_CASH_IN = "/sms-content/";
 
 export const SMS_ORANGE_CASH_IN_CANDIDATE = "/sms-content/candidates/";

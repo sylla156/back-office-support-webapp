@@ -80,6 +80,8 @@ export const Routes = {
     MerchantListFees:{path:"/merchant-list-fees"},
     RightsManagement:{path:"/rights-management"},
     MerchantListFeesLive:{path:"/merchant-list-fees-live"},
+    FedapayReportTransfer:{path:"/fedapay-report-transfer"},
+    MarkFedapayTransferLikeRegularised:{path:"/fedapay-transfer/regularised"},
 
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions

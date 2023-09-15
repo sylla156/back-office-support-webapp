@@ -55,6 +55,8 @@ export const SETTING_BALANCE = "/balance-setting";
 
 export const MERCHANTS_URL= "/merchants";
 
+export const PROVIDERS_URL= "/provider";
+
 export const SMS_CONTENT_ORANGE_CASH_IN = "/sms-content/";
 
 export const SMS_ORANGE_CASH_IN_CANDIDATE = "/sms-content/candidates/";
@@ -121,6 +123,12 @@ export const WAVE_REPORT_PAYMENT_URL="/wave-report-payment"
 export const GET_MARK_WAVE_REPORT_PAYMENT_LIKE_REGULARISED="/regularisations/wave-retrieve-payments-candidates"
 export const EXPORT_WAVE_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/regularisations/export-wave-report-payment-candidates"
 
+export const FEDAPAY_REPORT_PAYMENT_URL="/fedapay-bj-report-payment"
+export const FEDAPAY_REPORT_PAYMENT_UPLOAD_URL="/fedapay-bj-report-payment/upload-file"
+export const GET_LOCAL_FEDAPAY_REPORT_PAYMENT_RECONCILIATION_DATA="/fedapay-bj-report-payment/reconciliation";
+export const GET_MARK_FEDAPAY_REPORT_PAYMENT_LIKE_REGULARISED="/fedapay-bj-report-payment/fedapay-retrieve-payments-candidates"
+export const EXPORT_FEDAPAY_REPORT_PAYMENT_MARK_LIKE_REGULARISED="/fedapay-bj-report-payment/export-fedapay-report-payment-candidates"
+
 export const MOOV_REPORT_PAYMENT_URL="/moov-report-payment"
 export const MOOV_REPORT_PAYMENT_UPLOAD_URL="/moov-report-payment/upload-file"
 export const GET_LOCAL_MOOV_REPORT_PAYMENT_RECONCILIATION_DATA="moov-report-payment/reconciliation";
@@ -151,6 +159,12 @@ export const MOOV_REPORT_TRANSFER_UPLOAD_URL="/moov-report-transfer/upload-file"
 export const GET_LOCAL_MOOV_REPORT_TRANSFER_RECONCILIATION_DATA="moov-report-transfer/reconciliation";
 export const GET_MARK_MOOV_REPORT_TRANSFER_LIKE_REGULARISED="/moov-report-transfer/moov-retrieve-transfers-candidates"
 export const EXPORT_MOOV_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/moov-report-transfer/export-moov-report-transfer-candidates"
+
+export const FEDAPAY_REPORT_TRANSFER_UPLOAD_URL="/fedapay-bj-report-transfer/upload-file"
+export const FEDAPAY_REPORT_TRANSFER_URL="/fedapay-bj-report-transfer"
+export const GET_LOCAL_FEDAPAY_REPORT_TRANSFER_RECONCILIATION_DATA="fedapay-bj-report-transfer/reconciliation";
+export const GET_MARK_FEDAPAY_REPORT_TRANSFER_LIKE_REGULARISED="/fedapay-bj-report-transfer/fedapay-retrieve-transfers-canditates"
+export const EXPORT_FEDAPAY_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/fedapay-bj-report-transfer/export-fedapay-report-transfer-candidates"
 
 export const MTN_REPORT_TRANSFER_URL="/mtn-report-transfer"
 export const MTN_REPORT_TRANSFER_UPLOAD_URL="/mtn-report-transfer/upload-file"

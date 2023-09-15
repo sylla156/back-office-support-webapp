@@ -158,6 +158,12 @@ export const GET_LOCAL_MOOV_REPORT_TRANSFER_RECONCILIATION_DATA="moov-report-tra
 export const GET_MARK_MOOV_REPORT_TRANSFER_LIKE_REGULARISED="/moov-report-transfer/moov-retrieve-transfers-candidates"
 export const EXPORT_MOOV_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/moov-report-transfer/export-moov-report-transfer-candidates"
 
+export const FEDAPAY_REPORT_TRANSFER_UPLOAD_URL="/fedapay-bj-report-transfer/upload-file"
+export const FEDAPAY_REPORT_TRANSFER_URL="/fedapay-bj-report-transfer"
+export const GET_LOCAL_FEDAPAY_REPORT_TRANSFER_RECONCILIATION_DATA="fedapay-bj-report-transfer/reconciliation";
+export const GET_MARK_FEDAPAY_REPORT_TRANSFER_LIKE_REGULARISED="/fedapay-bj-report-transfer/fedapay-retrieve-transfers-canditates"
+export const EXPORT_FEDAPAY_REPORT_TRANSFER_MARK_LIKE_REGULARISED="/fedapay-bj-report-transfer/export-fedapay-report-transfer-candidates"
+
 export const MTN_REPORT_TRANSFER_URL="/mtn-report-transfer"
 export const MTN_REPORT_TRANSFER_UPLOAD_URL="/mtn-report-transfer/upload-file"
 export const GET_LOCAL_MTN_REPORT_TRANSFER_RECONCILIATION_DATA="mtn-report-transfer/reconciliation";

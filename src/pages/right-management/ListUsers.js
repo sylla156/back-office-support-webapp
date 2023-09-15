@@ -29,8 +29,9 @@ export const ListUsers = (props) => {
                                 <th className="border-bottom">can Update Cached Transaction</th>
                                 <th className="border-bottom">can Add Payment Regularised</th>
                                 <th className="border-bottom">can Apply Merchant Fee</th>
-                                {/* <th className="border-bottom">can Add Merchant Fee</th> */}
+                                <th className="border-bottom">can Add Merchant Fee</th>
                                 <th className="border-bottom">can Update User Rights</th>
+                                <th className="border-bottom">can Delete Merchant Live Fee</th>
                                 <th className="border-bottom">Action</th>
                             </tr>
                         </thead>
@@ -59,6 +60,7 @@ ListUsers.TableRow = (props) => {
         canAddMerchantFee,
         canUpdateUserRights,
         userCanUpdateRights,
+        canDeleteMerchantFee,
         onRefresh
     } = props;
 
@@ -69,8 +71,9 @@ ListUsers.TableRow = (props) => {
     const [userCanUpdateCachedTransaction, setUserCanUpdateCachedTransaction] = useState(canUpdateCachedTransaction);
     const [userCanAddPaymentRegularised, setUserCanAddPaymentRegularised] = useState(canAddPaymentRegularised);
     const [userCanApplyMerchantFee, setUserCanApplyMerchantFee] = useState(canApplyMerchantFee);
-    // const [userCanAddMerchantFee, setUserCanAddMerchantFee] = useState(canAddMerchantFee);
+    const [userCanAddMerchantFee, setUserCanAddMerchantFee] = useState(canAddMerchantFee);
     const [userCanUpdateUserRights, setUserCanUpdateUserRights] = useState(canUpdateUserRights);
+    const [userCanDeleteMerchantFee, setUserCanDeleteMerchantFee] = useState(canDeleteMerchantFee);
 
     const axios = AxiosWebHelper.getAxios();
     const [cookies] = useCookies(["token"])
@@ -87,8 +90,9 @@ ListUsers.TableRow = (props) => {
             canUpdateCachedTransaction: convertStringToBoolean(userCanUpdateCachedTransaction),
             canAddPaymentRegularised: convertStringToBoolean(userCanAddPaymentRegularised),
             canApplyMerchantFee: convertStringToBoolean(userCanApplyMerchantFee),
-            // canAddMerchantFee: userCanAddMerchantFee,
-            canUpdateUserRights: convertStringToBoolean(userCanUpdateUserRights)
+            canAddMerchantFee: userCanAddMerchantFee,
+            canUpdateUserRights: convertStringToBoolean(userCanUpdateUserRights),
+            canDeleteMerchantFee: convertStringToBoolean(userCanDeleteMerchantFee)
         }
         const URL = `${APPLY_RIGHTS_UPDATE}/${id}`;
         axios.patch(URL, data, {
@@ -171,12 +175,33 @@ ListUsers.TableRow = (props) => {
                         </Form.Select>
                     </span>
                 </td>
-                {/* <td>
-                    <span className="fw-normal">{canAddMerchantFee}</span>
-                </td> */}
+                <td>
+                    <span className="fw-normal">
+                        <Form.Select disabled={!userCanUpdateRights} value={canAddMerchantFee} onChange={(e) => setUserCanAddMerchantFee(e.target.value)}>
+                            <option key="1" value={true}>
+                                Activé
+                            </option>
+                            <option key="2" value={false}>
+                                Désactivé
+                            </option>
+                        </Form.Select>
+                    </span>
+                </td>
                 <td>
                     <span className="fw-normal">
                         <Form.Select disabled={!userCanUpdateRights} value={userCanUpdateUserRights} onChange={(e) => setUserCanUpdateUserRights(e.target.value)}>
+                            <option key="1" value={true}>
+                                Activé
+                            </option>
+                            <option key="2" value={false}>
+                                Désactivé
+                            </option>
+                        </Form.Select>
+                    </span>
+                </td>
+                <td>
+                    <span className="fw-normal">
+                        <Form.Select disabled={!userCanUpdateRights} value={userCanDeleteMerchantFee} onChange={(e) => setUserCanDeleteMerchantFee(e.target.value)}>
                             <option key="1" value={true}>
                                 Activé
                             </option>

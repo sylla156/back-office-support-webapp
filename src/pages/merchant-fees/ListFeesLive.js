@@ -29,6 +29,7 @@ export default () => {
 
     const [cookies] = useCookies(["token", "user"]);
     const axios = AxiosWebHelper.getAxios();
+    const userCanDeleteMerchantFee = cookies.user.canDeleteMerchantFee
 
     const onPageChange = (page = 0) => {
         setCurrentPage(page);
@@ -262,6 +263,7 @@ export default () => {
                             currentPage={currentPage}
                             onPageChange={onPageChange}
                             onRefresh={incrementVersion}
+                            userCanDeleteMerchantFee={userCanDeleteMerchantFee}
                         />
                     </Row> :
                     <div className="d-flex justify-content-center">

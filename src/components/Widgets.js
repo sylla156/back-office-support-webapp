@@ -108,7 +108,9 @@ export const ChoosePhotoWidget = (props) => {
 };
 
 export const CounterWidget = (props) => {
-    const {amount, currency, date, logo, name} = props.balance;
+    const {amount, currency, date } = props.balance;
+    const {image, name} = props.provider
+    const onRefresh = props.onRefresh
 
     const createdAtUtc = new Date(date);
     const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
@@ -120,10 +122,10 @@ export const CounterWidget = (props) => {
                         xl={5}
                         className="text-center d-flex align-items-center justify-content-center mb-3 mb-xl-0"
                     >
-                        {logo ? (
+                        {image ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
-                                src={require("../assets/img/technologies/" + logo)}
+                                src={require("../assets/img/technologies/" + image)}
                                 width="70"
                             />
                         ) : (
@@ -145,6 +147,13 @@ export const CounterWidget = (props) => {
                             <h6 className="mb-1 ">{createdAtFormated}</h6>
                         </div>
                     </Col>
+                    <Button
+                        className="mt-3"
+                        variant="outline-primary"
+                        onClick={onRefresh}
+                    >
+                        Rafraîchir
+                    </Button>
                 </Row>
             </Card.Body>
         </Card>

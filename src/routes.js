@@ -83,6 +83,9 @@ export const Routes = {
     FedapayReportTransfer:{path:"/fedapay-report-transfer"},
     MarkFedapayTransferLikeRegularised:{path:"/fedapay-transfer/regularised"},
 
+
+    FedapayReportPayment: {path: "/fedapay-report-payment"},
+    MarkFedapayPaymentLikeRegularised: {path: "/fedapay-payment/regularised"},
     // components
     Accordions: {path: "/components/accordions"}, // D  D des fonctions
     Alerts: {path: "/components/alerts"}, // D  D des fonctions

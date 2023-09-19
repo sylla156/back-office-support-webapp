@@ -3,8 +3,7 @@ import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 
 export const OrangeReportTransferInProcessMarkLikeRegularisedList = (props) => {
   let processorTransfer = props.processorTransfer
-  console.log("processorTransfer",processorTransfer);
-  const { id, transactionDate, reference, receiverPhoneNumber, amount, processorReference, status } = processorTransfer
+  const { id, transactionDate, reference, receiverPhoneNumber, flowRateAmount, processorReference, status } = processorTransfer
 
   return (
     <>
@@ -56,7 +55,7 @@ export const OrangeReportTransferInProcessMarkLikeRegularisedList = (props) => {
 
         <Col className="ms--2" lg={9}>
           <span className="h6 mb-0 text-start">
-            {amount} {"XOF"}
+            {flowRateAmount} {"XOF"}
           </span>
         </Col>
       </Row>

@@ -93,7 +93,7 @@ export const OrangePaymentMarkLikeRegularisedList = (props) => {
               </Col>
 
               <Col className="ms--2" lg={9}>
-                <span className="h6 mb-0 text-start">{processorReference ? processorReference : ""}</span>
+                <span className="h6 mb-0 text-start">{paymentProcessorReference ? paymentProcessorReference : ""}</span>
               </Col>
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
@@ -137,7 +137,7 @@ export const OrangePaymentMarkLikeRegularisedList = (props) => {
               </Col>
 
               <Col className="ms--2" lg={9}>
-                <span className="h6 mb-0 text-start">{phoneNumber ? phoneNumber : ""}</span>
+                <span className="h6 mb-0 text-start">{number ? number : ""}</span>
               </Col>
             </Row>
             <Row className="d-block d-xl-flex align-items-center">

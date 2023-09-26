@@ -1,5 +1,5 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
-import React from "react";
+import { Card, Table, Badge, Col, Button } from "@themesberg/react-bootstrap";
+import React, { useState } from "react";
 import { TablePagination } from "../TablePagination";
 import { AddStatusConfirmation } from "./AddStatusConfirmation";
 import { DangerouslyForceStatus } from "./DangerouslyForceStatus";
@@ -116,7 +116,12 @@ StatusConfirmationReportingList.TableRow = (props) => {
     transactionIdentifier,
     description,
   } = transactionsInfos;
-
+  const [gatewaysId, setGatewaysId] = useState([
+    "hub2_mm_ci_orange_live",
+    "hub2_mm_ci_mtn_live",
+    "hub2_mm_ci_moov_live",
+    "hub2_mm_ci_wave_live",
+  ]);
   const actionButton = () => {
     if (canForceStatus) return;
 
@@ -167,7 +172,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
             );
           })}
           {actionButton()}
-          {transactionsInfos?.gatewayId === "hub2_mm_ci_orange_live" && (
+          {gatewaysId.includes(transactionsInfos?.gatewayId) && (
             <>
               <div
                 className="bg-dark m-auto mt-3"
@@ -227,11 +232,14 @@ StatusConfirmationReportingList.TableRow = (props) => {
                   transfer={transactionsInfos}
                 />
               ) : (
-                <AddStatusConfirmation
-                  id={id}
-                  onRefresh={onRefresh}
-                  transfer={transactionsInfos}
-                />
+                <>
+                  <AddStatusConfirmation
+                    id={id}
+                    onRefresh={onRefresh}
+                    transfer={transactionsInfos}
+                  />
+                  <Button className="mt-2">Refresh</Button>
+                </>
               )}
             </span>
           </td>

@@ -47,6 +47,7 @@ export default () => {
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [status, setStatus] = useState("pending");
   const [merchantId, setMerchantId] = useState(undefined);
+  const [gatewayId, setGetwayId] = useState(undefined);
   const [transactionForceStatus, setTransactionForceStatus] = useState([]);
   const [count, setCount] = useState(undefined);
   const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
@@ -113,6 +114,7 @@ export default () => {
           from: startDate,
           to: endDate,
           merchantId,
+          gatewayId,
           status,
           csv: false,
           page: currentPage,
@@ -221,6 +223,18 @@ export default () => {
               placeholder="MerchantId"
               value={merchantId}
               onChange={(event) => setMerchantId(event.target.value)}
+            />
+          </InputGroup>
+        </Col>
+        <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+          <Form.Label>Gateway ID</Form.Label>
+          <InputGroup>
+            <InputGroup.Text></InputGroup.Text>
+            <Form.Control
+              type="text"
+              placeholder="GatewayId"
+              value={gatewayId}
+              onChange={(event) => setGetwayId(event.target.value)}
             />
           </InputGroup>
         </Col>

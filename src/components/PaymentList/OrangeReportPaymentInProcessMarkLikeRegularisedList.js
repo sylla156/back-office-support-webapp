@@ -3,7 +3,7 @@ import { Row, Col, Badge } from "@themesberg/react-bootstrap";
 
 export const OrangeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
   let processorPayment = props.processorPayment;
-  const { id, reference, transactionDate, emitterPhoneNumber, flowRateAmount, status } = processorPayment
+  const { id, reference, transactionDate, receiverPhoneNumber, creditAmount, status } = processorPayment
 
   return (
     <>
@@ -55,7 +55,7 @@ export const OrangeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
 
         <Col className="ms--2" lg={9}>
           <span className="h6 mb-0 text-start">
-            {flowRateAmount} {"XOF"}
+            {creditAmount} {"XOF"}
           </span>
         </Col>
       </Row>
@@ -68,7 +68,7 @@ export const OrangeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
 
         <Col className="ms--2" lg={9}>
           <span className="h6 mb-0 text-start">
-            {emitterPhoneNumber ? emitterPhoneNumber : ""}
+            {receiverPhoneNumber ? receiverPhoneNumber : ""}
           </span>
         </Col>
       </Row>

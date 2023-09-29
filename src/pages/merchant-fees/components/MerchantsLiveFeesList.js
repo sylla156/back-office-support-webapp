@@ -164,7 +164,7 @@ MerchantsLiveFees.TableRow = (props) => {
             >
                 <Modal.Header closeButton closeVariant="white" className="bg-primary">
                     <Modal.Title className="text-white">
-                        Suppresion de frais marchand live
+                        Suppression de frais marchand live
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

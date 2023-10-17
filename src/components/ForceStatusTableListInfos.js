@@ -8,7 +8,7 @@ export const ForceStatusTableListInfos = (props) => {
     amount,
     currency,
     createdAt,
-    timezone,
+    transactionId,
     transactionReference,
     status,
     customerReference,
@@ -25,9 +25,8 @@ export const ForceStatusTableListInfos = (props) => {
             status === "SUCCESSFUL" ||
             status === "SUCCESS"
               ? "success"
-              : status === "pending" ||
-                status === "Pending" ||
-                status === "PENDING"
+              : status === "processing" ||
+                status === "action_required"
               ? "warning"
               : status === "FAILLED" ||
                 status === "failed" ||
@@ -45,7 +44,7 @@ export const ForceStatusTableListInfos = (props) => {
         </Col>
 
         <Col className="ms--2" lg={9}>
-          <span className="h6 mb-0 text-start">{id ? id : ""}</span>
+          <span className="h6 mb-0 text-start">{transactionId ? transactionId : ""}</span>
         </Col>
       </Row>
       <Row className="d-block d-xl-flex align-items-center">

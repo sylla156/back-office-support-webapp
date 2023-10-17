@@ -70,6 +70,7 @@ export const TRANSFER_HUB2_STATUS = "/transfers/hub2/";
 export const STATUS_CONFIRMATION = "/status-confirmation";
 export const DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION =
   "/status-confirmation/dangerously-force-transfer-status";
+export const DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION_PAYMENT = "/status-confirmation/dangerously-force-payment-status";
 export const STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/transfer-list";
 export const UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/update-status-confirmation";
 export const DELETE_STATUS_CONFIRMATION_TRANSFER_LIST = "/status-confirmation/delete";
@@ -77,6 +78,7 @@ export const LOCAL_STATS_COMMISSION_BY_MONTH= "/local-stats/commission-month";
 export const LOCAL_STATS_COMMISSION_BY_DAY= "/local-stats/commission-day";
 export const LOCAL_STATS_COMMISSION_BY_WEEK= "/local-stats/commission-week";
 export const LOCAL_STATS_COMMISSION_BY_YEAR= "/local-stats/commission-year";
+export const STATUS_CONFIRMATION_PAYMENT_LIST = "/status-confirmation/payment-list";
 
 
 export const LOCAL_STATS_COMMISSION_COUNTRY_PAYMENT_CATEGORY_WEEK= "/local-stats/commission-payment-category-week";

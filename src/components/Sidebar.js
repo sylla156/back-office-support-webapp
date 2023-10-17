@@ -324,7 +324,12 @@ export default (props = {}) => {
                   icon={faCalendar}
                   link={Routes.LocalPaymentReporting.path}
                 />
-                  <NavItem
+                <NavItem
+                    title="Force status"
+                    icon={faCheck}
+                    link={Routes.PaymentForceStatus.path}
+                />
+                <NavItem
                   title="Local stats"
                   icon={faChartPie}
                   link={Routes.PaymentLocalStats.path}

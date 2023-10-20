@@ -1,4 +1,4 @@
-import { Card, Table, Button } from "@themesberg/react-bootstrap";
+import { Card, Table, Button, Spinner, Toast } from "@themesberg/react-bootstrap";
 import React, { useState } from "react";
 import { TablePagination } from "../../components/TablePagination";
 import { ForceStatusTableListInfos } from "../../components/ForceStatusTableListInfos";
@@ -7,6 +7,9 @@ import { NeedToUpdateLocalDate } from "../../components/statusConfirmation/NeedT
 import { CandidateSuggestion } from "./CandidateSuggestion";
 import { DangerouslyForceStatus } from "./DangerouslyForceStatus";
 import { AddStatusConfirmation } from "./AddStatusConfirmation";
+import { REFRESH_PAYMENT_STATUS, APPKEY } from "../constante/Const";
+import AxiosWebHelper from "../../utils/axios-helper";
+import { useCookies } from "react-cookie";
 
 export const StatusConfirmationReportingList = (props) => {
     let {
@@ -61,6 +64,12 @@ export const StatusConfirmationReportingList = (props) => {
 }
 
 StatusConfirmationReportingList.TableRow = (props) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [errorData, setErrorData] = useState(null);
+    const axios = AxiosWebHelper.getAxios();
+    const [cookies] = useCookies(["token"]);
+    const [version, setVersion] = useState(0);
+
     const {
         transactionsInfos,
         canForceStatus,
@@ -83,6 +92,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
     let {
         id,
         merchantId,
+        transactionId,
         amount,
         currency,
         createdAt,
@@ -114,6 +124,34 @@ StatusConfirmationReportingList.TableRow = (props) => {
                 </p>
             );
         }
+    }
+
+    const RefreshStatus = (id, transactionId) => {
+        setIsLoaded(true);
+        setErrorData(null);
+        axios.get(REFRESH_PAYMENT_STATUS, {
+            params: {
+                pi_id: id,
+                pay_id: transactionId
+            },
+            headers: {
+                AppKey: APPKEY,
+                authenticationtoken: cookies.token,
+            }
+        }).then((result) => {
+            console.log("result", result.data);
+            setIsLoaded(false);
+            onRefresh();
+        }).catch((error) => {
+            setIsLoaded(false);
+            if (error.response) {
+                if (error.response.status === 401) {
+                    setShouldLogin(true);
+                } else {
+                    setErrorData(error.response.data.message);
+                }
+            }
+        })
     }
 
     return (
@@ -215,7 +253,15 @@ StatusConfirmationReportingList.TableRow = (props) => {
                                         onRefresh={onRefresh}
                                         payment={transactionsInfos}
                                     />
-                                    <Button className="mt-2">Refresh</Button>
+                                    {isLoaded === false ? (
+                                        <Button className="mt-2" onClick={() => RefreshStatus(id, transactionId)}>Refresh</Button>
+                                    ) : (
+                                        <div className="d-flex justify-content-center">
+                                            <Spinner animation="border " size="sm" role="status">
+                                                <span className="visually-hidden">Loading...</span>
+                                            </Spinner>
+                                        </div>
+                                    )}
                                 </>
                             )}
                         </span>

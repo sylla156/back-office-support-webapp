@@ -79,6 +79,8 @@ export const LOCAL_STATS_COMMISSION_BY_DAY= "/local-stats/commission-day";
 export const LOCAL_STATS_COMMISSION_BY_WEEK= "/local-stats/commission-week";
 export const LOCAL_STATS_COMMISSION_BY_YEAR= "/local-stats/commission-year";
 export const STATUS_CONFIRMATION_PAYMENT_LIST = "/status-confirmation/payment-list";
+export const REFRESH_PAYMENT_STATUS = "/status-confirmation/RefreshPaymentStatus";
+export const REFRESH_TRANSFER_STATUS = "/status-confirmation/RefreshTransferStatus";
 
 
 export const LOCAL_STATS_COMMISSION_COUNTRY_PAYMENT_CATEGORY_WEEK= "/local-stats/commission-payment-category-week";

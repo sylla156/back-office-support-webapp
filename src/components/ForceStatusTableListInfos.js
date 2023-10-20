@@ -25,8 +25,8 @@ export const ForceStatusTableListInfos = (props) => {
             status === "SUCCESSFUL" ||
             status === "SUCCESS"
               ? "success"
-              : status === "processing" ||
-                status === "action_required"
+              : status === "pending" ||
+                status === "PENDING"
               ? "warning"
               : status === "FAILLED" ||
                 status === "failed" ||

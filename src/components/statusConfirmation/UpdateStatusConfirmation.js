@@ -31,7 +31,7 @@ import { TransferSummary } from "./TransferSummary";
 export const UpdateStatusConfirmation = (props) => {
   const {
     statusConfirmation,
-    statusVariantColor: statusVariant,
+    statusVariant,
     onRefresh,
     userCanForceStatus,
     transfer,

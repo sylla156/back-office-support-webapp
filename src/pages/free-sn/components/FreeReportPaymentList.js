@@ -24,6 +24,15 @@ export const FreeReportPaymentList = (props) => {
                                 <th className="border-bottom">Date de la transaction</th>
                                 <th className="border-bottom">Numéro de téléphone</th>
                                 <th className="border-bottom">Statut</th>
+                                <th className="border-bottom">DWH_SERVICE_NAME</th>
+                                <th className="border-bottom">PAYER_CATEGORY_CODE</th>
+                                <th className="border-bottom">PAYER_FIRST_NAME</th>
+                                <th className="border-bottom">PAYER_LAST_NAME</th>
+                                <th className="border-bottom">PAYEE_MSISDN</th>
+                                <th className="border-bottom">PAYEE_FIRST_NAME</th>
+                                <th className="border-bottom">PAYEE_LAST_NAME</th>
+                                <th className="border-bottom">PAYEE_CATEGORY_CODE</th>
+                                <th className="border-bottom">PAYEE_GRADE_NAME</th>
                                 <th className="border-bottom">Montant</th>
                                 <th className="border-bottom">Solde avant</th>
                                 <th className="border-bottom">Solde apres</th>
@@ -55,6 +64,15 @@ FreeReportPaymentList.TableRow = (props) => {
         transactionDate,
         phoneNumber,
         statut,
+        dwhServiceName,
+        payercategoryCode,
+        payerFirstName,
+        payerLastName,
+        payeeMsisdn,
+        payeeFirstName,
+        payeeLastName,
+        payeeCategoryCode,
+        payeeGradeName,
         amount,
         balanceBefore,
         balanceAfter,
@@ -83,6 +101,33 @@ FreeReportPaymentList.TableRow = (props) => {
             </td>
             <td>
                 <span className="fw-normal">{statut}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{dwhServiceName}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{payercategoryCode}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{payerFirstName}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{payerLastName}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{payeeMsisdn}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{payeeFirstName}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{payeeLastName}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{payeeCategoryCode}</span>
+            </td>
+            <td>
+                <span className="fw-normal">{payeeGradeName}</span>
             </td>
             <td>
                 <span className="fw-normal">{amount}</span>

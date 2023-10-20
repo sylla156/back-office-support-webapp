@@ -82,7 +82,7 @@ export const Routes = {
     MerchantListFeesLive:{path:"/merchant-list-fees-live"},
     FedapayReportTransfer:{path:"/fedapay-report-transfer"},
     MarkFedapayTransferLikeRegularised:{path:"/fedapay-transfer/regularised"},
-
+    PaymentForceStatus:{path:"/payment-force-status"},
 
     FedapayReportPayment: {path: "/fedapay-report-payment"},
     MarkFedapayPaymentLikeRegularised: {path: "/fedapay-payment/regularised"},

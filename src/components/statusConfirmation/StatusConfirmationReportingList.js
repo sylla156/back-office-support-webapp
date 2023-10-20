@@ -1,4 +1,4 @@
-import { Card, Table, Badge, Col, Button } from "@themesberg/react-bootstrap";
+import { Card, Table, Badge, Col, Button, Spinner } from "@themesberg/react-bootstrap";
 import React, { useState } from "react";
 import { TablePagination } from "../TablePagination";
 import { AddStatusConfirmation } from "./AddStatusConfirmation";
@@ -7,7 +7,9 @@ import { UpdateStatusConfirmation } from "./UpdateStatusConfirmation";
 import { ForceStatusTableListInfos } from "../ForceStatusTableListInfos";
 import { CandidateSuggestion } from "./CandidateSuggestion";
 import { NeedToUpdateLocalDate } from "./NeedToUpdateLocalDate";
-
+import AxiosWebHelper from "../../utils/axios-helper";
+import { useCookies } from "react-cookie";
+import { APPKEY, REFRESH_TRANSFER_STATUS } from "../../pages/constante/Const";
 export const StatusConfirmationReportingList = (props) => {
   let {
     listInfo,
@@ -80,6 +82,11 @@ export const StatusConfirmationReportingList = (props) => {
 };
 
 StatusConfirmationReportingList.TableRow = (props) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [errorData, setErrorData] = useState(null);
+  const axios = AxiosWebHelper.getAxios();
+  const [cookies] = useCookies(["token"]);
+
   const {
     transactionsInfos,
     canForceStatus, // ok
@@ -134,6 +141,33 @@ StatusConfirmationReportingList.TableRow = (props) => {
         </p>
       );
   };
+
+  const RefreshStatus = (id) => {
+    setIsLoaded(true)
+    setErrorData(null)
+    axios.get(REFRESH_TRANSFER_STATUS, {
+      params:{
+        tr_id:id
+      },
+      headers:{
+        AppKey: APPKEY,
+        authenticationtoken: cookies.token,
+      }
+    }).then((response) => {
+      console.log("response", response);
+      setIsLoaded(false)
+      onRefresh()
+    }).catch((error) => {
+      setIsLoaded(true)
+      if(error.response){
+        if(error.response.status === 401){
+          setShouldLogin(true);
+        }else{
+          setErrorData(error.response.data.message);
+        }
+      }
+    })
+  }
 
   return (
     <>
@@ -238,7 +272,15 @@ StatusConfirmationReportingList.TableRow = (props) => {
                     onRefresh={onRefresh}
                     transfer={transactionsInfos}
                   />
-                  <Button className="mt-2">Refresh</Button>
+                  {isLoaded === false ? (
+                    <Button className="mt-2" onClick={() => RefreshStatus(id)}>Refresh</Button>
+                  ) : (
+                    <div className="d-flex justify-content-center">
+                        <Spinner animation="border " size="sm" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                    </div>
+                  )}
                 </>
               )}
             </span>

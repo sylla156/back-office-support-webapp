@@ -70,8 +70,16 @@ export default () => {
             },
         }).then((result) => {
             setIsLoaded(true);
-            setTransactionForceStatus(result.data.transactionForceStatus);
-            setCount(result.data.count);
+            if(gatewayId){
+                const data = result.data.transactionForceStatus
+                // Filtrer les objets avec gatewayId égal à "hub2_mm_ci_orange_live"
+                const filteredData = data.filter(obj => obj.transactionsInfos.gatewayId === gatewayId);
+                setTransactionForceStatus(filteredData);
+                setCount(filteredData.length);
+            }else{
+                setTransactionForceStatus(result.data.transactionForceStatus);
+                setCount(result.data.count);
+            }
         }).catch((error) => {
             setIsLoaded(true);
             if(error.response){
@@ -171,7 +179,7 @@ export default () => {
                         />
                     </InputGroup>
                 </Col>
-                {/* <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+                <Col xs={12} md={6} lg={3} className="mb-2 px-2">
                     <Form.Label>Gateway ID</Form.Label>
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
@@ -182,7 +190,7 @@ export default () => {
                             onChange={(event) => setGetwayId(event.target.value)}
                         />
                     </InputGroup>
-                </Col> */}
+                </Col>
                 <Col xs={12} md={3} lg={3} className="px-2 mt-4">
                     <div className="mt-3 mb-4">
                         <Button

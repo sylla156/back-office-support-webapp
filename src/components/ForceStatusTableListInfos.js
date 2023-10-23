@@ -19,21 +19,20 @@ export const ForceStatusTableListInfos = (props) => {
     transactionIdentifier,
     description,
   } = props.transactionsInfos;
-  const statusVariant =
-            status === "successful" ||
-            status === "success" ||
-            status === "SUCCESSFUL" ||
-            status === "SUCCESS"
-              ? "success"
-              : status === "pending" ||
-                status === "PENDING"
-              ? "warning"
-              : status === "FAILLED" ||
-                status === "failed" ||
-                status === "FAILED" ||
-                status === "failled"
-              ? "danger"
-              : "primary";
+
+  const badgeColor = (status) => {
+    if(status === "successful" || status === "success" || status === "SUCCESSFUL" || status === "SUCCESS"){
+      return "success";
+    }
+    if(status === "pending" || status === "PENDING" || status === "processing" || status === "PROCESSING"){
+      return "warning";
+    }
+    if(status === "FAILLED" || status === "failed" || status === "FAILED" || status === "failled"){
+      return "danger";
+    }
+    return "primary";
+  }
+
   return (
     <>
         <Row className="d-block d-xl-flex align-items-center">
@@ -99,7 +98,7 @@ export const ForceStatusTableListInfos = (props) => {
         </Col>
 
         <Col className="ms--2" lg={9}>
-          <Badge  bg={statusVariant}>
+          <Badge  bg={badgeColor(status)}>
             <span className="h6 mb-0 text-start">{status ? status : ""}</span>
           </Badge>
         </Col>

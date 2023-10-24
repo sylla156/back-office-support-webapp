@@ -193,11 +193,23 @@ StatusConfirmationReportingList.TableRow = (props) => {
                   item.confirmedStatus === "failled"
                 ? "danger"
                 : "primary";
+                const badgeColor = (status) => {
+                  if(status === "successful" || status === "success" || status === "SUCCESSFUL" || status === "SUCCESS"){
+                    return "success";
+                  }
+                  if(status === "pending" || status === "PENDING" || status === "processing" || status === "PROCESSING"){
+                    return "warning";
+                  }
+                  if(status === "FAILLED" || status === "failed" || status === "FAILED" || status === "failled"){
+                    return "danger";
+                  }
+                  return "primary";
+                }
             return (
               <>
                 <UpdateStatusConfirmation
                   statusConfirmation={item}
-                  statusVariantColor={statusVariant}
+                  statusVariantColor={badgeColor(item.confirmedStatus)}
                   onRefresh={onRefresh}
                   userCanForceStatus={userCanForceStatus}
                   transfer={transactionsInfos}

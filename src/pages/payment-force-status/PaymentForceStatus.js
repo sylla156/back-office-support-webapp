@@ -70,6 +70,14 @@ export default () => {
             },
         }).then((result) => {
             setIsLoaded(true);
+            // if(gatewayId){
+            //     const data = result.data.transactionForceStatus
+            //     // Filtrer les objets avec gatewayId égal à "hub2_mm_ci_orange_live"
+            //     const filteredData = data.filter(obj => obj.transactionsInfos.gatewayId === gatewayId);
+            //     setTransactionForceStatus(filteredData);
+            //     setCount(filteredData.length);
+            // }else{
+            // }
             setTransactionForceStatus(result.data.transactionForceStatus);
             setCount(result.data.count);
         }).catch((error) => {

@@ -31,7 +31,7 @@ import { TransferSummary } from "./TransferSummary";
 export const UpdateStatusConfirmation = (props) => {
   const {
     statusConfirmation,
-    statusVariant,
+    statusVariantColor,
     onRefresh,
     userCanForceStatus,
     transfer,
@@ -165,7 +165,7 @@ export const UpdateStatusConfirmation = (props) => {
           size="xs"
           onClick={handleShow}
         >
-          <Badge className="mx-1 mb-3" bg={`${statusVariant}`}>
+          <Badge className="mx-1 mb-3" bg={`${statusVariantColor}`}>
             <span className="h6 text-light"> {confirmedStatus} </span>
           </Badge>
           {processorReference && (

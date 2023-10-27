@@ -36,6 +36,9 @@ export default () => {
     const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
     const [version, setVersion] = useState(0);
 
+    const handleStartDate = (value) => {
+        setStartDate(value);
+    }
     const handleEndDate = (value) => {
         setEndDate(value);
     };

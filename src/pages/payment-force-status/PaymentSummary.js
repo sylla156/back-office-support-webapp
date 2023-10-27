@@ -5,6 +5,7 @@ export const PaymentSummary = (props) => {
     const {
         id,
         merchantId,
+        transactionId,
         amount,
         currency,
         createdAt,
@@ -22,7 +23,7 @@ export const PaymentSummary = (props) => {
                     </h4>
                 </Col>
                 <Col className="ms--">
-                    <span className="h6 mb-0 text-start">{id ? id : ""}</span>
+                    <span className="h6 mb-0 text-start">{transactionId ? transactionId : ""}</span>
                 </Col>
             </Row>
             <Row className="d-block d-xl-flex align-items-center">

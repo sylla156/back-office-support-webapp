@@ -6,117 +6,176 @@ import {
     Button,
     Card,
     Form,
+    Badge,
     InputGroup,
     Dropdown,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { APPKEY, STATUS_CONFIRMATION, AddStatusConfirmationList, SelectDefaultValues } from "../constante/Const";
+import { APPKEY, SelectDefaultValues, AddStatusConfirmationList, UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST } from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
 import { Routes } from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
+import SplitString from "../../utils/splitString";
 import { PaymentSummary } from "./PaymentSummary";
 
-export const AddStatusConfirmation = (props) => {
-    const onRefresh = props.onRefresh
-    const payment = props.payment
-    const transactionId = payment.transactionId
+export const UpdateStatusConfirmation = (props) => {
+    const {
+        statusConfirmation,
+        statusVariantColor,
+        onRefresh,
+        userCanForceStatus,
+        payment,
+    } = props;
+
+    const {
+        id: statusConfirmationId,
+        processorReference,
+        description,
+        user,
+        confirmedStatus,
+    } = statusConfirmation;
 
     const [isLoading, setIsLoading] = useState(false);
     const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
     const [show, setShow] = useState(false);
 
-    const [confirmedStatus, setConfirmedStatus] = useState(undefined)
-    let [processorReference, setProcessorReference] = useState(undefined)
-    const [description, setDescription] = useState(undefined)
+    const [newConfirmedStatus, setNewConfirmedStatus] = useState(
+        SelectDefaultValues.status
+    )
+    let [newProcessorReference, setNewProcessorReference] = useState("");
+    const [newDescription, setNewDescription] = useState("");
 
-    const [cookies,] = useCookies(["token",]);
+    const [cookies] = useCookies(["token", "user"]);
 
-    if (confirmedStatus === "failed") {
-        processorReference = ""
+    const sessionUser = cookies.user;
+
+    const setData = () => {
+        const { processorReference, description, confirmedStatus } = statusConfirmation
+
+        setNewConfirmedStatus(confirmedStatus)
+        setNewProcessorReference(processorReference)
+        setNewDescription(description)
     }
 
     const axios = AxiosWebHelper.getAxios();
 
-    const addStatusConfirmation = () => {
+    const updateStatusConfirmation = () => {
         if (isLoading) return;
 
         setIsLoading(true);
         setErrorData(null);
 
-        axios.post(
-            STATUS_CONFIRMATION,
+        axios.patch(
+            UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST + "/" + statusConfirmationId,
             {
-                transactionId,
-                transactionType: "collection",
-                confirmedStatus,
-                processorReference,
-                description
+                confirmedStatus: newConfirmedStatus,
+                processorReference: newProcessorReference,
+                description: newDescription,
             },
             {
                 headers: {
                     AppKey: APPKEY,
-                    authenticationtoken: cookies.token,
+                    authenticationtoken: sessionUser.authenticationtoken,
                 },
-            }).then((_result) => {
-                setIsLoading(false);
-                handleClose()
-                onRefresh();
-            }).catch((error) => {
-                setIsLoading(false);
-                if (error.response) {
-                    if (error.response.status === 401) {
-                        setShouldLogin(true);
-                    } else {
-                        setErrorData(error.response.data.message);
-                    }
+            }
+        ).then((result) => {
+            setIsLoading(false);
+            handleClose()
+            onRefresh();
+        }).catch((error) => {
+            setIsLoading(false);
+            if (error.response) {
+                if (error.response.status === 401) {
+                    setShouldLogin(true);
+                } else {
+                    setErrorData(error.response.data.message);
                 }
-            })
-    };
+            }
+        })
+    }
 
     const handleShow = () => {
         setShow(true);
-    };
+    }
 
     const handleClose = () => {
+        setData();
         setErrorData(null);
         setShow(false);
         setIsLoading(false);
-    };
+    }
 
-    const handleAddStatusConfirmation = () => {
-        addStatusConfirmation();
-    };
+    const handlePatchStatusConfirmation = () => {
+        updateStatusConfirmation();
+    }
 
     const isFormValid = () => {
-        if (!confirmedStatus) return false;
-        if (confirmedStatus === "successful" && (!processorReference || processorReference.trim().length === 0)) return false
-        if (!description) return false;
-        if (description.trim().length === 0) return false;
+        if (!newConfirmedStatus) return false;
+        if (
+            newConfirmedStatus === "successful" &&
+            (!newProcessorReference || newProcessorReference.trim().length === 0)
+        )
+            return false;
+        if (!newDescription) return false;
+        if (newDescription.trim().length === 0) return false;
 
-        return true
+        return true;
     }
+
+    const canUpdate = () => {
+        if (userCanForceStatus && sessionUser.id === user.id) return true;
+
+        return false;
+    }
+    const canDelete = () => canUpdate();
+    const canEditForm = () => canUpdate();
+
+    useEffect(() => {
+        setData();
+    }, [processorReference, description, confirmedStatus]);
 
     if (!cookies.token) {
         return <Redirect to={Routes.Signin.path} />;
     }
 
     if (shouldLogin) {
-        return <Redirect to={Routes.Signin.path} />
+        return <Redirect to={Routes.Signin.path} />;
     }
+
+    console.log("confirmedStatus ", confirmedStatus, "processorReference ", "user.name ", user.name);
 
     return (
         <>
             <Col md={6} className="">
-                <Button variant="outline-primary" size="xs" onClick={handleShow}>
-                    <FontAwesomeIcon icon={faPlus} className="me-2" />
-                    <span className=""> Ajouter </span>
+                <Button
+                    className="mb-3"
+                    variant="outline-light"
+                    size="xs"
+                    onClick={handleShow}
+                >
+                    <Badge className="mx-1 mb-3" bg={`${statusVariantColor}`}>
+                        <span className="h6 text-light"> {confirmedStatus}</span>
+                    </Badge>
+                    {processorReference && (
+                        <Badge className="mx-1 mb-3" bg={`primary`}>
+                            <span className="h6 text-light"> {processorReference} </span>
+                        </Badge>
+                    )}
+                    <span
+                        title="{user.name}"
+                        className="text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary"
+                        style={{ width: 10, height: 10 }}
+                    >
+                        {SplitString.takeFirstLetterOfEachString(user.name)}
+                    </span>
+
+                    <br />
                 </Button>
             </Col>
+
             <Modal
                 size="md"
                 show={show}
@@ -128,21 +187,23 @@ export const AddStatusConfirmation = (props) => {
             >
                 <Modal.Header closeButton closeVariant="white" className="bg-primary">
                     <Modal.Title className="text-white">
-                        Ajouter un status confirmation
+                        Mise à jour d'un status confirmation
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Card border="light" className="bg-white  mb-4">
                         <Card.Body>
+                            <h5 className="mb-4"></h5>
                             <Form>
                                 <Row>
                                     <Col md={12} className="mb-3">
                                         <Form.Group id="status">
                                             <Form.Label>Status (*)</Form.Label>
                                             <Form.Select
-                                                value={confirmedStatus}
+                                                disabled={!canEditForm()}
+                                                value={newConfirmedStatus}
                                                 onChange={(event) => {
-                                                    setConfirmedStatus(event.target.value);
+                                                    setNewConfirmedStatus(event.target.value);
                                                 }}
                                             >
                                                 <option
@@ -166,10 +227,11 @@ export const AddStatusConfirmation = (props) => {
                                             <Form.Label>Processor reference </Form.Label>
                                             <Form.Control
                                                 required
+                                                disabled={!canEditForm()}
                                                 type="text"
-                                                value={processorReference}
+                                                value={newProcessorReference}
                                                 onChange={(event) => {
-                                                    setProcessorReference(event.target.value);
+                                                    setNewProcessorReference(event.target.value);
                                                 }}
                                                 placeholder="Entrer un processor reference "
                                             />
@@ -179,25 +241,38 @@ export const AddStatusConfirmation = (props) => {
                                 <Row>
                                     <Col md={12} className="mb-3">
                                         <Form.Group id="firstName">
-                                            <Form.Label>Description (*) </Form.Label>
+                                            <Form.Label>Description (*)</Form.Label>
                                             <Form.Control
                                                 required
                                                 as="textarea"
                                                 rows="3"
-                                                value={description}
+                                                disabled={!canEditForm()}
+                                                value={newDescription}
                                                 onChange={(event) => {
-                                                    setDescription(event.target.value);
+                                                    setNewDescription(event.target.value);
                                                 }}
                                                 placeholder="Entrer une description "
                                             />
                                         </Form.Group>
                                     </Col>
                                 </Row>
+                                <Row>
+                                    <Col md={12} className="mb-3">
+                                        <p className="text-gray-700 text-center">
+                                            Ajoutée par {user.name}
+                                        </p>
+                                    </Col>
+                                </Row>
                             </Form>
-
                             <PaymentSummary {...payment} />
                         </Card.Body>
                         <Modal.Footer>
+                            {/* {canDelete() && (
+                                <DeleteStatusConfirmation
+                                    statusConfirmationId={statusConfirmationId}
+                                    onRefresh={onRefresh}
+                                />
+                            )} */}
                             <Button
                                 variant="primary"
                                 color=""
@@ -207,15 +282,18 @@ export const AddStatusConfirmation = (props) => {
                             >
                                 Fermer
                             </Button>
-                            <Button
-                                disabled={!isFormValid()}
-                                variant={isFormValid() ? "success" : "primary"}
-                                onClick={() => {
-                                    handleAddStatusConfirmation();
-                                }}
-                            >
-                                Ajouter un status
-                            </Button>
+                            {canUpdate() && (
+                                <Button
+                                    disabled={!isFormValid()}
+                                    variant={isFormValid() ? "success" : "primary"}
+                                    onClick={() => {
+                                        handlePatchStatusConfirmation();
+                                    }}
+                                >
+                                    Mise à jour
+                                </Button>
+                            )}
+
                             <div className="mt-3">
                                 <AlertDismissable
                                     message={errorData}

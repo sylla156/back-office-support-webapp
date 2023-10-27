@@ -54,7 +54,7 @@ export const CandidateSuggestion = (props) => {
 
                         {userCanForceStatus && (
                             <span>
-                                {item?.isLocalPayment ? <AddCandidatesSuggestions id={id} extendSearchMessage={"Introuvable dans le rapport opérateur"} onRefresh={onRefresh} payment={payment} /> : <AddCandidatesSuggestions id={id} candidate={item?.content} onRefresh={onRefresh} transfer={payment} />}
+                                {item?.isLocalPayment ? <AddCandidatesSuggestions id={id} extendSearchMessage={"Introuvable dans le rapport opérateur"} onRefresh={onRefresh} payment={payment} /> : <AddCandidatesSuggestions id={id} candidate={item?.content} onRefresh={onRefresh} payment={payment} />}
                             </span>
                         )}
                     </Col>

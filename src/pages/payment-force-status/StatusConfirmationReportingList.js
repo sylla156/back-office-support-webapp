@@ -2,7 +2,7 @@ import { Card, Table, Button, Spinner, Toast } from "@themesberg/react-bootstrap
 import React, { useState } from "react";
 import { TablePagination } from "../../components/TablePagination";
 import { ForceStatusTableListInfos } from "../../components/ForceStatusTableListInfos";
-import { UpdateStatusConfirmation } from "../../components/statusConfirmation/UpdateStatusConfirmation";
+import { UpdateStatusConfirmation } from "./UpdateStatusConfirmation";
 import { NeedToUpdateLocalDate } from "../../components/statusConfirmation/NeedToUpdateLocalDate";
 import { CandidateSuggestion } from "./CandidateSuggestion";
 import { DangerouslyForceStatus } from "./DangerouslyForceStatus";
@@ -69,7 +69,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
     const axios = AxiosWebHelper.getAxios();
     const [cookies] = useCookies(["token"]);
     const [version, setVersion] = useState(0);
-
+    
     const {
         transactionsInfos,
         canForceStatus,
@@ -170,7 +170,8 @@ StatusConfirmationReportingList.TableRow = (props) => {
                                 ? "success"
                                 : item.confirmedStatus === "pending" ||
                                     item.confirmedStatus === "Pending" ||
-                                    item.confirmedStatus === "PENDING"
+                                    item.confirmedStatus === "PENDING" ||
+                                    item.confirmedStatus === "processing"
                                     ? "warning"
                                     : item.confirmedStatus === "FAILLED" ||
                                         item.confirmedStatus === "failed" ||
@@ -185,7 +186,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
                                     statusVariantColor={statusVariant}
                                     onRefresh={onRefresh}
                                     userCanForceStatus={userCanForceStatus}
-                                    transfer={transactionsInfos}
+                                    payment={transactionsInfos}
                                 />
                             </>
                         );

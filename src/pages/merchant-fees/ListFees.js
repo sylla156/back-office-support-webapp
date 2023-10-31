@@ -68,7 +68,6 @@ export default () => {
                     country,
                     method,
                     hasBeenApplied,
-                    transactionType,
                     provider,
                     page: currentPage,
                     perPage: PAGE_SIZE

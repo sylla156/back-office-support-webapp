@@ -10,6 +10,8 @@ import { AddStatusConfirmation } from "./AddStatusConfirmation";
 import { REFRESH_PAYMENT_STATUS, APPKEY } from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
 import { useCookies } from "react-cookie";
+import { Redirect } from "react-router-dom";
+import { Routes } from "../../routes";
 
 export const StatusConfirmationReportingList = (props) => {
     let {
@@ -65,6 +67,7 @@ export const StatusConfirmationReportingList = (props) => {
 
 StatusConfirmationReportingList.TableRow = (props) => {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
     const axios = AxiosWebHelper.getAxios();
     const [cookies] = useCookies(["token"]);
@@ -152,6 +155,10 @@ StatusConfirmationReportingList.TableRow = (props) => {
                 }
             }
         })
+    }
+
+    if(shouldLogin){
+        return <Redirect to={Routes.Signin.path} />
     }
 
     return (

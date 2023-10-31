@@ -112,7 +112,6 @@ export default () => {
 
     const onClearFilters = () => {
         setReference("");
-        setSourceNumber("");
         setReconciliation('Tous')
         setCountry("CI");
         setCreditAmount("");

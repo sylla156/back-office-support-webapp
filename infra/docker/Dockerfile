@@ -1,6 +1,6 @@
 # --- App Build ---
 FROM node:14.18-slim as build
-
+#FROM node:14.21.3-slim as assets
 # set the workdir to /app
 WORKDIR /app
 
@@ -18,7 +18,7 @@ COPY --chown=node:node public/ /app/public/
 
 RUN chown -R node:node /app
 USER node
-
+RUN ["npx", "browserslist@latest", "--update-db"]
 RUN ["npm", "run", "build"]
 
 ###############################################

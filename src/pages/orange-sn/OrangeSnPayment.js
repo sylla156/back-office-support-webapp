@@ -104,7 +104,6 @@ export default () => {
 
     const onClearFilters = () => {
         setReference("");
-        setSourceNumber("");
         setReconciliation('Tous')
         setCreditAmount("");
         setMinValue("");

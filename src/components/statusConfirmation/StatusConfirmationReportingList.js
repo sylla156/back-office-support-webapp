@@ -10,6 +10,9 @@ import { NeedToUpdateLocalDate } from "./NeedToUpdateLocalDate";
 import AxiosWebHelper from "../../utils/axios-helper";
 import { useCookies } from "react-cookie";
 import { APPKEY, REFRESH_TRANSFER_STATUS } from "../../pages/constante/Const";
+import { Redirect } from "react-router-dom";
+import { Routes } from "../../routes";
+
 export const StatusConfirmationReportingList = (props) => {
   let {
     listInfo,
@@ -83,6 +86,7 @@ export const StatusConfirmationReportingList = (props) => {
 
 StatusConfirmationReportingList.TableRow = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [shouldLogin, setShouldLogin] = useState(false);
   const [errorData, setErrorData] = useState(null);
   const axios = AxiosWebHelper.getAxios();
   const [cookies] = useCookies(["token"]);
@@ -168,6 +172,10 @@ StatusConfirmationReportingList.TableRow = (props) => {
       }
     })
   }
+
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+}
 
   return (
     <>

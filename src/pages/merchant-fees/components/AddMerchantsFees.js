@@ -7,6 +7,7 @@ import { faPlus, faPaperclip, faStop, faExclamationTriangle } from "@fortawesome
 import { APPKEY, ADD_APPLY_MERCHANT_FEES_URL, MerchantFeeType, MerchantFeeTransactionType, MerchantFeeMethod, MerchantsCountry, merchantFeeProviders } from "../../constante/Const"
 import { useCookies } from "react-cookie"
 import AxiosWebHelper from "../../../utils/axios-helper";
+import { Redirect } from "react-router-dom";
 
 export const AddMerchantsFees = (props) => {
     const [isLoading, setIsLoading] = useState(false);

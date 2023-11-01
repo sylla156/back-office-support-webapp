@@ -97,7 +97,7 @@ MerchantsFeesList.TableRow = (props) => {
             console.log("result", result);
             setIsLoading(false)
             // handleClose()
-            onRefresh()
+            // incrementVersion()
         }).catch((error) => {
             setIsLoading(false)
             if (error.response) {
@@ -194,7 +194,7 @@ MerchantsFeesList.TableRow = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
-                    handleClose(false);
+                    setShow(false);
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -220,7 +220,7 @@ MerchantsFeesList.TableRow = (props) => {
                         variant="primary"
                         color=""
                         onClick={() => {
-                            handleClose(false);
+                            setShow(false);
                         }}
                     >
                         Fermer

@@ -97,7 +97,7 @@ MerchantsLiveFees.TableRow = (props) => {
             console.log(result);
             handleClose()
             setIsLoading(false)
-            onRefresh()
+            // onRefresh()
         }).catch((error) => {
             setIsLoading(false)
             if(error.response.status === 401){

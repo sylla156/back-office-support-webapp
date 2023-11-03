@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0-0](https://gitlab.com/connekt4/back-office-support/compare/v1.1.0...v1.2.0-0) (2023-11-03)
+
+
+### Features
+
+* **clean:** Removed Google's UTM tag in start_url ([363dd00](https://gitlab.com/connekt4/back-office-support/commit/363dd00d1e229ea0aba3259cc356b2db6bbc062a))
+* **clean:** Removed screenshot of Hub2 logo ([9f41f82](https://gitlab.com/connekt4/back-office-support/commit/9f41f823729f2aebbcbdf52eb6fa9c013ce429d3))
+* **sonarqube:** Added SonarQube project properties ([f213d30](https://gitlab.com/connekt4/back-office-support/commit/f213d3068821b575679767f95a44216bc556c085))
+* Make run the docker container ([e6403ad](https://gitlab.com/connekt4/back-office-support/commit/e6403ad959846a96862b4626e5efe4f1001364fe))
+
+
+### Bug Fixes
+
+* **robots.txt:** Added Disallow / for all ([3d9f93e](https://gitlab.com/connekt4/back-office-support/commit/3d9f93efda22a9cdc1e3c7381db92952d6f655ad))
+* change the eslint rule for make the lint right ([8e644d6](https://gitlab.com/connekt4/back-office-support/commit/8e644d69de1dc5f62fe68eb4f37b46334143c508))
+
 ## 1.1.0 (2023-04-14)
 
 

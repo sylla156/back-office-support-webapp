@@ -91,13 +91,13 @@ export const AddMerchantsFees = (props) => {
         addFeesData()
     }
 
-    if (!cookies.token) {
-        return <Redirect to={Routes.Signin.path} />
-    }
+    // if (!cookies.token) {
+    //     return <Redirect to={Routes.Signin.path} />
+    // }
 
-    if (shouldLogin) {
-        return <Redirect to={Routes.Signin.path} />;
-    }
+    // if (shouldLogin) {
+    //     return <Redirect to={Routes.Signin.path} />;
+    // }
 
     return (
         <>

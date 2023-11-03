@@ -137,7 +137,6 @@ export default () => {
                             type="text"
                             placeholder="Date début"
                             value={startDate}
-                            onChange={(event) => handleStartDate(event.target.value)}
                         />
                     </InputGroup>
                 </Col>

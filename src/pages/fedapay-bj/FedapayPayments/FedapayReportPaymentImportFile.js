@@ -85,13 +85,13 @@ export const FedapayReportPaymentImportFile = (props) => {
     const handlePostFile = () => {
         postFile();
     }
-    if (!cookies.token) {
-        return <Redirect to={Routes.Signin.path} />
-    }
+    // if (!cookies.token) {
+    //     return <Redirect to={Routes.Signin.path} />
+    // }
 
-    if (shouldLogin) {
-        return <Redirect to={Routes.Signin.path} />
-    }
+    // if (shouldLogin) {
+    //     return <Redirect to={Routes.Signin.path} />
+    // }
 
     return (
         <>

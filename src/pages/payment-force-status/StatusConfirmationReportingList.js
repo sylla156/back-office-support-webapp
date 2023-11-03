@@ -147,13 +147,13 @@ StatusConfirmationReportingList.TableRow = (props) => {
             onRefresh();
         }).catch((error) => {
             setIsLoaded(false);
-            if (error.response) {
-                if (error.response.status === 401) {
-                    setShouldLogin(true);
-                } else {
-                    setErrorData(error.response.data.message);
-                }
-            }
+            // if (error.response) {
+            //     if (error.response.status === 401) {
+            //         setShouldLogin(true);
+            //     } else {
+            //         setErrorData(error.response.data.message);
+            //     }
+            // }
         })
     }
 

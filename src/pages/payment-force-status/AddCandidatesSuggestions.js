@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
     Col,
     Row,
@@ -7,17 +7,18 @@ import {
     Card,
     Form,
 } from "@themesberg/react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SelectDefaultValues, AddStatusConfirmationList, STATUS_CONFIRMATION, APPKEY } from "../constante/Const";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {SelectDefaultValues, AddStatusConfirmationList, STATUS_CONFIRMATION, APPKEY} from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { Routes } from "../../routes";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {Routes} from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
-import { PaymentSummary } from "./PaymentSummary";
+import {PaymentSummary} from "./PaymentSummary";
 
 export const AddCandidatesSuggestions = (props) => {
+
     const transactionId = props.id;
     const onRefresh = props.onRefresh;
     const payment = props.payment;
@@ -27,17 +28,23 @@ export const AddCandidatesSuggestions = (props) => {
     let status;
 
     if (props.candidate) {
+
         candidate = props.candidate;
+    
     }
 
     if (candidate) {
+
         descriptionCand = candidate?.content ? candidate?.content : candidate?.rawData;
         reference = candidate?.reference ? candidate?.reference : candidate?.operatorRef;
         status = candidate?.operatorRef ? "successful" : candidate?.status;
+    
     } else {
+
         descriptionCand = props.extendSearchMessage;
         status = "failed"
         reference = "";
+    
     }
 
     const [isLoading, setIsLoading] = useState(false);
@@ -52,12 +59,15 @@ export const AddCandidatesSuggestions = (props) => {
     const [cookies] = useCookies(["token", "user"]);
 
     if (confirmedStatus === "failed" && !processorReference) {
+
         processorReference = "";
+    
     }
 
     const axios = AxiosWebHelper.getAxios();
 
     const addStatusConfirmation = () => {
+
         if (isLoading) return;
 
         setIsLoading(true);
@@ -74,53 +84,78 @@ export const AddCandidatesSuggestions = (props) => {
                 authenticationtoken: cookies.token,
             },
         }).then((result) => {
+
             setIsLoading(false);
-            //Here we should hide when add is done
+            // Here we should hide when add is done
             handleClose();
             onRefresh()
+        
         }).catch((error) => {
+
             setIsLoading(false);
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true);
+                
                 } else {
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         });
+    
     }
 
     const handleShow = () => setShow(true);
 
     const handleClose = () => {
+
         setErrorData(null);
         setShow(false);
         setIsLoading(false);
+    
     }
 
     const handleAddStatusConfirmation = () => {
+
         addStatusConfirmation();
+    
     }
 
     const isFormValid = () => {
+
         if (!confirmedStatus) {
+
             return false;
+        
         }
         if (confirmedStatus === "successful" && (!processorReference || processorReference.trim().length === 0)) {
+
             return false;
+        
         }
         if (!description) return false
         if (description.trim().length === 0) return false;
 
         return true;
+    
     }
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     return (
@@ -133,7 +168,9 @@ export const AddCandidatesSuggestions = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
+
                     handleClose(false);
+                
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -153,7 +190,11 @@ export const AddCandidatesSuggestions = (props) => {
                                             <Form.Label>Status (*)</Form.Label>
                                             <Form.Select
                                                 value={confirmedStatus}
-                                                onChange={(event) => { setConfirmedStatus(event.target.value) }}
+                                                onChange={(event) => {
+
+                                                    setConfirmedStatus(event.target.value) 
+
+                                                }}
                                             >
                                                 <option
                                                     key={SelectDefaultValues.status}
@@ -179,7 +220,9 @@ export const AddCandidatesSuggestions = (props) => {
                                                 type="text"
                                                 value={processorReference}
                                                 onChange={(event) => {
+
                                                     setProcessorReference(event.target.value);
+                                                
                                                 }}
                                                 placeholder="Entrer un processor reference "
                                             />
@@ -196,7 +239,9 @@ export const AddCandidatesSuggestions = (props) => {
                                                 rows="3"
                                                 value={description}
                                                 onChange={(event) => {
+
                                                     setDescription(event.target.value);
+                                                
                                                 }}
                                                 placeholder="Entrer une description "
                                             />
@@ -214,7 +259,9 @@ export const AddCandidatesSuggestions = (props) => {
                         variant="primary"
                         color=""
                         onClick={() => {
+
                             handleClose(false);
+                        
                         }}
                     >
                         Fermer
@@ -223,7 +270,9 @@ export const AddCandidatesSuggestions = (props) => {
                         disabled={!isFormValid()}
                         variant={isFormValid() ? "success" : "primary"}
                         onClick={() => {
+
                             handleAddStatusConfirmation();
+                        
                         }}
                     >
                         Ajouter un status

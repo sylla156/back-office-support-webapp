@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { format, addMinutes, parseISO } from "date-fns";
-import { Routes } from "../../routes";
-import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, chooseReconciliation, TransactionstatusList, IntouchReportPaymentCountry, INTOUCH_REPORT_TRANSFER_URL } from "../constante/Const";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {format, addMinutes, parseISO} from "date-fns";
+import {Routes} from "../../routes";
+import {FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, chooseReconciliation, TransactionstatusList, IntouchReportPaymentCountry, INTOUCH_REPORT_TRANSFER_URL} from "../constante/Const";
 import AlertDismissable from "../../components/AlertDismissable";
 import {
     Col,
@@ -15,13 +15,14 @@ import {
     FormControl
 } from "@themesberg/react-bootstrap";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { IntouchReportTransferImportFile } from "./IntouchTransfer/IntouchReportTransferImportFile";
-import { MakeIntouchAndLocalTransferReconciliation } from "./IntouchTransfer/MakeIntouchAndLocalTransferReconciliation";
-import { IntouchReportTransferList } from "./IntouchTransfer/IntouchReportTransferList";
-import { MakeIntouchAndLocalPaymentReconciliation } from "./IntouchPayment/MakeIntouchAndLocalPaymentReconciliation";
-import { IntouchReportPaymentList } from "./IntouchPayment/IntouchReportPaymentList";
+import {IntouchReportTransferImportFile} from "./IntouchTransfer/IntouchReportTransferImportFile";
+import {MakeIntouchAndLocalTransferReconciliation} from "./IntouchTransfer/MakeIntouchAndLocalTransferReconciliation";
+import {IntouchReportTransferList} from "./IntouchTransfer/IntouchReportTransferList";
+import {MakeIntouchAndLocalPaymentReconciliation} from "./IntouchPayment/MakeIntouchAndLocalPaymentReconciliation";
+import {IntouchReportPaymentList} from "./IntouchPayment/IntouchReportPaymentList";
 
 export default () => {
+
     const currentDate = new Date()
 
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
@@ -47,24 +48,29 @@ export default () => {
     const [numDestinataire, setNumDestinataire] = useState("");
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
 
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
 
-    const [cookies] = useCookies(["token","user"]);
+    const [cookies] = useCookies(["token", "user"]);
 
     const axios = AxiosWebHelper.getAxios();
 
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
     const getIntouchReportPayment = () => {
+
         setIsLoaded(false);
         setErrorData(null);
 
-        axios.get(INTOUCH_REPORT_TRANSFER_URL,{
+        axios.get(INTOUCH_REPORT_TRANSFER_URL, {
             params: {
                 reference,
                 country,
@@ -84,34 +90,51 @@ export default () => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             console.log("result", result.data.result);
             setIsLoaded(true)
             setIntouchReportPaymentList(result.data.result)
             setCount(result.data.count)
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             if(error.response){
+
                 if(error.response.message === 401){
+
                     setShouldLogin(true)
+                
                 }else{
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () => {
+
         setVersion((currentVersion) => {
             
             return currentVersion + 1;
+        
         });
+    
     }
 
     const onClearFilters = () => {
+
         setReference("");
         setMinValue("");
         setMaxValue("")
@@ -120,20 +143,26 @@ export default () => {
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
         setNumDestinataire("")
+    
     };
 
     useEffect(() => {
+
         getIntouchReportPayment()
+    
     }, [currentPage, version])
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
 
-
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -183,7 +212,9 @@ export default () => {
                         <Form.Select
                             value={country}
                             onChange={(event) => {
+
                                 setCountry(event.target.value);
+                            
                             }}
                         >
                             {IntouchReportPaymentCountry.map((item) => (
@@ -227,7 +258,9 @@ export default () => {
                         <Form.Select
                             value={transactionStatus}
                             onChange={(event) => {
+
                                 setTransactionStatus(event.target.value);
+                            
                             }}
                         >
                             {TransactionstatusList.map((item) => (
@@ -244,7 +277,9 @@ export default () => {
                         <Form.Select
                             value={reconciliation}
                             onChange={(event) => {
+
                                 setReconciliation(event.target.value);
+                            
                             }}
                         >
                             {chooseReconciliation.map((item) => (
@@ -298,11 +333,12 @@ export default () => {
                         onRefresh={incrementVersion}
                     />
                 </Row> : <div className="d-flex justify-content-center">
-                <Spinner animation="border " size="sm" role="status">
+                    <Spinner animation="border " size="sm" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
                 </div>
             }
         </>
     )
+
 }

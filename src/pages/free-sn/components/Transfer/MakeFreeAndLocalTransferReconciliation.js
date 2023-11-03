@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
 import {
     Col,
     Row,
@@ -13,12 +13,13 @@ import {
     Spinner,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { APPKEY, GET_LOCAL_TRANSFER_DATA, GET_LOCAL_FREE_REPORT_TRANSFER_RECONCILIATION_DATA } from "../../../constante/Const";
-import { format } from "date-fns";
+import {APPKEY, GET_LOCAL_TRANSFER_DATA, GET_LOCAL_FREE_REPORT_TRANSFER_RECONCILIATION_DATA} from "../../../constante/Const";
+import {format} from "date-fns";
 import AxiosWebHelper from "../../../../utils/axios-helper";
-import { Routes } from "../../../../routes";
+import {Routes} from "../../../../routes";
 
 export const MakeFreeAndLocalTransferReconciliation = (props) => {
+
     const currentDate = new Date();
 
     const formatStartDateToUse = format(currentDate, "yyyy-MM-dd");
@@ -36,16 +37,21 @@ export const MakeFreeAndLocalTransferReconciliation = (props) => {
     const userCanUpdateLocalData = props.userCanUpdateLocalData;
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
-    const [cookies,] = useCookies(["token"]);
+    const [cookies, ] = useCookies(["token"]);
 
     const axios = AxiosWebHelper.getAxios();
 
     const makeReconciliation = () => {
+
         setIsLoading(true)
         setErrorData(null);
 
@@ -59,21 +65,33 @@ export const MakeFreeAndLocalTransferReconciliation = (props) => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             setIsLoading(false)
             onRefresh()
+        
         }).catch((error) => {
+
             setIsLoading(false);
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true);
+                
                 } else {
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const getCachedTransferLocalData = () => {
+
         setIsLoading(true);
         setErrorData(null);
         axios
@@ -87,42 +105,63 @@ export const MakeFreeAndLocalTransferReconciliation = (props) => {
                 }
             )
             .then((result) => {
+
                 setIsLoading(false);
                 // Here we should hide when add is done
                 setCachedTransferLocal(result.data);
                 onRefresh()
+            
             })
             .catch((error) => {
+
                 setIsLoading(false);
                 if (error.response) {
+
                     if (error.response.status === 401) {
+
                         setShouldLogin(true);
+                    
                     } else {
+
                         setErrorData(error.response.data.message);
+                    
                     }
+                
                 }
+            
             });
+    
     };
 
     const canActivateAndUpdate = () => {
+
         if (userCanUpdateLocalData) return true;
         return false;
+    
     }
 
     const onClearFilters = () => {
+
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     };
 
     useEffect(() => {
+
         getCachedTransferLocalData();
+    
     }, []);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     return (
@@ -187,4 +226,5 @@ export const MakeFreeAndLocalTransferReconciliation = (props) => {
             </div>
         </>
     )
+
 }

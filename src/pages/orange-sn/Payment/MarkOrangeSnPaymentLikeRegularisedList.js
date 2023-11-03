@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { OrangeSnPaymentMarkLikeRegularised } from "./OrangeSnPaymentMarkLikeRegularised";
-import { OrangeSnReportPaymentInProcessMarkLikeRegularisedList } from "./OrangeSnReportPaymentInProcessMarkLikeRegularisedList";
+import {OrangeSnPaymentMarkLikeRegularised} from "./OrangeSnPaymentMarkLikeRegularised";
+import {OrangeSnReportPaymentInProcessMarkLikeRegularisedList} from "./OrangeSnReportPaymentInProcessMarkLikeRegularisedList";
 
 export const MarkOrangeSnPaymentLikeRegularisedList = (props) => {
-    let { listInfo, onRefresh, userCanAddOrangeSnPaymentRegularised } = props
+
+    let {listInfo, onRefresh, userCanAddOrangeSnPaymentRegularised} = props
 
     return (
         <Card border="light" className="table-wrapper table-responsive shadow-sm">
@@ -18,6 +19,7 @@ export const MarkOrangeSnPaymentLikeRegularisedList = (props) => {
                     </thead>
                     <tbody>
                         {listInfo.map((datum, index) => {
+
                             return (
                                 <MarkOrangeSnPaymentLikeRegularisedList.TableRow
                                     key={`transaction-${index}`}
@@ -27,15 +29,18 @@ export const MarkOrangeSnPaymentLikeRegularisedList = (props) => {
                                     userCanAddOrangeSnPaymentRegularised={userCanAddOrangeSnPaymentRegularised}
                                 />
                             );
+                        
                         })}
                     </tbody>
                 </Table>
             </Card.Body>
         </Card>
     )
+
 }
 
 MarkOrangeSnPaymentLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorPayment,
         candidates,
@@ -61,4 +66,5 @@ MarkOrangeSnPaymentLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

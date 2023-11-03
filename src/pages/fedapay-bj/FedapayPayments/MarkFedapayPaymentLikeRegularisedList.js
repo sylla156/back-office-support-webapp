@@ -1,9 +1,10 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { FedapayPaymentMarkLikeRegularisedList } from "./FedapayPaymentMarkLikeRegularisedList";
-import { FedapayReportPaymentInProcessMarkLikeRegularisedList } from "./FedapayReportPaymentInProcessMarkLikeRegularisedList";
+import {FedapayPaymentMarkLikeRegularisedList} from "./FedapayPaymentMarkLikeRegularisedList";
+import {FedapayReportPaymentInProcessMarkLikeRegularisedList} from "./FedapayReportPaymentInProcessMarkLikeRegularisedList";
 
 export const MarkFedapayPaymentLikeRegularisedList = (props) => {
+
     let {
         listInfo,
         onRefresh,
@@ -24,6 +25,7 @@ export const MarkFedapayPaymentLikeRegularisedList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((datum, index) => {
+
                                 return (
                                     <MarkFedapayPaymentLikeRegularisedList.TableRow
                                         key={`transaction-${index}`}
@@ -33,6 +35,7 @@ export const MarkFedapayPaymentLikeRegularisedList = (props) => {
                                         userCanAddWavePaymentRegularise={userCanAddFedapayPaymentRegularised}
                                     />
                                 );
+                            
                             })}
                         </tbody>
                     </Table>
@@ -40,9 +43,11 @@ export const MarkFedapayPaymentLikeRegularisedList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MarkFedapayPaymentLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorPayment,
         candidates,
@@ -61,4 +66,5 @@ MarkFedapayPaymentLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

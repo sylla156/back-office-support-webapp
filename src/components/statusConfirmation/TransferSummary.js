@@ -1,108 +1,110 @@
-import { Col, Row, Card, Badge } from "@themesberg/react-bootstrap";
+import {Col, Row, Card, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
 
 export const TransferSummary = (props) => {
-  const {
-    id,
-    merchantId,
-    amount,
-    currency,
-    createdAt,
-    timezone,
-    transactionReference,
-    status,
-    customerReference,
-    method,
-    country,
-    provider,
-    gatewayId,
-    transactionIdentifier,
-    description,
-  } = props;
 
-  return (
-    <>
-      {/* <Card border="light" className="shadow-sm "> */}
-      {/* <Card.Body> */}
-      <Row className="d-block d-xl-flex align-items-center">
-        <Col md={4} className="ms--2 ">
-          <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+    const {
+        id,
+        merchantId,
+        amount,
+        currency,
+        createdAt,
+        timezone,
+        transactionReference,
+        status,
+        customerReference,
+        method,
+        country,
+        provider,
+        gatewayId,
+        transactionIdentifier,
+        description,
+    } = props;
+
+    return (
+        <>
+            {/* <Card border="light" className="shadow-sm "> */}
+            {/* <Card.Body> */}
+            <Row className="d-block d-xl-flex align-items-center">
+                <Col md={4} className="ms--2 ">
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
             Id
-          </h4>
-        </Col>
+                    </h4>
+                </Col>
 
-        <Col className="ms--">
-          <span className="h6 mb-0 text-start">{id ? id : ""}</span>
-        </Col>
-      </Row>
-      <Row className="d-block d-xl-flex align-items-center">
-        <Col md={4} className="ms--2">
-          <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                <Col className="ms--">
+                    <span className="h6 mb-0 text-start">{id ? id : ""}</span>
+                </Col>
+            </Row>
+            <Row className="d-block d-xl-flex align-items-center">
+                <Col md={4} className="ms--2">
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
             merchantId
-          </h4>
-        </Col>
+                    </h4>
+                </Col>
 
-        <Col className="ms--2">
-          <span className="h6 mb-0 text-start">
-            {merchantId ? merchantId : ""}
-          </span>
-        </Col>
-      </Row>
-      <Row className="d-block d-xl-flex align-items-center">
-        <Col md={4} className="ms--2">
-          <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                <Col className="ms--2">
+                    <span className="h6 mb-0 text-start">
+                        {merchantId ? merchantId : ""}
+                    </span>
+                </Col>
+            </Row>
+            <Row className="d-block d-xl-flex align-items-center">
+                <Col md={4} className="ms--2">
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
             msisdn
-          </h4>
-        </Col>
+                    </h4>
+                </Col>
 
-        <Col className="ms--2">
-          <span className="h6 mb-0 text-start">
-            {transactionIdentifier ? transactionIdentifier : ""}
-          </span>
-        </Col>
-      </Row>
-      <Row className="d-block d-xl-flex align-items-center">
-        <Col md={4} className="ms--2">
-          <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                <Col className="ms--2">
+                    <span className="h6 mb-0 text-start">
+                        {transactionIdentifier ? transactionIdentifier : ""}
+                    </span>
+                </Col>
+            </Row>
+            <Row className="d-block d-xl-flex align-items-center">
+                <Col md={4} className="ms--2">
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
             amount
-          </h4>
-        </Col>
+                    </h4>
+                </Col>
 
-        <Col className="ms--2">
-          <span className="h6 mb-0 text-start text">
-            {amount} {currency}
-          </span>
-        </Col>
-      </Row>
-      <Row className="d-block d-xl-flex align-items-center">
-        <Col md={4} className="ms--2">
-          <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                <Col className="ms--2">
+                    <span className="h6 mb-0 text-start text">
+                        {amount} {currency}
+                    </span>
+                </Col>
+            </Row>
+            <Row className="d-block d-xl-flex align-items-center">
+                <Col md={4} className="ms--2">
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
             createdAt
-          </h4>
-        </Col>
+                    </h4>
+                </Col>
 
-        <Col className="ms--2">
-          <span className="h6 mb-0 text-start">
-            {createdAt == "Invalid Date" ? "" : createdAt}
-          </span>
-        </Col>
-      </Row>
+                <Col className="ms--2">
+                    <span className="h6 mb-0 text-start">
+                        {createdAt == "Invalid Date" ? "" : createdAt}
+                    </span>
+                </Col>
+            </Row>
 
-      <Row className="d-block d-xl-flex align-items-center">
-        <Col md={4} className="ms--2">
-          <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+            <Row className="d-block d-xl-flex align-items-center">
+                <Col md={4} className="ms--2">
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
             gatewayId
-          </h4>
-        </Col>
+                    </h4>
+                </Col>
 
-        <Col className="ms--2">
-          <span className="h6 mb-0 text-start">
-            {gatewayId} {`(${country} - ${provider})`}
-          </span>
-        </Col>
-      </Row>
-      {/* </Card.Body> */}
-      {/* </Card> */}
-    </>
-  );
+                <Col className="ms--2">
+                    <span className="h6 mb-0 text-start">
+                        {gatewayId} {`(${country} - ${provider})`}
+                    </span>
+                </Col>
+            </Row>
+            {/* </Card.Body> */}
+            {/* </Card> */}
+        </>
+    );
+
 };

@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import {
     Col,
     Spinner,
@@ -7,17 +7,18 @@ import {
     Button,
     InputGroup,
 } from "@themesberg/react-bootstrap";
-import { useCookies } from 'react-cookie';
+import {useCookies} from 'react-cookie';
 import AxiosWebHelper from '../../../../../utils/axios-helper';
-import { APPKEY, PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED,EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED } from '../../../../constante/Const';
-import { Routes } from '../../../../../routes';
-import { Redirect } from 'react-router-dom';
-import { format, subDays } from 'date-fns';
+import {APPKEY, PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED, EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED} from '../../../../constante/Const';
+import {Routes} from '../../../../../routes';
+import {Redirect} from 'react-router-dom';
+import {format, subDays} from 'date-fns';
 import AlertDismissable from '../../../../../components/AlertDismissable';
-import { WavereportTransferMarkLikeRegularisedImportFile } from './WaveReportTransferMarkLikeRegularisedImportFile';
-import { MarkWaveTransferLikeRegularisedList } from './MarkWaveTransferLikeRegularisedList';
+import {WavereportTransferMarkLikeRegularisedImportFile} from './WaveReportTransferMarkLikeRegularisedImportFile';
+import {MarkWaveTransferLikeRegularisedList} from './MarkWaveTransferLikeRegularisedList';
 
 export default () => {
+
     const currentDate = new Date();
     const startDateToUse = subDays(currentDate, 2);
     const formatStartDateToUse = format(startDateToUse, "yyyy-MM-dd");
@@ -40,19 +41,24 @@ export default () => {
     const [cookies] = useCookies(["token", "user"]);
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
 
     const userCanAddWavePaymentRegularised = cookies.user.canAddPaymentRegularised;
     const axios = AxiosWebHelper.getAxios();
 
     const getMarkWaveReportTransferListRegularised = () => {
+
         setIsLoaded(false)
         setErrorData(null)
-        axios.get(GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED,{
+        axios.get(GET_MARK_WAVE_REPORT_TRANSFER_LIKE_REGULARISED, {
             params:{
                 from: startDate,
                 to: endDate
@@ -62,26 +68,38 @@ export default () => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             setIsLoaded(true)
             setMarkLikeRegularisedList(result.data.data)
             setCount(result.data.count)
+        
         }).catch((error) => {
+
             setIsLoaded(true);
             if (error.response) {
-              if (error.response.status === 401) {
-                setShouldLogin(true);
-              } else {
-                setErrorData(error.response.data.message);
-              }
+
+                if (error.response.status === 401) {
+
+                    setShouldLogin(true);
+                
+                } else {
+
+                    setErrorData(error.response.data.message);
+                
+                }
+            
             }
+        
         });
+    
     }
 
     const fileName = "orange-report-transfer-who-must-be-regularise-export";
     const exportData = () => {
+
         setErrorDataCSV(null)
         setIsLoadedCSV(false)
-        axios.get(EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED,{
+        axios.get(EXPORT_WAVE_REPORT_TRANSFER_MARK_LIKE_REGULARISED, {
             params:{
                 from: startDate,
                 to: endDate
@@ -91,6 +109,7 @@ export default () => {
                 authenticationtoken: cookies.token,
             }
         }).then((result) => {
+
             setIsLoadedCSV(true);
             setErrorDataCSV(null);
             const url = window.URL.createObjectURL(new Blob([result.data]));
@@ -100,38 +119,52 @@ export default () => {
             document.body.appendChild(link);
             link.click();
             link.remove();
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             console.log("error", error);
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
     const incrementVersion = () =>
         setVersion((currentVersion) => {
           
-          return currentVersion + 1;
-    });
+            return currentVersion + 1;
+        
+        });
     
     const onClearFilters = () => {
+
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     };
 
     useEffect(() => {
+
         getMarkWaveReportTransferListRegularised()
-    },[currentPage, version])
+    
+    }, [currentPage, version])
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
 
-
     if (shouldLogin) {
-    return <Redirect to={Routes.Signin.path} />;
+
+        return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return(
@@ -144,10 +177,10 @@ export default () => {
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
-                        type="text"
-                        placeholder="Date début"
-                        value={startDate}
-                        onChange={(event) => handleStartDate(event.target.value)}
+                            type="text"
+                            placeholder="Date début"
+                            value={startDate}
+                            onChange={(event) => handleStartDate(event.target.value)}
                         />
                     </InputGroup>
                 </Col>
@@ -156,10 +189,10 @@ export default () => {
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
-                        type="text"
-                        placeholder="Date fin"
-                        value={endDate}
-                        onChange={(event) => handleEndDate(event.target.value)}
+                            type="text"
+                            placeholder="Date fin"
+                            value={endDate}
+                            onChange={(event) => handleEndDate(event.target.value)}
                         />
                     </InputGroup>
                 </Col>
@@ -194,7 +227,7 @@ export default () => {
                         ) : (
                             <div className="d-flex justify-content-center">
                                 <Spinner animation="border " size="sm" role="status">
-                                <span className="visually-hidden">Loading...</span>
+                                    <span className="visually-hidden">Loading...</span>
                                 </Spinner>
                             </div>
                         )}
@@ -221,7 +254,7 @@ export default () => {
                         onPageChange={onPageChange}
                         onRefresh={incrementVersion}
                         userCanAddWaveTransferRegularised={userCanAddWavePaymentRegularised}
-                   />
+                    />
                 </Row>
             ) : (
                 <div className="d-flex justify-content-center">
@@ -232,4 +265,5 @@ export default () => {
             )}
         </>
     )
+
 }

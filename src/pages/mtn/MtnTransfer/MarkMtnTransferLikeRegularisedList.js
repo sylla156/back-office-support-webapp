@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { MtnTransferMarkLikeRegularised } from "./MtnTransferMarkLikeRegularised";
-import { MtnReportTransferInProcessMarkLikeRegularisedList } from "./MtnReportTransferInProcessMarkLikeRegularisedList";
+import {MtnTransferMarkLikeRegularised} from "./MtnTransferMarkLikeRegularised";
+import {MtnReportTransferInProcessMarkLikeRegularisedList} from "./MtnReportTransferInProcessMarkLikeRegularisedList";
 
 export const MarkMtnTransferLikeRegularisedList = (props) => {
-    let { listInfo, onRefresh, userCanAddMtnTransferRegularised } = props
+
+    let {listInfo, onRefresh, userCanAddMtnTransferRegularised} = props
 
     return (
         <>
@@ -19,6 +20,7 @@ export const MarkMtnTransferLikeRegularisedList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((datum, index) => {
+
                                 return (
                                     <MarkMtnTransferLikeRegularisedList.TableRow
                                         key={`transaction-${index}`}
@@ -28,6 +30,7 @@ export const MarkMtnTransferLikeRegularisedList = (props) => {
                                         userCanAddMtnTransferRegularised={userCanAddMtnTransferRegularised}
                                     />
                                 );
+                            
                             })}
                         </tbody>
                     </Table>
@@ -35,9 +38,11 @@ export const MarkMtnTransferLikeRegularisedList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MarkMtnTransferLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorTransfer,
         candidates,
@@ -63,4 +68,5 @@ MarkMtnTransferLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

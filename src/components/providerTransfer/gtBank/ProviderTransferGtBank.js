@@ -29,11 +29,13 @@ export default function ProviderTransferGtBank(props) {
     let receiver_phone_number;
 
     if(providerTransferGtBankData){
+
         response = providerTransferGtBankData.checkStatus.response;
     
     }
 
     if(response){
+
         data = response.data;
         code = response.code;
         message = response.message;
@@ -42,6 +44,7 @@ export default function ProviderTransferGtBank(props) {
     }
 
     if(data){
+
         remarks = data.remarks;
         sender_name = data.sended_name;
         gtb_reference = data.gtb_reference;

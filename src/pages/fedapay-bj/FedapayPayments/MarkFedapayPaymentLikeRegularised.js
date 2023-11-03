@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import {
     Col,
     Spinner,
@@ -7,16 +7,17 @@ import {
     Button,
     InputGroup,
 } from "@themesberg/react-bootstrap";
-import { useCookies } from 'react-cookie';
+import {useCookies} from 'react-cookie';
 import AxiosWebHelper from '../../../utils/axios-helper';
-import { APPKEY, PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_FEDAPAY_REPORT_PAYMENT_LIKE_REGULARISED, EXPORT_FEDAPAY_REPORT_PAYMENT_MARK_LIKE_REGULARISED } from '../../constante/Const';
-import { Redirect } from 'react-router-dom';
-import { Routes } from '../../../routes';
-import { format, addMinutes, subDays } from 'date-fns';
+import {APPKEY, PAGE_SIZE, FIRST_PAGE_INDEX, GET_MARK_FEDAPAY_REPORT_PAYMENT_LIKE_REGULARISED, EXPORT_FEDAPAY_REPORT_PAYMENT_MARK_LIKE_REGULARISED} from '../../constante/Const';
+import {Redirect} from 'react-router-dom';
+import {Routes} from '../../../routes';
+import {format, addMinutes, subDays} from 'date-fns';
 import AlertDismissable from '../../../components/AlertDismissable';
-import { MarkFedapayPaymentLikeRegularisedList } from './MarkFedapayPaymentLikeRegularisedList';
+import {MarkFedapayPaymentLikeRegularisedList} from './MarkFedapayPaymentLikeRegularisedList';
 
 export default () => {
+
     const currentDate = new Date()
     const startDateToUse = subDays(currentDate, 2);
     const formatStartDateToUse = format(startDateToUse, "yyyy-MM-dd");
@@ -38,10 +39,14 @@ export default () => {
     const [version, setVersion] = useState(0);
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
 
     const [cookies] = useCookies(["token", "user"]);
@@ -51,6 +56,7 @@ export default () => {
     const axios = AxiosWebHelper.getAxios();
 
     const getMarkFedapayReportPaymentListRegularised = () => {
+
         setIsLoaded(false)
         setErrorData(null)
         axios.get(GET_MARK_FEDAPAY_REPORT_PAYMENT_LIKE_REGULARISED, {
@@ -63,23 +69,35 @@ export default () => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             setIsLoaded(true)
             setMarkLikeRegularisedList(result.data.data)
             setCount(result.data.count)
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true)
+                
                 } else {
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const filename = 'fedapay-report-payment-who-must-be-regularise-export';
     const exportData = () => {
+
         setErrorDataCSV(null);
         setIsLoadedCSV(false);
 
@@ -96,6 +114,7 @@ export default () => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             setIsLoadedCSV(true);
             setErrorDataCSV(null);
             const url = window.URL.createObjectURL(new Blob([result.data]));
@@ -105,36 +124,51 @@ export default () => {
             document.body.appendChild(link);
             link.click();
             link.remove();
+        
         }).catch((error) => {
+
             setIsLoaded(true);
             console.log("une erreur s'est produite", error);
+        
         });
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
     const incrementVersion = () =>
         setVersion((currentVersion) => {
 
             return currentVersion + 1;
+        
         });
 
     const onClearFilters = () => {
+
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     };
 
     useEffect(() => {
+
         getMarkFedapayReportPaymentListRegularised();
+    
     }, [currentPage, version]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -233,4 +267,5 @@ export default () => {
             )}
         </>
     )
+
 }

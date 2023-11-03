@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import {
     Col,
     Spinner,
@@ -7,16 +7,17 @@ import {
     Button,
     InputGroup,
 } from "@themesberg/react-bootstrap";
-import { useCookies } from 'react-cookie';
+import {useCookies} from 'react-cookie';
 import AxiosWebHelper from '../../../utils/axios-helper';
-import { APPKEY, FIRST_PAGE_INDEX, GET_MARK_FEDAPAY_REPORT_TRANSFER_LIKE_REGULARISED, EXPORT_FEDAPAY_REPORT_TRANSFER_MARK_LIKE_REGULARISED } from '../../constante/Const';
-import { Routes } from '../../../routes';
-import { Redirect } from 'react-router-dom';
-import { format, subDays } from 'date-fns';
-import { MarkFedapayTransferLikeRegularisedList } from './MarkFedapayTransferLikeRegularisedList';
+import {APPKEY, FIRST_PAGE_INDEX, GET_MARK_FEDAPAY_REPORT_TRANSFER_LIKE_REGULARISED, EXPORT_FEDAPAY_REPORT_TRANSFER_MARK_LIKE_REGULARISED} from '../../constante/Const';
+import {Routes} from '../../../routes';
+import {Redirect} from 'react-router-dom';
+import {format, subDays} from 'date-fns';
+import {MarkFedapayTransferLikeRegularisedList} from './MarkFedapayTransferLikeRegularisedList';
 import AlertDismissable from '../../../components/AlertDismissable';
 
 export default () => {
+
     const currentDate = new Date();
     const startDateToUse = subDays(currentDate, 2);
     const formatStartDateToUse = format(startDateToUse, "yyyy-MM-dd");
@@ -39,16 +40,21 @@ export default () => {
     const [cookies] = useCookies(["token", "user"]);
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     }
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     }
 
     const userCanAddFedapayPaymentRegularised = cookies.user.canAddPaymentRegularised;
     const axios = AxiosWebHelper.getAxios();
 
     const getMarkFedapayReportTransferListRegularised = () => {
+
         setIsLoaded(false)
         setErrorData(null)
         axios.get(GET_MARK_FEDAPAY_REPORT_TRANSFER_LIKE_REGULARISED, {
@@ -62,18 +68,24 @@ export default () => {
             }
         })
             .then((response) => {
+
                 setMarkLikeRegularisedList(response.data.data);
                 setIsLoaded(true);
+            
             })
             .catch((error) => {
+
                 console.log("error", error.response.data);
                 setErrorData(error.response.data);
                 setIsLoaded(true);
+            
             });
+    
     }
 
     const fileName = "fedapay-report-transfer-mark-like-regularised.csv";
     const exportData = () => {
+
         setErrorDataCSV(null);
         setIsLoadedCSV(false)
         axios.get(EXPORT_FEDAPAY_REPORT_TRANSFER_MARK_LIKE_REGULARISED, {
@@ -86,6 +98,7 @@ export default () => {
                 authenticationtoken: cookies.token,
             }
         }).then((result) => {
+
             setIsLoadedCSV(true);
             setErrorDataCSV(null);
             const url = window.URL.createObjectURL(new Blob([result.data]));
@@ -95,36 +108,54 @@ export default () => {
             document.body.appendChild(link);
             link.click();
             link.remove();
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             console.log('error', error);
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     }
     const incrementVersion = () => {
+
         setVersion((currentVersion) => {
+
             return currentVersion + 1;
+        
         });
+    
     }
 
     const onClearFilters = () => {
+
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     }
 
     useEffect(() => {
+
         getMarkFedapayReportTransferListRegularised();
+    
     }, [currentPage, version])
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     return (
@@ -222,4 +253,5 @@ export default () => {
             )}
         </>
     )
+
 }

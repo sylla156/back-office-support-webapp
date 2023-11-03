@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
 import {
     Col,
     Row,
@@ -13,10 +13,10 @@ import {
     Spinner,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { APPKEY, GET_LOCAL_PAYMENT_DATA, GET_LOCAL_FEDAPAY_REPORT_PAYMENT_RECONCILIATION_DATA } from "../../constante/Const";
-import { format } from "date-fns";
+import {APPKEY, GET_LOCAL_PAYMENT_DATA, GET_LOCAL_FEDAPAY_REPORT_PAYMENT_RECONCILIATION_DATA} from "../../constante/Const";
+import {format} from "date-fns";
 import AxiosWebHelper from "../../../utils/axios-helper";
-import { Routes } from "../../../routes";
+import {Routes} from "../../../routes";
 
 export const MakeFedapayAndLocalPaymentReconciliation = (props) => {
 
@@ -40,18 +40,23 @@ export const MakeFedapayAndLocalPaymentReconciliation = (props) => {
     const [endDate, setEndDate] = useState(defaultEndDate);
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     }
 
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     }
 
-    const [cookies,] = useCookies(["token",]);
+    const [cookies, ] = useCookies(["token", ]);
 
     const axios = AxiosWebHelper.getAxios();
 
     const makeReconciliation = () => {
+
         setIsLoading(true);
         setErrorData(null);
 
@@ -65,22 +70,34 @@ export const MakeFedapayAndLocalPaymentReconciliation = (props) => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             setIsLoading(false);
-            //Here we should hide when add is done
+            // Here we should hide when add is done
             onRefresh();
+        
         }).catch((error) => {
+
             setIsLoading(false);
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true);
+                
                 } else {
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const getCachedPaymentLocalData = () => {
+
         setIsLoading(true);
         setErrorData(null);
         axios.get(GET_LOCAL_PAYMENT_DATA, {
@@ -89,41 +106,62 @@ export const MakeFedapayAndLocalPaymentReconciliation = (props) => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             setIsLoading(false);
-            //here we should hide when add is done
+            // here we should hide when add is done
             setCachedPaymentLocal(result.data);
             onRefresh()
+        
         }).catch((error) => {
+
             setIsLoading(false);
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true);
+                
                 } else {
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const canActivateAndUpdate = () => {
+
         if (userCanUpdateLocalData) return true;
         return false;
+    
     }
     const onClearFilters = () => {
+
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     }
 
     useEffect(() => {
+
         getCachedPaymentLocalData();
+    
     }, [])
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
     return (
         <>
@@ -187,4 +225,5 @@ export const MakeFedapayAndLocalPaymentReconciliation = (props) => {
             </div>
         </>
     )
+
 }

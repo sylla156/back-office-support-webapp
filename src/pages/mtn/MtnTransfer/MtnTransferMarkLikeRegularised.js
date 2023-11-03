@@ -1,20 +1,26 @@
 import React from "react";
-import { Row, Col, Badge } from "@themesberg/react-bootstrap";
+import {Row, Col, Badge} from "@themesberg/react-bootstrap";
 
 export const MtnTransferMarkLikeRegularised = (props) => {
+
     const candidates = props.candidates
 
     if (candidates.length === 0) {
+
         return <p className="badge bg-danger h2 py-3">Pas de candidat</p>
+    
     }
 
     function toUpperCase(provider) {
+
         return provider.toUpperCase()
+    
     }
 
     return (
         <>
             {candidates.map((candidate) => {
+
                 let {
                     id,
                     merchantId,
@@ -61,18 +67,18 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                     : status === "pending" ||
                     status === "Pending" ||
                     status === "PENDING"
-                    ? "warning"
-                    : status === "FAILLED" ||
+                        ? "warning"
+                        : status === "FAILLED" ||
                     status === "failed" ||
                     status === "FAILED" ||
                     status === "failled"
-                    ? "danger"
-                    : "primary";
+                            ? "danger"
+                            : "primary";
                 return (
                     <>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     TransferId
                                 </h4>
                             </Col>
@@ -83,7 +89,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     Reference
                                 </h4>
                             </Col>
@@ -94,7 +100,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     createdAt
                                 </h4>
                             </Col>
@@ -105,7 +111,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     merch_Id
                                 </h4>
                             </Col>
@@ -116,7 +122,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     amount
                                 </h4>
                             </Col>
@@ -127,7 +133,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     téléphone
                                 </h4>
                             </Col>
@@ -138,7 +144,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     gatewayId
                                 </h4>
                             </Col>
@@ -149,7 +155,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     Transfer status
                                 </h4>
                             </Col>
@@ -162,7 +168,7 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     provider
                                 </h4>
                             </Col>
@@ -173,7 +179,9 @@ export const MtnTransferMarkLikeRegularised = (props) => {
                         </Row>
                     </>
                 )
+            
             })}
         </>
     )
+
 }

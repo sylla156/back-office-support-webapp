@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
 import {
     Col,
     Row,
@@ -12,14 +12,15 @@ import {
     Dropdown,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faPaperclip} from "@fortawesome/free-solid-svg-icons";
 import AlertDismissable from "../../../components/AlertDismissable";
 import AxiosWebHelper from "../../../utils/axios-helper";
-import { Routes } from "../../../routes";
-import { APPKEY, ORANGE_SN_REPORT_PAYMENT_UPLOAD_URL } from "../../constante/Const";
+import {Routes} from "../../../routes";
+import {APPKEY, ORANGE_SN_REPORT_PAYMENT_UPLOAD_URL} from "../../constante/Const";
 
 export const OrangeSnPaymentImportFile = (props) => {
+
     const onRefresh = props.onRefresh
     const [isLoading, setIsLoading] = useState(false);
     const [shouldLogin, setShouldLogin] = useState(false);
@@ -29,24 +30,31 @@ export const OrangeSnPaymentImportFile = (props) => {
     const [cookies] = useCookies(["token"])
 
     const handleChangeFile = async (event) => {
+
         let files = event.target.files;
         let file = files[0];
         setFile(file);
+    
     };
 
     const handleShow = () => {
+
         setShow(true);
+    
     };
 
     const handleClose = () => {
+
         setErrorData(null);
         setShow(false);
         setIsLoading(false);
         setFile(undefined)
+    
     };
     const axios = AxiosWebHelper.getAxios();
 
     const postFile = () => {
+
         if (!file) return
 
         setIsLoading(true)
@@ -61,35 +69,56 @@ export const OrangeSnPaymentImportFile = (props) => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             if(result.data.code === 204){
+
                 setIsLoading(false)
                 setErrorData(result.data.status)
+            
             }else{
+
                 setIsLoading(false)
                 handleClose()
                 onRefresh()
+            
             }
+        
         }).catch((error) => {
+
             setIsLoading(false)
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true)
+                
                 } else {
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const handlePostFile = () => {
+
         postFile();
+    
     }
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     return (
@@ -104,7 +133,9 @@ export const OrangeSnPaymentImportFile = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
+
                     handleClose(false);
+                
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -133,7 +164,9 @@ export const OrangeSnPaymentImportFile = (props) => {
                                                 // value={file}
                                                 accept=".xlsx,.xls"
                                                 onChange={(event) => {
+
                                                     handleChangeFile(event);
+                                                
                                                 }}
                                             />
                                             <div className="d-md-block text-start">
@@ -156,13 +189,19 @@ export const OrangeSnPaymentImportFile = (props) => {
                         variant="primary"
                         color=""
                         onClick={() => {
+
                             handleClose(false);
+                        
                         }}
                     >
                         Fermer
                     </Button>
                     <Button
-                        onClick={() => { handlePostFile() }}
+                        onClick={() => {
+
+                            handlePostFile() 
+
+                        }}
                     >
                         Ajouter un fichier
                     </Button>
@@ -179,4 +218,5 @@ export const OrangeSnPaymentImportFile = (props) => {
             </Modal>
         </>
     )
+
 }

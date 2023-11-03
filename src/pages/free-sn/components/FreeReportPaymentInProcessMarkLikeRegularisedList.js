@@ -1,16 +1,17 @@
 import React from "react";
-import { Row, Col, Badge } from "@themesberg/react-bootstrap";
+import {Row, Col, Badge} from "@themesberg/react-bootstrap";
 
 export const FreeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
+
     let processorPayment = props.processorPayment;
 
-    const { id, transactionDate, transactionId, phoneNumber, amount, processorReference, statut } = processorPayment
+    const {id, transactionDate, transactionId, phoneNumber, amount, processorReference, statut} = processorPayment
 
     return (
         <>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         Id
                     </h4>
                 </Col>
@@ -23,7 +24,7 @@ export const FreeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         reference opérateur
                     </h4>
                 </Col>
@@ -36,7 +37,7 @@ export const FreeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         Date de transaction
                     </h4>
                 </Col>
@@ -49,7 +50,7 @@ export const FreeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         montant brut
                     </h4>
                 </Col>
@@ -62,7 +63,7 @@ export const FreeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         téléphone
                     </h4>
                 </Col>
@@ -75,7 +76,7 @@ export const FreeReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         statut
                     </h4>
                 </Col>

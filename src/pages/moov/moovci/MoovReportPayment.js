@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { format, addMinutes, parseISO } from "date-fns";
-import { Routes } from "../../../routes";
-import { FIRST_PAGE_INDEX, AddStatusConfirmationList, APPKEY, PAGE_SIZE, chooseReconciliation, MoovReportPaymentCountry, MOOV_REPORT_PAYMENT_URL, } from "../../constante/Const";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {format, addMinutes, parseISO} from "date-fns";
+import {Routes} from "../../../routes";
+import {FIRST_PAGE_INDEX, AddStatusConfirmationList, APPKEY, PAGE_SIZE, chooseReconciliation, MoovReportPaymentCountry, MOOV_REPORT_PAYMENT_URL, } from "../../constante/Const";
 import AlertDismissable from "../../../components/AlertDismissable";
 
 import {
@@ -16,12 +16,13 @@ import {
     FormControl
 } from "@themesberg/react-bootstrap";
 import AxiosWebHelper from "../../../utils/axios-helper";
-import { MoovReportPaymentImportFile } from "./components/MoovPayment/MoovReportPaymentImportFile";
-import { MoovReportPaymentList } from "./components/MoovPayment/MoovReportPaymentList";
-import { MakeMoovAndLocalPaymentReconciliation } from "./components/MoovPayment/MakeMoovAndLocalPaymentReconciliation";
+import {MoovReportPaymentImportFile} from "./components/MoovPayment/MoovReportPaymentImportFile";
+import {MoovReportPaymentList} from "./components/MoovPayment/MoovReportPaymentList";
+import {MakeMoovAndLocalPaymentReconciliation} from "./components/MoovPayment/MakeMoovAndLocalPaymentReconciliation";
 
 
 export default () => {
+
     const currentDate = new Date();
 
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
@@ -48,20 +49,25 @@ export default () => {
     const [sourceFullName, setSourceFullName] = useState("");
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
 
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
 
-    const [cookies] = useCookies(["token",]);
+    const [cookies] = useCookies(["token", ]);
 
     const axios = AxiosWebHelper.getAxios();
 
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
     const getMoovReportPayment = () => {
+
         setIsLoaded(false);
         setErrorData(null);
         axios.get(MOOV_REPORT_PAYMENT_URL, {
@@ -84,33 +90,48 @@ export default () => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             setIsLoaded(true)
             // console.log(result.data.result);
             setMoovReportPaymentList(result.data.result)
             setCount(result.data.count)
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true);
+                
                 } else {
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () =>
         setVersion((currentVersion) => {
             
             return currentVersion + 1;
+        
         });
 
     const onClearFilters = () => {
+
         setReference("");
         setSourceNumber("");
         setReconciliation('Tous')
@@ -121,17 +142,24 @@ export default () => {
         setSourceFullName('')
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     };
 
     useEffect(() => {
+
         getMoovReportPayment()
+    
     }, [currentPage, version]);
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -224,7 +252,9 @@ export default () => {
                         <Form.Select
                             value={country}
                             onChange={(event) => {
+
                                 setCountry(event.target.value);
+                            
                             }}
                         >
                             {MoovReportPaymentCountry.map((item) => (
@@ -242,7 +272,9 @@ export default () => {
                         <Form.Select
                             value={reconciliation}
                             onChange={(event) => {
+
                                 setReconciliation(event.target.value);
+                            
                             }}
                         >
                             {chooseReconciliation.map((item) => (
@@ -305,4 +337,5 @@ export default () => {
             }
         </>
     )
+
 }

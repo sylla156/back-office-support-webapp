@@ -19,7 +19,6 @@ services:
             - hub2_network
         entrypoint: /bin/sh -c "npm install && npm run start"
 
-
 networks:
     hub2_network:
         external: true

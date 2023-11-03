@@ -1,15 +1,19 @@
 import React from "react";
-import { Row, Col, Badge } from "@themesberg/react-bootstrap";
+import {Row, Col, Badge} from "@themesberg/react-bootstrap";
 
 export const WavePaymentMarkLikeRegularisedList = (props) => {
+
     const candidates = props.candidates
     if(candidates.length === 0) {
+
         return <p className="badge bg-danger h2 py-3">Pas de candidat</p>
+    
     }
 
     return(
         <>
             {candidates.map((candidate) => {
+
                 let {
                     id,
                     paymentId,
@@ -51,9 +55,9 @@ export const WavePaymentMarkLikeRegularisedList = (props) => {
                     regularisationDate,
                     finalStatus,
                     paymentProcessorReferenceRegularised,
-                  } = candidate
+                } = candidate
 
-                  const paymentStatusVariant =
+                const paymentStatusVariant =
                     paymentStatus === "successful" ||
                     paymentStatus === "success" ||
                     paymentStatus === "SUCCESSFUL" ||
@@ -62,114 +66,114 @@ export const WavePaymentMarkLikeRegularisedList = (props) => {
                         : paymentStatus === "pending" ||
                         paymentStatus === "Pending" ||
                         paymentStatus === "PENDING"
-                        ? "warning"
-                        : paymentStatus === "FAILLED" ||
+                            ? "warning"
+                            : paymentStatus === "FAILLED" ||
                         paymentStatus === "failed" ||
                         paymentStatus === "FAILED" ||
                         paymentStatus === "failled"
-                        ? "danger"
-                        : "primary";
+                                ? "danger"
+                                : "primary";
                 return(
                     <>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             paymentId
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                            <span className="h6 mb-0 text-start">{paymentId ? paymentId : ""}</span>
+                                <span className="h6 mb-0 text-start">{paymentId ? paymentId : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             paymentProcessorReference
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                            <span className="h6 mb-0 text-start">{paymentProcessorReference ? paymentProcessorReference : ""}</span>
+                                <span className="h6 mb-0 text-start">{paymentProcessorReference ? paymentProcessorReference : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             createdAt
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9} >
-                            <span className="h6 mb-0 text-start">{createdAt==="Invalid Date" ? "": createdAt}</span>
+                                <span className="h6 mb-0 text-start">{createdAt === "Invalid Date" ? "" : createdAt}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             merch_Id
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                            <span className="h6 mb-0 text-start">{merchantId ? merchantId : ""}</span>
+                                <span className="h6 mb-0 text-start">{merchantId ? merchantId : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             amount
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                            <span className="h6 mb-0 text-start">{amount} {currency}</span>
+                                <span className="h6 mb-0 text-start">{amount} {currency}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             téléphone
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                            <span className="h6 mb-0 text-start">{number ? number : ""}</span>
+                                <span className="h6 mb-0 text-start">{number ? number : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             gatewayId
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                            <span className="h6 mb-0 text-start">{gatewayId ? gatewayId : ""}</span>
+                                <span className="h6 mb-0 text-start">{gatewayId ? gatewayId : ""}</span>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             paymentStatus
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                            <Badge  bg={paymentStatusVariant}>
-                                <span className="h6 mb-0 text-start">{paymentStatus ? paymentStatus : ""}</span>
-                            </Badge>
+                                <Badge bg={paymentStatusVariant}>
+                                    <span className="h6 mb-0 text-start">{paymentStatus ? paymentStatus : ""}</span>
+                                </Badge>
                             </Col>
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                            <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                             provider
-                            </h4>
+                                </h4>
                             </Col>
 
                             <Col className="ms--2" lg={9}>
-                            <span className="h6 mb-0 text-start">{provider ? provider : ""}</span>
+                                <span className="h6 mb-0 text-start">{provider ? provider : ""}</span>
                             </Col>
                         </Row>
                     </>
@@ -178,4 +182,5 @@ export const WavePaymentMarkLikeRegularisedList = (props) => {
             })}
         </>
     )
+
 }

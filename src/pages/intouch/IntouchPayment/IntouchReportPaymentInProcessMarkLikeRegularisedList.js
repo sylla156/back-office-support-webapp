@@ -1,16 +1,17 @@
 import React from "react";
-import { Row, Col, Badge } from "@themesberg/react-bootstrap";
+import {Row, Col, Badge} from "@themesberg/react-bootstrap";
 
 export const IntouchReportPaymentInProcessMarkLikeRegularisedList = (props) => {
+
     let processorPayment = props.processorPayment;
 
-    const { id, sendingDate, partnerDistTransactionId, recipient, transactionMontant, transactionStatus } = processorPayment
+    const {id, sendingDate, partnerDistTransactionId, recipient, transactionMontant, transactionStatus} = processorPayment
 
     return (
         <>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         Id
                     </h4>
                 </Col>
@@ -23,7 +24,7 @@ export const IntouchReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         reference opérateur
                     </h4>
                 </Col>
@@ -36,7 +37,7 @@ export const IntouchReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         Date de transaction
                     </h4>
                 </Col>
@@ -49,7 +50,7 @@ export const IntouchReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         montant brut
                     </h4>
                 </Col>
@@ -62,7 +63,7 @@ export const IntouchReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                     Destinataire
                     </h4>
                 </Col>
@@ -75,7 +76,7 @@ export const IntouchReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
             <Row className="d-block d-xl-flex align-items-center">
                 <Col className="ms--2 " lg={3}>
-                    <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                    <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                         status
                     </h4>
                 </Col>
@@ -86,4 +87,5 @@ export const IntouchReportPaymentInProcessMarkLikeRegularisedList = (props) => {
             </Row>
         </>
     )
+
 }

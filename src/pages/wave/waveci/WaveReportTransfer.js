@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { format, addMinutes, parseISO } from "date-fns";
-import { FIRST_PAGE_INDEX, AddStatusConfirmationList, APPKEY, PAGE_SIZE, chooseReconciliation, WaveReportTransferCountry, WAVE_REPORT_TRANSFER_URL, WaveReportTransferType, GET_WAVE_REPORT_TRANSFER_TRANSACTION_TYPE_LIST, SelectDefaultValues, SelectWaveTransferDefaultValues } from "../../constante/Const";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {format, addMinutes, parseISO} from "date-fns";
+import {FIRST_PAGE_INDEX, AddStatusConfirmationList, APPKEY, PAGE_SIZE, chooseReconciliation, WaveReportTransferCountry, WAVE_REPORT_TRANSFER_URL, WaveReportTransferType, GET_WAVE_REPORT_TRANSFER_TRANSACTION_TYPE_LIST, SelectDefaultValues, SelectWaveTransferDefaultValues} from "../../constante/Const";
 import AlertDismissable from "../../../components/AlertDismissable";
 import {
     Col,
@@ -13,12 +13,13 @@ import {
     InputGroup,
 } from "@themesberg/react-bootstrap";
 import AxiosWebHelper from "../../../utils/axios-helper";
-import { Routes } from "../../../routes";
-import { WaveReportTransferImportFile } from "./components/WaveTranfert/WaveReportTransferImportFile";
+import {Routes} from "../../../routes";
+import {WaveReportTransferImportFile} from "./components/WaveTranfert/WaveReportTransferImportFile";
 import MakeWaveAndLocalTransferReconciliation from "./components/WaveTranfert/MakeWaveAndLocalTransferReconciliation";
-import { WaveReportTransferList } from "./components/WaveTranfert/WaveReportTransferList";
+import {WaveReportTransferList} from "./components/WaveTranfert/WaveReportTransferList";
 
 export default() => {
+
     const currentDate = new Date();
 
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
@@ -50,30 +51,38 @@ export default() => {
     const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
     const [version, setVersion] = useState(0);
 
-    const [cookies] = useCookies(["token","user"]);
+    const [cookies] = useCookies(["token", "user"]);
 
     const axios = AxiosWebHelper.getAxios();
 
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
 
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
     
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () =>
-    setVersion((currentVersion) => {
+        setVersion((currentVersion) => {
       
-      return currentVersion + 1;
-    });
+            return currentVersion + 1;
+        
+        });
 
-    const onClearFilters = () => { 
+    const onClearFilters = () => {
+ 
         setReference("");
         setReferenceHub2("");
         SetPhoneNumber("");
@@ -83,14 +92,16 @@ export default() => {
         setFee("");
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     };
 
     const getWaveReportTransfer = () => {
+
         setIsLoaded(false)
         setErrorData(null)
 
         axios
-            .get(WAVE_REPORT_TRANSFER_URL,{
+            .get(WAVE_REPORT_TRANSFER_URL, {
                 params:{
                     reference,
                     referenceHub2,
@@ -110,56 +121,85 @@ export default() => {
                     authenticationtoken: cookies.token
                 }
             }).then((result) => {
+
                 setIsLoaded(true)
                 setWaveReportTransferList(result.data.result)
                 setCount(result.data.count)
+            
             }).catch((error) => {
+
                 setIsLoaded(true)
                 if (error.response) {
+
                     if (error.response.status === 401) {
-                      setShouldLogin(true);
+
+                        setShouldLogin(true);
+                    
                     } else {
-                      setErrorData(error.response.data.message);
+
+                        setErrorData(error.response.data.message);
+                    
                     }
+                
                 }
+            
             })
+    
     }
 
     const getTransactionType = () => {
+
         setIsLoaded(false);
         setErrorData(null);
         axios
-            .get(GET_WAVE_REPORT_TRANSFER_TRANSACTION_TYPE_LIST,{
+            .get(GET_WAVE_REPORT_TRANSFER_TRANSACTION_TYPE_LIST, {
                 headers:{
                     AppKey: APPKEY,
                     authenticationtoken: cookies.token
                 }
             }).then((result) => {
+
                 setIsLoaded(true)
                 setTransactionTypeList(result.data)
+            
             }).catch((error) => {
+
                 setIsLoaded(true);
                 if (error.response) {
-                  if (error.response.status === 401) {
-                    setShouldLogin(true);
-                  } else {
-                    setErrorData(error.response.data.message);
-                  }
+
+                    if (error.response.status === 401) {
+
+                        setShouldLogin(true);
+                    
+                    } else {
+
+                        setErrorData(error.response.data.message);
+                    
+                    }
+                
                 }
+            
             });
+    
     }
 
     useEffect(() => {
+
         getWaveReportTransfer()
         getTransactionType()
+    
     }, [currentPage, version]);
 
     if(!cookies.token){
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return(
@@ -173,10 +213,10 @@ export default() => {
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
-                        type="text"
-                        placeholder="Date début"
-                        value={startDate}
-                        onChange={(event) => handleStartDate(event.target.value)}
+                            type="text"
+                            placeholder="Date début"
+                            value={startDate}
+                            onChange={(event) => handleStartDate(event.target.value)}
                         />
                     </InputGroup>
                 </Col>
@@ -185,24 +225,24 @@ export default() => {
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
-                        type="text"
-                        placeholder="Date fin"
-                        value={endDate}
-                        onChange={(event) => handleEndDate(event.target.value)}
+                            type="text"
+                            placeholder="Date fin"
+                            value={endDate}
+                            onChange={(event) => handleEndDate(event.target.value)}
                         />
                     </InputGroup>
                 </Col>
                 <Col xs={12} md={6} lg={3} className="mb-2 px-2">
                     <Form.Label>Transaction ID</Form.Label>
-                        <InputGroup>
-                            <InputGroup.Text></InputGroup.Text>
-                            <Form.Control
+                    <InputGroup>
+                        <InputGroup.Text></InputGroup.Text>
+                        <Form.Control
                             type="text"
                             placeholder="Transaction ID"
                             value={reference}
                             onChange={(event) => setReference(event.target.value)}
-                            />
-                        </InputGroup>
+                        />
+                    </InputGroup>
                 </Col>
 
                 <Col xs={12} md={6} lg={3} className="mb-2 px-2">
@@ -210,10 +250,10 @@ export default() => {
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
-                        type="text"
-                        placeholder="Référence"
-                        value={referenceHub2}
-                        onChange={(event) => setReferenceHub2(event.target.value)}
+                            type="text"
+                            placeholder="Référence"
+                            value={referenceHub2}
+                            onChange={(event) => setReferenceHub2(event.target.value)}
                         />
                     </InputGroup>
                 </Col>
@@ -223,10 +263,10 @@ export default() => {
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
                         <Form.Control
-                        type="text"
-                        placeholder="Numéro de téléphone"
-                        value={phoneNumber}
-                        onChange={(event) => SetPhoneNumber(event.target.value)}
+                            type="text"
+                            placeholder="Numéro de téléphone"
+                            value={phoneNumber}
+                            onChange={(event) => SetPhoneNumber(event.target.value)}
                         />
                     </InputGroup>
                 </Col>
@@ -234,16 +274,18 @@ export default() => {
                     <Form.Group id="country">
                         <Form.Label>Pays</Form.Label>
                         <Form.Select
-                        value={country}
-                        onChange={(event) => {
-                            setCountry(event.target.value);
-                        }}
+                            value={country}
+                            onChange={(event) => {
+
+                                setCountry(event.target.value);
+                            
+                            }}
                         >
-                        {WaveReportTransferCountry.map((item) => (
-                            <option key={item.id} value={item.country}>
-                            {item.name}
-                            </option>
-                        ))}
+                            {WaveReportTransferCountry.map((item) => (
+                                <option key={item.id} value={item.country}>
+                                    {item.name}
+                                </option>
+                            ))}
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -252,10 +294,12 @@ export default() => {
                     <Form.Group id="transactionType">
                         <Form.Label>Type de transaction</Form.Label>
                         <Form.Select
-                        value={transactionType}
-                        onChange={(event) => {
-                            setTransactiontype(event.target.value);
-                        }}
+                            value={transactionType}
+                            onChange={(event) => {
+
+                                setTransactiontype(event.target.value);
+                            
+                            }}
                         >
                             <option
                                 key={SelectWaveTransferDefaultValues.type}
@@ -276,16 +320,18 @@ export default() => {
                     <Form.Group id="reconciliation">
                         <Form.Label>Reconciliation</Form.Label>
                         <Form.Select
-                        value={reconciliation}
-                        onChange={(event) => {
-                            setReconciliation(event.target.value);
-                        }}
+                            value={reconciliation}
+                            onChange={(event) => {
+
+                                setReconciliation(event.target.value);
+                            
+                            }}
                         >
-                        {chooseReconciliation.map((item) => (
-                            <option key={item.id} value={item.reconciliation}>
-                            {item.reconciliation}
-                            </option>
-                        ))}
+                            {chooseReconciliation.map((item) => (
+                                <option key={item.id} value={item.reconciliation}>
+                                    {item.reconciliation}
+                                </option>
+                            ))}
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -293,17 +339,17 @@ export default() => {
                 <Col xs={12} md={3} lg={6} className="px-2 mt-4">
                     <div className="mt-3 mb-4">
                         <Button
-                        variant="outline-primary"
-                        type="button"
-                        onClick={onClearFilters}
+                            variant="outline-primary"
+                            type="button"
+                            onClick={onClearFilters}
                         >
                         Effacer
                         </Button>
                         <Button
-                        className="mx-2"
-                        variant="primary"
-                        type="button"
-                        onClick={() => getWaveReportTransfer()}
+                            className="mx-2"
+                            variant="primary"
+                            type="button"
+                            onClick={() => getWaveReportTransfer()}
                         >
                         Filtrer
                         </Button>
@@ -314,10 +360,10 @@ export default() => {
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4"></div>
             <div>
                 <AlertDismissable
-                message={errorData}
-                variant="danger"
-                show={!!errorData}
-                onClose={() => setErrorData(null)}
+                    message={errorData}
+                    variant="danger"
+                    show={!!errorData}
+                    onClose={() => setErrorData(null)}
                 />
                 <div></div>
             </div>
@@ -331,22 +377,23 @@ export default() => {
 
             {
                 isLoaded ? 
-                <Row>
-                    <WaveReportTransferList
-                        key={version}
-                        listInfo={waveReportTransferList}
-                        count={count}
-                        currentPage={currentPage}
-                        onPageChange={onPageChange}
-                        onRefresh={incrementVersion}
-                    />
-                </Row> : 
+                    <Row>
+                        <WaveReportTransferList
+                            key={version}
+                            listInfo={waveReportTransferList}
+                            count={count}
+                            currentPage={currentPage}
+                            onPageChange={onPageChange}
+                            onRefresh={incrementVersion}
+                        />
+                    </Row> : 
                     <div className="d-flex justify-content-center">
                         <Spinner animation="border " size="sm" role="status">
                             <span className="visually-hidden">Loading...</span>
                         </Spinner>
                     </div>
-                }
+            }
         </>
     )
+
 }

@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUnlockAlt, faHouseUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { Col, Row, Form, Button, Spinner, Container, InputGroup } from '@themesberg/react-bootstrap';
+import React, {useState, useEffect} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUnlockAlt, faHouseUser, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {Col, Row, Form, Button, Spinner, Container, InputGroup} from '@themesberg/react-bootstrap';
 
-import { useCookies } from 'react-cookie';
-import { APPKEY, URL_2FA_VERIFICATION } from "../constante/Const";
+import {useCookies} from 'react-cookie';
+import {APPKEY, URL_2FA_VERIFICATION} from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { Redirect } from "react-router-dom";
-import { Routes } from "../../routes";
+import {Redirect} from "react-router-dom";
+import {Routes} from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
 import QRCode from 'qrcode';
 
 export default function VerifyAuth(props) {
+
     const [token, setToken] = useState('');
     const [isLoginSuccess, setIsLoginSuccess] = useState(false);
     const [tOptUrl, setTOptUrl] = useState('');
@@ -22,20 +23,28 @@ export default function VerifyAuth(props) {
     const [isLoading, setIsLoading] = useState(false)
 
     const handleOnTokenChange = (event) => {
+
         setToken(event.target.value);
+    
     }
     const axios = AxiosWebHelper.getAxios();
 
     const logo = require('../../assets/img/technologies/logo_o.png')
 
     const generateQR = (is2FAActive) => {
+
         if(is2FAActive === false){
+
             let str = props.location.state.tOtpAuthUrl
             QRCode.toCanvas(document.getElementById('canvas'), str, function (error) {
+
                 if (error) console.error(error)
-                //console.log('success!')
+                // console.log('success!')
+            
             })
+        
         }
+    
     }
 
     const buttonStyle = {
@@ -51,30 +60,45 @@ export default function VerifyAuth(props) {
     }
 
     const getText = (isActive2FA) => {
+
         if(isActive2FA === false){
+
             setText("Veuillez scanner le code QR ci-dessous à partir de votre application Authenticator et saissisez le code dans la zone ci-dessous")
+        
         }else{
+
             setText("Veuillez saisir le code OTP depuis votre application Authenticator")
+        
         }
+    
     }
 
     const showQrCode = (isActive2FA) => {
+
         if(isActive2FA === false){
+
             return(
-                <div style={{display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
                     <canvas id="canvas" align="center" />
                 </div>
             )
+        
         }
+    
     }
 
     const handleKeyPress = (event) => {
+
         if (event.key === 'Enter') {
+
             event.preventDefault();
+        
         }
+    
     };
 
     const VerifyHub2Support2FAToken = () => {
+
         setError(null)
         setIsLoading(true)
         axios.post(
@@ -90,26 +114,39 @@ export default function VerifyAuth(props) {
             }
         )
             .then((result) => {
+
                 if (result.data.status === 200) {
-                    setCookie("user",result.data.user);
+
+                    setCookie("user", result.data.user);
                     setIsLoginSuccess(true)
+                
                 }
+            
             }).catch((error) => {
+
                 setIsLoading(false)
                 console.log(error.response);
                 setError(error.response.data.message)
+            
             })
+    
     }
 
     useEffect(() => {
+
         if(cookies.user){
+
             getText(cookies.user.isActive2FA)
             generateQR(cookies.user.isActive2FA)
+        
         }
+    
     }, [])
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     return (

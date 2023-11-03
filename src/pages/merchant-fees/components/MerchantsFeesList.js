@@ -1,15 +1,16 @@
-import { Card, Table, Badge, Button, Spinner, Modal, Form } from "@themesberg/react-bootstrap";
-import React, { useState } from "react";
-import { TablePagination } from "../../../components/TablePagination";
-import { APPLY_MERCHANT_FEES_URL, APPKEY, MERCHANTS_FEES_URL } from "../../constante/Const";
+import {Card, Table, Badge, Button, Spinner, Modal, Form} from "@themesberg/react-bootstrap";
+import React, {useState} from "react";
+import {TablePagination} from "../../../components/TablePagination";
+import {APPLY_MERCHANT_FEES_URL, APPKEY, MERCHANTS_FEES_URL} from "../../constante/Const";
 import AxiosWebHelper from "../../../utils/axios-helper";
-import { useCookies } from "react-cookie";
+import {useCookies} from "react-cookie";
 import AlertDismissable from "../../../components/AlertDismissable";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPaperclip} from "@fortawesome/free-solid-svg-icons";
 
 
 export const MerchantsFeesList = (props) => {
+
     const {
         listInfo,
         count,
@@ -50,9 +51,11 @@ export const MerchantsFeesList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MerchantsFeesList.TableRow = (props) => {
+
     const {
         id,
         type,
@@ -74,14 +77,17 @@ MerchantsFeesList.TableRow = (props) => {
     const [errorData, setErrorData] = useState(null);
     const [show, setShow] = useState(false);
     const axios = AxiosWebHelper.getAxios();
-    const [cookies] = useCookies(["token","user"])
+    const [cookies] = useCookies(["token", "user"])
     const userCanCreateMerchantFees = cookies.user.canAddMerchantFee
 
     const handleShow = () => {
+
         setShow(true);
+    
     }
 
     const applyMerchantFees = (id) => {
+
         if (!id) return 'Fees id is required';
 
         setIsLoading(true)
@@ -92,25 +98,37 @@ MerchantsFeesList.TableRow = (props) => {
                 AppKey: APPKEY,
                 authenticationtoken: cookies.token
             },
-            params: { id }
+            params: {id}
         }).then((result) => {
+
             console.log("result", result);
             setIsLoading(false)
             // handleClose()
             // incrementVersion()
+        
         }).catch((error) => {
+
             setIsLoading(false)
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true)
+                
                 } else {
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const deleteMerchantFees = async(id) => {
+
         if (!id) return 'Fees id is required';
 
         setIsLoading(true)
@@ -122,18 +140,29 @@ MerchantsFeesList.TableRow = (props) => {
                 authenticationtoken: cookies.token
             },
         }).then((_result) => {
+
             setIsLoading(false)
             onRefresh()
+        
         }).catch((error) => {
+
             setIsLoading(false)
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true)
+                
                 } else {
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     return (
@@ -194,7 +223,9 @@ MerchantsFeesList.TableRow = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
+
                     setShow(false);
+                
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -220,14 +251,20 @@ MerchantsFeesList.TableRow = (props) => {
                         variant="primary"
                         color=""
                         onClick={() => {
+
                             setShow(false);
+                        
                         }}
                     >
                         Fermer
                     </Button>
                     <Button
                         variant="danger"
-                        onClick={() => { deleteMerchantFees(id) }}
+                        onClick={() => {
+
+                            deleteMerchantFees(id) 
+
+                        }}
                     >
                         Supprimer
                     </Button>
@@ -244,4 +281,5 @@ MerchantsFeesList.TableRow = (props) => {
             </Modal>
         </>
     )
+
 }

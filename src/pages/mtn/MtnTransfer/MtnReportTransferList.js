@@ -1,9 +1,10 @@
-import { Card, Table, Badge } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
-import { TablePagination } from "../../../components/TablePagination";
+import {TablePagination} from "../../../components/TablePagination";
 
 
 export const MtnReportTransferList = (props) => {
+
     const {
         listInfo,
         count,
@@ -57,9 +58,11 @@ export const MtnReportTransferList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MtnReportTransferList.TableRow = (props) => {
+
     const { 
         transactionDate,
         id,
@@ -169,4 +172,5 @@ MtnReportTransferList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { format, addMinutes, parseISO } from "date-fns";
-import { Routes } from "../../routes";
-import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, chooseReconciliation, MtnReportTransferCountry, MTN_REPORT_TRANSFER_URL } from "../constante/Const";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {format, addMinutes, parseISO} from "date-fns";
+import {Routes} from "../../routes";
+import {FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, chooseReconciliation, MtnReportTransferCountry, MTN_REPORT_TRANSFER_URL} from "../constante/Const";
 import AlertDismissable from "../../components/AlertDismissable";
-import { MtnReportTransferList } from "./MtnTransfer/MtnReportTransferList";
+import {MtnReportTransferList} from "./MtnTransfer/MtnReportTransferList";
 
 import {
     Col,
@@ -17,10 +17,11 @@ import {
     FormControl
 } from "@themesberg/react-bootstrap";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { MtnReportTransferImportFile } from "./MtnTransfer/MtnReportTransferImportFile";
-import { MakeMtnAndLocalTransferReconciliation } from "./MtnTransfer/MakeMtnAndLocalTransferReconciliation";
+import {MtnReportTransferImportFile} from "./MtnTransfer/MtnReportTransferImportFile";
+import {MakeMtnAndLocalTransferReconciliation} from "./MtnTransfer/MakeMtnAndLocalTransferReconciliation";
 
 export default () => {
+
     const currentDate = new Date()
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
     const formattedCurrentTime = format(currentDate, "HH:mm:ss");
@@ -44,23 +45,28 @@ export default () => {
     const [maxValue, setMaxValue] = useState();
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
 
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
 
-    const [cookies] = useCookies(["token",]);
+    const [cookies] = useCookies(["token", ]);
 
     const axios = AxiosWebHelper.getAxios();
 
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
     const getMtnReportTransfer = () => {
+
         setIsLoaded(false);
         setErrorData(null);
-        axios.get(MTN_REPORT_TRANSFER_URL,{
+        axios.get(MTN_REPORT_TRANSFER_URL, {
             params: {
                 reference,
                 recipientNumber,
@@ -79,34 +85,51 @@ export default () => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             console.log("result", result.data.result);
             setIsLoaded(true)
             setMtnReportTransferList(result.data.result)
             setCount(result.data.count)
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             if(error.response){
+
                 if(error.response.message === 401){
+
                     setShouldLogin(true)
+                
                 }else{
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () => {
+
         setVersion((currentVersion) => {
             
             return currentVersion + 1;
+        
         });
+    
     }
 
     const onClearFilters = () => {
+
         setReference("");
         setReconciliation('Tous')
         setCountry("CI");
@@ -115,20 +138,26 @@ export default () => {
         setMaxValue("")
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     };
 
     useEffect(() => {
+
         getMtnReportTransfer()
+    
     }, [currentPage, version]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
 
-
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return(
@@ -208,7 +237,9 @@ export default () => {
                         <Form.Select
                             value={country}
                             onChange={(event) => {
+
                                 setCountry(event.target.value);
+                            
                             }}
                         >
                             {MtnReportTransferCountry.map((item) => (
@@ -226,7 +257,9 @@ export default () => {
                         <Form.Select
                             value={reconciliation}
                             onChange={(event) => {
+
                                 setReconciliation(event.target.value);
+                            
                             }}
                         >
                             {chooseReconciliation.map((item) => (
@@ -289,4 +322,5 @@ export default () => {
             }
         </>
     )
+
 }

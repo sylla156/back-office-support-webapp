@@ -4,12 +4,12 @@ import {
     Nav,
     Navbar,
     Container,
-    Row,Col
+    Row, Col
 } from "@themesberg/react-bootstrap";
 import {useCookies} from "react-cookie";
 import SplitString from "../utils/splitString";
 import Logout from "../UserProfile/Logout";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 export default (props) => {
 
@@ -32,7 +32,9 @@ export default (props) => {
     };*/
 
     const goBack = () => {
+
         history.goBack()
+    
     }
 
     const [cookies, , ] = useCookies(["token", "id", "user"]);

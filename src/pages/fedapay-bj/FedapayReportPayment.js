@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { format, addMinutes, parseISO } from "date-fns";
-import { Routes } from "../../routes";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {format, addMinutes, parseISO} from "date-fns";
+import {Routes} from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
-import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, chooseReconciliation, FEDAPAY_REPORT_PAYMENT_URL } from "../constante/Const"
+import {FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, chooseReconciliation, FEDAPAY_REPORT_PAYMENT_URL} from "../constante/Const"
 import AxiosWebHelper from "../../utils/axios-helper";
 import {
     Col,
@@ -15,11 +15,12 @@ import {
     Button,
     InputGroup,
 } from "@themesberg/react-bootstrap";
-import { FedapayReportPaymentImportFile } from "./FedapayPayments/FedapayReportPaymentImportFile";
-import { FedapayReportPaymentList } from "./FedapayPayments/FedapayReportPaymentList";
-import { MakeFedapayAndLocalPaymentReconciliation } from "./FedapayPayments/FedapayMakeORAndLocalPaymentReconciliation";
+import {FedapayReportPaymentImportFile} from "./FedapayPayments/FedapayReportPaymentImportFile";
+import {FedapayReportPaymentList} from "./FedapayPayments/FedapayReportPaymentList";
+import {MakeFedapayAndLocalPaymentReconciliation} from "./FedapayPayments/FedapayMakeORAndLocalPaymentReconciliation";
 
 export default () => {
+
     const currentDate = new Date();
 
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
@@ -45,20 +46,25 @@ export default () => {
     const [reconciliation, setReconciliation] = useState("Tous");
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
 
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
 
-    const [cookies] = useCookies(["token",]);
+    const [cookies] = useCookies(["token", ]);
 
     const axios = AxiosWebHelper.getAxios();
 
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
     const getFedapayReportPayment = () => {
+
         setIsLoaded(false)
         setErrorData(null)
         axios.get(FEDAPAY_REPORT_PAYMENT_URL, {
@@ -79,42 +85,64 @@ export default () => {
                 montantMax
             }
         }).then((response) => {
+
             setIsLoaded(true)
             setFedapayReportPaymentList(response.data.result)
             setCount(response.data.count)
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true)
+                
                 } else {
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () => {
+
         setVersion((currentVersion) => {
 
             return currentVersion + 1;
+        
         });
+    
     }
 
     useEffect(() => {
+
         getFedapayReportPayment()
+    
     }, [currentPage, version]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -192,7 +220,9 @@ export default () => {
                         <Form.Select
                             value={reconciliation}
                             onChange={(event) => {
+
                                 setReconciliation(event.target.value);
+                            
                             }}
                         >
                             {chooseReconciliation.map((item) => (
@@ -252,4 +282,5 @@ export default () => {
             }
         </>
     )
+
 }

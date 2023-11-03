@@ -1,11 +1,12 @@
-import { Card, Table, Badge, Button, Spinner, Form, InputGroup } from "@themesberg/react-bootstrap";
-import React, { useState } from "react";
-import { useCookies } from "react-cookie";
-import { TablePagination } from "../../components/TablePagination";
-import { APPKEY, APPLY_RIGHTS_UPDATE } from "../constante/Const";
+import {Card, Table, Badge, Button, Spinner, Form, InputGroup} from "@themesberg/react-bootstrap";
+import React, {useState} from "react";
+import {useCookies} from "react-cookie";
+import {TablePagination} from "../../components/TablePagination";
+import {APPKEY, APPLY_RIGHTS_UPDATE} from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
 
 export const ListUsers = (props) => {
+
     const {
         listInfo,
         count,
@@ -46,9 +47,11 @@ export const ListUsers = (props) => {
             </Card>
         </>
     )
+
 }
 
 ListUsers.TableRow = (props) => {
+
     const {
         id,
         name,
@@ -79,10 +82,13 @@ ListUsers.TableRow = (props) => {
     const [cookies] = useCookies(["token"])
 
     const convertStringToBoolean = (str) => {
+
         return str === "true";
+    
     }
 
     const applyChanges = () => {
+
         setIsLoading(true);
         setErrorData(null);
         const data = {
@@ -102,20 +108,33 @@ ListUsers.TableRow = (props) => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             if(result.data.status === "success") {
+
                 setIsLoading(false);
                 onRefresh();
+            
             }
+        
         }).catch((error) => {
+
             setIsLoading(false);
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true);
+                
                 } else {
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
 
     return (
@@ -217,4 +236,5 @@ ListUsers.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

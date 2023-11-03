@@ -1,12 +1,13 @@
-import { Card, Table, Badge, Button, Spinner, Modal } from "@themesberg/react-bootstrap";
-import React, { useState } from "react";
-import { useCookies } from "react-cookie";
-import { TablePagination } from "../../../components/TablePagination";
+import {Card, Table, Badge, Button, Spinner, Modal} from "@themesberg/react-bootstrap";
+import React, {useState} from "react";
+import {useCookies} from "react-cookie";
+import {TablePagination} from "../../../components/TablePagination";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import AlertDismissable from "../../../components/AlertDismissable";
-import { MERCHANTS_LIVE_FEES_URL, APPKEY } from "../../constante/Const";
+import {MERCHANTS_LIVE_FEES_URL, APPKEY} from "../../constante/Const";
 
 export const MerchantsLiveFees = (props) => {
+
     const {
         listInfo,
         count,
@@ -51,9 +52,11 @@ export const MerchantsLiveFees = (props) => {
             </Card>
         </>
     )
+
 }
 
 MerchantsLiveFees.TableRow = (props) => {
+
     const {
         id,
         type,
@@ -72,40 +75,54 @@ MerchantsLiveFees.TableRow = (props) => {
     const [errorData, setErrorData] = useState(null);
     const [show, setShow] = useState(false);
     const axios = AxiosWebHelper.getAxios();
-    const [cookies] = useCookies(["token","user"])
+    const [cookies] = useCookies(["token", "user"])
 
     const handleShow = () => {
+
         setShow(true);
+    
     }
 
     const handleClose = () => {
+
         setShow(false);
+    
     }
 
     const deleteMerchantFee = async(id) => {
+
         if(!id) return 'Fee id is required'
 
         setIsLoading(true)
         setErrorData(null)
         const url = `${MERCHANTS_LIVE_FEES_URL}/${id}`;
-        await axios.delete(url,{
+        await axios.delete(url, {
             headers:{
                 AppKey: APPKEY,
                 authenticationtoken: cookies.token
             },
         }).then((result) => {
+
             console.log(result);
             handleClose()
             setIsLoading(false)
             // onRefresh()
+        
         }).catch((error) => {
+
             setIsLoading(false)
             if(error.response.status === 401){
+
                 setShouldLogin(true)
+            
             }else{
+
                 setErrorData(error.response.data.message)
+            
             }
+        
         })
+    
     }
 
     return(
@@ -138,18 +155,18 @@ MerchantsLiveFees.TableRow = (props) => {
                 <td>
                     <>
                         {isLoading ? (
-                                <div className="d-flex justify-content-center">
-                                    <Spinner animation="border " size="sm" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </Spinner>
-                                </div>
-                            ) : (
-                                <>
-                                    <td>
-                                        <Button variant="danger" className="ms-2" onClick={() => handleShow()} disabled={!userCanDeleteMerchantFee}>Supprimer</Button>
-                                    </td>
-                                </>
-                            )}
+                            <div className="d-flex justify-content-center">
+                                <Spinner animation="border " size="sm" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </Spinner>
+                            </div>
+                        ) : (
+                            <>
+                                <td>
+                                    <Button variant="danger" className="ms-2" onClick={() => handleShow()} disabled={!userCanDeleteMerchantFee}>Supprimer</Button>
+                                </td>
+                            </>
+                        )}
                     </>
                 </td>
             </tr>
@@ -157,7 +174,9 @@ MerchantsLiveFees.TableRow = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
+
                     handleClose()
+                
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -183,14 +202,20 @@ MerchantsLiveFees.TableRow = (props) => {
                         variant="primary"
                         color=""
                         onClick={() => {
+
                             handleClose();
+                        
                         }}
                     >
                         Fermer
                     </Button>
                     <Button
                         variant="danger"
-                        onClick={() => { deleteMerchantFee(id) }}
+                        onClick={() => {
+
+                            deleteMerchantFee(id) 
+
+                        }}
                     >
                         Supprimer
                     </Button>
@@ -208,4 +233,5 @@ MerchantsLiveFees.TableRow = (props) => {
         </>
         
     )
+
 }

@@ -1,16 +1,17 @@
-import { Col, Form, InputGroup, Row, Spinner, Button } from "@themesberg/react-bootstrap";
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
+import {Col, Form, InputGroup, Row, Spinner, Button} from "@themesberg/react-bootstrap";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, PAGE_SIZE, SelectDefaultValues, FIRST_PAGE_INDEX, StatusConfirmationList, STATUS_CONFIRMATION_PAYMENT_LIST } from "../constante/Const";
-import { Redirect } from "react-router-dom";
-import { Routes } from "../../routes";
-import { format, addMinutes, subDays } from "date-fns";
+import {APPKEY, PAGE_SIZE, SelectDefaultValues, FIRST_PAGE_INDEX, StatusConfirmationList, STATUS_CONFIRMATION_PAYMENT_LIST} from "../constante/Const";
+import {Redirect} from "react-router-dom";
+import {Routes} from "../../routes";
+import {format, addMinutes, subDays} from "date-fns";
 import AlertDismissable from "../../components/AlertDismissable";
-import { UpdateLocalData } from "../../components/statusConfirmation/UpdateLocalData";
-import { StatusConfirmationReportingList } from "./StatusConfirmationReportingList";
+import {UpdateLocalData} from "../../components/statusConfirmation/UpdateLocalData";
+import {StatusConfirmationReportingList} from "./StatusConfirmationReportingList";
 
 export default () => {
+
     const currentDate = new Date();
 
     const startDateToUse = subDays(currentDate, 2);
@@ -37,10 +38,14 @@ export default () => {
     const [version, setVersion] = useState(0);
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     }
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
     const [cookies] = useCookies(["token", "user"]);
 
@@ -54,6 +59,7 @@ export default () => {
     const exportData = () => { }
 
     const statusConfirmationReportingList = async() => {
+
         setIsLoaded(false);
         setErrorData(null)
         await axios.get(STATUS_CONFIRMATION_PAYMENT_LIST, {
@@ -72,6 +78,7 @@ export default () => {
                 authenticationtoken: cookies.token,
             },
         }).then((result) => {
+
             setIsLoaded(true);
             // if(gatewayId){
             //     const data = result.data.transactionForceStatus
@@ -83,46 +90,70 @@ export default () => {
             // }
             setTransactionForceStatus(result.data.transactionForceStatus);
             setCount(result.data.count);
+        
         }).catch((error) => {
+
             setIsLoaded(true);
             if(error.response){
+
                 if(error.response.status === 401){
+
                     setShouldLogin(true);
+                
                 }else{
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     }
 
     const incrementVersion = () => {
+
         setVersion((currentVersion) => {
+
             return currentVersion + 1;
+        
         });
+    
     }
 
     const onClearFilters = () => {
+
         setMerchantId("");
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
         setGetwayId("")
         setStatus("processing");
+    
     };
 
     useEffect(() => {
+
         statusConfirmationReportingList();
+    
     }, [currentPage, version]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -158,7 +189,9 @@ export default () => {
                         <Form.Select
                             value={status}
                             onChange={(event) => {
+
                                 setStatus(event.target.value);
+                            
                             }}
                         >
                             {StatusConfirmationList.map((item) => (
@@ -269,4 +302,5 @@ export default () => {
 
         </>
     )
+
 }

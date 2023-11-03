@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { IntouchTransferMarkLikeRegularised } from "./IntouchTransferMarkLikeRegularised";
-import { IntouchReportTransferInProcessMarkLikeRegularisedList } from "./IntouchReportTransferInProcessMarkLikeRegularisedList";
+import {IntouchTransferMarkLikeRegularised} from "./IntouchTransferMarkLikeRegularised";
+import {IntouchReportTransferInProcessMarkLikeRegularisedList} from "./IntouchReportTransferInProcessMarkLikeRegularisedList";
 
 export const MarkIntouchTransferLikeRegularisedList = (props) => {
-    let { listInfo, onRefresh, userCanAddIntouchTransferRegularised } = props
+
+    let {listInfo, onRefresh, userCanAddIntouchTransferRegularised} = props
 
     return (
         <>
@@ -19,6 +20,7 @@ export const MarkIntouchTransferLikeRegularisedList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((datum, index) => {
+
                                 return (
                                     <MarkIntouchTransferLikeRegularisedList.TableRow
                                         key={`transaction-${index}`}
@@ -28,6 +30,7 @@ export const MarkIntouchTransferLikeRegularisedList = (props) => {
                                         userCanAddIntouchTransferRegularised={userCanAddIntouchTransferRegularised}
                                     />
                                 );
+                            
                             })}
                         </tbody>
                     </Table>
@@ -36,9 +39,11 @@ export const MarkIntouchTransferLikeRegularisedList = (props) => {
 
         </>
     )
+
 }
 
 MarkIntouchTransferLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorTransfer,
         candidates,
@@ -64,4 +69,5 @@ MarkIntouchTransferLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { FreeTransferMarkLikeRegularised } from "./FreeTransferMarkLikeRegularised";
-import { FreeReportTransferInProcessMarkLikeRegularisedList } from "./FreeReportTransferInProcessMarkLikeRegularisedList";
+import {FreeTransferMarkLikeRegularised} from "./FreeTransferMarkLikeRegularised";
+import {FreeReportTransferInProcessMarkLikeRegularisedList} from "./FreeReportTransferInProcessMarkLikeRegularisedList";
 
 export const MarkFreeTransferLikeRegularisedList = (props) => {
-    let { listInfo, onRefresh, userCanAddFreeTransferRegularised } = props
+
+    let {listInfo, onRefresh, userCanAddFreeTransferRegularised} = props
 
     return (
         <>
@@ -19,6 +20,7 @@ export const MarkFreeTransferLikeRegularisedList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((datum, index) => {
+
                                 return (
                                     <MarkFreeTransferLikeRegularisedList.TableRow
                                         key={`transaction-${index}`}
@@ -28,6 +30,7 @@ export const MarkFreeTransferLikeRegularisedList = (props) => {
                                         userCanAddFreeTransferRegularised={userCanAddFreeTransferRegularised}
                                     />
                                 );
+                            
                             })}
                         </tbody>
                     </Table>
@@ -35,9 +38,11 @@ export const MarkFreeTransferLikeRegularisedList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MarkFreeTransferLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorTransfer,
         candidates,
@@ -63,4 +68,5 @@ MarkFreeTransferLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

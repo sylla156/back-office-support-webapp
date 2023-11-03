@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { IntouchPaymentMarkLikeRegularised } from "./IntouchPaymentMarkRegularised";
-import { IntouchReportPaymentInProcessMarkLikeRegularisedList } from "./IntouchReportPaymentInProcessMarkLikeRegularisedList";
+import {IntouchPaymentMarkLikeRegularised} from "./IntouchPaymentMarkRegularised";
+import {IntouchReportPaymentInProcessMarkLikeRegularisedList} from "./IntouchReportPaymentInProcessMarkLikeRegularisedList";
 
 export const MarkIntouchPaymentLikeRegularisedList = (props) => {
-    let { listInfo, onRefresh, userCanAddIntouchPaymentRegularised } = props
+
+    let {listInfo, onRefresh, userCanAddIntouchPaymentRegularised} = props
 
     return (
         <>
@@ -19,6 +20,7 @@ export const MarkIntouchPaymentLikeRegularisedList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((datum, index) => {
+
                                 return (
                                     <MarkIntouchPaymentLikeRegularisedList.TableRow
                                         key={`transaction-${index}`}
@@ -28,6 +30,7 @@ export const MarkIntouchPaymentLikeRegularisedList = (props) => {
                                         userCanAddIntouchPaymentRegularised={userCanAddIntouchPaymentRegularised}
                                     />
                                 );
+                            
                             })}
                         </tbody>
                     </Table>
@@ -36,9 +39,11 @@ export const MarkIntouchPaymentLikeRegularisedList = (props) => {
 
         </>
     )
+
 }
 
 MarkIntouchPaymentLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorPayment,
         candidates,
@@ -66,4 +71,5 @@ MarkIntouchPaymentLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

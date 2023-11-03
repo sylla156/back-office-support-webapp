@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { MtnPaymentMarkLikeRegularised } from "./MtnPaymentMarkLikeRegularised";
-import { MtnReportPaymentInProcessMarkLikeRegularisedList } from "./MtnReportPaymentInProcessMarkLikeRegularisedList";
+import {MtnPaymentMarkLikeRegularised} from "./MtnPaymentMarkLikeRegularised";
+import {MtnReportPaymentInProcessMarkLikeRegularisedList} from "./MtnReportPaymentInProcessMarkLikeRegularisedList";
 
 export const MarkMtnPaymentLikeRegularisedList = (props) => {
-    let { listInfo, onRefresh, userCanAddMtnPaymentRegularised } = props
+
+    let {listInfo, onRefresh, userCanAddMtnPaymentRegularised} = props
 
     return (
         <>
@@ -19,6 +20,7 @@ export const MarkMtnPaymentLikeRegularisedList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((datum, index) => {
+
                                 return (
                                     <MarkMtnPaymentLikeRegularisedList.TableRow
                                         key={`transaction-${index}`}
@@ -28,6 +30,7 @@ export const MarkMtnPaymentLikeRegularisedList = (props) => {
                                         userCanAddMtnPaymentRegularised={userCanAddMtnPaymentRegularised}
                                     />
                                 );
+                            
                             })}
                         </tbody>
                     </Table>
@@ -35,9 +38,11 @@ export const MarkMtnPaymentLikeRegularisedList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MarkMtnPaymentLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorPayment,
         candidates,
@@ -63,4 +68,5 @@ MarkMtnPaymentLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { FreePaymentMarkLikeRegularised } from "./FreePaymentMarkLikeRegularised";
-import { FreeReportPaymentInProcessMarkLikeRegularisedList } from "./FreeReportPaymentInProcessMarkLikeRegularisedList";
+import {FreePaymentMarkLikeRegularised} from "./FreePaymentMarkLikeRegularised";
+import {FreeReportPaymentInProcessMarkLikeRegularisedList} from "./FreeReportPaymentInProcessMarkLikeRegularisedList";
 
 export const MarkFreePaymentLikeRegularisedList = (props) => {
-    let { listInfo, onRefresh, userCanAddFreePaymentRegularised } = props
+
+    let {listInfo, onRefresh, userCanAddFreePaymentRegularised} = props
 
     return (
         <>
@@ -19,6 +20,7 @@ export const MarkFreePaymentLikeRegularisedList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((datum, index) => {
+
                                 return (
                                     <MarkFreePaymentLikeRegularisedList.TableRow
                                         key={`transaction-${index}`}
@@ -28,6 +30,7 @@ export const MarkFreePaymentLikeRegularisedList = (props) => {
                                         userCanAddFreePaymentRegularised={userCanAddFreePaymentRegularised}
                                     />
                                 );
+                            
                             })}
                         </tbody>
                     </Table>
@@ -35,9 +38,11 @@ export const MarkFreePaymentLikeRegularisedList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MarkFreePaymentLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorPayment,
         candidates,
@@ -63,4 +68,5 @@ MarkFreePaymentLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

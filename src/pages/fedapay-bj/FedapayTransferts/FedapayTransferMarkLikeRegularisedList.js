@@ -1,16 +1,20 @@
-import { Row, Col, Badge } from "@themesberg/react-bootstrap";
+import {Row, Col, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
 
 
 export const FedapayTransferMarkLikeRegularisedList = (props) => {
+
     const candidates = props.candidates
     if (candidates.length === 0) {
+
         return <p className="badge bg-danger h2 py-3">Pas de candidat</p>
+    
     }
 
     return (
         <>
             {candidates.map((candidate) => {
+
                 let {
                     id,
                     merchantId,
@@ -68,7 +72,7 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                     <>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     paymentProcessorReference
                                 </h4>
                             </Col>
@@ -79,7 +83,7 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     createdAt
                                 </h4>
                             </Col>
@@ -90,7 +94,7 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     merch_Id
                                 </h4>
                             </Col>
@@ -101,7 +105,7 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     amount
                                 </h4>
                             </Col>
@@ -112,7 +116,7 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     téléphone
                                 </h4>
                             </Col>
@@ -123,7 +127,7 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     gatewayId
                                 </h4>
                             </Col>
@@ -134,7 +138,7 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     transferStatus
                                 </h4>
                             </Col>
@@ -147,7 +151,7 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                         </Row>
                         <Row className="d-block d-xl-flex align-items-center">
                             <Col className="ms--2 " lg={3}>
-                                <h4 className="h6 mb-0 text-end" style={{ color: "#8a8a86" }}>
+                                <h4 className="h6 mb-0 text-end" style={{color: "#8a8a86"}}>
                                     provider
                                 </h4>
                             </Col>
@@ -158,7 +162,9 @@ export const FedapayTransferMarkLikeRegularisedList = (props) => {
                         </Row>
                     </>
                 )
+            
             })}
         </>
     )
+
 }

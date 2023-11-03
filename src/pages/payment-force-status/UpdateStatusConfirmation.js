@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
     Col,
     Row,
@@ -11,16 +11,17 @@ import {
     Dropdown,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { APPKEY, SelectDefaultValues, AddStatusConfirmationList, UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST } from "../constante/Const";
+import {APPKEY, SelectDefaultValues, AddStatusConfirmationList, UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST} from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { Routes } from "../../routes";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {Routes} from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
 import SplitString from "../../utils/splitString";
-import { PaymentSummary } from "./PaymentSummary";
+import {PaymentSummary} from "./PaymentSummary";
 
 export const UpdateStatusConfirmation = (props) => {
+
     const {
         statusConfirmation,
         statusVariantColor,
@@ -53,16 +54,19 @@ export const UpdateStatusConfirmation = (props) => {
     const sessionUser = cookies.user;
 
     const setData = () => {
-        const { processorReference, description, confirmedStatus } = statusConfirmation
+
+        const {processorReference, description, confirmedStatus} = statusConfirmation
 
         setNewConfirmedStatus(confirmedStatus)
         setNewProcessorReference(processorReference)
         setNewDescription(description)
+    
     }
 
     const axios = AxiosWebHelper.getAxios();
 
     const updateStatusConfirmation = () => {
+
         if (isLoading) return;
 
         setIsLoading(true);
@@ -82,37 +86,55 @@ export const UpdateStatusConfirmation = (props) => {
                 },
             }
         ).then((result) => {
+
             setIsLoading(false);
             handleClose()
             onRefresh();
+        
         }).catch((error) => {
+
             setIsLoading(false);
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true);
+                
                 } else {
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const handleShow = () => {
+
         setShow(true);
+    
     }
 
     const handleClose = () => {
+
         setData();
         setErrorData(null);
         setShow(false);
         setIsLoading(false);
+    
     }
 
     const handlePatchStatusConfirmation = () => {
+
         updateStatusConfirmation();
+    
     }
 
     const isFormValid = () => {
+
         if (!newConfirmedStatus) return false;
         if (
             newConfirmedStatus === "successful" &&
@@ -123,26 +145,35 @@ export const UpdateStatusConfirmation = (props) => {
         if (newDescription.trim().length === 0) return false;
 
         return true;
+    
     }
 
     const canUpdate = () => {
+
         if (userCanForceStatus && sessionUser.id === user.id) return true;
 
         return false;
+    
     }
     const canDelete = () => canUpdate();
     const canEditForm = () => canUpdate();
 
     useEffect(() => {
+
         setData();
+    
     }, [processorReference, description, confirmedStatus]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     console.log("confirmedStatus ", confirmedStatus, "processorReference ", "user.name ", user.name);
@@ -167,7 +198,7 @@ export const UpdateStatusConfirmation = (props) => {
                     <span
                         title="{user.name}"
                         className="text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary"
-                        style={{ width: 10, height: 10 }}
+                        style={{width: 10, height: 10}}
                     >
                         {SplitString.takeFirstLetterOfEachString(user.name)}
                     </span>
@@ -180,7 +211,9 @@ export const UpdateStatusConfirmation = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
+
                     handleClose(false);
+                
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -203,7 +236,9 @@ export const UpdateStatusConfirmation = (props) => {
                                                 disabled={!canEditForm()}
                                                 value={newConfirmedStatus}
                                                 onChange={(event) => {
+
                                                     setNewConfirmedStatus(event.target.value);
+                                                
                                                 }}
                                             >
                                                 <option
@@ -231,7 +266,9 @@ export const UpdateStatusConfirmation = (props) => {
                                                 type="text"
                                                 value={newProcessorReference}
                                                 onChange={(event) => {
+
                                                     setNewProcessorReference(event.target.value);
+                                                
                                                 }}
                                                 placeholder="Entrer un processor reference "
                                             />
@@ -249,7 +286,9 @@ export const UpdateStatusConfirmation = (props) => {
                                                 disabled={!canEditForm()}
                                                 value={newDescription}
                                                 onChange={(event) => {
+
                                                     setNewDescription(event.target.value);
+                                                
                                                 }}
                                                 placeholder="Entrer une description "
                                             />
@@ -277,7 +316,9 @@ export const UpdateStatusConfirmation = (props) => {
                                 variant="primary"
                                 color=""
                                 onClick={() => {
+
                                     handleClose(false);
+                                
                                 }}
                             >
                                 Fermer
@@ -287,7 +328,9 @@ export const UpdateStatusConfirmation = (props) => {
                                     disabled={!isFormValid()}
                                     variant={isFormValid() ? "success" : "primary"}
                                     onClick={() => {
+
                                         handlePatchStatusConfirmation();
+                                    
                                     }}
                                 >
                                     Mise à jour
@@ -309,4 +352,5 @@ export const UpdateStatusConfirmation = (props) => {
             </Modal>
         </>
     )
+
 }

@@ -40,7 +40,7 @@ export const Routes = {
     ProviderPaymentBalance: {path:"/provider-payment-balance"},
     HistoryProviderBalanceCollection:{path:"/history-provider-balance-collection"},
     PaymentReporting:{path:"/payment-reporting"},
-    TransferForceStatus: {path:"/transfer-force-status"} ,
+    TransferForceStatus: {path:"/transfer-force-status"},
     PaymentLocalStats: {path:"/payment-local-stats"},
     TransferLocalStats: {path:"/transfer-local-stats"},
     OrangeReportTransfer: {path:"/orange-report-transfer"},

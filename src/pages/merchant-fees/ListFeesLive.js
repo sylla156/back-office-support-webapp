@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { useCookies } from 'react-cookie'
-import { Redirect } from 'react-router-dom'
-import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, MERCHANTS_LIVE_FEES_URL, MerchantsCountry, MerchantFeeType, MerchantFeeTransactionType, merchantFeeProviders, MerchantFeeMethod } from '../constante/Const'
-import { Spinner, Row, Form, Button, InputGroup, Col } from '@themesberg/react-bootstrap'
+import React, {useState, useEffect} from 'react'
+import {useCookies} from 'react-cookie'
+import {Redirect} from 'react-router-dom'
+import {FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, MERCHANTS_LIVE_FEES_URL, MerchantsCountry, MerchantFeeType, MerchantFeeTransactionType, merchantFeeProviders, MerchantFeeMethod} from '../constante/Const'
+import {Spinner, Row, Form, Button, InputGroup, Col} from '@themesberg/react-bootstrap'
 import AxiosWebHelper from '../../utils/axios-helper'
-import { Routes } from '../../routes'
-import { MerchantsLiveFees } from './components/MerchantsLiveFeesList'
+import {Routes} from '../../routes'
+import {MerchantsLiveFees} from './components/MerchantsLiveFeesList'
 import AlertDismissable from '../../components/AlertDismissable'
 import csvDownload from 'json-to-csv-export'
 
 export default () => {
+
     const [errorData, setErrorData] = useState(null);
     const [isLoadedCSV, setIsLoadedCSV] = useState(true);
     const [errorDataCSV, setErrorDataCSV] = useState(null);
@@ -32,22 +33,30 @@ export default () => {
     const userCanDeleteMerchantFee = cookies.user.canDeleteMerchantFee
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () =>
         setVersion((currentVersion) => {
+
             console;
             return currentVersion + 1;
+        
         });
     
     const filterData = (data) => {
+
         const filteredData = data.map(item => {
-            const { id, policies, createdAt, isDeleted, ...filteredItem } = item;
+
+            const {id, policies, createdAt, isDeleted, ...filteredItem} = item;
             return filteredItem;
+        
         });
         
         return filteredData;
+    
     };
 
     const fields = ['value', 'type', 'transactionType', 'merchantId', 'method', 'country', 'provider']
@@ -59,6 +68,7 @@ export default () => {
     }
 
     const getMerchantsFeesLive = () => {
+
         setIsLoaded(false);
         axios.get(
             MERCHANTS_LIVE_FEES_URL,
@@ -77,31 +87,48 @@ export default () => {
                 }
             }
         ).then((result) => {
+
             setMerchantFeesList(result.data);
             setCount(result.data.length);
             console.log(result.data);
             setIsLoaded(true);
+        
         }).catch((error) => {
+
             setIsLoaded(true);
             if (error.response) {
+
                 if (error.response.status === 401) {
+
                     setShouldLogin(true);
+                
                 } else {
+
                     console.log(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
 
     useEffect(() => {
+
         getMerchantsFeesLive();
+    
     }, [currentPage, version]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -113,8 +140,10 @@ export default () => {
                         <Form.Select
                             value={type}
                             onChange={(event) => {
+
                                 setType(event.target.value);
                                 console.log(event.target.value);
+                            
                             }}
                         >
                             <option key="0" value={undefined}>
@@ -146,7 +175,9 @@ export default () => {
                         <Form.Select
                             value={transactionType}
                             onChange={(event) => {
+
                                 setTransactionType(event.target.value);
+                            
                             }}
                         >
                             <option>
@@ -166,7 +197,9 @@ export default () => {
                         <Form.Select
                             value={provider}
                             onChange={(event) => {
+
                                 setProvider(event.target.value);
+                            
                             }}
                         >
                             <option>
@@ -186,7 +219,9 @@ export default () => {
                         <Form.Select
                             value={method}
                             onChange={(event) => {
+
                                 setMethod(event.target.value);
+                            
                             }}
                         >
                             <option>
@@ -206,7 +241,9 @@ export default () => {
                         <Form.Select
                             value={country}
                             onChange={(event) => {
+
                                 setCountry(event.target.value);
+                            
                             }}
                         >
                             <option>
@@ -274,4 +311,5 @@ export default () => {
             }
         </div>
     )
+
 }

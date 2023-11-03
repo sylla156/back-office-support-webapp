@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
 import {
     Col,
     Row,
@@ -12,14 +12,15 @@ import {
     Dropdown,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faPaperclip} from "@fortawesome/free-solid-svg-icons";
 import AlertDismissable from "../../../components/AlertDismissable";
 import AxiosWebHelper from "../../../utils/axios-helper";
-import { Routes } from "../../../routes";
-import { APPKEY, INTOUCH_REPORT_TRANSFER_UPLOAD_URL } from "../../constante/Const";
+import {Routes} from "../../../routes";
+import {APPKEY, INTOUCH_REPORT_TRANSFER_UPLOAD_URL} from "../../constante/Const";
 
 export const IntouchReportTransferImportFile = (props) => {
+
     const onRefresh = props.onRefresh
 
     const [isLoading, setIsLoading] = useState(false);
@@ -28,28 +29,35 @@ export const IntouchReportTransferImportFile = (props) => {
     const [show, setShow] = useState(false);
     const [file, setFile] = useState();
 
-    const [cookies] = useCookies(["token",])
+    const [cookies] = useCookies(["token", ])
 
     const handleChangeFile = async (event) => {
+
         let files = event.target.files;
         let file = files[0];
         setFile(file);
+    
     };
 
     const handleShow = () => {
+
         setShow(true);
+    
     };
 
     const handleClose = () => {
+
         setErrorData(null);
         setShow(false);
         setIsLoading(false);
         setFile(undefined)
+    
     };
 
     const axios = AxiosWebHelper.getAxios();
 
     const postFile = () => {
+
         if(!file) return
 
         setIsLoading(true)
@@ -57,38 +65,55 @@ export const IntouchReportTransferImportFile = (props) => {
         const formData = new FormData()
         formData.append('file', file)
 
-        axios.post(INTOUCH_REPORT_TRANSFER_UPLOAD_URL, formData,{
+        axios.post(INTOUCH_REPORT_TRANSFER_UPLOAD_URL, formData, {
             headers:{
                 "Content-Type":"multipart/form-data",
                 AppKey: APPKEY,
                 authenticationtoken: cookies.token
             },
         }).then((_result) => {
+
             setIsLoading(false)
             handleClose()
             onRefresh()
+        
         }).catch((error) => {
+
             setIsLoading(false)
             if(error.response){
+
                 if(error.response.status === 401){
+
                     setShouldLogin(true)
+                
                 }else{
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const handlePostFile = () => {
+
         postFile();
+    
     }
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     return(
@@ -103,7 +128,9 @@ export const IntouchReportTransferImportFile = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
+
                     handleClose(false);
+                
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -118,34 +145,36 @@ export const IntouchReportTransferImportFile = (props) => {
                         <Card.Body>
                             <Form.Group className="mb-3">
                                 <Form.Label></Form.Label>
-                                    <div className="file-field">
-                                        <div className="d-flex justify-content-xl-center ms-xl-3">
-                                            <div className="d-flex">
-                                                <span className="icon icon-md">
-                                                    <FontAwesomeIcon
-                                                        icon={faPaperclip}
-                                                        className="me-3"
-                                                    />
-                                                </span>
-                                                <input
-                                                    type="file"
-                                                    // value={file}
-                                                    accept=".csv"
-                                                    onChange={(event) => {
-                                                        handleChangeFile(event);
-                                                    }}
+                                <div className="file-field">
+                                    <div className="d-flex justify-content-xl-center ms-xl-3">
+                                        <div className="d-flex">
+                                            <span className="icon icon-md">
+                                                <FontAwesomeIcon
+                                                    icon={faPaperclip}
+                                                    className="me-3"
                                                 />
-                                                <div className="d-md-block text-start">
-                                                    <div className="fw-normal text-dark mb-1">
-                                                        {file?.name ? file?.name : <b> Choisir un fichier CSV</b>}
-                                                    </div>
-                                                    <div className="text-gray small">
+                                            </span>
+                                            <input
+                                                type="file"
+                                                // value={file}
+                                                accept=".csv"
+                                                onChange={(event) => {
 
-                                                    </div>
+                                                    handleChangeFile(event);
+                                                
+                                                }}
+                                            />
+                                            <div className="d-md-block text-start">
+                                                <div className="fw-normal text-dark mb-1">
+                                                    {file?.name ? file?.name : <b> Choisir un fichier CSV</b>}
+                                                </div>
+                                                <div className="text-gray small">
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </Form.Group>
                         </Card.Body>
                     </Card>
@@ -155,13 +184,19 @@ export const IntouchReportTransferImportFile = (props) => {
                         variant="primary"
                         color=""
                         onClick={() => {
+
                             handleClose(false);
+                        
                         }}
                     >
                         Fermer
                     </Button>
                     <Button
-                        onClick={() => { handlePostFile() }}
+                        onClick={() => {
+
+                            handlePostFile() 
+
+                        }}
                     >
                         Ajouter un fichier
                     </Button>
@@ -178,4 +213,5 @@ export const IntouchReportTransferImportFile = (props) => {
             </Modal>
         </>
     )
+
 }

@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { MoovTransferMarkLikeRegularised } from "./MoovTransferMarkLikeRegularised";
-import { MoovReportTransferInProcessMarkLikeRegularisedList } from "./MoovReportTransferInProcessMarkLikeRegularisedList";
+import {MoovTransferMarkLikeRegularised} from "./MoovTransferMarkLikeRegularised";
+import {MoovReportTransferInProcessMarkLikeRegularisedList} from "./MoovReportTransferInProcessMarkLikeRegularisedList";
 
 export const MarkMoovTransferLikeRegularisedList = (props) => {
-    let { listInfo, onRefresh, userCanAddMoovTransferRegularised } = props
+
+    let {listInfo, onRefresh, userCanAddMoovTransferRegularised} = props
     console.log("listInfo", listInfo);
 
     return (
@@ -20,6 +21,7 @@ export const MarkMoovTransferLikeRegularisedList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((datum, index) => {
+
                                 return (
                                     <MarkMoovTransferLikeRegularisedList.TableRow
                                         key={`transaction-${index}`}
@@ -29,6 +31,7 @@ export const MarkMoovTransferLikeRegularisedList = (props) => {
                                         userCanAddMoovTransferRegularised={userCanAddMoovTransferRegularised}
                                     />
                                 );
+                            
                             })}
                         </tbody>
                     </Table>
@@ -36,9 +39,11 @@ export const MarkMoovTransferLikeRegularisedList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MarkMoovTransferLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorTransfer,
         candidates,
@@ -64,4 +69,5 @@ MarkMoovTransferLikeRegularisedList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

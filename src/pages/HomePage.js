@@ -106,7 +106,7 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
 
     const [loaded, setLoaded] = useState(false);
 
-    const [cookies, ] = useCookies(["token",]);
+    const [cookies, ] = useCookies(["token", ]);
 
     useEffect(() => {
 
@@ -116,7 +116,9 @@ const RouteWithSidebar = ({component: Component, title, ...rest}) => {
     }, []);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (

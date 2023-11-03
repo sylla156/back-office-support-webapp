@@ -1,8 +1,9 @@
 import React from "react";
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
-import { AddCandidatesSuggestions } from "./AddCandidatesSuggestions";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
+import {AddCandidatesSuggestions} from "./AddCandidatesSuggestions";
 
 export const CandidateSuggestion = (props) => {
+
     const candidates = props.candidates;
     const message = props.message;
     const label = props.label;
@@ -14,18 +15,22 @@ export const CandidateSuggestion = (props) => {
     const extendSearchMessage = props.extendSearchMessage;
 
     if (!candidates) {
+
         console.log("pas de candidates");
+    
     }
 
     if (candidates) {
+
         return candidates.map((item, index) => {
+
             const isStatus = item?.content?.status === 'successful';
             const statusVariant = isStatus ? "success" : "danger";
             return (
                 <>
                     <Col md={6} className="">
                         <br />
-                        <span className="p-2 mb-2 rounded text-center border bg-warning border-warning" style={{ width: 10, height: 10 }}>
+                        <span className="p-2 mb-2 rounded text-center border bg-warning border-warning" style={{width: 10, height: 10}}>
                             {label}
                         </span>
                         {item?.content?.status ? (
@@ -60,9 +65,12 @@ export const CandidateSuggestion = (props) => {
                     </Col>
                 </>
             )
+        
         })
+    
     }
     if(shouldExtendSearch) {
+
         return(
             <>
                 <Col className="" md={6}>
@@ -83,6 +91,7 @@ export const CandidateSuggestion = (props) => {
                 </Col>
             </>
         )
+    
     }
     
     return(
@@ -103,4 +112,5 @@ export const CandidateSuggestion = (props) => {
             )}
         </>
     )
+
 }

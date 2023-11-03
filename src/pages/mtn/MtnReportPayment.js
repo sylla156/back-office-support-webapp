@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { format, addMinutes, parseISO } from "date-fns";
-import { Routes } from "../../routes";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {format, addMinutes, parseISO} from "date-fns";
+import {Routes} from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
-import { APPKEY, FIRST_PAGE_INDEX, PAGE_SIZE, chooseReconciliation, MtnReportTransferCountry, MTN_REPORT_PAYMENT_URL } from "../constante/Const";
+import {APPKEY, FIRST_PAGE_INDEX, PAGE_SIZE, chooseReconciliation, MtnReportTransferCountry, MTN_REPORT_PAYMENT_URL} from "../constante/Const";
 import {
     Col,
     Spinner,
@@ -15,11 +15,12 @@ import {
     FormControl
 } from "@themesberg/react-bootstrap";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { MtnReportPaymentImportFile } from "./MtnPayment/MtnReportPaymentImportFile";
-import { MakeMtnAndLocalPaymentReconciliation } from "./MtnPayment/MakeMtnAndLocalPaymentReconciliation";
-import { MtnReportPaymentList } from "./MtnPayment/MtnReportPaymentList";
+import {MtnReportPaymentImportFile} from "./MtnPayment/MtnReportPaymentImportFile";
+import {MakeMtnAndLocalPaymentReconciliation} from "./MtnPayment/MakeMtnAndLocalPaymentReconciliation";
+import {MtnReportPaymentList} from "./MtnPayment/MtnReportPaymentList";
 
 export default () => {
+
     const currentDate = new Date()
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
     const formattedCurrentTime = format(currentDate, "HH:mm:ss");
@@ -43,23 +44,28 @@ export default () => {
     const [maxValue, setMaxValue] = useState();
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
 
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
 
-    const [cookies] = useCookies(["token",]);
+    const [cookies] = useCookies(["token", ]);
 
     const axios = AxiosWebHelper.getAxios();
 
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
     const getMtnReportPayment = () => {
+
         setIsLoaded(false);
         setErrorData(null);
-        axios.get(MTN_REPORT_PAYMENT_URL,{
+        axios.get(MTN_REPORT_PAYMENT_URL, {
             params: {
                 reference,
                 recipientNumber,
@@ -78,36 +84,52 @@ export default () => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             console.log("result", result.data.result);
             setIsLoaded(true)
             setMtnReportPaymentList(result.data.result)
             setCount(result.data.count)
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             if(error.response){
+
                 if(error.response.message === 401){
+
                     setShouldLogin(true)
+                
                 }else{
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () => {
+
         setVersion((currentVersion) => {
             
             return currentVersion + 1;
+        
         });
+    
     }
 
     const onClearFilters = () => {
+
         setReference("");
-        setSourceNumber("");
         setReconciliation('Tous')
         setCountry("CI");
         setCreditAmount("");
@@ -115,20 +137,26 @@ export default () => {
         setMaxValue("")
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     };
 
     useEffect(() => {
+
         getMtnReportPayment()
+    
     }, [currentPage, version]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
 
-
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return(
@@ -136,7 +164,7 @@ export default () => {
             <MtnReportPaymentImportFile onRefresh={incrementVersion} />
             <div className="mb-4"></div>
             <div className="align-items-center d-flex flex-wrap">
-            <Col xs={12} md={6} lg={3} className="mb-2 px-2">
+                <Col xs={12} md={6} lg={3} className="mb-2 px-2">
                     <Form.Label>Date début</Form.Label>
                     <InputGroup>
                         <InputGroup.Text></InputGroup.Text>
@@ -205,7 +233,9 @@ export default () => {
                         <Form.Select
                             value={country}
                             onChange={(event) => {
+
                                 setCountry(event.target.value);
+                            
                             }}
                         >
                             {MtnReportTransferCountry.map((item) => (
@@ -223,7 +253,9 @@ export default () => {
                         <Form.Select
                             value={reconciliation}
                             onChange={(event) => {
+
                                 setReconciliation(event.target.value);
+                            
                             }}
                         >
                             {chooseReconciliation.map((item) => (
@@ -286,4 +318,5 @@ export default () => {
             }
         </>
     )
+
 }

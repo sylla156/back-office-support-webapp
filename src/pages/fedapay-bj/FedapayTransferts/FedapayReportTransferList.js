@@ -1,8 +1,9 @@
-import { Card, Table } from "@themesberg/react-bootstrap";
-import React, { useState, useEffect } from "react";
-import { TablePagination } from "../../../components/TablePagination";
+import {Card, Table} from "@themesberg/react-bootstrap";
+import React, {useState, useEffect} from "react";
+import {TablePagination} from "../../../components/TablePagination";
 
 export const FedapayReportTransferList = (props) => {
+
     const {
         listInfo,
         count,
@@ -61,9 +62,11 @@ export const FedapayReportTransferList = (props) => {
             </Card>
         </>
     )
+
 }
 
 FedapayReportTransferList.TableRow = (props) => {
+
     const {
         id,
         transactionKey,
@@ -187,4 +190,5 @@ FedapayReportTransferList.TableRow = (props) => {
             </td>
         </tr>
     )
+
 }

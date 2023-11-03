@@ -1,9 +1,10 @@
-import { Card, Table, Badge } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
-import { TablePagination } from "../../../../../components/TablePagination";
+import {TablePagination} from "../../../../../components/TablePagination";
 
 
 export const MoovReportTransferList = (props) => {
+
     const {
         listInfo,
         count,
@@ -59,9 +60,11 @@ export const MoovReportTransferList = (props) => {
             </Card>
         </>
     )
+
 }
 
 MoovReportTransferList.TableRow = (props) => {
+
     const {
         transactionDate,
         id,
@@ -78,7 +81,7 @@ MoovReportTransferList.TableRow = (props) => {
         profileRecipientAccount,
         transactionType,
         sourceAccountFullname,
-        recipientAccountFullname,amount,sourceAccountBalanceBefore,recipientAccountBalanceBefore,sourceAccountBalanceAfter,country,recipientAccountBalanceAfter,localTransferId,lastReconciliationDate,createDate,updateDate
+        recipientAccountFullname, amount, sourceAccountBalanceBefore, recipientAccountBalanceBefore, sourceAccountBalanceAfter, country, recipientAccountBalanceAfter, localTransferId, lastReconciliationDate, createDate, updateDate
     } = props
 
     const transactionDateUtc = new Date(transactionDate);
@@ -167,4 +170,5 @@ MoovReportTransferList.TableRow = (props) => {
             </td>
         </tr>
     )
+
 }

@@ -2,6 +2,7 @@ import {Col, Row, Card, Badge} from '@themesberg/react-bootstrap';
 import React from 'react'
 
 export default function ProviderTransferFedapay(props) {
+
     const processorReference = props.providerTransferFedapay.processorReference;
 
     const providerTransferFedapayData = props.providerTransferFedapay;
@@ -36,6 +37,7 @@ export default function ProviderTransferFedapay(props) {
         response = providerTransferFedapayData.checkStatus.response;
 
         if (response) {
+
             klass = response.klass;
             id = response.id;
             reference = response.reference;

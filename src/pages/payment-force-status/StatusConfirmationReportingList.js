@@ -1,17 +1,20 @@
-import { Card, Table, Button, Spinner, Toast } from "@themesberg/react-bootstrap";
-import React, { useState } from "react";
-import { TablePagination } from "../../components/TablePagination";
-import { ForceStatusTableListInfos } from "../../components/ForceStatusTableListInfos";
-import { UpdateStatusConfirmation } from "./UpdateStatusConfirmation";
-import { NeedToUpdateLocalDate } from "../../components/statusConfirmation/NeedToUpdateLocalDate";
-import { CandidateSuggestion } from "./CandidateSuggestion";
-import { DangerouslyForceStatus } from "./DangerouslyForceStatus";
-import { AddStatusConfirmation } from "./AddStatusConfirmation";
-import { REFRESH_PAYMENT_STATUS, APPKEY } from "../constante/Const";
+import {Card, Table, Button, Spinner, Toast} from "@themesberg/react-bootstrap";
+import React, {useState} from "react";
+import {TablePagination} from "../../components/TablePagination";
+import {ForceStatusTableListInfos} from "../../components/ForceStatusTableListInfos";
+import {UpdateStatusConfirmation} from "./UpdateStatusConfirmation";
+import {NeedToUpdateLocalDate} from "../../components/statusConfirmation/NeedToUpdateLocalDate";
+import {CandidateSuggestion} from "./CandidateSuggestion";
+import {DangerouslyForceStatus} from "./DangerouslyForceStatus";
+import {AddStatusConfirmation} from "./AddStatusConfirmation";
+import {REFRESH_PAYMENT_STATUS, APPKEY} from "../constante/Const";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { useCookies } from "react-cookie";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {Routes} from "../../routes";
 
 export const StatusConfirmationReportingList = (props) => {
+
     let {
         listInfo,
         count,
@@ -39,6 +42,7 @@ export const StatusConfirmationReportingList = (props) => {
                         </thead>
                         <tbody>
                             {listInfo.map((t, index) => {
+
                                 return (
                                     <StatusConfirmationReportingList.TableRow
                                         key={`transaction-${t.transactionsInfos.id}-${index}`}
@@ -48,6 +52,7 @@ export const StatusConfirmationReportingList = (props) => {
                                         {...t}
                                     />
                                 )
+                            
                             })}
                         </tbody>
                     </Table>
@@ -61,10 +66,13 @@ export const StatusConfirmationReportingList = (props) => {
             </Card>
         </>
     )
+
 }
 
 StatusConfirmationReportingList.TableRow = (props) => {
+
     const [isLoaded, setIsLoaded] = useState(false);
+    const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
     const axios = AxiosWebHelper.getAxios();
     const [cookies] = useCookies(["token"]);
@@ -115,18 +123,23 @@ StatusConfirmationReportingList.TableRow = (props) => {
     ]);
 
     const actionButton = () => {
+
         if (canForceStatus) return;
 
         if (canForceStatusMessage) {
+
             return (
                 <p className="fw-normal font-small text-wrap bg-light rounded rounded-lg py-1 px-2 mb-2">
                     {canForceStatusMessage}
                 </p>
             );
+        
         }
+    
     }
 
     const RefreshStatus = (id, transactionId) => {
+
         setIsLoaded(true);
         setErrorData(null);
         axios.get(REFRESH_PAYMENT_STATUS, {
@@ -139,19 +152,30 @@ StatusConfirmationReportingList.TableRow = (props) => {
                 authenticationtoken: cookies.token,
             }
         }).then((result) => {
+
             console.log("result", result.data);
             setIsLoaded(false);
             onRefresh();
+        
         }).catch((error) => {
+
             setIsLoaded(false);
-            if (error.response) {
-                if (error.response.status === 401) {
-                    setShouldLogin(true);
-                } else {
-                    setErrorData(error.response.data.message);
-                }
-            }
+            // if (error.response) {
+            //     if (error.response.status === 401) {
+            //         setShouldLogin(true);
+            //     } else {
+            //         setErrorData(error.response.data.message);
+            //     }
+            // }
+        
         })
+    
+    }
+
+    if(shouldLogin){
+
+        return <Redirect to={Routes.Signin.path} />
+    
     }
 
     return (
@@ -162,6 +186,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
                 </td>
                 <td>
                     {statusConfirmations.map((item, index) => {
+
                         const statusVariant =
                             item.confirmedStatus === "successful" ||
                                 item.confirmedStatus === "success" ||
@@ -190,11 +215,12 @@ StatusConfirmationReportingList.TableRow = (props) => {
                                 />
                             </>
                         );
+                    
                     })}
                     {actionButton()}
                     {gatewaysId.includes(transactionsInfos?.gatewayId) && (
                         <>
-                            <div className="bg-dark m-auto mt-3" style={{ height: 1, width: "100%" }}></div>
+                            <div className="bg-dark m-auto mt-3" style={{height: 1, width: "100%"}}></div>
                             <p>Candidates suggestions</p>
                         </>
                     )}
@@ -247,7 +273,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
                                     onRefresh={onRefresh}
                                     payment={transactionsInfos}
                                 />
-                            ):(
+                            ) : (
                                 <>
                                     <AddStatusConfirmation
                                         id={id}
@@ -271,4 +297,5 @@ StatusConfirmationReportingList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

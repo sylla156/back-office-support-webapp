@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { format, addMinutes, parseISO } from "date-fns";
-import { Routes } from "../../routes";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {format, addMinutes, parseISO} from "date-fns";
+import {Routes} from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
-import { APPKEY, FIRST_PAGE_INDEX, PAGE_SIZE, chooseReconciliation, ORANGE_SN_REPORT_PAYMENT_URL } from "../constante/Const";
+import {APPKEY, FIRST_PAGE_INDEX, PAGE_SIZE, chooseReconciliation, ORANGE_SN_REPORT_PAYMENT_URL} from "../constante/Const";
 import {
     Col,
     Spinner,
@@ -15,11 +15,12 @@ import {
     FormControl
 } from "@themesberg/react-bootstrap";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { OrangeSnPaymentImportFile } from "./Payment/OrangeSnPaymentImportFile";
-import { MakeOrangeSnAndLocalPaymentReconciliation } from "./Payment/MakeOrangeSnAndLocalPaymentReconciliation";
-import { OrangeSnPaymentList } from "./Payment/OrangeSnPaymentList";
+import {OrangeSnPaymentImportFile} from "./Payment/OrangeSnPaymentImportFile";
+import {MakeOrangeSnAndLocalPaymentReconciliation} from "./Payment/MakeOrangeSnAndLocalPaymentReconciliation";
+import {OrangeSnPaymentList} from "./Payment/OrangeSnPaymentList";
 
 export default () => {
+
     const currentDate = new Date()
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
     const formattedCurrentTime = format(currentDate, "HH:mm:ss");
@@ -43,11 +44,15 @@ export default () => {
     const [maxValue, setMaxValue] = useState();
 
     const handleStartDate = (value) => {
+
         setStartDate(value);
+    
     };
 
     const handleEndDate = (value) => {
+
         setEndDate(value);
+    
     };
 
     const [cookies] = useCookies(["token"]);
@@ -57,6 +62,7 @@ export default () => {
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
 
     const getOrangeSnReportPayment = () => {
+
         setIsLoaded(false);
         setErrorData(null);
         axios.get(ORANGE_SN_REPORT_PAYMENT_URL, {
@@ -76,53 +82,76 @@ export default () => {
                 authenticationtoken: cookies.token
             }
         }).then((result) => {
+
             setIsLoaded(true)
             setOrangeSnReportPaymentList(result.data.result)
             setCount(result.data.count)
+        
         }).catch((error) => {
+
             setIsLoaded(true)
             if (error.response) {
+
                 if (error.response.message === 401) {
+
                     setShouldLogin(true)
+                
                 } else {
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () => {
+
         setVersion((currentVersion) => {
             
             return currentVersion + 1;
+        
         });
+    
     }
 
     const onClearFilters = () => {
+
         setReference("");
-        setSourceNumber("");
         setReconciliation('Tous')
         setCreditAmount("");
         setMinValue("");
         setMaxValue("")
         setStartDate(defaultStartDate);
         setEndDate(defaultEndDate);
+    
     };
 
     useEffect(() => {
+
         getOrangeSnReportPayment()
+    
     }, [currentPage, version]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -217,7 +246,9 @@ export default () => {
                         <Form.Select
                             value={reconciliation}
                             onChange={(event) => {
+
                                 setReconciliation(event.target.value);
+                            
                             }}
                         >
                             {chooseReconciliation.map((item) => (
@@ -279,4 +310,5 @@ export default () => {
             }
         </>
     )
+
 }

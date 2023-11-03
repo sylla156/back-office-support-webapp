@@ -1,10 +1,11 @@
-import { Card, Table, Badge, Col } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge, Col} from "@themesberg/react-bootstrap";
 import React from "react";
-import { FedapayTransferMarkLikeRegularisedList } from "./FedapayTransferMarkLikeRegularisedList";
-import { FedapayReportTransferInProcessMarkLikeRegularisedList } from "./FedapayReportTransferInProcessMarkLikeRegularisedList";
+import {FedapayTransferMarkLikeRegularisedList} from "./FedapayTransferMarkLikeRegularisedList";
+import {FedapayReportTransferInProcessMarkLikeRegularisedList} from "./FedapayReportTransferInProcessMarkLikeRegularisedList";
 
 
 export const MarkFedapayTransferLikeRegularisedList = (props) => {
+
     let {
         listInfo,
         onRefresh,
@@ -16,39 +17,43 @@ export const MarkFedapayTransferLikeRegularisedList = (props) => {
                 <Card.Body className="pt-0">
                     <Table hover className="user-table align-items-center">
                         <thead>
-                        <tr>
-                            <th className="border-bottom">Transfer Hub2</th>
-                            <th className="border-bottom">Transfer Fedapay</th>
-                        </tr>
+                            <tr>
+                                <th className="border-bottom">Transfer Hub2</th>
+                                <th className="border-bottom">Transfer Fedapay</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {listInfo.map((datum, index) => {
-                            return (
-                                <MarkFedapayTransferLikeRegularisedList.TableRow
-                                  key={`transaction-${index}`}
-                                  onRefresh={onRefresh}
-                                  processorTransfer={datum.processorTransfer}
-                                  candidates={datum.candidates}
-                                  userCanAddWaveTransferRegularised={userCanAddWaveTransferRegularised}
-                                />
-                              );
-                        })}
+                            {listInfo.map((datum, index) => {
+
+                                return (
+                                    <MarkFedapayTransferLikeRegularisedList.TableRow
+                                        key={`transaction-${index}`}
+                                        onRefresh={onRefresh}
+                                        processorTransfer={datum.processorTransfer}
+                                        candidates={datum.candidates}
+                                        userCanAddWaveTransferRegularised={userCanAddWaveTransferRegularised}
+                                    />
+                                );
+                            
+                            })}
                         </tbody>
                     </Table>
                 </Card.Body>
             </Card>
         </>
     )
+
 }
 
 MarkFedapayTransferLikeRegularisedList.TableRow = (props) => {
+
     const {
         processorTransfer,
         candidates,
         userCanAddWaveTransferRegularised
-      } = props;
+    } = props;
 
-      return(
+    return(
         <>
             <tr>
                 <td>
@@ -59,5 +64,6 @@ MarkFedapayTransferLikeRegularisedList.TableRow = (props) => {
                 </td>
             </tr>
         </>
-      )
+    )
+
 }

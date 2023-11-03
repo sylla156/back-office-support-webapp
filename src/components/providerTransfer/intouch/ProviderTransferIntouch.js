@@ -22,11 +22,13 @@ export default function ProviderTransferIntouch(props) {
     }
 
     if(checkStatus){
+
         response = checkStatus.response;
     
     }
 
     if (response) {
+
         service_id = response.service_id;
         gu_transaction_id = response.gu_transaction_id;
         status = response.status;

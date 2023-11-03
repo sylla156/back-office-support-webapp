@@ -1,8 +1,9 @@
-import { Card, Table, Badge } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
-import { TablePagination } from "../../../components/TablePagination";
+import {TablePagination} from "../../../components/TablePagination";
 
 export const IntouchReportPaymentList = (props) => {
+
     const {
         listInfo,
         count,
@@ -14,7 +15,7 @@ export const IntouchReportPaymentList = (props) => {
 
     return(
         <>
-         <Card border="light" className="table-wrapper table-responsive shadow-sm">
+            <Card border="light" className="table-wrapper table-responsive shadow-sm">
                 <Card.Body className="pt-0">
                     <Table hover className="user-table align-items-center">
                         <thead>
@@ -60,11 +61,13 @@ export const IntouchReportPaymentList = (props) => {
             </Card>
         </>
     )
+
 }
 
 IntouchReportPaymentList.TableRow = (props) => {
+
     const {
-        id, networkGroup, transactionId, transactionStatus, paymentMethod, latitude, longitude, country, agency_code, serviceCode, numTransactionGu, recipient, loginAgent, agentType,rawPartnerDistTransactionId, partnerDistTransactionId, lastReconciliationDate, regularisationDate, createdAtDate, sendingDate, state, actionDone, statut, message, transactionMontant, reloadedCode, reason, customerCode, localPaymentId, createDate, updateDate
+        id, networkGroup, transactionId, transactionStatus, paymentMethod, latitude, longitude, country, agency_code, serviceCode, numTransactionGu, recipient, loginAgent, agentType, rawPartnerDistTransactionId, partnerDistTransactionId, lastReconciliationDate, regularisationDate, createdAtDate, sendingDate, state, actionDone, statut, message, transactionMontant, reloadedCode, reason, customerCode, localPaymentId, createDate, updateDate
     } = props
     const transactionDateUtc = new Date(sendingDate);
 
@@ -158,4 +161,5 @@ IntouchReportPaymentList.TableRow = (props) => {
             </td>
         </tr>
     )
+
 }

@@ -1,14 +1,14 @@
-import { format } from 'date-fns'
-import React,{useState, useEffect} from 'react'
-import { useCookies } from 'react-cookie'
-import { Redirect } from 'react-router-dom'
-import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, MERCHANTS_FEES_URL, MerchantsCountry, MerchantFeeType, MerchantFeeTransactionType, merchantFeeProviders, MerchantFeeMethod } from '../constante/Const'
+import {format} from 'date-fns'
+import React, {useState, useEffect} from 'react'
+import {useCookies} from 'react-cookie'
+import {Redirect} from 'react-router-dom'
+import {FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, MERCHANTS_FEES_URL, MerchantsCountry, MerchantFeeType, MerchantFeeTransactionType, merchantFeeProviders, MerchantFeeMethod} from '../constante/Const'
 import AlertDismissable from '../../components/AlertDismissable'
-import { Col, Spinner, Row, Form, Button, InputGroup } from '@themesberg/react-bootstrap'
+import {Col, Spinner, Row, Form, Button, InputGroup} from '@themesberg/react-bootstrap'
 import AxiosWebHelper from '../../utils/axios-helper'
-import { Routes } from '../../routes'
-import { MerchantsFeesList } from './components/MerchantsFeesList'
-import { AddMerchantsFees } from './components/AddMerchantsFees'
+import {Routes} from '../../routes'
+import {MerchantsFeesList} from './components/MerchantsFeesList'
+import {AddMerchantsFees} from './components/AddMerchantsFees'
 
 export default () => {
 
@@ -31,7 +31,7 @@ export default () => {
     const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
     const [version, setVersion] = useState(0);
 
-    const [cookies] = useCookies(["token","user"]);
+    const [cookies] = useCookies(["token", "user"]);
     const axios = AxiosWebHelper.getAxios();
 
     const userCanUpdateLocalData = cookies.user?.canUpdateCachedTransaction;
@@ -41,21 +41,28 @@ export default () => {
 
 
     const onPageChange = (page = 0) => {
+
         setCurrentPage(page);
+    
     };
 
     const incrementVersion = () =>
         setVersion((currentVersion) => {
+
             console;
             return currentVersion + 1;
+        
         });
 
     const onClearFilters = () => {
+
         setHasBeenApplied(false)
         setCountry("CI");
+    
     };
 
     const getMerchantsFees = () => {
+
         setIsLoaded(false)
         setErrorData(null)
 
@@ -68,7 +75,6 @@ export default () => {
                     country,
                     method,
                     hasBeenApplied,
-                    transactionType,
                     provider,
                     page: currentPage,
                     perPage: PAGE_SIZE
@@ -78,30 +84,47 @@ export default () => {
                     authenticationtoken: cookies.token
                 }
             }).then((result) => {
+
                 setIsLoaded(true)
                 setMerchantFeesList(result.data.result)
                 setCount(result.data.count)
+            
             }).catch((error) => {
+
                 setIsLoaded(true)
                 if (error.response) {
+
                     if (error.response.status === 401) {
+
                         setShouldLogin(true);
+                    
                     } else {
+
                         setErrorData(error.response.data.message);
+                    
                     }
+                
                 }
+            
             })
+    
     }
 
     useEffect(() => {
+
         getMerchantsFees()
+    
     }, [currentPage, version]);
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -115,8 +138,10 @@ export default () => {
                         <Form.Select
                             value={type}
                             onChange={(event) => {
+
                                 setType(event.target.value);
                                 console.log(event.target.value);
+                            
                             }}
                         >
                             <option key="0" value={undefined}>
@@ -148,7 +173,9 @@ export default () => {
                         <Form.Select
                             value={transactionType}
                             onChange={(event) => {
+
                                 setTransactionType(event.target.value);
+                            
                             }}
                         >
                             <option>
@@ -168,7 +195,9 @@ export default () => {
                         <Form.Select
                             value={provider}
                             onChange={(event) => {
+
                                 setProvider(event.target.value);
+                            
                             }}
                         >
                             <option>
@@ -188,7 +217,9 @@ export default () => {
                         <Form.Select
                             value={method}
                             onChange={(event) => {
+
                                 setMethod(event.target.value);
+                            
                             }}
                         >
                             <option>
@@ -208,7 +239,9 @@ export default () => {
                         <Form.Select
                             value={country}
                             onChange={(event) => {
+
                                 setCountry(event.target.value);
+                            
                             }}
                         >
                             <option>
@@ -228,7 +261,9 @@ export default () => {
                         <Form.Select
                             value={hasBeenApplied}
                             onChange={(event) => {
+
                                 setHasBeenApplied(event.target.value);
+                            
                             }}
                         >
                             <option value={true}>Frais appliqués</option>
@@ -271,4 +306,5 @@ export default () => {
             }
         </div>
     )
+
 }

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
 import {
     Col,
     Row,
@@ -12,15 +12,16 @@ import {
     Dropdown,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faPaperclip} from "@fortawesome/free-solid-svg-icons";
 import AlertDismissable from "../../../../../components/AlertDismissable";
 import AxiosWebHelper from "../../../../../utils/axios-helper";
-import { Routes } from "../../../../../routes";
-import { APPKEY, MOOV_REPORT_TRANSFER_UPLOAD_URL } from "../../../../constante/Const";
+import {Routes} from "../../../../../routes";
+import {APPKEY, MOOV_REPORT_TRANSFER_UPLOAD_URL} from "../../../../constante/Const";
 
 
 export const MoovReportTransferImportFile = (props) => {
+
     const onRefresh = props.onRefresh
 
     const [isLoading, setIsLoading] = useState(false);
@@ -29,28 +30,35 @@ export const MoovReportTransferImportFile = (props) => {
     const [show, setShow] = useState(false);
     const [file, setFile] = useState();
 
-    const [cookies] = useCookies(["token",])
+    const [cookies] = useCookies(["token", ])
 
     const handleChangeFile = async (event) => {
+
         let files = event.target.files;
         let file = files[0];
         setFile(file);
+    
     };
 
     const handleShow = () => {
+
         setShow(true);
+    
     };
 
     const handleClose = () => {
+
         setErrorData(null);
         setShow(false);
         setIsLoading(false);
         setFile(undefined)
+    
     };
 
     const axios = AxiosWebHelper.getAxios();
 
     const postFile = () => {
+
         if(!file) return
 
         setIsLoading(true)
@@ -58,7 +66,7 @@ export const MoovReportTransferImportFile = (props) => {
         const formData = new FormData()
         formData.append('file', file)
 
-        axios.post(MOOV_REPORT_TRANSFER_UPLOAD_URL, formData,{
+        axios.post(MOOV_REPORT_TRANSFER_UPLOAD_URL, formData, {
             headers:{
                 "Content-Type":"multipart/form-data",
                 AppKey: APPKEY,
@@ -68,31 +76,48 @@ export const MoovReportTransferImportFile = (props) => {
                 country: "CI"
             }
         }).then((_result) => {
+
             setIsLoading(false)
             handleClose()
             onRefresh()
+        
         }).catch((error) => {
+
             setIsLoading(false)
             if(error.response){
+
                 if(error.response.status === 401){
+
                     setShouldLogin(true)
+                
                 }else{
+
                     setErrorData(error.response.data.message)
+                
                 }
+            
             }
+        
         })
+    
     }
 
     const handlePostFile = () => {
+
         postFile();
+    
     }
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     return (
@@ -107,7 +132,9 @@ export const MoovReportTransferImportFile = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
+
                     handleClose(false);
+                
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -136,7 +163,9 @@ export const MoovReportTransferImportFile = (props) => {
                                                 // value={file}
                                                 accept=".xlsx,.xls,.csv"
                                                 onChange={(event) => {
+
                                                     handleChangeFile(event);
+                                                
                                                 }}
                                             />
                                             <div className="d-md-block text-start">
@@ -159,13 +188,19 @@ export const MoovReportTransferImportFile = (props) => {
                         variant="primary"
                         color=""
                         onClick={() => {
+
                             handleClose(false);
+                        
                         }}
                     >
                         Fermer
                     </Button>
                     <Button
-                        onClick={() => { handlePostFile() }}
+                        onClick={() => {
+
+                            handlePostFile() 
+
+                        }}
                     >
                         Ajouter un fichier
                     </Button>
@@ -182,4 +217,5 @@ export const MoovReportTransferImportFile = (props) => {
             </Modal>
         </>
     )
+
 }

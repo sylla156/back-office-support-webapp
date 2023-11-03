@@ -1,8 +1,9 @@
-import { Card, Table, Badge } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
-import { TablePagination } from "../../../../../components/TablePagination";
+import {TablePagination} from "../../../../../components/TablePagination";
 
 export const MoovReportPaymentList = (props) => {
+
     const {
         listInfo,
         count,
@@ -17,40 +18,40 @@ export const MoovReportPaymentList = (props) => {
             <Card border="light" className="table-wrapper table-responsive shadow-sm">
                 <Card.Body className="pt-0">
                     <Table hover className="user-table align-items-center">
-                    <thead>
-                        <tr>
-                        <th className="border-bottom">id</th>
-                        <th className="border-bottom">N° transaction</th>
-                        <th className="border-bottom">N° origine</th>
-                        <th className="border-bottom">N° destinataire</th>
-                        <th className="border-bottom">Compte origine</th>
-                        <th className="border-bottom">Compte destinataire</th>
-                        <th className="border-bottom">Profile compte origine</th>
-                        <th className="border-bottom">Profile compte destinataire</th>
-                        <th className="border-bottom">Date de la transaction</th>
-                        <th className="border-bottom">Type de transaction</th>
-                        <th className="border-bottom">Nom & Prénoms compte origine</th>
-                        <th className="border-bottom">Nom & Prénoms compte destinataire</th>
-                        <th className="border-bottom">Montant</th>
-                        <th className="border-bottom">Solde avant compte origine</th>
-                        <th className="border-bottom">Solde avant compte destinataire</th>
-                        <th className="border-bottom">Solde apres compte origine</th>
-                        <th className="border-bottom">Solde apres compte destinataire</th>
-                        <th className="border-bottom">Status</th>
-                        <th className="border-bottom">Commission</th>
-                        <th className="border-bottom">Pays</th>
-                        <th className="border-bottom">Operateur Transaction ID</th>
-                        <th className="border-bottom">Local Payment Id</th>
-                        <th className="border-bottom">Dernière date du Rapprochement</th>
-                        <th className="border-bottom">CreatedAt</th>
-                        <th className="border-bottom">UpdatedAt</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {listInfo.map((t) => (
-                        <MoovReportPaymentList.TableRow key={`transaction-${t.id}`} {...t} />
-                        ))}
-                    </tbody>
+                        <thead>
+                            <tr>
+                                <th className="border-bottom">id</th>
+                                <th className="border-bottom">N° transaction</th>
+                                <th className="border-bottom">N° origine</th>
+                                <th className="border-bottom">N° destinataire</th>
+                                <th className="border-bottom">Compte origine</th>
+                                <th className="border-bottom">Compte destinataire</th>
+                                <th className="border-bottom">Profile compte origine</th>
+                                <th className="border-bottom">Profile compte destinataire</th>
+                                <th className="border-bottom">Date de la transaction</th>
+                                <th className="border-bottom">Type de transaction</th>
+                                <th className="border-bottom">Nom & Prénoms compte origine</th>
+                                <th className="border-bottom">Nom & Prénoms compte destinataire</th>
+                                <th className="border-bottom">Montant</th>
+                                <th className="border-bottom">Solde avant compte origine</th>
+                                <th className="border-bottom">Solde avant compte destinataire</th>
+                                <th className="border-bottom">Solde apres compte origine</th>
+                                <th className="border-bottom">Solde apres compte destinataire</th>
+                                <th className="border-bottom">Status</th>
+                                <th className="border-bottom">Commission</th>
+                                <th className="border-bottom">Pays</th>
+                                <th className="border-bottom">Operateur Transaction ID</th>
+                                <th className="border-bottom">Local Payment Id</th>
+                                <th className="border-bottom">Dernière date du Rapprochement</th>
+                                <th className="border-bottom">CreatedAt</th>
+                                <th className="border-bottom">UpdatedAt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {listInfo.map((t) => (
+                                <MoovReportPaymentList.TableRow key={`transaction-${t.id}`} {...t} />
+                            ))}
+                        </tbody>
                     </Table>
                     <TablePagination size={listSize} currentPage={currentPage} onPageChange={onPageChange} count={count} />
                 </Card.Body>
@@ -58,9 +59,11 @@ export const MoovReportPaymentList = (props) => {
 
         </>
     );
+
 }
 
 MoovReportPaymentList.TableRow = (props) => {
+
     const {
         transactionDate,
         id,
@@ -76,7 +79,7 @@ MoovReportPaymentList.TableRow = (props) => {
         profileRecipientAccount,
         transactionType,
         sourceAccountFullname,
-        recipientAccountFullname,amount,sourceAccountBalanceBefore,recipientAccountBalanceBefore,sourceAccountBalanceAfter,country,recipientAccountBalanceAfter,localPaymentId,lastReconciliationDate,createDate,updateDate
+        recipientAccountFullname, amount, sourceAccountBalanceBefore, recipientAccountBalanceBefore, sourceAccountBalanceAfter, country, recipientAccountBalanceAfter, localPaymentId, lastReconciliationDate, createDate, updateDate
     } = props
 
     const transactionDateUtc = new Date(transactionDate);

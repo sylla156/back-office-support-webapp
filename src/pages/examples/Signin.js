@@ -33,6 +33,7 @@ export default function Signin() {
     }
 
     const handleOnPasswordChange = (event) => {
+
         setLoginPassword(event.target.value);
     
     }
@@ -41,6 +42,7 @@ export default function Signin() {
     const axios = AxiosWebHelper.getAxios();
 
     const loginHub2Support = () => {
+
         setError(null)
         setIsLoading(true)
         axios.post(
@@ -64,19 +66,25 @@ export default function Signin() {
                 setTOptUrl(result.data.tOtpAuthUrl)
 
                 if(result.data.user.isActive2FA === false){
+
                     setShouldValidate2FA(true)
+                
                 }else{
+
                     setIsLoginSuccess(true)
+                
                 }
             
             })
             .catch((error) => {
 
                 if (error.response) {
+
                     setIsLoginSuccess(false)
                     setError(error.response.data.message)
                 
                 } else if (error) {
+
                     setError(error.message)
                 
                 } else {

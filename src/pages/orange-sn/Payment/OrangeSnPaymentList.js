@@ -1,8 +1,9 @@
-import { Card, Table, Badge } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
-import { TablePagination } from "../../../components/TablePagination";
+import {TablePagination} from "../../../components/TablePagination";
 
 export const OrangeSnPaymentList = (props) => {
+
     const {
         listInfo,
         count,
@@ -50,9 +51,11 @@ export const OrangeSnPaymentList = (props) => {
             </Card>
         </>
     )
+
 }
 
 OrangeSnPaymentList.TableRow = (props) => {
+
     const {
         transactionDate,
         id,
@@ -134,4 +137,5 @@ OrangeSnPaymentList.TableRow = (props) => {
             </tr>
         </>
     )
+
 }

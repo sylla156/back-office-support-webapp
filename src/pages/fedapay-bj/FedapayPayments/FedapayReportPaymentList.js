@@ -1,9 +1,10 @@
-import { Card, Table, Badge } from "@themesberg/react-bootstrap";
+import {Card, Table, Badge} from "@themesberg/react-bootstrap";
 import React from "react";
-import { TablePagination } from "../../../components/TablePagination";
+import {TablePagination} from "../../../components/TablePagination";
 
 
 export const FedapayReportPaymentList = (props) => {
+
     const {
         listInfo,
         count,
@@ -19,7 +20,7 @@ export const FedapayReportPaymentList = (props) => {
                     <Table hover className="user-table align-items-center">
                         <thead>
                             <tr>
-                            <th className="border-bottom">id</th>
+                                <th className="border-bottom">id</th>
                                 <th className="border-bottom">N° transaction</th>
                                 <th className="border-bottom">Reference</th>
                                 <th className="border-bottom">Status</th>
@@ -61,9 +62,11 @@ export const FedapayReportPaymentList = (props) => {
             </Card>
         </>
     )
+
 }
 
 FedapayReportPaymentList.TableRow = (props) => {
+
     const {
         id,
         transactionKey,
@@ -187,4 +190,5 @@ FedapayReportPaymentList.TableRow = (props) => {
             </td>
         </tr>
     )
+
 }

@@ -38,7 +38,7 @@ import Profile1 from "../assets/img/team/profile-picture-1.jpg";
 import ProfileCover from "../assets/img/profile-cover.jpg";
 
 import teamMembers from "../data/teamMembers";
-import { format } from "date-fns";
+import {format} from "date-fns";
 
 export const ProfileCardWidget = () => {
 
@@ -108,7 +108,8 @@ export const ChoosePhotoWidget = (props) => {
 };
 
 export const CounterWidget = (props) => {
-    const {amount, currency, date } = props.balance;
+
+    const {amount, currency, date} = props.balance;
     const {image, name} = props.provider
     const onRefresh = props.onRefresh
 
@@ -161,6 +162,7 @@ export const CounterWidget = (props) => {
 
 };
 export const MerchantCounterWidget = (props) => {
+
     const {logo, name, merchantId} = props.merchant;
     const {amount, currency, date} = props.balance;
     const onRefresh = props.onRefresh;
@@ -196,15 +198,15 @@ export const MerchantCounterWidget = (props) => {
                             <h5>{name}</h5>
                             <p className="text-black-50 mb-0">{merchantId}</p>
                             <h4 className="mb-1 text-warning">
-                                {amount == undefined ? "" : new Intl.NumberFormat().format(amount)} {currency == undefined ? "":currency}
+                                {amount == undefined ? "" : new Intl.NumberFormat().format(amount)} {currency == undefined ? "" : currency}
                             </h4>
                             <h6 className="mb-1 ">{createdAtFormated == "Invalid Date" ? "" : createdAtFormated}</h6>
                         </div>
                     </Col>
                     <Button
-                    className="mt-3"
-                    variant="outline-primary"
-                    onClick={onRefresh}
+                        className="mt-3"
+                        variant="outline-primary"
+                        onClick={onRefresh}
                     >
                         Rafraîchir
                     </Button>
@@ -221,7 +223,7 @@ export const CounterWidgetHistory = (props) => {
 
     const dateAtUtc = new Date(day);
     const dateAtFormated = format(dateAtUtc, 'yyyy/MM/dd');
-    const date = dateAtFormated+' '+'23:59:59';
+    const date = dateAtFormated + ' ' + '23:59:59';
     return (
         <Card border="light" className="shadow-sm border-warning">
             <Card.Body>
@@ -268,7 +270,7 @@ export const CounterWidgetMerchantBalance = (props) => {
 
     const createdAtUtc = new Date(date);
     const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
-    //const logo = "logo_o.png";
+    // const logo = "logo_o.png";
 
     return (
         <Card border="light" className="shadow-sm border-warning">
@@ -298,7 +300,7 @@ export const CounterWidgetMerchantBalance = (props) => {
                         <div className="d-block">
                             <h5> {name} </h5>
                             <h4 className="mb-1 text-warning">
-                            {new Intl.NumberFormat().format(amount)} {currency}
+                                {new Intl.NumberFormat().format(amount)} {currency}
                             </h4>
                             <h6 className="mb-1 "> {createdAtFormated} </h6>
                         </div>

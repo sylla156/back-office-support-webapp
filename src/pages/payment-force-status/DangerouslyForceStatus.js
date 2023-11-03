@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
     Col,
     Row,
@@ -10,18 +10,19 @@ import {
     Dropdown,
     ButtonGroup,
 } from "@themesberg/react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import AxiosWebHelper from "../../utils/axios-helper";
-import { APPKEY, DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION_PAYMENT } from "../constante/Const";
-import { faTools } from "@fortawesome/free-solid-svg-icons";
-import { useCookies } from "react-cookie";
-import { Redirect } from "react-router-dom";
-import { Routes } from "../../routes";
+import {APPKEY, DANGEROUSLY_FORCE_STATUS_STATUS_CONFIRMATION_PAYMENT} from "../constante/Const";
+import {faTools} from "@fortawesome/free-solid-svg-icons";
+import {useCookies} from "react-cookie";
+import {Redirect} from "react-router-dom";
+import {Routes} from "../../routes";
 import AlertDismissable from "../../components/AlertDismissable";
-import { PaymentSummary } from "./PaymentSummary";
+import {PaymentSummary} from "./PaymentSummary";
 
 
 export const DangerouslyForceStatus = (props) => {
+
     const [isLoading, setIsLoading] = useState(false);
     const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
@@ -31,10 +32,11 @@ export const DangerouslyForceStatus = (props) => {
     const onRefresh = props.onRefresh;
     const payment = props.payment;
 
-    const [cookies,] = useCookies(["token",]);
+    const [cookies, ] = useCookies(["token", ]);
     const axios = AxiosWebHelper.getAxios();
 
     const dangerouslyForceStatus = () => {
+
         if(isLoading) return;
         setIsLoading(true);
         setErrorData(null);
@@ -47,40 +49,61 @@ export const DangerouslyForceStatus = (props) => {
                 transactionId,
             }
         }).then((_result) => {
+
             setIsLoading(false);
             handleClose()
             onRefresh();
+        
         }).catch((error) => {
+
             setIsLoading(false);
             if(error.response){
+
                 if(error.response.status === 401){
+
                     setShouldLogin(true);
+                
                 }else{
+
                     setErrorData(error.response.data.message);
+                
                 }
+            
             }
+        
         })
+    
     }
     const handleShow = () => {
+
         setShow(true);
+    
     }
 
     const handleClose = () => {
+
         setErrorData(null);
         setShow(false);
         setIsLoading(false);
+    
     }
 
     const handleDangerouslyClose = () => {
+
         dangerouslyForceStatus();
+    
     }
 
     if (!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     return (
@@ -96,7 +119,9 @@ export const DangerouslyForceStatus = (props) => {
                 size="md"
                 show={show}
                 onHide={() => {
+
                     handleClose(false);
+                
                 }}
                 backdrop="static"
                 keyboard={false}
@@ -114,7 +139,9 @@ export const DangerouslyForceStatus = (props) => {
                         variant="primary"
                         color=""
                         onClick={() => {
+
                             handleClose(false);
+                        
                         }}
                     >
                         Fermer
@@ -124,7 +151,9 @@ export const DangerouslyForceStatus = (props) => {
                         variant="danger"
                         color=""
                         onClick={() => {
+
                             handleDangerouslyClose();
+                        
                         }}
                     >
                         Forcer status
@@ -142,4 +171,5 @@ export const DangerouslyForceStatus = (props) => {
             </Modal>
         </>
     )
+
 }

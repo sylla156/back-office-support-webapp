@@ -17,7 +17,7 @@ services:
             - "${APP_ROOT}:/app"
         networks:
             - hub2_network
-        command: /bin/sh -c "npm run start"
+        entrypoint: /bin/sh -c "npm install && npm run start"
 
 networks:
     hub2_network:

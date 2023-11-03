@@ -20,7 +20,7 @@ export default () => {
     const [providerTransfer, setProviderTransfer] = useState({});
     const [shouldLogin, setShouldLogin] = useState(false);
 
-    const [cookies] = useCookies(["token",]);
+    const [cookies] = useCookies(["token", ]);
 
     const axios = AxiosWebHelper.getAxios();
 
@@ -32,29 +32,42 @@ export default () => {
     };
 
     const checkSupportTransferStatus = ()=> {
+
         setErrorData(null)
         setIsLoaded(false);
         axios.get(
             TRANSFER_HUB2_STATUS + transferIdSupport,
-             resquestHeaderSupportHub2
-            )
+            resquestHeaderSupportHub2
+        )
             .then((result) => {
+
                 setIsLoaded(true);
                 setHub2Transfer(result.data.hub2);
                 if (result.data.provider) {
+
                     setProviderTransfer(result.data.provider);
+                
                 } else{
+
                     setProviderTransfer({});
+                
                 }
+            
             })
             .catch(error => {
+
                 setIsLoaded(true);
                 onFilters();
                 if (error.response) {
+
                     if (error.response.status === 401) {
+
                         setShouldLogin(true);
+                    
                     } else {
+
                         setErrorData(error.response.data.message);
+                    
                     }
                 
                 }
@@ -72,11 +85,15 @@ export default () => {
     };
 
     if(!cookies.token) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
 
     if (shouldLogin) {
+
         return <Redirect to={Routes.Signin.path} />;
+    
     }
     return (
         <>

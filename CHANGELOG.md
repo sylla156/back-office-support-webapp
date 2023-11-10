@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.3.2...v1.3.3) (2023-11-10)
+
+
+### Bug Fixes
+
+* **deployment:** Updated registry image reference in K8s deployment ([16c4722](https://gitlab.com/connekt4/back-office-support-webapp/commit/16c47223846497c22916a68741056baa779d178c))
+
 ### [1.3.2](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.3.1...v1.3.2) (2023-11-10)
 
 

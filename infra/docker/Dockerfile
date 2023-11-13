@@ -4,6 +4,9 @@ FROM node:14.18-slim as build
 # set the workdir to /app
 WORKDIR /app
 
+ARG REACT_APP_API_URL
+ARG REACT_APP_APP_KEY
+
 COPY    package.json \
         package-lock.json \
         .eslintrc.js \
@@ -18,6 +21,7 @@ COPY --chown=node:node public/ /app/public/
 
 RUN chown -R node:node /app
 USER node
+
 RUN ["npx", "browserslist@latest", "--update-db"]
 RUN ["npm", "run", "build"]
 

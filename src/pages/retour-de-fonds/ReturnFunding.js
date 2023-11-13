@@ -80,7 +80,6 @@ export default () => {
             }
         }).then((result) => {
             setIsLoaded(true)
-            // console.log(result.data.result);
             setReturnFundingList(result.data.result)
             setCount(result.data.count)
         }).catch((error) => {
@@ -233,19 +232,19 @@ export default () => {
                 <Col xs={12} md={3} lg={6} className="px-2 mt-4">
                     <div className="mt-3 mb-4">
                         <Button
+                            variant="outline-primary"
+                            type="button"
+                            onClick={()=> exportData()}
+                        >
+                            Exporter
+                        </Button>
+                        <Button
                             className="mx-2"
                             variant="primary"
                             type="button"
                             onClick={() => getReturnFundingList()}
                         >
                             Filtrer
-                        </Button>
-                        <Button
-                            variant="outline-primary"
-                            type="button"
-                            onClick={()=> exportData()}
-                        >
-                            Exporter
                         </Button>
                     </div>
                 </Col>

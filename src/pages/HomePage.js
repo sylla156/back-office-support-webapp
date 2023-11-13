@@ -85,6 +85,7 @@ import FedapayReportTransfer from './fedapay-bj/FedapayReportTransfer';
 import MarkFedapayTransferLikeRegularised from './fedapay-bj/FedapayTransferts/MarkFedapayTransferLikeRegularised';
 import PaymentForceStatus from './payment-force-status/PaymentForceStatus';
 import ReturnFunding from './retour-de-fonds/ReturnFunding';
+import RetourDeFondsLogs from './retour-de-fonds/RetourDeFondsLogs';
 
 const RouteWithLoader = ({component: Component, ...rest}) => {
 
@@ -220,6 +221,7 @@ export default () => (
         <RouteWithSidebar exact path={Routes.MarkFedapayTransferLikeRegularised.path} title={'Transferts Fedapay - À marquer comme régularisé'} component={MarkFedapayTransferLikeRegularised} />
         <RouteWithSidebar exact path={Routes.PaymentForceStatus.path} title={'Payments - Force status'} component={PaymentForceStatus} />
         <RouteWithSidebar exact path={Routes.RetourDeFonds.path} title={'Retour de fonds'} component={ReturnFunding} />
+        <RouteWithSidebar exact path={Routes.RetourDeFondsLogs.path} title={"Logs de l'opération de retour de fonds"} component={RetourDeFondsLogs} />
 
         {/* <RouteWithSidebar exact path={Routes.TransferList.path} component={TransferList} /> */}
     

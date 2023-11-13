@@ -4,6 +4,7 @@ import { TablePagination } from "../../../components/TablePagination";
 import { etatDesRetourDeFonds, CHANGE_STATUS_RETOUR_DE_FONDS, APPKEY } from "../../constante/Const";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { useCookies } from "react-cookie";
+import { Link, useHistory } from "react-router-dom";
 
 export const RetourDeFondsList = (props) => {
     const {
@@ -35,7 +36,7 @@ export const RetourDeFondsList = (props) => {
                                 <th className="border-bottom">Date de reception</th>
                                 <th className="border-bottom">Etat du retour de fonds</th>
                                 <th className="border-bottom">Commentaire</th>
-                                {/* <th className="border-bottom">AJouté par</th> */}
+                                <th className="border-bottom">AJouté par</th>
                                 <th className="border-bottom">CreatedAt</th>
                                 <th className="border-bottom">UpdatedAt</th>
                                 <th className="border-bottom">Action</th>
@@ -67,6 +68,8 @@ RetourDeFondsList.TableRow = (props) => {
         commentaire,
         createdAt,
         updatedAt,
+        currency,
+        provider,
         user,
         userCanMakeReturnFunding,
         returnFundingGroup1,
@@ -80,6 +83,7 @@ RetourDeFondsList.TableRow = (props) => {
     const [shouldLogin, setShouldLogin] = useState(false);
     const axios = AxiosWebHelper.getAxios();
     const [cookies] = useCookies(["token"]);
+    const history = useHistory();
 
     const badgeColor = (status) => {
         if(status === "OUVERT"){
@@ -111,7 +115,6 @@ RetourDeFondsList.TableRow = (props) => {
                     id: id
                 }
             }).then((response) => {
-                console.log("response", response);
                 setIsLoading(false)
                 onRefresh()
             }).catch((error) => {
@@ -125,6 +128,10 @@ RetourDeFondsList.TableRow = (props) => {
                 }
             })
         }
+    }
+
+    const handleDetailsClick = (rowData) => {
+        history.push("/retour-de-fonds/logs",{rowData});
     }
 
     return (
@@ -171,11 +178,11 @@ RetourDeFondsList.TableRow = (props) => {
                     {commentaire}
                 </span>
             </td>
-            {/* <td>
+            <td>
                 <span className="fw-normal">
-                    assia
+                    {user.name}
                 </span>
-            </td> */}
+            </td>
             <td>
                 <span className="fw-normal">
                     {createdAt}
@@ -187,7 +194,7 @@ RetourDeFondsList.TableRow = (props) => {
                 </span>
             </td>
             <td>
-                <Button variant="primary" type="button" onClick={() => console.log("okokok")}>
+                <Button variant="primary" onClick={()=> handleDetailsClick({id, refMarchand, refHub2, refOperateur, numero, montant, dateRecu, etat, commentaire, createdAt, updatedAt, currency, provider, userCanMakeReturnFunding, returnFundingGroup1, returnFundingGroup2, returnFundingGroup3, user})}>
                     Détails
                 </Button>
             </td>

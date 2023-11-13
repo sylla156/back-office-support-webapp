@@ -2,7 +2,7 @@ import { Col, Form, Button, Spinner, Modal, Badge } from "@themesberg/react-boot
 import React, { useState } from "react";
 import { Routes } from "../../../routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { APPKEY, FIRST_PAGE_INDEX, etatDesRetourDeFonds, ADD_RETOUR_DE_FONDS, RETRIEVE_A_TRANSFER_TRANSACTION } from "../../constante/Const";
+import { APPKEY, FIRST_PAGE_INDEX, etatDesRetourDeFonds, ADD_RETOUR_DE_FONDS, RETRIEVE_A_TRANSFER_TRANSACTION, GET_RETOUR_DE_FONDS_TYPE, ADD_RETOUR_DE_FONDS_LOGS } from "../../constante/Const";
 import { useCookies } from "react-cookie";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { Redirect } from "react-router-dom";
@@ -23,10 +23,6 @@ export const AddReturnFunding = (props) => {
     const [providerData, setProviderData] = useState([])
     const [transfer, setTransfer] = useState([])
     const [refMarchand, setRefMarchand] = useState(undefined)
-    const [refHub2, setRefHub2] = useState(undefined)
-    const [refOperateur, setRefOperateur] = useState(undefined)
-    const [numero, setNumero] = useState(undefined)
-    const [montant, setMontant] = useState(undefined)
     const [commentaire, setCommentaire] = useState(undefined)
     const [dateRecu, setDateRecu] = useState(defaultDate)
     const [currentPage, setCurrentPage] = useState(FIRST_PAGE_INDEX);
@@ -71,6 +67,14 @@ export const AddReturnFunding = (props) => {
         }
     }
 
+    const decryptProviderByGatewayId = (gatewayId) => {
+        if (gatewayId === "hub2_mm_ci_orange_live") return "orange"
+        if (gatewayId === "hub2_mm_ci_moov_live") return "moov"
+        if (gatewayId === "hub2_mm_ci_mtn_live") return "mtn"
+        if (gatewayId === "hub2_mm_ci_wave_live") return "wave"
+        return ""
+    }
+
     const addRetourDeFonds = () => {
         setIsLoading(true)
         setErrorData(null)
@@ -81,7 +85,9 @@ export const AddReturnFunding = (props) => {
             refOperateur: providerData.processorReference,
             dateRecu,
             numero: transfer.mobile,
-            montant: transfer.fee,
+            currency: transactionDetails.currency,
+            provider: decryptProviderByGatewayId(providerData.gatewayId),
+            montant: transactionDetails.amount,
             commentaire,
         }
         axios.post(ADD_RETOUR_DE_FONDS, data, {
@@ -90,11 +96,49 @@ export const AddReturnFunding = (props) => {
                 AppKey: APPKEY,
                 authenticationtoken: cookies.token
             }
-        }).then((result) => {
-            if (result.status === 201) {
-                setIsLoading(false)
-                handleClose()
-                onRefresh()
+        }).then((addResult) => {
+            if (addResult.status === 201) {
+                axios.get(GET_RETOUR_DE_FONDS_TYPE, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        AppKey: APPKEY,
+                        authenticationtoken: cookies.token
+                    }
+                }).then((result) => {
+                    if (result.status === 200) {
+                        const allType = result.data.list
+                        const logType = allType.find(type => type.name === result.data.list[result.data.list.length - 1].name)
+                        const data = {
+                            type: logType,
+                            message: "à été crée le retour de fonds",
+                            idRetourDeFonds: addResult.data,
+
+                        }
+                        axios.post(ADD_RETOUR_DE_FONDS_LOGS, data, {
+                            headers: {
+                                "Content-Type": "application/json",
+                                AppKey: APPKEY,
+                                authenticationtoken: cookies.token
+                            }
+                        }).then((result) => {
+                            if (result.status === 201) {
+                                setIsLoading(false)
+                                handleClose()
+                                onRefresh()
+                            }
+                        })
+                    }
+                }).catch((error) => {
+                    setIsLoading(false)
+                    if (error.response) {
+                        if (error.response.status === 401) {
+                            setShouldLogin(true)
+                        } else {
+                            setErrorData(error.response.data.message)
+                        }
+                    }
+                })
+
             }
         }).catch((error) => {
             setIsLoading(false)

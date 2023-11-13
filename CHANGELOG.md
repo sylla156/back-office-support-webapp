@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.4](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.3.3...v1.3.4) (2023-11-13)
+
+
+### Bug Fixes
+
+* **Env vars:** Updated Dockerfile to take build args ([4f73993](https://gitlab.com/connekt4/back-office-support-webapp/commit/4f739935a2965975d60a4294b005f58527c18d27))
+
 ### [1.3.3](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.3.2...v1.3.3) (2023-11-10)
 
 

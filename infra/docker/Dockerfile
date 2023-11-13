@@ -4,12 +4,10 @@ FROM node:14.18-slim as build
 # set the workdir to /app
 WORKDIR /app
 
-ARG REACT_APP_API_URL
-ARG REACT_APP_APP_KEY
-
 COPY    package.json \
         package-lock.json \
         .eslintrc.js \
+        infra/config/.env.production \
         /app/
 
 # Install modules on container

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.5](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.3.4...v1.3.5) (2023-11-13)
+
+
+### Bug Fixes
+
+* **Env vars:** Added .env.production to /app for build time. ([1891377](https://gitlab.com/connekt4/back-office-support-webapp/commit/189137792e4e21998f19230cf470aa074f4420f0))
+
 ### [1.3.4](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.3.3...v1.3.4) (2023-11-13)
 
 

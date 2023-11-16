@@ -14,11 +14,11 @@ COPY    package.json \
 RUN npm clean-install
 
 # Copy required files to container
-COPY --chown=node:node src/ /app/src/
-COPY --chown=node:node public/ /app/public/
+COPY src/ /app/src/
+COPY public/ /app/public/
 
-RUN chown -R node:node /app
-USER node
+# RUN chown -R node:node /app
+# USER node
 
 RUN ["npx", "browserslist@latest", "--update-db"]
 RUN ["npm", "run", "build"]
@@ -33,6 +33,9 @@ WORKDIR /usr/share/nginx/html
 
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /app/build /usr/share/nginx/html/.
+RUN chmod ug-w -R /usr/share/nginx/html/
+RUN chmod o-rwx -R /usr/share/nginx/html/
+RUN chown nginx:nginx -R /usr/share/nginx/html/
 
 # Copy custom script && add execution rights
 COPY infra/docker/start_custom_nginx.sh /scripts/start_custom_nginx.sh

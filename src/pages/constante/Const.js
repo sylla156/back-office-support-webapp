@@ -118,6 +118,14 @@ export const MERCHANTS_LIVE_FEES_URL = "/merchant-fees-live"
 export const APPLY_MERCHANT_FEES_URL = "/merchant-fees/apply-fees"
 export const ADD_APPLY_MERCHANT_FEES_URL = "/merchant-fees"
 
+export const ADD_RETOUR_DE_FONDS = "/retour-de-fonds"
+export const RETOUR_DE_FONDS = "/retour-de-fonds"
+export const CHANGE_STATUS_RETOUR_DE_FONDS = "/retour-de-fonds/change-status"
+export const RETRIEVE_A_TRANSFER_TRANSACTION = "/retour-de-fonds/retrieve-transaction"
+export const GET_RETOUR_DE_FONDS_TYPE = "/retour-de-fonds-type"
+export const ADD_RETOUR_DE_FONDS_LOGS = "/retour-de-fonds-logs"
+export const GET_RETOUR_DE_FONDS_LOGS = "/retour-de-fonds-logs"
+
 export const GET_ALL_USERS = 'rights-management/users'
 export const APPLY_RIGHTS_UPDATE = 'rights-management/grant-user'
 
@@ -589,6 +597,53 @@ export const chooseOrderList = [
         id:5,
         sorted: 'commission_nette-DESC',
         name:"Commission nette décroissante"
+    }
+]
+
+export const etatDesRetourDeFonds = [
+    {
+      id:0,
+      etat: "OUVERT",
+      ouvert: "OUVERT"
+    },
+    {
+      id:1,
+      etat: "A TRANSMETTRE",
+      aTransmettre: "A TRANSMETTRE"
+    },
+    {
+      id:2,
+      etat: "A REGULARISER",
+      aRegulariser: "A REGULARISER"
+    },
+    {
+      id:3,
+      etat: "REGULARISE",
+      regularise: "REGULARISE"
+    },
+    {
+      id:4,
+      etat: "A VALIDER",
+      aValider: "A VALIDER"
+    },
+    {
+      id:5,
+      etat: "INSUFFISANTS",
+      insuffisants: "INSUFFISANTS"
+    },
+    {
+      id:6,
+      etat: "A NOTIFIER",
+      aNotifier: "A NOTIFIER"
+    },
+    {
+      id:7,
+      etat: "FERMÉ",
+      fermé: "FERMÉ"
+    },
+    {
+      id:8,
+      etat:"Tous"
     }
 ]
 

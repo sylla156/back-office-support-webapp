@@ -15,6 +15,7 @@ import {
     faHistory,
     faTools,
     faLock,
+    faMoneyBill
 } from "@fortawesome/free-solid-svg-icons";
 import {
     Nav,
@@ -391,6 +392,11 @@ export default (props = {}) => {
                                 title="Gestion des droits"
                                 link={Routes.RightsManagement.path}
                                 icon={faLock}
+                            />
+                            <NavItem
+                                title="Retour de fonds"
+                                link={Routes.RetourDeFonds.path}
+                                icon={faMoneyBill}
                             />
 
                             <Dropdown.Divider className="my-3 border-indigo" />

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.0-0...v1.4.0) (2023-11-21)
+
+
+### Features
+
+* **FILE_LIMIT:** Added env var to set max body size ([0d120ad](https://gitlab.com/connekt4/back-office-support-webapp/commit/0d120ada9ae1bd40566be9e84d03f4c5e5813dd0))
+
+
+### Bug Fixes
+
+* **container:** Updated perms on files & dirs ([4e4745f](https://gitlab.com/connekt4/back-office-support-webapp/commit/4e4745f2ccb2ceff4cee4dc330a7762cb1a6b92e))
+
 ## [1.4.0-0](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.3.5...v1.4.0-0) (2023-11-21)
 
 

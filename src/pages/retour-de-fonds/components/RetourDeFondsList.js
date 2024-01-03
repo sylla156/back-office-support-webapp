@@ -29,12 +29,12 @@ export const RetourDeFondsList = (props) => {
                         <thead>
                             <tr>
                                 <th className="border-bottom">Reference marchand</th>
+                                <th className="border-bottom">Etat du retour de fonds</th>
                                 <th className="border-bottom">Reference HUB2</th>
                                 <th className="border-bottom">Reference Opérateur</th>
                                 <th className="border-bottom">Numero</th>
                                 <th className="border-bottom">Montant</th>
                                 <th className="border-bottom">Date de reception</th>
-                                <th className="border-bottom">Etat du retour de fonds</th>
                                 <th className="border-bottom">Commentaire</th>
                                 <th className="border-bottom">AJouté par</th>
                                 <th className="border-bottom">CreatedAt</th>
@@ -143,6 +143,13 @@ RetourDeFondsList.TableRow = (props) => {
             </td>
             <td>
                 <span className="fw-normal">
+                    <Badge bg={badgeColor(etat)} style={{padding:5, fontSize:"1em"}}>
+                        {etat}
+                    </Badge>
+                </span>
+            </td>
+            <td>
+                <span className="fw-normal">
                     {refHub2}
                 </span>
             </td>
@@ -164,13 +171,6 @@ RetourDeFondsList.TableRow = (props) => {
             <td>
                 <span className="fw-normal">
                     {dateRecu}
-                </span>
-            </td>
-            <td>
-                <span className="fw-normal">
-                    <Badge bg={badgeColor(etat)} style={{padding:5, fontSize:"1em"}}>
-                        {etat}
-                    </Badge>
                 </span>
             </td>
             <td>

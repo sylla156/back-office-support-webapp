@@ -125,6 +125,7 @@ export const RETRIEVE_A_TRANSFER_TRANSACTION = "/retour-de-fonds/retrieve-transa
 export const GET_RETOUR_DE_FONDS_TYPE = "/retour-de-fonds-type"
 export const ADD_RETOUR_DE_FONDS_LOGS = "/retour-de-fonds-logs"
 export const GET_RETOUR_DE_FONDS_LOGS = "/retour-de-fonds-logs"
+export const EXTRACT_RETOUR_DE_FONDS = "/retour-de-fonds/extract-data"
 
 export const GET_ALL_USERS = 'rights-management/users'
 export const APPLY_RIGHTS_UPDATE = 'rights-management/grant-user'

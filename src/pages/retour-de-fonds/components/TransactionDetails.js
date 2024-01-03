@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Col, Badge, Spinner } from "@themesberg/react-bootstrap";
+import { Button, Col, Badge, ButtonGroup, Modal, Row } from "@themesberg/react-bootstrap";
 import { etatDesRetourDeFonds, CHANGE_STATUS_RETOUR_DE_FONDS, APPKEY } from "../../constante/Const";
 import AxiosWebHelper from "../../../utils/axios-helper";
 import { useCookies } from "react-cookie";
@@ -7,13 +7,20 @@ import { useHistory } from "react-router-dom";
 
 export const TransactionDetails = (props) => {
     const data = props.rowData
+    const [returnFundingGroup1, setReturnFundingGroup1] = useState(data.user.returnFundingGroup1)
+    const [returnFundingGroup2, setReturnFundingGroup2] = useState(data.user.returnFundingGroup2)
+    const [returnFundingGroup3, setReturnFundingGroup3] = useState(data.user.returnFundingGroup3)
     const [isLoading, setIsLoading] = useState(false)
     const [errorData, setErrorData] = useState(null)
     const axios = AxiosWebHelper.getAxios()
     const [cookies] = useCookies(["token"])
     const history = useHistory();
+    const [show, setShow] = useState(false);
 
-    
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
     const handleDetailsClick = () => {
         history.push("/retour-de-fonds");
     }
@@ -35,7 +42,6 @@ export const TransactionDetails = (props) => {
     }
 
     const changeRetourDeFondsStatus = (id, newState) => {
-        console.log("en cours");
         setIsLoading(true)
         setErrorData(null)
 
@@ -78,19 +84,58 @@ export const TransactionDetails = (props) => {
         if (currentStep === "OUVERT") {
             if (provider === "wave") {
                 return (
-                    <Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup1 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A REGULARISER")}>A REGULARISER</Button>
+                    <>
+                        <Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A SECURISER")}>A SÉCURISER</Button>
+
+                    </>
                 )
             } else {
-                return (<Button disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup1 || isLoading} className="btn btn-primary" onClick={() => changeRetourDeFondsStatus(data.id, "A TRANSMETTRE")}>A TRANSMETTRE</Button>)
+                return (<Button disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} className="btn btn-primary" onClick={() => changeRetourDeFondsStatus(data.id, "A TRANSMETTRE")}>A TRANSMETTRE</Button>)
             }
+        } else if (currentStep === "A SECURISER") {
+            return (
+                <>
+                    <Button style={{ marginRight: 4 }} disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} className="btn btn-primary" onClick={() => changeRetourDeFondsStatus(data.id, "A TRANSMETTRE")}>A TRANSMETTRE</Button>
+                    <Button style={{ marginRight: 4 }} disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} className="btn btn-primary" onClick={() => changeRetourDeFondsStatus(data.id, "INSUFFISANTS")}>FONDS INSUFFISANTS</Button>
+                    <Button style={{ marginRight: 4 }} disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} className="btn btn-primary" onClick={() => changeRetourDeFondsStatus(data.id, "A REGULARISER")}>A REGULARISER</Button>
+                </>
+            )
         } else if (currentStep === "A TRANSMETTRE") {
-            return (<Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup1 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A REGULARISER")}>A REGULARISER</Button>)
+            return (
+                <>
+                    <Button className="btn btn-primary" style={{ marginRight: 4 }} disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "INSUFFISANTS")}>FONDS INSUFFISANTS</Button>
+                    <Button className="btn btn-primary" style={{ marginRight: 4 }} disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A REGULARISER")}>A REGULARISER</Button>
+                </>
+            )
         } else if (currentStep === "A REGULARISER") {
-            return (<Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup2 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A VALIDER")}>A VALIDER</Button>)
+            return (<Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !returnFundingGroup2 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A VALIDER")}>VALIDER</Button>)
         } else if (currentStep === "A VALIDER") {
-            return (<Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup3 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A NOTIFIER")}>A NOTIFIER</Button>)
+            return (<Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !returnFundingGroup3 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A NOTIFIER")}>VALIDER</Button>)
         } else if (currentStep === "A NOTIFIER") {
-            return (<Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup1 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "FERMÉ")}>FERMÉ</Button>)
+            return (<Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "FERMÉ")}>VALIDER</Button>)
+        } else if(currentStep === "INSUFFISANTS") {
+            return (<Button className="btn btn-primary" disabled={!data.userCanMakeReturnFunding || !returnFundingGroup1 || isLoading} onClick={() => changeRetourDeFondsStatus(data.id, "A NOTIFIER")}>VALIDER</Button>)
+        }
+    }
+
+    const findNewSteps = (provider, currentStep) => {
+        if (currentStep === "OUVERT") {
+            if (provider === "wave") {
+                return "A SECURISER"
+            }
+
+        } else if (currentStep === "A SECURISER") {
+            return "A TRANSMETTRE"
+        } else if (currentStep === "A TRANSMETTRE") {
+            return "A REGULARISER"
+        } else if (currentStep === "A REGULARISER") {
+            return "A VALIDER"
+        } else if (currentStep === "INSUFFISANTS") {
+            return "A NOTIFIER"
+        } else if (currentStep === "A VALIDER") {
+            return "A NOTIFIER"
+        } else if (currentStep === "A NOTIFIER") {
+            return "FERMÉ"
         }
     }
 
@@ -100,6 +145,27 @@ export const TransactionDetails = (props) => {
                 <div className="justify-content-between d-flex flex-row">
                     <h4>Résumé des détails de la transaction {data.refMarchand}</h4>
                 </div>
+                <Modal
+                    show={show}
+                    onHide={handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton className="bg-primary">
+                        <Modal.Title className="text-white">Confirmez votre action</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Voulez vous vraiment passer à l'étape suivante ?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="outline-primary" color="" onClick={handleClose}>
+                            Fermer
+                        </Button>
+                        <ButtonGroup>
+                            {NextStepButton(data.etat, data.provider)}
+                        </ButtonGroup>
+                    </Modal.Footer>
+                </Modal>
                 <div>
                     <br />
                     <p style={{ fontWeight: "bold" }}>Référence du marchand: <span>{data.refMarchand}</span></p>
@@ -115,7 +181,7 @@ export const TransactionDetails = (props) => {
                         </span>
                     </p>
                     <p style={{ fontWeight: "bold" }}>Date de reception: <span>{data.dateRecu}</span></p>
-                    <p style={{ fontWeight: "bold" }}>Commentaire: <span>{data.commentaire}</span></p>
+                    <p style={{ fontWeight: "bold" }}>Commentaire: <span>{data.commentaire !== "" ? data.commentaire : "N/A"}</span></p>
                     <div className="d-flex flex-row justify-content-center align-items-center">
                         <Col xs={12} md={6} lg={6} className="d-flex justify-content-center align-items-center flex-column">
                             <span>Statut actuel</span>
@@ -124,8 +190,26 @@ export const TransactionDetails = (props) => {
                             </Badge>
                         </Col>
                         <Col xs={12} md={6} lg={6} className="d-flex justify-content-center align-items-center flex-column">
-                            <span>Prochain statut</span>
-                            {NextStepButton(data.etat, data.provider)}
+                            {data.etat !== "FERMÉ" && (
+                                <>
+                                    <span>Prochain statut</span>
+                                    <div style={{ flexDirection: "row", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                        <Button className="btn btn-primary" style={{ marginRight: 2 }} disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup1 || isLoading} onClick={() => handleShow()}>{findNewSteps(data.provider, data.etat)}</Button>
+                                        {data.etat === "A TRANSMETTRE" && (
+                                            <>
+                                                <Button className="btn btn-primary" style={{ marginRight: 2 }} disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup1 || isLoading} onClick={() => handleShow()}>FONDS INSUFFISANTS</Button>
+                                            </>
+                                        )}
+                                        {data.provider === "wave" && data.etat === "A SECURISER" && (
+                                            <>
+                                                <Button className="btn btn-primary" style={{ marginRight: 2 }} disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup1 || isLoading} onClick={() => handleShow()}>FONDS INSUFFISANTS</Button>
+                                                <Button className="btn btn-primary" style={{ marginRight: 2 }} disabled={!data.userCanMakeReturnFunding || !data.returnFundingGroup1 || isLoading} onClick={() => handleShow()}>A REGULARISER</Button>
+                                            </>
+                                        )}
+                                    </div>
+                                </>
+                            )}
+                            {/* {NextStepButton(data.etat, data.provider)} */}
                         </Col>
                     </div>
                 </div>

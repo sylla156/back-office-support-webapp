@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Redirect } from "react-router-dom";
-import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, etatDesRetourDeFonds, RETOUR_DE_FONDS } from "../constante/Const";
+import { FIRST_PAGE_INDEX, APPKEY, PAGE_SIZE, etatDesRetourDeFonds, RETOUR_DE_FONDS, EXTRACT_RETOUR_DE_FONDS } from "../constante/Const";
 import { Col, Spinner, Row, Form, Button, InputGroup } from "@themesberg/react-bootstrap";
 import AxiosWebHelper from "../../utils/axios-helper";
 import { Routes } from "../../routes";
-import { format } from "date-fns";
+import { format, subDays } from "date-fns";
 import { AddReturnFunding } from "./components/AddReturnFunding";
 import { RetourDeFondsList } from "./components/RetourDeFondsList";
 
@@ -13,8 +13,8 @@ export default () => {
     const currentDate = new Date()
 
     const formattedCurrentDate = format(currentDate, "yyyy-MM-dd");
-    const defaultStartDate = `${formattedCurrentDate}T00:00:00Z`
-
+    // const defaultStartDate = `${formattedCurrentDate}T00:00:00Z`
+    const defaultStartDate = `${format(subDays(currentDate, 7), "yyyy-MM-dd")}T23:59:59Z`
     const defaultEndDate = `${formattedCurrentDate}T23:59:59Z`
     const [errorData, setErrorData] = useState(null)
     const [startDate, setStartDate] = useState(defaultStartDate);
@@ -99,7 +99,8 @@ export default () => {
         setErrorDataCSV(null)
         setIsLoadedCSV(false)
 
-        axios.get("edfedfed",{
+        axios.get(EXTRACT_RETOUR_DE_FONDS,{
+            responseType: 'blob',
             params:{
                 from: startDate,
                 to: endDate,
@@ -114,7 +115,7 @@ export default () => {
             const url = window.URL.createObjectURL(new Blob([result.data]));
             const link = document.createElement("a");
             link.href = url;
-            link.setAttribute("download", filename + ".csv");
+            link.setAttribute("download", filename + ".xlsx");
             document.body.appendChild(link);
             link.click();
             link.remove();

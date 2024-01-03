@@ -84,7 +84,7 @@ export const AddReturnFunding = (props) => {
             refHub2: transactionDetails.id,
             refOperateur: providerData.processorReference,
             dateRecu,
-            numero: transfer.mobile,
+            numero: transactionDetails.destination.number,
             currency: transactionDetails.currency,
             provider: decryptProviderByGatewayId(providerData.gatewayId),
             montant: transactionDetails.amount,
@@ -110,7 +110,7 @@ export const AddReturnFunding = (props) => {
                         const logType = allType.find(type => type.name === result.data.list[result.data.list.length - 1].name)
                         const data = {
                             type: logType,
-                            message: "à été crée le retour de fonds",
+                            message: cookies.user.name + "à été crée le retour de fonds",
                             idRetourDeFonds: addResult.data,
 
                         }
@@ -180,6 +180,7 @@ export const AddReturnFunding = (props) => {
             },
         ).then((result) => {
             setTransactionDetails(result.data.list[0])
+            console.log("azertyu", result.data.list[0]);
             setProviderData(result.data.list[0].providerData)
             setTransfer(result.data.list[0].providerData.transfer.response)
             setIsLoading(false)
@@ -240,8 +241,8 @@ export const AddReturnFunding = (props) => {
                                 <p style={{ fontWeight: "bold" }}>Référence du marchand: <span>{transactionDetails.reference}</span></p>
                                 <p style={{ fontWeight: "bold" }}>Référence HUB2: <span>{transactionDetails.id}</span></p>
                                 <p style={{ fontWeight: "bold" }}>Référence opérateur: <span>{providerData.processorReference}</span></p>
-                                <p style={{ fontWeight: "bold" }}>Numéro de téléphone: <span>{transfer.mobile}</span></p>
-                                <p style={{ fontWeight: "bold" }}>Montant de la transaction: <span>{transfer.fee} {transactionDetails.currency}</span></p>
+                                <p style={{ fontWeight: "bold" }}>Numéro de téléphone: <span>{transactionDetails.destination.number}</span></p>
+                                <p style={{ fontWeight: "bold" }}>Montant de la transaction: <span>{transactionDetails.amount} {transactionDetails.currency}</span></p>
                                 <p style={{ fontWeight: "bold" }}>Status de la transaction:
                                     <span>
                                         <Badge bg={badgeColor(transactionDetails.status)}>
@@ -254,8 +255,8 @@ export const AddReturnFunding = (props) => {
                                 <Form.Control value={dateRecu} required onChange={(e) => setDateRecu(e.target.value)} type="text" placeholder="Date de reception" />
                                 <p style={{ color: "red" }}>{valueErrorMessage}</p>
 
-                                <Form.Label>Commentaire <span style={{ color: "red" }}>*</span></Form.Label>
-                                <Form.Control value={commentaire} required onChange={(e) => setCommentaire(e.target.value)} type="text" placeholder="Commentaire" />
+                                <Form.Label>Commentaire</Form.Label>
+                                <Form.Control value={commentaire} onChange={(e) => setCommentaire(e.target.value)} type="text" placeholder="Commentaire" />
                                 <p style={{ color: "red" }}>{valueErrorMessage}</p>
                                 <p> <FontAwesomeIcon icon={faExclamationTriangle} className="me-2" /> Le signe <span style={{ color: "red" }}>* </span>signifie que ce champ est obligatoire</p>
                             </>
@@ -285,7 +286,6 @@ export const AddReturnFunding = (props) => {
                                     <Button
                                         variant="outline-primary"
                                         type="button"
-                                        disabled={commentaire === undefined}
                                         onClick={() => handlePostData()}
                                     >
                                         Ajouter la transaction

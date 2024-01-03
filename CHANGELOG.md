@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.0...v1.4.1) (2024-01-03)
+
+
+### Bug Fixes
+
+* **retour-de-fonds:** fixing errors and bugs during functionality testing ([57b1345](https://gitlab.com/connekt4/back-office-support-webapp/commit/57b1345969635a9363225d3987441ab1ed2b8413))
+* **return-of-funds-route:** extract returns in excel format ([337c6e8](https://gitlab.com/connekt4/back-office-support-webapp/commit/337c6e842eaffe7e7e494836d98eab2ca31442af))
+
 ## [1.4.0](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.0-0...v1.4.0) (2023-11-21)
 
 

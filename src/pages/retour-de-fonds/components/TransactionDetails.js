@@ -122,6 +122,8 @@ export const TransactionDetails = (props) => {
         if (currentStep === "OUVERT") {
             if (provider === "wave") {
                 return "A SECURISER"
+            }else{
+                return "A TRANSMETTRE"
             }
 
         } else if (currentStep === "A SECURISER") {
@@ -141,7 +143,7 @@ export const TransactionDetails = (props) => {
 
     return (
         <>
-            <div className="d-flex flex-column p-4">
+            <div className="d-flex flex-column p-4 card shadow">
                 <div className="justify-content-between d-flex flex-row">
                     <h4>Résumé des détails de la transaction {data.refMarchand}</h4>
                 </div>

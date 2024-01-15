@@ -37,6 +37,8 @@ export const AddReturnFunding = (props) => {
     }
 
     const handleClose = () => {
+        setShowHiddenData(false)
+        setTransactionDetails([])
         setErrorData(null)
         setShow(false)
         setRefMarchand(undefined)
@@ -180,7 +182,6 @@ export const AddReturnFunding = (props) => {
             },
         ).then((result) => {
             setTransactionDetails(result.data.list[0])
-            console.log("azertyu", result.data.list[0]);
             setProviderData(result.data.list[0].providerData)
             setTransfer(result.data.list[0].providerData.transfer.response)
             setIsLoading(false)
@@ -264,34 +265,46 @@ export const AddReturnFunding = (props) => {
                         )}
 
                         <Col xs={12} md={6} lg={12} className="px-2 mt-4">
-                            <div className="mt-3 mb-4">
+                            <div className="mt-3 mb-4 d-flex flex-row align-items-center">
                                 {
                                     !isLoading ?
-                                        <Button
-                                            className="mx-2"
-                                            variant="primary"
-                                            type="button"
-                                            disabled={showHiddenData}
-                                            onClick={() => retrieveTransferTransaction()}
-                                        >
-                                            Retrouver la transaction
-                                        </Button> :
+                                        <>
+                                            {!transactionDetails.status && (
+                                                <Button
+                                                    className="mx-2"
+                                                    variant="primary"
+                                                    type="button"
+                                                    disabled={showHiddenData}
+                                                    onClick={() => retrieveTransferTransaction()}
+                                                >
+                                                    Retrouver la transaction
+                                                </Button>
+                                            )}
+                                        </>
+                                        :
                                         <div className="d-flex justify-content-center">
                                             <Spinner animation="border " size="sm" role="status">
                                                 <span className="visually-hidden">Loading...</span>
                                             </Spinner>
                                         </div>
                                 }
+
                                 {transactionDetails.status === "successful" ? (
                                     <Button
-                                        variant="outline-primary"
+                                        variant="primary"
                                         type="button"
                                         onClick={() => handlePostData()}
                                     >
                                         Ajouter la transaction
                                     </Button>
                                 ) : (
-                                    warningMessageStatus(showWarning)
+                                    <>
+                                        {transactionDetails.status === "failed" || transactionDetails.status === "pending" ? (
+                                            <p className="text-warning" style={{ fontWeight: "bold", fontSize: "16px" }}>Le status de la transaction est en echec ou en pending</p>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </>
                                 )}
                             </div>
                         </Col>

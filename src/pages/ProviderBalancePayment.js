@@ -12,7 +12,7 @@ export const ProviderBalancePayment = (props) => {
     const provider = props.provider
     const {gatewayId} = provider
 
-    const [isLoaded, setIsLoaded] = useState(true);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [providerBalance, setProviderBalance] = useState([]);
     const [shouldLogin, setShouldLogin] = useState(false);
     const [errorData, setErrorData] = useState(null);
@@ -60,17 +60,9 @@ export const ProviderBalancePayment = (props) => {
     
     }
 
-    const incrementVersion = () => setVersion((currentVersion) => {
+    const incrementVersion = () => setVersion(currentVersion => currentVersion + 1);
 
-        return currentVersion + 1;
-    
-    })
-
-    useEffect(() => {
-
-        getProviderBalancePayment();
-    
-    }, [gatewayId, version]);
+    useEffect(getProviderBalancePayment, [version]);
 
     if (!cookies.token) {
 

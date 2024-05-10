@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2-4](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.2-3...v1.4.2-4) (2024-05-10)
+
+
+### Bug Fixes
+
+* otp typo in SignIn and VerifyAuth components ([9f0f5d5](https://gitlab.com/connekt4/back-office-support-webapp/commit/9f0f5d533d3e4643c04ed775d9927a4d28d2cc87))
+
+### [1.4.2](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.2-0...v1.4.2) (2024-01-15)
+
 ### [1.4.2-3](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.2-2...v1.4.2-3) (2024-05-10)
 
 ### [1.4.2-2](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.2-1...v1.4.2-2) (2024-05-10)

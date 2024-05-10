@@ -58,8 +58,17 @@ export default()=> {
                 },
             }).then((result) => {
 
+                // TODO: This is a temporary fix.
+                // Pay-Out accounts should not be displayed on this page.
+                // We just filter providers by name and skip those with name contains 'Pay-Out'.
+                const providers = result.data;
+                const filtered = providers.filter(p => {
+                    const haystack = p.name.toLowerCase();
+                    return !(haystack.includes('pay-out') || haystack.includes('payout'));
+                });
+
                 setIsLoaded(true);
-                setProviderList(result.data);
+                setProviderList(filtered);
             
             }).catch((error) => {
 
@@ -82,11 +91,8 @@ export default()=> {
     
     }
 
-    useEffect(() => {
+    useEffect(getProviderList, []);
 
-        getProviderList();
-    
-    }, []);
     if(!cookies.token) {
 
         return <Redirect to={Routes.Signin.path}/>
@@ -102,7 +108,7 @@ export default()=> {
     return (
         <>
             {isLoaded ? (
-                <Row className="">
+                <Row className="flex-wrap">
                     {providerList.map((provider) => (
                         <Col
                             key={provider.id}
@@ -110,7 +116,7 @@ export default()=> {
                             sm={6}
                             md={5}
                             lg={4}
-                            className="mb-4 border-warning "
+                            className="mb-4 border-warning d-flex flex-column"
                         >
                             <ProviderBalancePayment key={provider.id} provider={provider} />
                         </Col>

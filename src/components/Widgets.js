@@ -115,48 +115,45 @@ export const CounterWidget = (props) => {
 
     const createdAtUtc = new Date(date);
     const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
+
     return (
-        <Card border="light" className="shadow-sm border-warning">
+        <Card border="light" className="shadow-sm border-warning" style={{ flex: 1 }}>
             <Card.Body>
                 <Row className="d-block d-xl-flex align-items-center">
-                    <Col
-                        xl={5}
-                        className="text-center d-flex align-items-center justify-content-center mb-3 mb-xl-0"
-                    >
+                    <Col xl={4} className="text-center d-flex align-items-center justify-content-center">
                         {image ? (
                             <img
                                 className="mb-4 rounded mx-auto d-block"
                                 src={require("../assets/img/technologies/" + image)}
-                                width="70"
+                                width="64" height="64"
                             />
                         ) : (
                             <img
                                 className="p-2 d-xl-flex rounded"
                                 src={require("../assets/img/technologies/question.jpg")}
-                                width="100"
+                                width="64" height="64" 
                                 style={{position: "absolute", top: 12, left: 14}}
                             />
                         )}
                     </Col>
 
-                    <Col xs={12} xl={7} className="px-xl-0">
+                    <Col xs={12} xl={8} className="px-xl-0 d-flex">
                         <div className="d-block">
-                            <h5>{name}</h5>
-                            <h4 className="mb-1 text-warning">
+                            <h6>{name}</h6>
+                            <h6 className="mb-1 text-warning">
                                 {new Intl.NumberFormat().format(amount)} {currency}
-                            </h4>
-                            <h6 className="mb-1 ">{createdAtFormated}</h6>
+                            </h6>
+                            <p className="mb-0">{createdAtFormated}</p>
                         </div>
                     </Col>
-                    <Button
-                        className="mt-3"
-                        variant="outline-primary"
-                        onClick={onRefresh}
-                    >
-                        Rafraîchir
-                    </Button>
                 </Row>
             </Card.Body>
+
+            <Card.Footer>
+                <Button className="w-100" variant="outline-primary" onClick={onRefresh}>
+                    Rafraîchir
+                </Button>
+            </Card.Footer>
         </Card>
     );
 

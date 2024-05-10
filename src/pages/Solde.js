@@ -63,8 +63,17 @@ export default () => {
                 },
             }).then((result) => {
 
+                // TODO: This is a temporary fix.
+                // Pay-In accounts should not be displayed on this page.
+                // We just filter providers by name and skip those with name contains 'Pay-In'.
+                const providers = result.data;
+                const filtered = providers.filter(p => {
+                    const haystack = p.name.toLowerCase();
+                    return !(haystack.includes('pay-in') || haystack.includes('payin'));
+                });
+
                 setIsLoaded(true);
-                setProviderList(result.data);
+                setProviderList(filtered);
             
             }).catch((error) => {
 
@@ -87,11 +96,7 @@ export default () => {
     
     }
 
-    useEffect(() => {
-
-        getProviderList();
-    
-    }, []);
+    useEffect(getProviderList, []);
 
     if(!cookies.token) {
 

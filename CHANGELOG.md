@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.2-4...v1.5.0) (2024-05-10)
+
+
+### Features
+
+* **provider Balancer:** change the changelog for add a new version manually ([f70da29](https://gitlab.com/connekt4/back-office-support-webapp/commit/f70da29ee9f908802938ec4cb6f5f73f338459b0))
+
 ### [1.4.2-4](https://gitlab.com/connekt4/back-office-support-webapp/compare/v1.4.2-3...v1.4.2-4) (2024-05-10)
 
 

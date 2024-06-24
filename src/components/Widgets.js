@@ -149,8 +149,8 @@ export const CounterWidget = (props) => {
                 </Row>
             </Card.Body>
 
-            <Card.Footer>
-                <Button className="w-100" variant="outline-primary" onClick={onRefresh}>
+            <Card.Footer className="p-2 border-t-O">
+                <Button className="w-100 py-1" variant="outline-primary" onClick={onRefresh}>
                     Rafraîchir
                 </Button>
             </Card.Footer>

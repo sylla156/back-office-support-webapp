@@ -8,6 +8,8 @@ COPY    package.json \
         package-lock.json \
         .eslintrc.js \
         infra/config/.env.production \
+        .babelrc \
+        config-overrides.js \
         /app/
 
 # Install modules on container

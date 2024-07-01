@@ -83,6 +83,7 @@ import ReturnFunding from './retour-de-fonds/ReturnFunding';
 import RetourDeFondsLogs from './retour-de-fonds/RetourDeFondsLogs';
 import JobList from './jobs/JobList';
 import BulkCheckStatusForm from './jobs/BulkCheckStatusForm';
+import { TransactionBlacklistPage } from './jobs/TransactionBlacklistPage';
 
 
 const RouteWithLoader = ({ Component, ...rest }) => {
@@ -218,6 +219,12 @@ export default () => (
 
     <RouteWithSidebar exact path={Routes.JobList.path} title={"Index des jobs"} Component={JobList} />
     <RouteWithSidebar exact path={Routes.BulkCheckStatusForm.path} title={"Check Status"} Component={BulkCheckStatusForm} />
+    <RouteWithSidebar
+      exact
+      path={Routes.TransactionBlacklistPage.path}
+      title={"Blacklist"}
+      Component={TransactionBlacklistPage}
+    />
 
     <Redirect to={Routes.NotFound.path} />
   </Switch>

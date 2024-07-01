@@ -88,6 +88,7 @@ export const Routes = {
   // Jobs
   JobList: { path: "/jobs" },
   BulkCheckStatusForm: { path: "/bulk-check-status-form" },
+  TransactionBlacklistPage: { path: "/transaction-blacklist" },
 
   // components
   Accordions: { path: "/components/accordions" },

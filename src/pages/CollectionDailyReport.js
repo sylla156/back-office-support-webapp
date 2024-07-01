@@ -379,7 +379,6 @@ export default () => {
                                                 </Row>
                                                 <Row>
                                                     <Col xl={12}>
-
                                                         {merchantSuccess && (
                                                             <Row className="my-2">
                                                                 <Col xl={2}>

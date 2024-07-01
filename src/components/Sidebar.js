@@ -18,7 +18,8 @@ import {
   faMoneyBill,
   faCog,
   faListAlt,
-  faCheckCircle
+  faCheckCircle,
+  faSkull
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
@@ -343,6 +344,12 @@ export default (props = {}) => {
                   title="Bulk Check Status"
                   icon={faCheckCircle}
                   link={Routes.BulkCheckStatusForm.path}
+                >
+                </NavItem>
+                <NavItem
+                  title="Blacklist"
+                  icon={faSkull}
+                  link={Routes.TransactionBlacklistPage.path}
                 >
                 </NavItem>
               </CollapsableNavItem>

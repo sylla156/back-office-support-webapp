@@ -13,12 +13,14 @@ const instance = axios.create({
 export const getAxiosInstance = () => instance;
 
 export const handleAxiosError = (error, handlers) => {
-  const { onNetworkError, onError } = handlers;
+  // TODO: when doing a rebase, keep this. It is a fix.
+  const { onRequestError, onError } = handlers;
 
   if (error.response) {
     handleResponseError(error, handlers);
-  } else if (error.request && onNetworkError) {
-    onNetworkError();
+  } else if (error.request && onRequestError) {
+    // TODO: when doing a rebase, keep this. It is a fix.
+    onRequestError();
   } else {
     onError(error);
   }
@@ -30,7 +32,7 @@ function handleResponseError(error, { onForbidden, onClientError, onServerError 
     onForbidden();
   } else if (status >= 400 && status <= 499 && onClientError) {
     onClientError();
-  } else if (status >= 500 && status <= 599 && onClientError) {
+  } else if (status >= 500 && status <= 599 && onServerError) {
     onServerError();
   } else {
     console.error(error.toJSON());

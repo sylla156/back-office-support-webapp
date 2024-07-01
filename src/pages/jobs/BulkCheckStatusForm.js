@@ -24,7 +24,8 @@ export default () => {
 
   const axiosErrorHandlers = {
     onForbidden: () => setShouldLogin(true),
-    onResponseError: () => toast.error(genericErrorMessages.serverError),
+    // TODO: when doing a rebase, keep this. It is a fix.
+    onServerError: () => toast.error(genericErrorMessages.serverError),
     onRequestError: () => toast.error(genericErrorMessages.requestError),
     onClientError: () => toast.error('Donnés invalides.\nVeuillez vérifier le fichier CSV que vous envoyez.'),
     onError: () => toast.error(genericErrorMessages.networkError)

@@ -11,8 +11,7 @@ import { genericErrorMessages } from '../../utils/errorMessages';
 import { APPKEY } from '../constante/Const';
 import { faBan, faCheck, faClock, faDownload, faEye, faHourglassEnd, faRunning } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { formatDate, toDatetimeLocalValue } from '../../utils/dateUtils';
-import { todayStart, todayEnd } from '../../utils/dateUtils';
+import { formatDate, toDatetimeLocalValue, todayStart, todayEnd } from '../../utils/date';
 import ReactMarkdown from 'react-markdown';
 import { saveAs } from 'file-saver';
 import { JOB_API_BASE_ROUTE, JOB_DOWNLOAD_BASE_ROUTE } from './apiRoutes';
@@ -125,7 +124,8 @@ const JobList = () => {
 
   const axiosErrorHandlers = {
     onForbidden: () => setShouldLogin(true),
-    onResponseError: () => toast.error(genericErrorMessages.serverError),
+    // TODO: when doing a rebase, keep this. It is a fix.
+    onServerError: () => toast.error(genericErrorMessages.serverError),
     onRequestError: () => toast.error(genericErrorMessages.requestError),
     onError: () => toast.error(genericErrorMessages.networkError)
   };

@@ -2,6 +2,12 @@ import React, {useEffect, useState} from "react";
 import {Nav, Card, Pagination} from "@themesberg/react-bootstrap";
 import {PAGE_SIZE, FIRST_PAGE_INDEX} from "../pages/constante/Const";
 
+/**
+ * About variables used in this component.
+ * count: number of items on the page
+ * size: max number of items per page
+ * pages: an array of integers used to store page indexes
+ */
 
 export const TablePagination = (props) => {
 
@@ -10,6 +16,12 @@ export const TablePagination = (props) => {
 
     const pageSize = () => Math.max(size, PAGE_SIZE);
     const firstIndex = () => {
+        // FIXME: Hack to solve problem for api not returning total number of items.
+        // See https://www.notion.so/hub2-re/457710ed1a044b28b957394838e1d5f3?v=aa874f8444f24385a68eb3aa8cfaf059&pvs=4
+        if (count === undefined) {
+            return 1;
+        }
+        // End of hack.
 
         if (count === 0) return 0;
         // formule pour trouver le premier index ==> (Numéro de page - 1) * Taille de page + 1
@@ -19,7 +31,16 @@ export const TablePagination = (props) => {
     const lastIndex = () => Math.min((currentPage) * pageSize(), count);
 
     const canGoPrev = () => currentPage > FIRST_PAGE_INDEX;
-    const canGoNext = () => currentPage < Math.max(pages.length, FIRST_PAGE_INDEX);
+
+    const canGoNext = () => {
+        // FIXME: Hack to solve problem for api not returning total number of items.
+        // See https://www.notion.so/hub2-re/457710ed1a044b28b957394838e1d5f3?v=aa874f8444f24385a68eb3aa8cfaf059&pvs=4
+        if (count === undefined) {
+            return true;
+        }
+        // End of hack.
+        return currentPage < Math.max(pages.length, FIRST_PAGE_INDEX)
+    };
 
     const goToPrev = () => {
 
@@ -78,9 +99,16 @@ export const TablePagination = (props) => {
                     </Pagination.Next>
                 </Pagination>
             </Nav>
-            <small className="fw-bold">
-                <b>{firstIndex()}</b> à <b>{lastIndex()}</b> sur <b>{count}</b>
-            </small>
+            {/*
+              // FIXME: remove the condition on `count`.
+              // See https://www.notion.so/hub2-re/457710ed1a044b28b957394838e1d5f3?v=aa874f8444f24385a68eb3aa8cfaf059&pvs=4
+            */}
+            {
+                count !== undefined &&
+                <small className="fw-bold">
+                    <b>{firstIndex()}</b> à <b>{lastIndex()}</b> sur <b>{count}</b>
+                </small>
+            }
         </Card.Footer>
     );
 

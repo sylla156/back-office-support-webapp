@@ -79,7 +79,9 @@ export const StatusConfirmationReportingList = (props) => {
                         size={listSize}
                         currentPage={currentPage}
                         onPageChange={onPageChange}
-                        count={count}
+                        // FIXME: Uncomment later. It solves the problem of api not returning the total number of items.
+                        // See https://www.notion.so/hub2-re/457710ed1a044b28b957394838e1d5f3?v=aa874f8444f24385a68eb3aa8cfaf059&pvs=4
+                        // count={count}
                     />
                 </Card.Body>
             </Card>

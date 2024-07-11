@@ -60,7 +60,7 @@ export const StatusConfirmationReportingList = (props) => {
                         size={listSize}
                         currentPage={currentPage}
                         onPageChange={onPageChange}
-                        count={count}
+                        // count={count}
                     />
                 </Card.Body>
             </Card>

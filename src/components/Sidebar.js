@@ -16,10 +16,10 @@ import {
   faTools,
   faLock,
   faMoneyBill,
-  faCog,
   faListAlt,
   faCheckCircle,
-  faSkull
+  faBan,
+  faTruckMonster,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
@@ -333,7 +333,7 @@ export default (props = {}) => {
                 />
               </CollapsableNavItem>
 
-              <CollapsableNavItem title="Jobs" icon={faCog}>
+              <CollapsableNavItem title="Jobs" icon={faTruckMonster}>
                 <NavItem
                   title="Liste des jobs"
                   icon={faListAlt}
@@ -348,7 +348,7 @@ export default (props = {}) => {
                 </NavItem>
                 <NavItem
                   title="Blacklist"
-                  icon={faSkull}
+                  icon={faBan}
                   link={Routes.TransactionBlacklistPage.path}
                 >
                 </NavItem>

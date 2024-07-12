@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.2](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.9.1...v1.9.2) (2024-07-12)
+
+
+### Bug Fixes
+
+* reporting pages pagination ([2e011cb](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/commit/2e011cbceeacd42a5864a91854245f3f02db8ee1))
+
 ### [1.9.1](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.9.0...v1.9.1) (2024-07-11)
 
 

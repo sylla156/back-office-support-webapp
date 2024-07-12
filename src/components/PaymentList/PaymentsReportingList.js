@@ -48,7 +48,12 @@ export const PaymentsReportingList = (props) => {
                             ))}
                         </tbody>
                     </Table>
-                    <TablePagination size={listSize} currentPage={currentPage} onPageChange={onPageChange} count={count} />
+                    <TablePagination
+                        size={listSize}
+                        currentPage={currentPage}
+                        onPageChange={onPageChange}
+                        // count={count}
+                    />
                 </Card.Body>
             </Card>
         </>

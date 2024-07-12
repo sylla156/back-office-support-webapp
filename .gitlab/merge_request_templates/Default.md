@@ -13,11 +13,3 @@
 ## Detailed Description
 
 *Describe changes and new features here.*
-
-## Author
-
-%{merge_request_author}
-
-## Branches
-
-From %{source_branch} to %{target_branch}.

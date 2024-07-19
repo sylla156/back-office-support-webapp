@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.1](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.10.0...v1.10.1) (2024-07-19)
+
+
+### Bug Fixes
+
+* transfer fs missing column ([896fa96](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/commit/896fa962326ab2a12d4b86b3e1e7e9665130f81d))
+
 ## [1.10.0](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.9.2...v1.10.0) (2024-07-19)
 
 ### [1.9.2](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.9.1...v1.9.2) (2024-07-12)

@@ -112,7 +112,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
     return null;
   };
 
-  const refreshStatus = (id, transactionId) => {
+  const refreshStatus = (transactionId) => {
     setIsLoading(true);
     setErrorData(null);
     axios.get(REFRESH_PAYMENT_STATUS, {

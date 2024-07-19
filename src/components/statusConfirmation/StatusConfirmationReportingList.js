@@ -238,7 +238,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
           </Choose>
         </td>
 
-        <If condition={canForceStatus}>
+        <If condition={userCanForceStatus}>
           <td>
             <span className="fw-normal text-wrap">
               <Choose>

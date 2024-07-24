@@ -149,7 +149,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
   const badgeColor = (status) => {
     const s = status.toLowerCase();
     const colorMap = {
-      'successful': 'succes',
+      'successful': 'success',
       'pending': 'warning',
       'failed': 'danger',
     };

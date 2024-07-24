@@ -20,6 +20,7 @@ import {
   faCheckCircle,
   faBan,
   faTruckMonster,
+  faHome,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Nav,
@@ -32,7 +33,7 @@ import {
 } from "@themesberg/react-bootstrap";
 import { Link } from "react-router-dom";
 import { Routes } from "../routes";
-import ReactHero from "../assets/img/technologies/logo_o.png";
+import ReactHero from "../assets/img/technologies/hub2-logo.png";
 import { Redirect } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -177,16 +178,6 @@ export default (props = {}) => {
                 title="HUB2 SUPPORT"
                 link={Routes.DashboardOverview.path}
                 image={ReactHero}
-              />
-              <NavItem
-                title="Tableau de bord"
-                link={Routes.DashboardOverview.path}
-                icon={faChartPie}
-              />
-              <NavItem
-                title="Rapport global"
-                link={Routes.GlobalReport.path}
-                icon={faCalendar}
               />
               <CollapsableNavItem title="Frais marchand" icon={faMoneyCheck}>
                 <NavItem

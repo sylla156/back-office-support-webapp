@@ -148,7 +148,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.Solde.path} title={'Transfert - Solde fournisseur HUB2'} Component={Solde} />
 
     {/* pages */}
-    <RouteWithSidebar exact path={Routes.DashboardOverview.path} title={'Tableau de bord'} Component={DashboardOverview} />
+    <RouteWithSidebar exact path={Routes.DashboardOverview.path} title={'Accueil'} Component={DashboardOverview} />
 
     <RouteWithSidebar exact path={Routes.CheckStatus.path} title={'Vérification du statut'} Component={CheckStatus} />
     <RouteWithSidebar exact path={Routes.MerchantTransferBalance.path} title={'Transfert - Solde marchand HUB2'} Component={MerchantTransferBalance} />
@@ -161,7 +161,7 @@ export default () => (
     <RouteWithSidebar exact path={Routes.HistoryProviderBalanceTransfer.path} title={'Transfert - Historique solde fournisseur'} Component={HistoryProviderBalanceTransfer} />
     <RouteWithSidebar exact path={Routes.HistoryMerchantBalanceCollection.path} title={'Paiement - Historique solde marchand HUB2'} Component={HistoryMerchantBalanceCollection} />
     <RouteWithSidebar exact path={Routes.BalanceSetting.path} title={'Réglage de la balance'} Component={BalanceSetting} />
-    <RouteWithSidebar exact path={Routes.GlobalReport.path} title={'Rapport global'} Component={GlobalReport} />
+    {/* <RouteWithSidebar exact path={Routes.GlobalReport.path} title={'Rapport global'} Component={GlobalReport} /> */}
     <RouteWithSidebar exact path={Routes.SmsContentOrangeCashIn.path} title={'Orange Cash in'} Component={SmsContentOrangeCashIn} />
     <RouteWithSidebar exact path={Routes.SmsOrangeCashInCandidate.path} title={'Orange cash in candidates'} Component={SmsOrangeCashInCandidate} />
     <RouteWithSidebar exact path={Routes.TransferReporting.path} title={'Relevé transfert'} Component={TransferReporting} />

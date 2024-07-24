@@ -267,7 +267,7 @@ export const CounterWidgetMerchantBalance = (props) => {
 
     const createdAtUtc = new Date(date);
     const createdAtFormated = createdAtUtc.toLocaleString("pt-BR");
-    // const logo = "logo_o.png";
+    // const logo = "hub2-logo.png";
 
     return (
         <Card border="light" className="shadow-sm border-warning">

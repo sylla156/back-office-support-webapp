@@ -28,7 +28,7 @@ export default function VerifyAuth(props) {
 
   const axios = AxiosWebHelper.getAxios();
 
-  const logo = require('../../assets/img/technologies/logo_o.png')
+  const logo = require('../../assets/img/technologies/hub2-logo.png')
 
   const generateQR = (is2FAActive) => {
     if (is2FAActive === false) {

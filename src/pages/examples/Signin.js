@@ -59,7 +59,7 @@ export default function Signin() {
       .finally(() => setIsLoading(false));
   };
 
-  const logo = require('../../assets/img/technologies/logo_o.png');
+  const logo = require('../../assets/img/technologies/hub2-logo.png');
 
   return (
     <main>

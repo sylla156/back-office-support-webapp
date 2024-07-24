@@ -2,7 +2,7 @@
 import React from 'react';
 import {Image} from '@themesberg/react-bootstrap';
 
-import ReactLogo from "../assets/img/technologies/logo_o.png";
+import ReactLogo from "../assets/img/technologies/hub2-logo.png";
 
 export default (props) => {
 

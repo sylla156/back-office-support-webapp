@@ -30,7 +30,7 @@ export const OrangeCashInInfoList = (props) => {
                 <Card.Body>
                     <img
                         className="p-2 d-xl-flex rounded mx-auto"
-                        src={require("../../assets/img/technologies/logo_o.png")}
+                        src={require("../../assets/img/technologies/hub2-logo.png")}
                         width="100"
                         style={{position: "absolute", top: 12, left: 14}}
                     />

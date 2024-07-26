@@ -4,7 +4,6 @@ import React from "react";
 export const PaymentSummary = (props) => {
 
     const {
-        id,
         merchantId,
         transactionId,
         amount,

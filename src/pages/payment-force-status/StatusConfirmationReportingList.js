@@ -242,7 +242,6 @@ StatusConfirmationReportingList.TableRow = (props) => {
             <span className='fw-normal text-wrap'>
               <If condition={canForceStatus}>
                 <DangerouslyForceStatus
-                  id={id}
                   onRefresh={onRefresh}
                   payment={transactionsInfos}
                 />

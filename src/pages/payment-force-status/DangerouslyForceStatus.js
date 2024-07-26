@@ -21,7 +21,7 @@ export const DangerouslyForceStatus = (props) => {
   const [errorData, setErrorData] = useState(null);
   const [show, setShow] = useState(false);
 
-  const { id: transactionId, onRefresh, payment } = props.id;
+  const { payment, onRefresh } = props;
 
   const [cookies,] = useCookies(['token',]);
   const axios = AxiosWebHelper.getAxios();
@@ -40,7 +40,7 @@ export const DangerouslyForceStatus = (props) => {
         authenticationtoken: cookies.token,
       },
       params: {
-        transactionId,
+        id: payment.transactionId,
       }
     }).then(() => {
       setIsLoading(false);

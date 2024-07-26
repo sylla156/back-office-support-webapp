@@ -166,7 +166,7 @@ StatusConfirmationReportingList.TableRow = (props) => {
             <UpdateStatusConfirmation
               key={idx}
               statusConfirmation={item}
-              statusVariantColor={getStatusVariant(item)}
+              statusVariantColor={getStatusVariant(item.confirmedStatus)}
               onRefresh={onRefresh}
               userCanForceStatus={userCanForceStatus}
               payment={transactionsInfos}

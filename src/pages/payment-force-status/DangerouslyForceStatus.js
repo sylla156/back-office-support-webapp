@@ -40,7 +40,7 @@ export const DangerouslyForceStatus = (props) => {
         authenticationtoken: cookies.token,
       },
       params: {
-        id: payment.transactionId,
+        transactionId: payment.transactionId,
       }
     }).then(() => {
       setIsLoading(false);

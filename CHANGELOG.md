@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.2](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.11.1...v1.11.2) (2024-07-26)
+
+
+### Bug Fixes
+
+* wrong parameter for function in force payment status page ([5d76771](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/commit/5d76771e828c6c69caf9bfdcc3c18c9fb50e239b))
+
 ### [1.11.1](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.11.0...v1.11.1) (2024-07-24)
 
 

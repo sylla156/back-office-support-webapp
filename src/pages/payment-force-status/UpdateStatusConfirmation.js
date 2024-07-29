@@ -1,356 +1,283 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from 'react';
+import { Col, Row, Modal, Button, Card, Form, Badge } from '@themesberg/react-bootstrap';
 import {
-    Col,
-    Row,
-    Modal,
-    Button,
-    Card,
-    Form,
-    Badge,
-    InputGroup,
-    Dropdown,
-    ButtonGroup,
-} from "@themesberg/react-bootstrap";
-import {APPKEY, SelectDefaultValues, AddStatusConfirmationList, UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST} from "../constante/Const";
-import AxiosWebHelper from "../../utils/axios-helper";
-import {useCookies} from "react-cookie";
-import {Redirect} from "react-router-dom";
-import {Routes} from "../../routes";
-import AlertDismissable from "../../components/AlertDismissable";
-import SplitString from "../../utils/splitString";
-import {PaymentSummary} from "./PaymentSummary";
+  APPKEY,
+  SelectDefaultValues,
+  AddStatusConfirmationList,
+  UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST,
+} from '../constante/Const';
+import AxiosWebHelper from '../../utils/axios-helper';
+import { useCookies } from 'react-cookie';
+import { Redirect } from 'react-router-dom';
+import { Routes } from '../../routes';
+import AlertDismissable from '../../components/AlertDismissable';
+import SplitString from '../../utils/splitString';
+import { PaymentSummary } from './PaymentSummary';
 
 export const UpdateStatusConfirmation = (props) => {
 
-    const {
-        statusConfirmation,
-        statusVariantColor,
-        onRefresh,
-        userCanForceStatus,
-        payment,
-    } = props;
+  const {
+    statusConfirmation,
+    statusVariantColor,
+    onRefresh,
+    userCanForceStatus,
+    payment,
+  } = props;
 
-    const {
-        id: statusConfirmationId,
-        processorReference,
-        description,
-        user,
-        confirmedStatus,
-    } = statusConfirmation;
+  const {
+    id: statusConfirmationId,
+    processorReference,
+    description,
+    user,
+    confirmedStatus,
+  } = statusConfirmation;
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [shouldLogin, setShouldLogin] = useState(false);
-    const [errorData, setErrorData] = useState(null);
-    const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [shouldLogin, setShouldLogin] = useState(false);
+  const [errorData, setErrorData] = useState(null);
+  const [show, setShow] = useState(false);
 
-    const [newConfirmedStatus, setNewConfirmedStatus] = useState(
-        SelectDefaultValues.status
-    )
-    let [newProcessorReference, setNewProcessorReference] = useState("");
-    const [newDescription, setNewDescription] = useState("");
+  const [newConfirmedStatus, setNewConfirmedStatus] = useState(SelectDefaultValues.status);
+  let [newProcessorReference, setNewProcessorReference] = useState('');
+  const [newDescription, setNewDescription] = useState('');
 
-    const [cookies] = useCookies(["token", "user"]);
+  const [cookies] = useCookies(['token', 'user']);
 
-    const sessionUser = cookies.user;
+  const sessionUser = cookies.user;
 
-    const setData = () => {
+  const setData = () => {
+    const { processorReference, description, confirmedStatus } = statusConfirmation
 
-        const {processorReference, description, confirmedStatus} = statusConfirmation
+    setNewConfirmedStatus(confirmedStatus);
+    setNewProcessorReference(processorReference);
+    setNewDescription(description);
+  }
 
-        setNewConfirmedStatus(confirmedStatus)
-        setNewProcessorReference(processorReference)
-        setNewDescription(description)
-    
+  const axios = AxiosWebHelper.getAxios();
+
+  const updateStatusConfirmation = () => {
+    if (isLoading) {
+      return;
     }
 
-    const axios = AxiosWebHelper.getAxios();
+    setIsLoading(true);
+    setErrorData(null);
 
-    const updateStatusConfirmation = () => {
+    axios.patch(
+      `${UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST}/${statusConfirmationId}`,
+      {
+        confirmedStatus: newConfirmedStatus,
+        processorReference: newProcessorReference,
+        description: newDescription,
+      },
+      {
+        headers: {
+          AppKey: APPKEY,
+          authenticationtoken: cookies.token,
+        },
+      }
+    ).then(() => {
+      setIsLoading(false);
+      handleClose()
+      onRefresh();
+    }).catch((error) => {
+      setIsLoading(false);
 
-        if (isLoading) return;
+      if (error.response) {
+        if (error.response.status === 401) {
+          setShouldLogin(true);
+        } else {
+          setErrorData(error.response.data.message);
+        }
+      }
+    });
+  };
 
-        setIsLoading(true);
-        setErrorData(null);
+  const handleShow = () => setShow(true);
 
-        axios.patch(
-            UPDATE_STATUS_CONFIRMATION_TRANSFER_LIST + "/" + statusConfirmationId,
-            {
-                confirmedStatus: newConfirmedStatus,
-                processorReference: newProcessorReference,
-                description: newDescription,
-            },
-            {
-                headers: {
-                    AppKey: APPKEY,
-                    authenticationtoken: sessionUser.authenticationtoken,
-                },
-            }
-        ).then((result) => {
+  const handleClose = () => {
+    setData();
+    setErrorData(null);
+    setShow(false);
+    setIsLoading(false);
+  }
 
-            setIsLoading(false);
-            handleClose()
-            onRefresh();
-        
-        }).catch((error) => {
+  const handlePatchStatusConfirmation = () => updateStatusConfirmation();
 
-            setIsLoading(false);
-            if (error.response) {
-
-                if (error.response.status === 401) {
-
-                    setShouldLogin(true);
-                
-                } else {
-
-                    setErrorData(error.response.data.message);
-                
-                }
-            
-            }
-        
-        })
-    
+  const isFormValid = () => {
+    if (!newConfirmedStatus) {
+      return false;
     }
 
-    const handleShow = () => {
-
-        setShow(true);
-    
+    if (newConfirmedStatus === 'successful' && (!newProcessorReference || newProcessorReference.trim().length === 0)) {
+      return false;
     }
 
-    const handleClose = () => {
-
-        setData();
-        setErrorData(null);
-        setShow(false);
-        setIsLoading(false);
-    
+    if (!newDescription || newDescription.trim().length === 0) {
+      return false;
     }
 
-    const handlePatchStatusConfirmation = () => {
+    return true;
+  }
 
-        updateStatusConfirmation();
-    
-    }
+  const canUpdate = () => userCanForceStatus && sessionUser.id === user.id;
 
-    const isFormValid = () => {
+  const canEditForm = () => canUpdate();
 
-        if (!newConfirmedStatus) return false;
-        if (
-            newConfirmedStatus === "successful" &&
-            (!newProcessorReference || newProcessorReference.trim().length === 0)
-        )
-            return false;
-        if (!newDescription) return false;
-        if (newDescription.trim().length === 0) return false;
+  useEffect(() => {
+    setData();
+  }, [processorReference, description, confirmedStatus]);
 
-        return true;
-    
-    }
+  if (!cookies.token) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
-    const canUpdate = () => {
+  if (shouldLogin) {
+    return <Redirect to={Routes.Signin.path} />;
+  }
 
-        if (userCanForceStatus && sessionUser.id === user.id) return true;
+  return (
+    <>
+      <Col md={6} className=''>
+        <Button
+          className='mb-3'
+          variant='outline-light'
+          size='xs'
+          onClick={handleShow}
+        >
+          <Badge className='mx-1 mb-3' bg={`${statusVariantColor}`}>
+            <span className='h6 text-light'> {confirmedStatus}</span>
+          </Badge>
+          {processorReference && (
+            <Badge className='mx-1 mb-3' bg={`primary`}>
+              <span className='h6 text-light'> {processorReference} </span>
+            </Badge>
+          )}
+          <span
+            title='{user.name}'
+            className='text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary'
+            style={{ width: 10, height: 10 }}
+          >
+            {SplitString.takeFirstLetterOfEachString(user.name)}
+          </span>
 
-        return false;
-    
-    }
-    const canDelete = () => canUpdate();
-    const canEditForm = () => canUpdate();
+          <br />
+        </Button>
+      </Col>
 
-    useEffect(() => {
-
-        setData();
-    
-    }, [processorReference, description, confirmedStatus]);
-
-    if (!cookies.token) {
-
-        return <Redirect to={Routes.Signin.path} />;
-    
-    }
-
-    if (shouldLogin) {
-
-        return <Redirect to={Routes.Signin.path} />;
-    
-    }
-
-    console.log("confirmedStatus ", confirmedStatus, "processorReference ", "user.name ", user.name);
-
-    return (
-        <>
-            <Col md={6} className="">
+      <Modal
+        size='md'
+        show={show}
+        onHide={() => handleClose(false)}
+        backdrop='static'
+        keyboard={false}
+      >
+        <Modal.Header closeButton closeVariant='white' className='bg-primary'>
+          <Modal.Title className='text-white'>
+            Mise à jour d'un status confirmation
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Card border='light' className='bg-white  mb-4'>
+            <Card.Body>
+              <h5 className='mb-4'></h5>
+              <Form>
+                <Row>
+                  <Col md={12} className='mb-3'>
+                    <Form.Group id='status'>
+                      <Form.Label>Status (*)</Form.Label>
+                      <Form.Select
+                        disabled={!canEditForm()}
+                        value={newConfirmedStatus}
+                        onChange={(event) => setNewConfirmedStatus(event.target.value)}
+                      >
+                        <option
+                          key={SelectDefaultValues.status}
+                          value={SelectDefaultValues.status}
+                        >
+                          Choisissez un status
+                        </option>
+                        {AddStatusConfirmationList.map((item) => (
+                          <option key={item.id} value={item.status}>
+                            {item.status}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className='mb-3'>
+                    <Form.Group id='firstName'>
+                      <Form.Label>Processor reference </Form.Label>
+                      <Form.Control
+                        required
+                        disabled={!canEditForm()}
+                        type='text'
+                        value={newProcessorReference}
+                        onChange={(event) => setNewProcessorReference(event.target.value)}
+                        placeholder='Entrer un processor reference '
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className='mb-3'>
+                    <Form.Group id='firstName'>
+                      <Form.Label>Description (*)</Form.Label>
+                      <Form.Control
+                        required
+                        as='textarea'
+                        rows='3'
+                        disabled={!canEditForm()}
+                        value={newDescription}
+                        onChange={(event) => setNewDescription(event.target.value)}
+                        placeholder='Entrer une description '
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className='mb-3'>
+                    <p className='text-gray-700 text-center'>
+                      Ajoutée par {user.name}
+                    </p>
+                  </Col>
+                </Row>
+              </Form>
+              <PaymentSummary {...payment} />
+            </Card.Body>
+            <Modal.Footer>
+              <Button
+                variant='primary'
+                color=''
+                onClick={() => handleClose(false)}
+              >
+                Fermer
+              </Button>
+              {canUpdate() && (
                 <Button
-                    className="mb-3"
-                    variant="outline-light"
-                    size="xs"
-                    onClick={handleShow}
+                  disabled={!isFormValid()}
+                  variant={isFormValid() ? 'success' : 'primary'}
+                  onClick={() => handlePatchStatusConfirmation()}
                 >
-                    <Badge className="mx-1 mb-3" bg={`${statusVariantColor}`}>
-                        <span className="h6 text-light"> {confirmedStatus}</span>
-                    </Badge>
-                    {processorReference && (
-                        <Badge className="mx-1 mb-3" bg={`primary`}>
-                            <span className="h6 text-light"> {processorReference} </span>
-                        </Badge>
-                    )}
-                    <span
-                        title="{user.name}"
-                        className="text-light p-2 mb-2 rounded-circle text-center border bg-dark border-primary"
-                        style={{width: 10, height: 10}}
-                    >
-                        {SplitString.takeFirstLetterOfEachString(user.name)}
-                    </span>
-
-                    <br />
+                  Mise à jour
                 </Button>
-            </Col>
+              )}
 
-            <Modal
-                size="md"
-                show={show}
-                onHide={() => {
-
-                    handleClose(false);
-                
-                }}
-                backdrop="static"
-                keyboard={false}
-            >
-                <Modal.Header closeButton closeVariant="white" className="bg-primary">
-                    <Modal.Title className="text-white">
-                        Mise à jour d'un status confirmation
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Card border="light" className="bg-white  mb-4">
-                        <Card.Body>
-                            <h5 className="mb-4"></h5>
-                            <Form>
-                                <Row>
-                                    <Col md={12} className="mb-3">
-                                        <Form.Group id="status">
-                                            <Form.Label>Status (*)</Form.Label>
-                                            <Form.Select
-                                                disabled={!canEditForm()}
-                                                value={newConfirmedStatus}
-                                                onChange={(event) => {
-
-                                                    setNewConfirmedStatus(event.target.value);
-                                                
-                                                }}
-                                            >
-                                                <option
-                                                    key={SelectDefaultValues.status}
-                                                    value={SelectDefaultValues.status}
-                                                >
-                                                    Choisissez un status
-                                                </option>
-                                                {AddStatusConfirmationList.map((item) => (
-                                                    <option key={item.id} value={item.status}>
-                                                        {item.status}
-                                                    </option>
-                                                ))}
-                                            </Form.Select>
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={12} className="mb-3">
-                                        <Form.Group id="firstName">
-                                            <Form.Label>Processor reference </Form.Label>
-                                            <Form.Control
-                                                required
-                                                disabled={!canEditForm()}
-                                                type="text"
-                                                value={newProcessorReference}
-                                                onChange={(event) => {
-
-                                                    setNewProcessorReference(event.target.value);
-                                                
-                                                }}
-                                                placeholder="Entrer un processor reference "
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={12} className="mb-3">
-                                        <Form.Group id="firstName">
-                                            <Form.Label>Description (*)</Form.Label>
-                                            <Form.Control
-                                                required
-                                                as="textarea"
-                                                rows="3"
-                                                disabled={!canEditForm()}
-                                                value={newDescription}
-                                                onChange={(event) => {
-
-                                                    setNewDescription(event.target.value);
-                                                
-                                                }}
-                                                placeholder="Entrer une description "
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={12} className="mb-3">
-                                        <p className="text-gray-700 text-center">
-                                            Ajoutée par {user.name}
-                                        </p>
-                                    </Col>
-                                </Row>
-                            </Form>
-                            <PaymentSummary {...payment} />
-                        </Card.Body>
-                        <Modal.Footer>
-                            {/* {canDelete() && (
-                                <DeleteStatusConfirmation
-                                    statusConfirmationId={statusConfirmationId}
-                                    onRefresh={onRefresh}
-                                />
-                            )} */}
-                            <Button
-                                variant="primary"
-                                color=""
-                                onClick={() => {
-
-                                    handleClose(false);
-                                
-                                }}
-                            >
-                                Fermer
-                            </Button>
-                            {canUpdate() && (
-                                <Button
-                                    disabled={!isFormValid()}
-                                    variant={isFormValid() ? "success" : "primary"}
-                                    onClick={() => {
-
-                                        handlePatchStatusConfirmation();
-                                    
-                                    }}
-                                >
-                                    Mise à jour
-                                </Button>
-                            )}
-
-                            <div className="mt-3">
-                                <AlertDismissable
-                                    message={errorData}
-                                    variant="danger"
-                                    show={!!errorData}
-                                    onClose={() => setErrorData(null)}
-                                    isLoading={isLoading}
-                                />
-                            </div>
-                        </Modal.Footer>
-                    </Card>
-                </Modal.Body>
-            </Modal>
-        </>
-    )
-
-}
+              <div className='mt-3'>
+                <AlertDismissable
+                  message={errorData}
+                  variant='danger'
+                  show={!!errorData}
+                  onClose={() => setErrorData(null)}
+                  isLoading={isLoading}
+                />
+              </div>
+            </Modal.Footer>
+          </Card>
+        </Modal.Body>
+      </Modal>
+    </>
+  );
+};

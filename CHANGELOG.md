@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.5](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.11.4...v1.11.5) (2024-07-29)
+
+
+### Bug Fixes
+
+* missing header for status confirmation patch route ([2d424cb](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/commit/2d424cbb12ba99d425b490b2c6850b2da96632fc))
+
 ### [1.11.4](https://connekt4.gitlab.com/connekt4/back-office-support-webapp/compare/v1.11.3...v1.11.4) (2024-07-26)
 
 
